@@ -98,9 +98,8 @@ public class SpreadShooting : MonoBehaviour
     private GameObject GetBullet(Transform shootPoint)
     {
         int direction = 1 * (this.playerMovement.IsFacingRight ? 1 : -1);
-        Vector3 rot = new Vector3(this.WeaponHolder.rotation.x, this.WeaponHolder.rotation.y, this.WeaponHolder.rotation.z - shootPoint.rotation.z);
-        //GameObject obj = Instantiate(this.bulletPrefab, shootPoint.position, this.WeaponHolder.rotation, this.spawnPool);
-        GameObject obj = Instantiate(this.bulletPrefab, shootPoint.position, Quaternion.Euler(rot), this.spawnPool);
+        GameObject obj = Instantiate(this.bulletPrefab, shootPoint.position, shootPoint.rotation, this.spawnPool);
+
         this.bulletClone.Add(obj);
 
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
