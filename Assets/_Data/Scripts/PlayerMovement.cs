@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement;
 
+    public bool IsFacingRight;
+
     private void Update()
     {
         this.movement.x = Input.GetAxisRaw("Horizontal");
@@ -30,10 +32,12 @@ public class PlayerMovement : MonoBehaviour
         if (mousePos.x > this.transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+            this.IsFacingRight = true;
         }
         else
         {
             transform.localScale = Vector3.one;
+            this.IsFacingRight = false;
         }
     }
 }
