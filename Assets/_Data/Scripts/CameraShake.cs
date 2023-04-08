@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
+    public static CameraShake instance;
     public CinemachineImpulseSource cinemachineImpulseSource;
 
-    private void Update()
+    private void Awake()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            this.cinemachineImpulseSource.GenerateImpulse(Camera.main.transform.forward);
-        }
+        CameraShake.instance = this;
+    }
+
+    public void ShakeCamera()
+    {
+        this.cinemachineImpulseSource.GenerateImpulse(Camera.main.transform.forward);
     }
 }

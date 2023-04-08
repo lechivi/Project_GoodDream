@@ -92,6 +92,7 @@ public class SpreadShooting : MonoBehaviour
         {
             this.GetBullet(child);
         }
+        CameraShake.instance.ShakeCamera();
 
     }
 
