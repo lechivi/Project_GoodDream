@@ -9,11 +9,13 @@ public class BulletScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
-        {
-            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            gameObject.GetComponent<Animator>().SetTrigger("Hit");
-        }
+        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        gameObject.GetComponent<Animator>().SetTrigger("Hit");
+        //if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        //{
+        //    gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        //    gameObject.GetComponent<Animator>().SetTrigger("Hit");
+        //}
         //else
         //{
         //    gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
