@@ -8,10 +8,13 @@ public class WeaponMelee : MonoBehaviour
     public TrailRenderer trail;
 
     public float cooldownTimePrimaryMove;
-    public float cooldownTimeSecondMove;
+    public float cooldownTimeSpecialMove;
 
-    public bool readyPrimaryMove;
-    public bool readySecondMove;
+    public bool isReadyPrimaryMove { get; set; }
+    public bool isReadySpecialMove { get; set; }
+
+    public bool isStartCooldownPrimaryMove { get; set; }
+    public bool isStartCooldownSpecialMove { get; set; }
 
     protected WeaponParent weaponParent;
     protected Animator animator;
@@ -20,8 +23,8 @@ public class WeaponMelee : MonoBehaviour
 
     private float speed = 9f;
     private bool isAttacking;
-    private bool isThrowing; //for distinguish 2 phase of second move
-    private bool back; //for second phase of second move
+    private bool isThrowing; //for distinguish 2 phase of special move
+    private bool back; //for second phase of special move
 
     protected virtual void Awake()
     {
@@ -33,18 +36,23 @@ public class WeaponMelee : MonoBehaviour
         this.animator.enabled = false;
         this.col.enabled = false;
         this.trail.emitting = false;
+
+        this.isReadyPrimaryMove = true;
+        this.isReadySpecialMove = true;
     }
 
     protected virtual void Update()
     {
         this.PrimaryMove();
-        this.SecondMove();
+        this.SpecialMove();
     }
 
     protected virtual void PrimaryMove()
     {
-        if (Input.GetMouseButtonDown(0) && !this.isAttacking)
+        if (Input.GetMouseButtonDown(0) && !this.isAttacking && this.isReadyPrimaryMove)
         {
+            this.isReadyPrimaryMove = false;
+            this.isStartCooldownPrimaryMove = true;
             this.isAttacking = true;
             this.animator.enabled = true;
 
@@ -58,12 +66,13 @@ public class WeaponMelee : MonoBehaviour
         this.animator.enabled = false;
     }
 
-    protected virtual void SecondMove()
+    protected virtual void SpecialMove()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if (!this.isThrowing && !this.isAttacking)
+            if (!this.isThrowing && !this.isAttacking && this.isReadySpecialMove)
             {
+                this.isReadySpecialMove = false;
                 this.trail.emitting = true;
                 this.isAttacking = true;
 
@@ -96,6 +105,7 @@ public class WeaponMelee : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(0, 0, 90);
 
                 this.trail.emitting = false;
+                this.isStartCooldownSpecialMove = true;
                 this.isAttacking = false;
                 this.isThrowing = false;
                 this.back = false;
