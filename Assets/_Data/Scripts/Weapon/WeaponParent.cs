@@ -5,17 +5,11 @@ using UnityEngine;
 public class WeaponParent : MonoBehaviour
 {
     public PlayerMovement playerMovement;
-    public Animator animator;
-    Vector3 direction;
+    private Vector3 direction;
 
     private void Update()
     {
-        FaceGun();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            this.animator.SetTrigger("Attack");
-        }
+        this.FaceGun();
     }
 
     private void FaceGun()
