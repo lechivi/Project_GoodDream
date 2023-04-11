@@ -1691,7 +1691,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: puzzle_84
+      name: check_0_up
       rect:
         serializedVersion: 2
         x: 96
@@ -1712,49 +1712,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: puzzle_85
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fa660a743cf23ed4fa9ca9128f19708e
-      internalID: 409607483
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_86
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 350fb7e301bb6ef4cb8b4fcc7babfe26
-      internalID: -2132919892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_87
+      name: check_0_down
       rect:
         serializedVersion: 2
         x: 144
@@ -1770,48 +1728,6 @@ TextureImporter:
       bones: []
       spriteID: cfd7facd6cf4a2f4f9bee40d7ac93cfd
       internalID: -1228845986
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_88
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4eb487e53afe4244ad1d4e6eaff114c
-      internalID: -314688749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_89
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 96
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be529ff43d98c7445a3843d6e5bea9e2
-      internalID: 1257941195
       vertices: []
       indices: 
       edges: []
@@ -2069,7 +1985,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: puzzle_102
+      name: check_1_up
       rect:
         serializedVersion: 2
         x: 96
@@ -2090,49 +2006,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: puzzle_103
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 539c701c7897d62468c5323f78f2ffa3
-      internalID: 632579807
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_104
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 30ab0c81ecea34b448b4b3312b0f1443
-      internalID: -213095889
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_105
+      name: check_1_down
       rect:
         serializedVersion: 2
         x: 144
@@ -2148,48 +2022,6 @@ TextureImporter:
       bones: []
       spriteID: 3f782790905d80d47a3a3171d1500ed6
       internalID: -1218307856
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_106
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 271e1e4e5bded3a4489bdd7b36593233
-      internalID: -470731544
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_107
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82ac49d1456b73d41b60f663ad7dc4a0
-      internalID: 1553676579
       vertices: []
       indices: 
       edges: []
@@ -2447,7 +2279,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: puzzle_120
+      name: check_2_up
       rect:
         serializedVersion: 2
         x: 96
@@ -2468,49 +2300,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: puzzle_121
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba33fdabb5260b142a4b918ef9431634
-      internalID: 1398498577
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_122
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ad4165608857dc84d88dd41d320ef295
-      internalID: -189203344
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_123
+      name: check_2_down
       rect:
         serializedVersion: 2
         x: 144
@@ -2526,48 +2316,6 @@ TextureImporter:
       bones: []
       spriteID: 4fb3fd70fa290b34aa36bcdf1b504ee8
       internalID: 1356094224
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_124
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 284cc775581eb464ea2a34b2017849b7
-      internalID: 537005065
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_125
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 416c1f85880bf5f4d973347b59ba2e73
-      internalID: -1773944168
       vertices: []
       indices: 
       edges: []
@@ -2825,7 +2573,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: puzzle_138
+      name: check_3_up
       rect:
         serializedVersion: 2
         x: 96
@@ -2846,49 +2594,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: puzzle_139
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ca5093cd0d68ab439f2c1144de7e61b
-      internalID: -364629655
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_140
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3675555ed3439564ca2a9f9eecc35c8d
-      internalID: 663117448
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_141
+      name: check_3_down
       rect:
         serializedVersion: 2
         x: 144
@@ -2908,48 +2614,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: puzzle_142
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 539cfbe123c3c0645a6e54c124b98c7d
-      internalID: 26951512
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: puzzle_143
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d1b2e35c004b24a4db839eac7bc93e39
-      internalID: 1040316431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -2961,7 +2625,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      puzzle_15: -55056445
+      puzzle_130: -610413832
       puzzle_33: -270407732
       puzzle_53: -217303108
       puzzle_109: 1516458268
@@ -2975,53 +2639,53 @@ TextureImporter:
       puzzle_27: -2118548987
       puzzle_2: -351534965
       puzzle_60: 1216170176
-      puzzle_141: 1182735128
       puzzle_81: 106767816
       puzzle_4: 806845009
       puzzle_41: 714206002
       puzzle_21: 19337725
       puzzle_83: 648085666
       puzzle_63: -1757064059
-      puzzle_87: -1228845986
+      puzzle_112: 149078747
       puzzle_50: -1257006252
       puzzle_65: -514972210
       puzzle_143: 1040316431
-      puzzle_112: 149078747
       puzzle_56: -669923638
       puzzle_122: -189203344
       puzzle_67: -1314050658
       puzzle_31: 935686550
       puzzle_111: 1784955502
       puzzle_115: 446417345
+      check_1_up: -775541159
+      check_1_down: -1218307856
       puzzle_137: 1907128238
       puzzle_34: 895073632
       puzzle_11: 492663328
       puzzle_80: -2071139860
-      puzzle_84: -1850663425
       puzzle_38: -222110290
       puzzle_91: 185320063
       puzzle_61: -146762924
       puzzle_9: -1010435231
-      puzzle_95: 1113977652
       puzzle_116: 1287840456
+      puzzle_95: 1113977652
       puzzle_5: 1548731210
+      check_0_up: -1850663425
       puzzle_94: 528041018
       puzzle_85: 409607483
       puzzle_133: -1767814265
-      puzzle_120: 281211761
       puzzle_72: -1397953700
       puzzle_96: -1218629965
       puzzle_127: 1966865062
       puzzle_108: 667931392
       puzzle_139: -364629655
       puzzle_114: -1426696703
+      check_0_down: -1228845986
+      check_3_down: 1182735128
       puzzle_18: 110616665
       puzzle_30: -383497998
       puzzle_44: -180127622
       puzzle_22: -931656168
       puzzle_74: 1017897726
       puzzle_10: -565508508
-      puzzle_138: -5639998
       puzzle_26: 492941160
       puzzle_136: -841332398
       puzzle_66: 2000482060
@@ -3040,15 +2704,15 @@ TextureImporter:
       puzzle_62: -516195928
       puzzle_28: 1666849116
       puzzle_20: 912242606
-      puzzle_105: -1218307856
       puzzle_119: -1700255458
+      check_2_down: 1356094224
       puzzle_43: -1117642420
-      puzzle_40: 1040680869
+      puzzle_101: 1411836575
       puzzle_121: 1398498577
       puzzle_48: 2002979958
-      puzzle_134: -1316384248
+      puzzle_40: 1040680869
       puzzle_140: 663117448
-      puzzle_101: 1411836575
+      puzzle_134: -1316384248
       puzzle_57: 1655386491
       puzzle_46: 1750509519
       puzzle_75: -110631432
@@ -3060,6 +2724,7 @@ TextureImporter:
       puzzle_29: 1823744574
       puzzle_93: 1232967685
       puzzle_92: -767633008
+      check_2_up: 281211761
       puzzle_118: -56167519
       puzzle_35: 413241321
       puzzle_58: 741439785
@@ -3071,17 +2736,16 @@ TextureImporter:
       puzzle_125: -1773944168
       puzzle_100: -880522907
       puzzle_107: 1553676579
+      check_3_up: -5639998
       puzzle_124: 537005065
       puzzle_64: -150705760
       puzzle_17: 1266096803
       puzzle_68: -604268099
       puzzle_126: 584854830
-      puzzle_102: -775541159
       puzzle_113: -496806412
       puzzle_55: 1122250195
       puzzle_45: 1377156415
       puzzle_79: 485634687
-      puzzle_123: 1356094224
       puzzle_13: 1858069883
       puzzle_47: 428182853
       puzzle_39: -1719956399
@@ -3104,7 +2768,7 @@ TextureImporter:
       puzzle_69: -614425746
       puzzle_88: -314688749
       puzzle_132: -92078593
-      puzzle_130: -610413832
+      puzzle_15: -55056445
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
