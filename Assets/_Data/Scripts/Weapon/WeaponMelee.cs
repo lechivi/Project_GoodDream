@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class WeaponMelee : MonoBehaviour
 {
+    [Header("Setting")]
+    [SerializeField] private int damage = 10;
+    [SerializeField] private float speedAttack = 5f;
+
     public TrailRenderer trail;
 
     public float cooldownTimePrimaryMove;
@@ -54,17 +58,22 @@ public class WeaponMelee : MonoBehaviour
             this.isReadyPrimaryMove = false;
             this.isStartCooldownPrimaryMove = true;
             this.isAttacking = true;
+
             this.animator.enabled = true;
+            this.trail.emitting = true;
+            this.col.enabled = true;
 
             this.animator.SetTrigger("Attack");
-            Invoke("FinishAnimation", 0.2f);
         }
     }
 
     public void FinishAnimation()
     {
         this.isAttacking = false;
+
         this.animator.enabled = false;
+        this.trail.emitting = false;
+        this.col.enabled = false;
     }
 
     protected virtual void SpecialMove()
@@ -74,12 +83,12 @@ public class WeaponMelee : MonoBehaviour
             if (!this.isThrowing && !this.isAttacking && this.isReadySpecialMove)
             {
                 this.isReadySpecialMove = false;
-                this.trail.emitting = true;
                 this.isAttacking = true;
+
+                this.trail.emitting = true;
 
                 transform.SetParent(null);
 
-                //this.animator.SetTrigger("Attack_Second");
                 this.rb.bodyType = RigidbodyType2D.Dynamic;
                 this.rb.AddForce(this.GetDirection() * this.speed, ForceMode2D.Impulse);
                 this.isThrowing = true;
@@ -124,13 +133,18 @@ public class WeaponMelee : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (this.isThrowing && !collision.CompareTag("Player") && !collision.CompareTag("Detector"))
+        if (this.isThrowing && collision.CompareTag("Wall"))
         {
             this.trail.emitting = false;
 
             this.rb.bodyType = RigidbodyType2D.Static;
-            Debug.Log("Hit");
 
+        }
+
+        if (collision.CompareTag("Enemy_Battle"))
+        {
+            collision.GetComponentInChildren<EnemyLife>().TakeDamage(damage);
+            Debug.Log("Enemy hit " + damage);
         }
     }
 }

@@ -15,12 +15,10 @@ public class CooldownTimeWeapon
         if (this.weapon.isStartCooldownPrimaryMove)
         {
             this.CooldownPrimaryMove();
-            Debug.Log("cd1stMove");
         }
         if (this.weapon.isStartCooldownSpecialMove)
         {
             this.CooldownSpecialMove();
-            Debug.Log("cd2ndMove");
         }
     }
 

@@ -9,6 +9,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private Transform weapon;
     [SerializeField] private Animator enemyAnimator;
     [SerializeField] private Animator weaponAnimator;
+    [SerializeField] private EnemyLife enemyLife;
+    [SerializeField] private BoxCollider2D enemyCollider;
+
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float roamSpeed = 2f;
     [SerializeField] private float distanceAttack = 2f;
@@ -22,7 +25,7 @@ public class EnemyAI : MonoBehaviour
     private int currentRoampoint = 0;
     private bool isWaiting;
 
-    private enum MovementState { Idle, Run, };
+    private enum MovementState { Idle, Run, Death};
     private MovementState movementState;
 
     private void Awake()
@@ -33,6 +36,13 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (this.enemyLife.enemyDeath)
+        {
+            this.enemyAnimator.Play("4_Death");
+            this.enemyCollider.isTrigger = true;
+            return;
+        }
+
         if (this.enemyAreaDetector.PlayerInArea)
         {
             this.Facing(this.enemyAreaDetector.Player.position);
