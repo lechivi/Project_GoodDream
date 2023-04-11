@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
 
     [SerializeField] private float moveSpeed = 5f;
 
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
         this.movement.y = Input.GetAxisRaw("Vertical");
 
         this.Facing();
-
+        this.UpdateAnimation();
     }
 
     private void FixedUpdate()
@@ -40,4 +41,16 @@ public class PlayerMovement : MonoBehaviour
             this.IsFacingRight = false;
         }
     }
+
+    private void UpdateAnimation()
+    {
+        if (this.movement == Vector2.zero)
+        {
+            this.animator.Play("0_idle");
+        }
+        else
+        {
+            this.animator.Play("1_Run");
+        }
+    }    
 }

@@ -57,6 +57,7 @@ public class WeaponMelee : MonoBehaviour
             this.animator.enabled = true;
 
             this.animator.SetTrigger("Attack");
+            Invoke("FinishAnimation", 0.2f);
         }
     }
 
@@ -123,7 +124,7 @@ public class WeaponMelee : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (this.isThrowing && !collision.CompareTag("Player"))
+        if (this.isThrowing && !collision.CompareTag("Player") && !collision.CompareTag("Detector"))
         {
             this.trail.emitting = false;
 
