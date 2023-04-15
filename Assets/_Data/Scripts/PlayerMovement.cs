@@ -9,17 +9,22 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f;
 
-    private Vector2 movement;
-
     public bool IsFacingRight;
+
+    private Vector2 movement;
+    public MovementState movementState { get; set; }
 
     private void Update()
     {
+        this.UpdateAnimation();
+        if (this.movementState == MovementState.Death) return;
+
         this.movement.x = Input.GetAxisRaw("Horizontal");
         this.movement.y = Input.GetAxisRaw("Vertical");
 
+        this.movementState = this.movement == Vector2.zero ? MovementState.Idle : MovementState.Run;
+
         this.Facing();
-        this.UpdateAnimation();
     }
 
     private void FixedUpdate()
@@ -44,13 +49,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        if (this.movement == Vector2.zero)
+        if (this.movementState == MovementState.Idle)
         {
             this.animator.Play("0_idle");
         }
-        else
+        else if (this.movementState == MovementState.Run)
         {
             this.animator.Play("1_Run");
+        }
+        else if (this.movementState == MovementState.Death)
+        {
+            this.animator.Play("4_Death");
         }
     }    
 }

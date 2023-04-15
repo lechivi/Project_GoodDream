@@ -2,19 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLife : MonoBehaviour
+public class EnemyLife : EnemyAbtract
 {
-    [SerializeField] private int HP = 100;
+    [SerializeField] private int health;
+    [SerializeField] private int maxHealth = 100;
 
-    public bool enemyDeath;
+    public int Health { get => this.health; set => this.health = value; }
+    public int MaxHealth { get => this.maxHealth; set => this.maxHealth = value; }
+
+    private void Start()
+    {
+        this.health = this.maxHealth;
+    }
 
     public void TakeDamage(int damage)
     {
-        this.HP -= damage;
-        if (this.HP <= 0)
+        if (this.health < 0) return;
+
+        this.health -= damage;
+        if (this.health <= 0)
         {
-            this.HP = 0;
-            this.enemyDeath = true;
+            this.health = 0;
+            this.Die();
         }
+    }
+
+    public void Heal(int amount)
+    {
+        this.health += amount;
+        if (this.health > maxHealth)
+        {
+            this.health = maxHealth;
+        }
+    }
+
+    private void Die()
+    {
+        this.enemyCtrl.EnemyAI.MovementState = MovementState.Death;
+        this.gameObject.layer = LayerMask.NameToLayer("Death");
+
     }
 }

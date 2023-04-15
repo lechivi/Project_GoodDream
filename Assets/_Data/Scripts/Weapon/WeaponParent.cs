@@ -1,23 +1,134 @@
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponParent : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private GameObject damageTextPrefab;
+    [SerializeField] private List<Weapon> listWeapon = new List<Weapon>();
+
+    public Transform SpawnPool { get; private set; }
     private Vector3 direction;
+    private int currentWeapon;
+
+    private void Awake()
+    {
+        this.SpawnPool = GameObject.Find("SpawnPool").transform;    
+    }
+
+    private void Start()
+    {
+        foreach (Transform child in transform)
+        {
+            Weapon weapon = child.GetComponent<Weapon>();
+            if (weapon != null)
+            {
+                this.listWeapon.Add(weapon);
+                weapon.SetActiveWeapon(false);
+            }
+        }
+
+        if (this.listWeapon.Count > 0)
+        {
+            this.listWeapon[0].SetActiveWeapon(true); //TODO: choose the weapon used at the last play
+        }
+    }
 
     private void Update()
     {
-        this.FaceGun();
+        this.FaceWeapon();
+
+        if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>() != null)
+        {
+            if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>().IsReloading()) return;
+        }
+
+        this.SwapWeapon();
     }
 
-    private void FaceGun()
+    private void FaceWeapon()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         this.direction = mousePos - (Vector2) transform.position;
 
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, this.playerMovement.IsFacingRight ? rotZ : rotZ - 180);
+    }
+
+    private void SwapWeapon()
+    {
+        //Use mouse scroll wheel to swap weapon
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            this.SetWeapon(this.currentWeapon - 1);
+        }
+        if (Input.mouseScrollDelta.y < 0)
+        {
+            this.SetWeapon(this.currentWeapon + 1);
+        }
+
+        //use number button from 1-5 to swap weapon
+        if (Input.GetKeyDown(KeyCode.Alpha1) && this.listWeapon.Count >= 1)
+        {
+            this.SetWeapon(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && this.listWeapon.Count >= 2)
+        {
+            this.SetWeapon(1);
+        }        
+        if (Input.GetKeyDown(KeyCode.Alpha3) && this.listWeapon.Count >= 3)
+        {
+            this.SetWeapon(2);
+        }        
+        if (Input.GetKeyDown(KeyCode.Alpha4) && this.listWeapon.Count >= 4)
+        {
+            this.SetWeapon(3);
+        }       
+        if (Input.GetKeyDown(KeyCode.Alpha5) && this.listWeapon.Count >= 5)
+        {
+            this.SetWeapon(4);
+        }
+    }
+
+    private void SetWeapon(int indexWeapon)
+    {
+        //if (AudioManager.HasInstance)
+        //{
+        //    AudioManager.Instance.PlaySE(this.swapWeaponAudio);
+        //}
+
+        if (indexWeapon >= this.listWeapon.Count)
+            indexWeapon = 0;
+        else if (indexWeapon < 0)
+            indexWeapon = this.listWeapon.Count - 1;
+
+        this.listWeapon[currentWeapon].SetActiveWeapon(false);
+        this.currentWeapon = indexWeapon;
+        this.listWeapon[indexWeapon].SetActiveWeapon(true);
+
+        //this.SetSliderMaxValue();
+        //this.SetSliderValue();
+    }
+
+
+    public void SpawnDamageText(int damage, Collider2D collision, Transform parent, bool isCritical)
+    {
+        Vector3 position = new Vector3(collision.transform.position.x + Random.Range(-0.5f, 0.5f), collision.transform.position.y + 1.4f, collision.transform.position.z);
+        GameObject damageTextObject = Instantiate(this.damageTextPrefab, position, Quaternion.identity, parent);
+
+        damageTextObject.GetComponentInChildren<TextMesh>().text = "-" + damage.ToString();
+        damageTextObject.GetComponentInChildren<TextMesh>().color = isCritical ? Color.red : Color.white;
+        damageTextObject.GetComponentInChildren<TextMesh>().fontSize = isCritical ? 75 : 50;
+
+        //Debug.Log(damage, damageTextObject.gameObject);
+        StartCoroutine(DestroyDamageText(damageTextObject));
+    }
+
+    protected virtual IEnumerator DestroyDamageText(GameObject damageTextObject)
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(damageTextObject);
     }
 }

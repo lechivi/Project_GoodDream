@@ -6,9 +6,12 @@ TagManager:
   tags:
   - Detector
   - Enemy
-  - Player_Battle
-  - Enemy_Battle
   - Wall
+  - PlayerWeapon
+  - EnemyWeapon
+  - PlayerBattle
+  - EnemyBattle
+  - ColliderWithWall
   layers:
   - Default
   - TransparentFX
@@ -18,9 +21,9 @@ TagManager:
   - UI
   - Wall
   - Player
-  - PLayer_Weapon
+  - Enemy
   - PostProcessing
-  - 
+  - Death
   - 
   - 
   - 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4120624063596195067}
   m_Layer: 0
   m_Name: CheckDoor_1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -1564514313
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1218307856, guid: fb8529382d3dfe741aec617a6c6d6cc5, type: 3}
+  m_Sprite: {fileID: -1228845986, guid: fb8529382d3dfe741aec617a6c6d6cc5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,5 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f85b4dec1ae68942a76026079b69d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteDown: {fileID: -1218307856, guid: fb8529382d3dfe741aec617a6c6d6cc5, type: 3}
-  spriteUp: {fileID: -775541159, guid: fb8529382d3dfe741aec617a6c6d6cc5, type: 3}
+  spriteDown: {fileID: -1228845986, guid: fb8529382d3dfe741aec617a6c6d6cc5, type: 3}
+  spriteUp: {fileID: -1850663425, guid: fb8529382d3dfe741aec617a6c6d6cc5, type: 3}

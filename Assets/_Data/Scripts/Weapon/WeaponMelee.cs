@@ -1,150 +1,118 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class WeaponMelee : MonoBehaviour
+public class WeaponMelee : Weapon
 {
-    [Header("Setting")]
-    [SerializeField] private int damage = 10;
-    [SerializeField] private float speedAttack = 5f;
+    [Header("MELEE SETTING")]
+    [SerializeField] protected float cooldownTimePrimaryMove;
+    [SerializeField] protected float cooldownTimeSpecialMove;
 
-    public TrailRenderer trail;
+    protected bool isReadyPrimaryMove { get; set; }
+    protected bool isReadySpecialMove { get; set; }
 
-    public float cooldownTimePrimaryMove;
-    public float cooldownTimeSpecialMove;
+    protected bool isStartCooldownPrimaryMove { get; set; }
+    protected bool isStartCooldownSpecialMove { get; set; }
 
-    public bool isReadyPrimaryMove { get; set; }
-    public bool isReadySpecialMove { get; set; }
+    protected bool isAttacking;
 
-    public bool isStartCooldownPrimaryMove { get; set; }
-    public bool isStartCooldownSpecialMove { get; set; }
+    protected float timerPrimaryMove;
+    protected float timerSpecialMove;
 
-    protected WeaponParent weaponParent;
-    protected Animator animator;
-    protected Rigidbody2D rb;
-    protected PolygonCollider2D col;
+    protected HashSet<Collider2D> hitOpponents = new HashSet<Collider2D>(); //Check opponent had been hit yet
 
-    private float speed = 9f;
-    private bool isAttacking;
-    private bool isThrowing; //for distinguish 2 phase of special move
-    private bool back; //for second phase of special move
-
-    protected virtual void Awake()
+    protected override void Update()
     {
-        this.weaponParent = transform.parent.GetComponent<WeaponParent>();
-        this.animator = GetComponent<Animator>();
-        this.rb = GetComponent<Rigidbody2D>();
-        this.col = GetComponent<PolygonCollider2D>();
+        if (this.isStartCooldownPrimaryMove)
+        {
+            this.CooldownPrimaryMove();
+        }
+        if (this.isStartCooldownSpecialMove)
+        {
+            this.CooldownSpecialMove();
+        }
 
-        this.animator.enabled = false;
-        this.col.enabled = false;
-        this.trail.emitting = false;
-
-        this.isReadyPrimaryMove = true;
-        this.isReadySpecialMove = true;
+        if (this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
+        {
+            this.InputPrimaryMove();
+            this.InputSpecialMove();
+        }
     }
 
-    protected virtual void Update()
+    private void CooldownPrimaryMove()
     {
-        this.PrimaryMove();
-        this.SpecialMove();
+        this.timerPrimaryMove += Time.deltaTime;
+        if (this.timerPrimaryMove < this.cooldownTimePrimaryMove) return;
+
+        this.timerPrimaryMove = 0;
+        this.isReadyPrimaryMove = true;
+        this.isStartCooldownPrimaryMove = false;
+    }
+
+    private void CooldownSpecialMove()
+    {
+        this.timerSpecialMove += Time.deltaTime;
+        if (this.timerSpecialMove < this.cooldownTimeSpecialMove) return;
+
+        this.timerSpecialMove = 0;
+        this.isReadySpecialMove = true;
+        this.isStartCooldownSpecialMove = false;
+    }
+
+    protected virtual void InputPrimaryMove()
+    {
+        //Only player use this method
+        //for overrite
+    }
+
+    protected virtual void InputSpecialMove()
+    {
+        //Only player use this method
+        //for overrite
     }
 
     protected virtual void PrimaryMove()
     {
-        if (Input.GetMouseButtonDown(0) && !this.isAttacking && this.isReadyPrimaryMove)
-        {
-            this.isReadyPrimaryMove = false;
-            this.isStartCooldownPrimaryMove = true;
-            this.isAttacking = true;
-
-            this.animator.enabled = true;
-            this.trail.emitting = true;
-            this.col.enabled = true;
-
-            this.animator.SetTrigger("Attack");
-        }
-    }
-
-    public void FinishAnimation()
-    {
-        this.isAttacking = false;
-
-        this.animator.enabled = false;
-        this.trail.emitting = false;
-        this.col.enabled = false;
+        //Only player use this method
+        //for overrite
     }
 
     protected virtual void SpecialMove()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (!this.isThrowing && !this.isAttacking && this.isReadySpecialMove)
-            {
-                this.isReadySpecialMove = false;
-                this.isAttacking = true;
-
-                this.trail.emitting = true;
-
-                transform.SetParent(null);
-
-                this.rb.bodyType = RigidbodyType2D.Dynamic;
-                this.rb.AddForce(this.GetDirection() * this.speed, ForceMode2D.Impulse);
-                this.isThrowing = true;
-                this.col.enabled = true;
-            }
-            else if (this.isThrowing)
-            {
-                this.rb.bodyType = RigidbodyType2D.Static;
-                this.rb.bodyType = RigidbodyType2D.Dynamic;
-                this.trail.emitting = true;
-                this.back = true;
-            }
-        }
-
-        if (this.back)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, this.weaponParent.transform.position, 50f * Time.deltaTime);
-
-            if (Vector2.Distance(this.weaponParent.transform.position, transform.position) < 0.01f)
-            {
-                transform.SetParent(this.weaponParent.transform);
-                this.rb.bodyType = RigidbodyType2D.Kinematic;
-                transform.localPosition = Vector3.zero;
-                transform.localRotation = Quaternion.Euler(0, 0, 90);
-
-                this.trail.emitting = false;
-                this.isStartCooldownSpecialMove = true;
-                this.isAttacking = false;
-                this.isThrowing = false;
-                this.back = false;
-            }
-        }
-
-
+        //Only player use this method
+        //for overrite
     }
 
-    protected virtual Vector2 GetDirection()
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return mousePos - (Vector2)this.weaponParent.transform.position;
+        if (!this.hitOpponents.Contains(collision))
+        {
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && collision.gameObject.CompareTag("PlayerBattle") && gameObject.CompareTag("EnemyWeapon"))
+            {
+                if (collision.gameObject.GetComponent<PlayerLife>().Health <= 0) return;
+
+                int damage = GetRandomDamage();
+                collision.gameObject.GetComponent<PlayerLife>().TakeDamage(damage);
+
+                this.hitOpponents.Add(collision);
+            }
+
+            else if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy") && collision.gameObject.CompareTag("EnemyBattle") && gameObject.CompareTag("PlayerWeapon"))
+            {
+                EnemyLife enemyLife = collision.gameObject.GetComponent<EnemyLife>();
+                if (enemyLife.Health <= 0) return;
+
+                int damage = GetRandomDamage();
+                enemyLife.TakeDamage(damage);
+
+                this.hitOpponents.Add(collision);
+                this.weaponParent.SpawnDamageText(damage, collision, enemyLife.EnemyCtrl.NeverFlip.transform, damage == this.maxDamage);
+            }
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void StartNewAttack()
     {
-        if (this.isThrowing && collision.CompareTag("Wall"))
-        {
-            this.trail.emitting = false;
-
-            this.rb.bodyType = RigidbodyType2D.Static;
-
-        }
-
-        if (collision.CompareTag("Enemy_Battle"))
-        {
-            collision.GetComponentInChildren<EnemyLife>().TakeDamage(damage);
-            Debug.Log("Enemy hit " + damage);
-        }
+        this.hitOpponents.Clear();
     }
 }

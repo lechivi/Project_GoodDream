@@ -5,13 +5,16 @@ using UnityEngine;
 public class BattleZone : MonoBehaviour
 {
     [SerializeField] private List<CheckDoor> checkDoors = new List<CheckDoor>();
-    [SerializeField] private List<EnemyCtrl> enemies = new List<EnemyCtrl>();
-    public bool CompletedZone { get; set; }
+    [SerializeField] private List<EnemyCtrl> enemiesInRoom = new List<EnemyCtrl>();
+
+    public BoxCollider2D Col { get; private set; }
+    public bool IsPlayerEnter { get; set; } //call when the player enter room
 
     private int currentEnemy = 0;
-
     private void Awake()
     {
+        this.Col = GetComponent<BoxCollider2D>();
+
         foreach (Transform child in transform.Find("CheckDoors"))
         {
             this.checkDoors.Add(child.GetComponent<CheckDoor>());
@@ -21,49 +24,54 @@ public class BattleZone : MonoBehaviour
         {
             foreach (Transform child in transform.Find("ListEnemy"))
             {
-                this.enemies.Add(child.GetComponent<EnemyCtrl>());
+                EnemyCtrl enemyCtrl = child.GetComponent<EnemyCtrl>();
+                if (enemyCtrl == null) continue;
+
+                enemyCtrl.BattleZone = this;
+                this.enemiesInRoom.Add(enemyCtrl);
             }
 
-            this.currentEnemy = this.enemies.Count;
+            this.currentEnemy = this.enemiesInRoom.Count;
         }
        
     }
 
     private void Update()
     {
-        if (this.enemies.Count > 0)
+        if (this.enemiesInRoom.Count > 0)
         {
-            foreach (EnemyCtrl child in enemies)
+            for (int i = 0; i < this.enemiesInRoom.Count; i++)
             {
-                if (child.EnemyLife.enemyDeath)
+                if (this.enemiesInRoom[i].EnemyLife.Health == 0)
                 {
-                    this.currentEnemy -= 1;
+                    this.enemiesInRoom.RemoveAt(i);
+                    this.currentEnemy--;
                 }
             }
+
         }
 
         if (this.currentEnemy == 0)
-        {
-            this.CompletedZone = true;
-        }
-
-        if (this.CompletedZone)
         {
             foreach (CheckDoor door in checkDoors)
             {
                 door.OpenDoor();
             }
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !this.CompletedZone)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && collision.gameObject.CompareTag("ColliderWithWall") && this.currentEnemy != 0)
         {
             foreach (CheckDoor door in checkDoors)
             {
                 door.CloseDoor();
             }
         }
+
+        this.IsPlayerEnter = true;
     }
+
 }
