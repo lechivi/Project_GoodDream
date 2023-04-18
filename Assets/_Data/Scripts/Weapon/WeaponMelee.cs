@@ -51,7 +51,7 @@ public class WeaponMelee : Weapon
                 GamePanel gamePanel = UIManager.Instance.GamePanel;
                 gamePanel.SecondMove.gameObject.SetActive(true);
                 gamePanel.FirstMove.Icon.sprite = gamePanel.Melee1;
-                //gamePanel.SecondMove.Icon.sprite = gamePanel.Melee2;
+                gamePanel.SecondMove.Icon.sprite = gamePanel.Melee2;
             }
         }
     }

@@ -82,6 +82,7 @@ public class GamePanel : MonoBehaviour
 
     private void OnPlayerMana(int value, bool isMagic)
     {
+        this.manaSlider.maxValue = this.maxMana;
         this.manaSlider.value = value;
         if (isMagic)
         {

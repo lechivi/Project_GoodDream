@@ -6,14 +6,19 @@ public class WeaponMagic : Weapon
 {
     [Header("MAGIC SETTING")]
     [SerializeField] protected List<Transform> shootPoints = new List<Transform>();
-    [SerializeField] protected GameObject spellPrefab;
-    [SerializeField] protected int manaCost;
-    [SerializeField] protected float cooldownTime;
+    [SerializeField] protected GameObject bulletSpellPrefab;
+    [SerializeField] protected int manaCostAttack;
+    [SerializeField] protected int manaCostSpell;
     [SerializeField] protected float spellSpeed;
+    [SerializeField] protected float cooldownTimeAttackMove;
+    [SerializeField] protected float cooldownTimeSpellMove;
 
-    protected float timerCooldown;
-    protected bool isReadyMove;
-    protected bool isStartCooldown;
+    protected float timerSpellMove;
+    protected float timerAttackMove;
+    protected bool isReadyAttackMove;
+    protected bool isReadySpellMove;
+    protected bool isStartCooldownAttackMove;
+    protected bool isStartCooldownSpellMove;
 
     protected override void Awake()
     {
@@ -33,16 +38,28 @@ public class WeaponMagic : Weapon
             if (!GameManager.Instance.IsPlaying) return;
         }
 
-        if (this.isStartCooldown)
+        if (this.isStartCooldownAttackMove)
         {
-            this.CooldownMove();
+            this.CooldownAttackMove();
+        }
+        if (this.isStartCooldownSpellMove)
+        {
+            this.CooldownSpellMove();
         }
 
         if (this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
         {
-            if (Input.GetMouseButtonDown(0) && this.weaponParent.PlayerCtrl.PlayerMagic.Mana > 0)
+
+            if (this.weaponParent.PlayerCtrl.PlayerMagic.Mana > 0)
             {
-                this.AttackMove();
+                if (Input.GetMouseButtonDown(0))
+                {
+                    this.AttackMove();
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    this.SpellMove();
+                }
             }
 
             if (UIManager.HasInstance)
@@ -50,42 +67,61 @@ public class WeaponMagic : Weapon
                 GamePanel gamePanel = UIManager.Instance.GamePanel;
                 gamePanel.SecondMove.gameObject.SetActive(true);
                 gamePanel.FirstMove.Icon.sprite = gamePanel.Magic1;
-                gamePanel.FirstMove.Icon.sprite = gamePanel.Magic2;
+                gamePanel.SecondMove.Icon.sprite = gamePanel.Magic2;
             }
         }
 
     }
 
-    private void CooldownMove()
+    private void CooldownAttackMove()
     {
-        this.timerCooldown += Time.deltaTime;
-        if (this.timerCooldown < this.cooldownTime) return;
+        this.timerAttackMove += Time.deltaTime;
+        if (UIManager.HasInstance && this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
+        {
+            UIManager.Instance.GamePanel.FirstMove.StartFillMove(this.timerAttackMove, this.cooldownTimeAttackMove);
+        }
+        if (this.timerAttackMove < this.cooldownTimeAttackMove) return;
 
-        this.timerCooldown = 0;
-        this.isReadyMove = true;
-        this.isStartCooldown = false;
+        this.timerAttackMove = 0;
+        this.isReadyAttackMove = true;
+        this.isStartCooldownAttackMove = false;
+    }
+
+    private void CooldownSpellMove()
+    {
+        this.timerSpellMove += Time.deltaTime;
+        if (UIManager.HasInstance && this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
+        {
+            UIManager.Instance.GamePanel.SecondMove.StartFillMove(this.timerSpellMove, this.cooldownTimeSpellMove);
+        }
+        if (this.timerSpellMove < this.cooldownTimeSpellMove) return;
+
+        this.timerSpellMove = 0;
+        this.isReadySpellMove = true;
+        this.isStartCooldownSpellMove = false;
     }
 
     protected virtual void AttackMove()
     {
-        this.isReadyMove = false;
-        this.isStartCooldown = true;
+        this.isReadyAttackMove = false;
+        this.isStartCooldownAttackMove = true;
 
         this.animator.SetTrigger("Attack");
     }
 
     public void ShootFrameAnimation() //Call at a shoot frame in animation
     {
-        this.SpellMove();
+        Debug.Log("Attack");
+        this.ShootBulletSpell();
     }
 
-    protected virtual void SpellMove()
+    protected virtual void ShootBulletSpell()
     {
         foreach (Transform child in this.shootPoints)
         {
-            this.GetSpell(child);
+            this.GetBulletSpell(child);
         }
-        this.weaponParent.PlayerCtrl.PlayerMagic.UseMana(this.manaCost);
+        this.weaponParent.PlayerCtrl.PlayerMagic.UseMana(this.manaCostAttack);
 
         if ( UIManager.HasInstance)
         {
@@ -93,28 +129,30 @@ public class WeaponMagic : Weapon
         }
     }
 
-    private GameObject GetSpell(Transform shootPoint)
+    private GameObject GetBulletSpell(Transform shootPoint)
     {
         int damage = this.GetRandomDamage();
-        GameObject spellObj = Instantiate(this.spellPrefab, shootPoint.position, shootPoint.transform.rotation, this.weaponParent.SpawnPool);
-        spellObj.tag = "PlayerWeapon";
-        spellObj.layer = LayerMask.NameToLayer("Player");
+        GameObject bulletSpellObj = Instantiate(this.bulletSpellPrefab, shootPoint.position, shootPoint.transform.rotation, this.weaponParent.SpawnPool);
+        bulletSpellObj.tag = "PlayerWeapon";
+        bulletSpellObj.layer = LayerMask.NameToLayer("Player");
 
-        //TODO: change BulletScript to fitter name
-        // change ok chua
-        // change 2
-        // change 3
-        BulletScript bulletScript = spellObj.GetComponent<BulletScript>();
+        BulletScript bulletScript = bulletSpellObj.GetComponent<BulletScript>();
         bulletScript.WeaponParent = this.weaponParent;
         bulletScript.Damage = damage;
         bulletScript.IsCritical = damage == this.maxDamage;
 
-        Rigidbody2D rb = spellObj.GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = bulletSpellObj.GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.AddForce(spellObj.transform.up * this.spellSpeed, ForceMode2D.Impulse);
+        rb.AddForce(bulletSpellObj.transform.up * this.spellSpeed, ForceMode2D.Impulse);
 
-        return spellObj;
+        return bulletSpellObj;
     }
+
+    protected virtual void SpellMove()
+    {
+        //For overrite
+    }
+
     public override void EnemyUseWeapon()
     {
         base.EnemyUseWeapon();
