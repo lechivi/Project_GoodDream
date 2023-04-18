@@ -165,7 +165,7 @@ public class WeaponMagic : Weapon
 
     public override void EnemyUseWeapon()
     {
-        this.animator.SetTrigger("Attack");
+        this.animator.SetTrigger("EnemyAttack");
     }
 
     public virtual void EnemyUseSpellMove()

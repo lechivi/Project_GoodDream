@@ -9,25 +9,11 @@ public class BulletScript : MonoBehaviour
     public int Damage { get; set; }
     public bool IsCritical { get; set; }
 
-    private Collider2D[] collidersWithTag;
 
     private void Start()
     {
-        //this.collidersWithTag = GameObject.FindGameObjectsWithTag("ColliderWithWall").Select(go => go.GetComponent<Collider2D>()).ToArray();
-        //foreach (Collider2D collider in collidersWithTag)
-        //{
-        //    Physics2D.IgnoreCollision(collider, gameObject.GetComponent<Collider2D>());
-        //}
         Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer);
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (!collision.gameObject.CompareTag(this.tag) && !collision.gameObject.CompareTag("ColliderWithWall"))
-    //    {
-    //        this.HitSomething();
-    //    }
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
