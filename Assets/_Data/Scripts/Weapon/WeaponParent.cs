@@ -19,19 +19,21 @@ public class WeaponParent : PlayerAbstract
     {
         base.Awake();
         this.SpawnPool = GameObject.Find("SpawnPool").transform;    
-    }
-    
-    private void Start()
-    {
+
         foreach (Transform child in transform)
         {
             Weapon weapon = child.GetComponent<Weapon>();
             if (weapon != null)
             {
                 this.listWeapon.Add(weapon);
+                weapon.gameObject.SetActive(true);
                 weapon.SetActiveWeapon(false);
             }
         }
+    }
+    
+    private void Start()
+    {
 
         if (this.listWeapon.Count > 0)
         {
