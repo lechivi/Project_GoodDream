@@ -21,7 +21,7 @@ public class EnemyAllyDetector : MonoBehaviour
         {
             foreach (EnemyLife enemyLife in this.Ally)
             {
-                if ((enemyLife.MaxHealth - enemyLife.Health) > (this.LowestHealthAlly.MaxHealth - this.LowestHealthAlly.Health))
+                if (enemyLife.Health > 0 && (enemyLife.MaxHealth - enemyLife.Health > this.LowestHealthAlly.MaxHealth - this.LowestHealthAlly.Health))
                     this.LowestHealthAlly = enemyLife;
             }
         }
@@ -46,10 +46,10 @@ public class EnemyAllyDetector : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (this.Ally.Contains(collision.GetComponent<EnemyLife>()))
-        {
-            this.Ally.Remove(collision.GetComponent<EnemyLife>());
-        }
+        //if (this.Ally.Contains(collision.GetComponent<EnemyLife>()))
+        //{
+        //    this.Ally.Remove(collision.GetComponent<EnemyLife>());
+        //}
     }
 
 }

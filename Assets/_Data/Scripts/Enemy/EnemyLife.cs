@@ -41,5 +41,6 @@ public class EnemyLife : EnemyAbstract
         this.enemyCtrl.EnemyAI.MovementState = MovementState.Death;
         this.gameObject.layer = LayerMask.NameToLayer("Death");
 
+        this.enemyCtrl.SpawnerReward.Spawn();
     }
 }

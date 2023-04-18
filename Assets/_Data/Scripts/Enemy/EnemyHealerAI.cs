@@ -18,7 +18,7 @@ public class EnemyHealerAI : EnemyAI
     private float timerCooldownHeal = 0f;
     private float timerRunAway = 0f;
     private bool isStartAction;
-    private bool isReadyHealSkill;
+    private bool isReadyHealSkill = true;
     private bool isStartCooldownHealSkill;
     private bool isHealing;
 
@@ -118,6 +118,7 @@ public class EnemyHealerAI : EnemyAI
         if (this.enemyAllyDetector.CheckLowestHealthAlly() && this.isReadyHealSkill)
         {
             Debug.Log("Heal");
+            this.isReadyHealSkill = false;
             this.isStopMove = true;
             this.MovementState = MovementState.Idle;
             this.HealSkill();
@@ -239,7 +240,7 @@ public class EnemyHealerAI : EnemyAI
         healTextObject.GetComponentInChildren<TextMesh>().color = Color.green;
         healTextObject.GetComponentInChildren<TextMesh>().fontSize = 75;
 
-        Debug.Log(heal, healTextObject.gameObject);
+        //Debug.Log(heal, healTextObject.gameObject);
         StartCoroutine(DestroyHealText(healTextObject));
     }
 

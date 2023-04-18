@@ -43,7 +43,7 @@ public class BulletScript : MonoBehaviour
 
     private void HitSomething(Collider2D collision)
     {
-        Debug.Log(collision.gameObject);
+        //Debug.Log(collision.gameObject);
         gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         gameObject.GetComponent<Animator>().SetTrigger("Hit");
     }

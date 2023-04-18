@@ -27,7 +27,7 @@ public class PlayerLife : PlayerAbstract
     {
         if (this.health < 0) return;
 
-        Debug.Log("Player -" + damage);
+        //Debug.Log("Player -" + damage);
         this.health -= damage;
         if (this.health <= 0)
         {
@@ -46,7 +46,7 @@ public class PlayerLife : PlayerAbstract
     {
         if (this.health >= this.maxHealth) return;
 
-        Debug.Log("Player +" + amount);
+        //Debug.Log("Player +" + amount);
         this.health += amount;
         if (this.health > this.maxHealth)
             this.health = this.maxHealth;
