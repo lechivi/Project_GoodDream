@@ -20,6 +20,9 @@ public class WeaponMagic : Weapon
     protected bool isStartCooldownAttackMove;
     protected bool isStartCooldownSpellMove;
 
+    public float CooldownTimeAttackMove => this.cooldownTimeAttackMove;
+    public float CooldownTimeSpellMove => this.cooldownTimeSpellMove;
+
     protected override void Awake()
     {
         base.Awake();
@@ -111,7 +114,6 @@ public class WeaponMagic : Weapon
 
     public void ShootFrameAnimation() //Call at a shoot frame in animation
     {
-        Debug.Log("Attack");
         this.ShootBulletSpell();
     }
 
@@ -119,7 +121,7 @@ public class WeaponMagic : Weapon
     {
         foreach (Transform child in this.shootPoints)
         {
-            this.GetBulletSpell(child);
+            this.GetBulletSpell(child, true);
         }
         this.weaponParent.PlayerCtrl.PlayerMagic.UseMana(this.manaCostAttack);
 
@@ -129,12 +131,12 @@ public class WeaponMagic : Weapon
         }
     }
 
-    private GameObject GetBulletSpell(Transform shootPoint)
+    private GameObject GetBulletSpell(Transform shootPoint, bool isPlayer)
     {
         int damage = this.GetRandomDamage();
-        GameObject bulletSpellObj = Instantiate(this.bulletSpellPrefab, shootPoint.position, shootPoint.transform.rotation, this.weaponParent.SpawnPool);
-        bulletSpellObj.tag = "PlayerWeapon";
-        bulletSpellObj.layer = LayerMask.NameToLayer("Player");
+        GameObject bulletSpellObj = Instantiate(this.bulletSpellPrefab, shootPoint.position, shootPoint.transform.rotation/*, this.weaponParent.SpawnPool*/);
+        bulletSpellObj.tag = isPlayer ? "PlayerWeapon" : "EnemyWeapon";
+        bulletSpellObj.layer = LayerMask.NameToLayer(isPlayer ? "Player" : "Enemy");
 
         BulletScript bulletScript = bulletSpellObj.GetComponent<BulletScript>();
         bulletScript.WeaponParent = this.weaponParent;
@@ -153,8 +155,21 @@ public class WeaponMagic : Weapon
         //For overrite
     }
 
+    public void EnemyShootFrameAnimation() //Call at a shoot frame in animation (enemy)
+    {
+        foreach (Transform child in this.shootPoints)
+        {
+            this.GetBulletSpell(child, false);
+        }
+    }
+
     public override void EnemyUseWeapon()
     {
-        base.EnemyUseWeapon();
+        this.animator.SetTrigger("Attack");
+    }
+
+    public virtual void EnemyUseSpellMove()
+    {
+        //For overrite
     }
 }

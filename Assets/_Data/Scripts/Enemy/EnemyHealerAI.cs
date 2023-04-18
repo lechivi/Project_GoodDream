@@ -28,6 +28,12 @@ public class EnemyHealerAI : EnemyAI
         this.enemyAllyDetector = GetComponentInChildren<EnemyAllyDetector>();
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        //this.delayAttackTime = this.usingWeapon.GetComponent<WeaponMagic>().CooldownTimeAttackMove;
+    }
+
     protected override void Update()
     {
         base .Update();
@@ -131,7 +137,6 @@ public class EnemyHealerAI : EnemyAI
                     if (Vector2.Distance(transform.position, this.enemyPlayerDetector.Player.position) <= this.distanceAttack) //Attack when Player enter AttackZone
                     {
                         this.AttackPlayer();
-                        Debug.Log("Attack player");
                     }
                 }
                 else //If Player exit AreaDetector, act casual

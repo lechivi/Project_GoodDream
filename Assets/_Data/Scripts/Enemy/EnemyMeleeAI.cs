@@ -6,6 +6,12 @@ public class EnemyMeleeAI : EnemyAI
 {
     //[Header("ENEMY MELEE")]
 
+    protected override void Start()
+    {
+        base.Start();
+        this.delayAttackTime = this.usingWeapon.GetComponent<WeaponMelee>().CooldownTimePrimaryMove;
+    }
+
     protected override void Update()
     {
         base.Update();

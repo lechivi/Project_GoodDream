@@ -18,6 +18,9 @@ public class WeaponMelee : Weapon
 
     protected HashSet<Collider2D> hitOpponents = new HashSet<Collider2D>(); //Check opponent had been hit yet
 
+    public float CooldownTimePrimaryMove => this.cooldownTimePrimaryMove;
+    public float CooldownTimeSecondaryMove => this.cooldownTimeSecondaryMove;
+
     protected override void Awake()
     {
         base.Awake();

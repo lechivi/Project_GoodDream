@@ -9,9 +9,9 @@ public class EnemyAI : EnemyAbstract
     [SerializeField] protected float moveSpeed = 7f;
     [SerializeField] protected float roamSpeed = 2f;
     [SerializeField] protected float roamRange = 3f;
+    [SerializeField] protected float delayAttackTime = 1; //Set equal with Weapon cooldown
     [SerializeField] protected float roamWaitingTime = 3f;
     [SerializeField] protected float distanceAttack = 2f;
-    [SerializeField] protected float delayAttackTime = 2f;
     [SerializeField] protected float detectionObstacleRadius = 2f;
     [SerializeField, Range(0, 2)] protected int directionWeapon; //1 for Melee, 2 for Range
 
@@ -36,7 +36,7 @@ public class EnemyAI : EnemyAbstract
         base.Awake();
         this.col = GetComponent<Collider2D>();
         this.enemyPlayerDetector = GetComponentInChildren<EnemyPlayerDetector>();
-        this.weapon = transform.Find("WeaponHolder").transform;
+        this.weapon = transform.Find("WeaponParent").transform;
         this.usingWeapon = this.weapon.GetComponentInChildren<Weapon>();
     }
 
