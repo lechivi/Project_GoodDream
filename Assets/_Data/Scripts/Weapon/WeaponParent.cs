@@ -43,6 +43,7 @@ public class WeaponParent : PlayerAbstract
 
     private void Update()
     {
+        if (this.playerCtrl.PlayerLife.Health <= 0) return;
         this.FaceWeapon();
 
         if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>() != null)

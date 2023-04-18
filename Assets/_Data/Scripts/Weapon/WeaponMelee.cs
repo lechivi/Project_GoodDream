@@ -44,7 +44,7 @@ public class WeaponMelee : Weapon
             this.CooldownSecondaryMove();
         }
 
-        if (this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
+        if (this.IsUsing && gameObject.CompareTag("PlayerWeapon") && this.weaponParent.PlayerCtrl.PlayerLife.Health > 0)
         {
             this.InputPrimaryMove();
             this.InputSecondaryMove();

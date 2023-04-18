@@ -50,7 +50,7 @@ public class WeaponMagic : Weapon
             this.CooldownSpellMove();
         }
 
-        if (this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
+        if (this.IsUsing && gameObject.CompareTag("PlayerWeapon") && this.weaponParent.PlayerCtrl.PlayerLife.Health > 0)
         {
 
             if (this.weaponParent.PlayerCtrl.PlayerMagic.Mana > 0)

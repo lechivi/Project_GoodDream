@@ -11,8 +11,15 @@ public class SpawnerReward : EnemyAbstract
 
     [SerializeField] private int rewardHealth;
     [SerializeField] private int rewardMana;
-
     [SerializeField] private bool isRandom;
+
+    private Transform spawnPool;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        this.spawnPool = GameObject.Find("SpawnPool").transform;
+    }
 
     public void Spawn() //TODO: Pooling obj after
     {
@@ -22,7 +29,7 @@ public class SpawnerReward : EnemyAbstract
             if (amount <= 0) return;
             for (int i = 0; i < amount; i++)
             {
-                Instantiate(this.HealthCollectiblaPrefab, transform.position, Quaternion.identity);
+                Instantiate(this.HealthCollectiblaPrefab, transform.position, Quaternion.identity, this.spawnPool);
             }
         }
         if (this.rewardMana > 0)
@@ -31,7 +38,7 @@ public class SpawnerReward : EnemyAbstract
             if (amount <= 0) return;
             for (int i = 0; i < amount; i++)
             {
-                Instantiate(this.ManaCollectiblaPrefab, transform.position, Quaternion.identity);
+                Instantiate(this.ManaCollectiblaPrefab, transform.position, Quaternion.identity, this.spawnPool);
             }
         }
     }

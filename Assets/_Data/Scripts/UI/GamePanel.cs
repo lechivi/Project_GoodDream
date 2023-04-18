@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using EasyMobileInput;
 
 public class GamePanel : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class GamePanel : MonoBehaviour
     [SerializeField] private FillCooldownMoveImage firstMove;
     [SerializeField] private FillCooldownMoveImage secondMove;
 
+    [Header("MOBILE PHONE CTRL")]
+    [SerializeField] private Joystick movementJoystick;
+    public bool IsJoystick;
+
     public TMP_Text HealthText { get => this.healthText; set => this.healthText = value; }
     public TMP_Text AmmoText { get => this.ammoText; set => this.ammoText = value; }
     public TMP_Text ManaText { get => this.manaText; set => this.manaText = value; }
@@ -33,6 +38,7 @@ public class GamePanel : MonoBehaviour
     public Sprite Magic2 => this.magic2;
     public FillCooldownMoveImage FirstMove => this.firstMove;
     public FillCooldownMoveImage SecondMove => this.secondMove;
+    public Joystick MovementJoystick => this.movementJoystick;
 
     private int maxMana;
 
@@ -42,6 +48,12 @@ public class GamePanel : MonoBehaviour
         {
             this.maxMana = GameManager.Instance.MaxMana;
         }
+    }
+
+    private void Start()
+    {
+        if (!this.IsJoystick)
+            this.movementJoystick = null;
     }
 
     private void OnEnable() //or use Start()

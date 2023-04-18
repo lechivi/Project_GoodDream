@@ -46,7 +46,7 @@ public class WeaponShooting : Weapon
             if (!GameManager.Instance.IsPlaying) return;
         }
 
-        if (this.IsUsing && gameObject.CompareTag("PlayerWeapon")) 
+        if (this.IsUsing && gameObject.CompareTag("PlayerWeapon") && this.weaponParent.PlayerCtrl.PlayerLife.Health > 0) 
         {
             if (this.isReloading)
             {

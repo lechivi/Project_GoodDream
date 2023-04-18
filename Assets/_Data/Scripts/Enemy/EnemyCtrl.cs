@@ -24,6 +24,7 @@ public class EnemyCtrl : MonoBehaviour
         this.enemyLife = GetComponentInChildren<EnemyLife>();
         this.neverFlip = GetComponentInChildren<NeverFlip>();
         this.spawnerReward = GetComponentInChildren<SpawnerReward>();
+
         this.enemyAnimator = transform.Find("UnitRoot").GetComponent<Animator>();
 
         this.neverFlip.Target = transform;

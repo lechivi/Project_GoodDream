@@ -1,3 +1,4 @@
+using EasyMobileInput;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : PlayerAbstract
 {
     [SerializeField] private float moveSpeed = 5f;
-
+    [SerializeField] private Joystick movementJoystick;
     public MovementState movementState { get; set; }
     public bool IsFacingRight;
 
@@ -16,6 +17,12 @@ public class PlayerMovement : PlayerAbstract
     {
         base.Awake();
         this.rb = this.playerCtrl.GetComponent<Rigidbody2D>();
+
+        if (UIManager.HasInstance)
+        {
+            if (UIManager.Instance.GamePanel.MovementJoystick == null) return;
+            this.movementJoystick = UIManager.Instance.GamePanel.MovementJoystick;
+        }
     }
 
     private void Update()
@@ -23,32 +30,64 @@ public class PlayerMovement : PlayerAbstract
         this.UpdateAnimation();
         if (this.movementState == MovementState.Death) return;
 
-        this.movement.x = Input.GetAxisRaw("Horizontal");
-        this.movement.y = Input.GetAxisRaw("Vertical");
+        if (this.movementJoystick == null)
+        {
+            this.movement.x = Input.GetAxisRaw("Horizontal");
+            this.movement.y = Input.GetAxisRaw("Vertical");
 
-        this.movementState = this.movement == Vector2.zero ? MovementState.Idle : MovementState.Run;
+            this.movementState = this.movement == Vector2.zero ? MovementState.Idle : MovementState.Run;
+        }
+        else
+        {
+            this.movementState = this.movementJoystick.CurrentProcessedValue == Vector3.zero ? MovementState.Idle : MovementState.Run;
+        }
 
         this.Facing();
     }
 
     private void FixedUpdate()
     {
-        this.rb.MovePosition(this.rb.position + this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
+        if (this.movementJoystick == null)
+        {
+            this.rb.MovePosition(this.rb.position + this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            this.playerCtrl.transform.position += this.movementJoystick.CurrentProcessedValue * this.moveSpeed * Time.fixedDeltaTime;
+        }
+        //Debug.Log(this.movementJoystick.CurrentProcessedValue);
     }
 
     private void Facing()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePos.x > this.playerCtrl.transform.position.x)
+        if (this.movementJoystick == null)
         {
-            this.playerCtrl.transform.localScale = new Vector3(-1, 1, 1);
-            this.IsFacingRight = true;
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (mousePos.x > this.playerCtrl.transform.position.x)
+            {
+                this.playerCtrl.transform.localScale = new Vector3(-1, 1, 1);
+                this.IsFacingRight = true;
+            }
+            else
+            {
+                this.playerCtrl.transform.localScale = Vector3.one;
+                this.IsFacingRight = false;
+            }
         }
         else
         {
-            this.playerCtrl.transform.localScale = Vector3.one;
-            this.IsFacingRight = false;
+            if (this.movementJoystick.CurrentProcessedValue.x > 0)
+            {
+                this.playerCtrl.transform.localScale = new Vector3(-1, 1, 1);
+                this.IsFacingRight = true;
+            }
+            else if(this.movementJoystick.CurrentProcessedValue.x < 0)
+            {
+                this.playerCtrl.transform.localScale = Vector3.one;
+                this.IsFacingRight = false;
+            }
         }
+            
     }
 
     private void UpdateAnimation()
