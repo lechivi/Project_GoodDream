@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManaCollectible : Collectible
+public class HealthCollectible : Collectible
 {
     protected override void Collect()
     {
-        target.gameObject.GetComponent<PlayerCollector>().CollectMana(this.value);
+        target.gameObject.GetComponent<PlayerCollector>().CollectHealth(this.value);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerCollector"))
         {
-            if (collision.gameObject.GetComponent<PlayerCollector>().CanCollectMana())
+            if (collision.gameObject.GetComponent<PlayerCollector>().CanCollectHealth())
             {
                 this.target = collision.gameObject.transform;
                 this.isFly = true;

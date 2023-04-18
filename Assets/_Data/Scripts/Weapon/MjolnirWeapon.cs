@@ -79,15 +79,16 @@ public class MjolnirWeapon : WeaponMelee
 
                 transform.SetParent(null);
 
+                this.animator.enabled = false;
                 this.rb.bodyType = RigidbodyType2D.Dynamic;
                 this.rb.AddForce(this.GetDirection() * this.speed, ForceMode2D.Impulse);
                 this.isThrowing = true;
                 this.col.enabled = true;
+
             }
             else if (this.isThrowing)
             {
                 this.StartNewAttack();
-                this.rb.bodyType = RigidbodyType2D.Static;
                 this.rb.bodyType = RigidbodyType2D.Dynamic;
                 this.trail.emitting = true;
                 this.back = true;
@@ -101,15 +102,18 @@ public class MjolnirWeapon : WeaponMelee
             if (Vector2.Distance(this.weaponParent.transform.position, transform.position) < 0.01f)
             {
                 transform.SetParent(this.weaponParent.transform);
-                this.rb.bodyType = RigidbodyType2D.Kinematic;
                 transform.localPosition = Vector3.zero;
                 transform.localRotation = Quaternion.Euler(0, 0, 90);
 
+                this.animator.enabled = true;
+                this.rb.bodyType = RigidbodyType2D.Kinematic;
                 this.trail.emitting = false;
                 this.isStartCooldownSecondaryMove = true;
                 this.isAttacking = false;
                 this.isThrowing = false;
                 this.back = false;
+
+
             }
         }
     }
