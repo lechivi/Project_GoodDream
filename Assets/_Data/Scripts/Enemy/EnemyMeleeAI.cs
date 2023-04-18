@@ -9,7 +9,7 @@ public class EnemyMeleeAI : EnemyAI
     protected override void Start()
     {
         base.Start();
-        this.delayAttackTime = this.usingWeapon.GetComponent<WeaponMelee>().CooldownTimePrimaryMove;
+        //this.delayAttackTime = this.usingWeapon.GetComponent<WeaponMelee>().CooldownTimePrimaryMove;
     }
 
     protected override void Update()
