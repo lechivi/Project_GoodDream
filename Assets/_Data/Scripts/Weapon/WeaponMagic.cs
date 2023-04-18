@@ -102,6 +102,7 @@ public class WeaponMagic : Weapon
 
         //TODO: change BulletScript to fitter name
         // change ok chua
+        // change 2
         BulletScript bulletScript = spellObj.GetComponent<BulletScript>();
         bulletScript.WeaponParent = this.weaponParent;
         bulletScript.Damage = damage;
