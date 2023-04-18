@@ -11,15 +11,18 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected int criticalChance = 10;
     [SerializeField] protected float speedAttack = 5f;
 
+    public WeaponType WeaponType { get; set; }
     public bool IsUsing { get; set; }
 
     protected WeaponParent weaponParent;
     protected SpriteRenderer spriteRenderer;
+    protected Animator animator;
 
     protected virtual void Awake()
     {
         this.weaponParent = transform.parent.GetComponent<WeaponParent>();
-        this.spriteRenderer = transform.GetComponent<SpriteRenderer>();
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.animator = GetComponent<Animator>();
     }
 
     protected virtual void Update()

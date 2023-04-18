@@ -6,7 +6,6 @@ using UnityEngine;
 public class MjolnirWeapon : WeaponMelee
 {
     public TrailRenderer trail;
-    protected Animator animator;
     protected Rigidbody2D rb;
     protected PolygonCollider2D col;
 
@@ -22,12 +21,11 @@ public class MjolnirWeapon : WeaponMelee
         this.rb = GetComponent<Rigidbody2D>();
         this.col = GetComponent<PolygonCollider2D>();
 
-        this.animator.enabled = false;
         this.col.enabled = false;
         this.trail.emitting = false;
 
         this.isReadyPrimaryMove = true;
-        this.isReadySpecialMove = true;
+        this.isReadySecondaryMove = true;
     }
 
     protected override void InputPrimaryMove()
@@ -47,7 +45,6 @@ public class MjolnirWeapon : WeaponMelee
         this.isStartCooldownPrimaryMove = true;
         this.isAttacking = true;
 
-        this.animator.enabled = true;
         this.trail.emitting = true;
         this.col.enabled = true;
 
@@ -58,25 +55,24 @@ public class MjolnirWeapon : WeaponMelee
     {
         this.isAttacking = false;
 
-        this.animator.enabled = false;
         this.trail.emitting = false;
         this.col.enabled = false;
     }
 
-    protected override void InputSpecialMove()
+    protected override void InputSecondaryMove()
     {
-        base.InputSpecialMove();
-        this.SpecialMove();
+        base.InputSecondaryMove();
+        this.SecondarylMove();
     }
 
-    protected override void SpecialMove()
+    protected override void SecondarylMove()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if (!this.isThrowing && this.isReadySpecialMove && !this.isAttacking)
+            if (!this.isThrowing && this.isReadySecondaryMove && !this.isAttacking)
             {
                 this.StartNewAttack();
-                this.isReadySpecialMove = false;
+                this.isReadySecondaryMove = false;
                 this.isAttacking = true;
 
                 this.trail.emitting = true;
@@ -110,7 +106,7 @@ public class MjolnirWeapon : WeaponMelee
                 transform.localRotation = Quaternion.Euler(0, 0, 90);
 
                 this.trail.emitting = false;
-                this.isStartCooldownSpecialMove = true;
+                this.isStartCooldownSecondaryMove = true;
                 this.isAttacking = false;
                 this.isThrowing = false;
                 this.back = false;

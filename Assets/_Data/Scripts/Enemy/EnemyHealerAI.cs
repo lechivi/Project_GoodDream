@@ -120,7 +120,7 @@ public class EnemyHealerAI : EnemyAI
         {
             if (!this.enemyCtrl.BattleZone.Col.bounds.Contains(this.enemyCtrl.transform.position)) //When hit wall because of running away from Player, Healer enemy stop move
             {
-                Debug.Log("Hit Wall");
+                //Debug.Log("Hit Wall");
 
                 this.isStopMove = true;
                 this.MovementState = MovementState.Idle;

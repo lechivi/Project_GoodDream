@@ -9,7 +9,6 @@ public class SwordWeapon : WeaponMelee
     [SerializeField] private GameObject slashEffectPrefab;
     [SerializeField] private Transform slashEffectPoint;
 
-    private Animator animator;
     private BoxCollider2D col;
 
     protected override void Awake()
@@ -34,8 +33,13 @@ public class SwordWeapon : WeaponMelee
     {
         base.PrimaryMove();
         this.StartNewAttack();
-        this.animator.SetTrigger("Attack");
+        this.isReadyPrimaryMove = false;
+        this.isStartCooldownPrimaryMove = true;
+        this.isAttacking = true;
+
         this.col.enabled = true;
+
+        this.animator.SetTrigger("Attack");
         //GameObject slashEffect = Instantiate(this.slashEffectPrefab, this.slashEffectPoint.position, Quaternion.identity, transform);
         //this.slashEffectPrefab.SetActive(true);
         //Invoke("SetFXFalse", 0.5f);
@@ -48,6 +52,8 @@ public class SwordWeapon : WeaponMelee
 
     public void FinishAttackAnimation()
     {
+        this.isAttacking = false;
+
         this.col.enabled = false;
     }
 

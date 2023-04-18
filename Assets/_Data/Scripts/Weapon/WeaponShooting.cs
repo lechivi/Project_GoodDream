@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class WeaponShooting : Weapon
 {
-    [SerializeField] private PlayerMovement playerMovement;
-
     [Header("SHOOTING SETTING")]
     [SerializeField] protected List<Transform> shootPoints = new List<Transform>();
     [SerializeField] protected List<GameObject> bulletClone = new List<GameObject>();
@@ -20,13 +18,19 @@ public class WeaponShooting : Weapon
     [SerializeField] protected AudioClip reloadAudio;
 
     protected int currentAmmo;
+    protected float timerReload;
     protected float waitForNextShot;
     protected bool isReloading;
     protected Vector2 direction;
 
+    public int CurrentAmmo => this.currentAmmo;
+    public int MaxAmmo => this.maxAmmo;
+    public bool IsReloading => this.isReloading;
+
     protected override void Awake()
     {
         base.Awake();
+        this.WeaponType = WeaponType.Shooting;
         this.currentAmmo = this.maxAmmo;
         foreach (Transform child in transform)
         {
@@ -37,77 +41,111 @@ public class WeaponShooting : Weapon
 
     protected override void Update()
     {
-        //if (GameManager.HasInstance)
-        //{
-        //    if (!GameManager.Instance.IsPlaying) return;
-        //}
-
-
-        if (!this.IsUsing || this.isReloading) return;
-
-        if (Input.GetMouseButton(0))
+        if (GameManager.HasInstance)
         {
-            if (Time.time > this.waitForNextShot)
+            if (!GameManager.Instance.IsPlaying) return;
+        }
+
+        if (this.IsUsing && gameObject.CompareTag("PlayerWeapon")) 
+        {
+            if (this.isReloading)
             {
-                this.waitForNextShot = Time.time + 1f / this.fireRate;
+                this.Reload();
+                return;
+            }
 
-                if (this.currentAmmo > 0)
+            if (Input.GetMouseButton(0))
+            {
+                if (Time.time > this.waitForNextShot)
                 {
-                    this.currentAmmo--;
-                    this.Shoot();
+                    this.waitForNextShot = Time.time + 1f / this.fireRate;
 
-                    //this.weaponCtrl.SetSliderValue();
+                    if (this.currentAmmo > 0)
+                    {
+                        this.currentAmmo--;
+                        this.Shoot();
+                    }
+                    else
+                    {
+                        this.isReloading = true;
+                    }
                 }
-                else
-                {
-                    this.Reload();
-                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.R) && this.currentAmmo < this.maxAmmo)
+            {
+                this.isReloading = true;
+            }
+
+            if (UIManager.HasInstance)
+            {
+                GamePanel gamePanel = UIManager.Instance.GamePanel;
+                gamePanel.SecondMove.gameObject.SetActive(false);
+                gamePanel.FirstMove.Icon.sprite = gamePanel.Shooting;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && this.currentAmmo < this.maxAmmo)
-        {
-            this.Reload();
-        }
+       
     }
 
     private void Reload()
     {
-        this.isReloading = true;
-
         //if (AudioManager.HasInstance)
         //{
         //    AudioManager.Instance.PlaySE(this.reloadAudio);
         //}
 
-        Invoke("InvokeReload", this.reloadTime);
+        this.timerReload += Time.deltaTime;
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.GamePanel.FirstMove.StartFillMove(this.timerReload, this.reloadTime);
+        }
+        if (this.timerReload < this.reloadTime) return;
+
+        this.timerReload = 0;
+        this.currentAmmo = this.maxAmmo;
+        this.isReloading = false;
+
+        if (UIManager.HasInstance)
+        {
+            WeaponParent.playerAmmoDelegate(this.currentAmmo, this.maxAmmo, true);
+        }
     }
 
-    private void InvokeReload()
-    {
-        this.currentAmmo = this.maxAmmo;
-        //this.weaponCtrl.SetSliderValue();
-        this.isReloading = false;
-    }
+    //private void InvokeReload()
+    //{
+    //    this.currentAmmo = this.maxAmmo;
+    //    this.isReloading = false;
+
+    //    if (UIManager.HasInstance)
+    //    {
+    //        WeaponParent.playerAmmoDelegate(this.currentAmmo, this.maxAmmo, true);
+    //    }
+
+    //}
 
     private void Shoot()
     {
-        //    if (AudioManager.HasInstance)
-        //    {
-        //        AudioManager.Instance.PlaySE(this.fireAudio);
-        //    }
+        //if (AudioManager.HasInstance)
+        //{
+        //    AudioManager.Instance.PlaySE(this.fireAudio);
+        //}
 
         foreach (Transform child in this.shootPoints)
         {
             this.GetBullet(child);
         }
 
-        //GetComponentInChildren<Animator>().SetTrigger("Recoil");
+        GetComponentInChildren<Animator>().SetTrigger("Recoil");
+        if (UIManager.HasInstance)
+        {
+            WeaponParent.playerAmmoDelegate(this.currentAmmo, this.maxAmmo, true);
+        }
     }
 
     private GameObject GetBullet(Transform shootPoint)
     {
-        int direction = 1 * (this.playerMovement.IsFacingRight ? 1 : -1);
+        int direction = 1 * (this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? 1 : -1);
         int damage = this.GetRandomDamage();
         //for (int i = 0; i < this.bulletClone.Count; i++)
         //{
@@ -141,10 +179,6 @@ public class WeaponShooting : Weapon
 
         return bulletObj;
     }
-
-    public int CurrentAmmo() => this.currentAmmo;
-    public int MaxAmmo() => this.maxAmmo;
-    public bool IsReloading() => this.isReloading;
 
     public override void EnemyUseWeapon()
     {

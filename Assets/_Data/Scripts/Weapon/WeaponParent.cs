@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponParent : MonoBehaviour
+public class WeaponParent : PlayerAbstract
 {
-    [SerializeField] private PlayerMovement playerMovement;
+    public delegate void PlayerAmmo(int ammo, int maxAmmo, bool isShooting);
+    public static PlayerAmmo playerAmmoDelegate;
+
     [SerializeField] private GameObject damageTextPrefab;
     [SerializeField] private List<Weapon> listWeapon = new List<Weapon>();
 
@@ -13,11 +15,12 @@ public class WeaponParent : MonoBehaviour
     private Vector3 direction;
     private int currentWeapon;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         this.SpawnPool = GameObject.Find("SpawnPool").transform;    
     }
-
+    
     private void Start()
     {
         foreach (Transform child in transform)
@@ -32,7 +35,7 @@ public class WeaponParent : MonoBehaviour
 
         if (this.listWeapon.Count > 0)
         {
-            this.listWeapon[0].SetActiveWeapon(true); //TODO: choose the weapon used at the last play
+            this.SetWeapon(0); //TODO: choose the weapon used at the last play
         }
     }
 
@@ -42,7 +45,7 @@ public class WeaponParent : MonoBehaviour
 
         if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>() != null)
         {
-            if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>().IsReloading()) return;
+            if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>().IsReloading) return;
         }
 
         this.SwapWeapon();
@@ -54,7 +57,7 @@ public class WeaponParent : MonoBehaviour
         this.direction = mousePos - (Vector2) transform.position;
 
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, this.playerMovement.IsFacingRight ? rotZ : rotZ - 180);
+        transform.rotation = Quaternion.Euler(0f, 0f, this.playerCtrl.PlayerMovement.IsFacingRight ? rotZ : rotZ - 180);
     }
 
     private void SwapWeapon()
@@ -108,8 +111,32 @@ public class WeaponParent : MonoBehaviour
         this.currentWeapon = indexWeapon;
         this.listWeapon[indexWeapon].SetActiveWeapon(true);
 
-        //this.SetSliderMaxValue();
-        //this.SetSliderValue();
+        if (UIManager.HasInstance)
+        {
+            if (this.listWeapon[currentWeapon].WeaponType == WeaponType.Shooting)
+            {
+                WeaponShooting weaponShooting = this.listWeapon[currentWeapon].GetComponent<WeaponShooting>();
+
+                playerAmmoDelegate(weaponShooting.CurrentAmmo, weaponShooting.MaxAmmo, true);
+                PlayerMagic.playerManaDelegate(this.playerCtrl.PlayerMagic.MaxMana, false);
+            }
+
+            else if (this.listWeapon[currentWeapon].WeaponType == WeaponType.Magic)
+            {
+                playerAmmoDelegate(1, 1, false);
+                PlayerMagic.playerManaDelegate(this.playerCtrl.PlayerMagic.Mana, true);
+            }
+
+            else
+            {
+                playerAmmoDelegate(1, 1, false);
+                PlayerMagic.playerManaDelegate(this.playerCtrl.PlayerMagic.MaxMana, false);
+            }
+
+            UIManager.Instance.GamePanel.FirstMove.ResetFillMove();
+            UIManager.Instance.GamePanel.SecondMove.ResetFillMove();
+        }
+       
     }
 
 

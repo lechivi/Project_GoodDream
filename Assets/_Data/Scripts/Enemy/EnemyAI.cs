@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyAI : EnemyAbtract
+public class EnemyAI : EnemyAbstract
 {
     [Header("ENEMY AI")]
     [SerializeField] protected float moveSpeed = 7f;

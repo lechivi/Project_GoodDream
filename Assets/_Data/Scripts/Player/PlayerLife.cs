@@ -2,18 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLife : MonoBehaviour
+public class PlayerLife : PlayerAbstract
 {
-    [SerializeField] private PlayerMovement playerMovement;
+    public delegate void PlayerHealth(int health, int maxHealth);
+    public static PlayerHealth playerHealthDelegate;
+
     [SerializeField] private int health;
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth;
 
     public int Health { get => this.health; set => this.health = value; }
-    public int MaxHealth { get => this.maxHealth; set => this.maxHealth = value; }
+    public int MaxHealth { get => this.maxHealth; set => this.health = value; }
 
     private void Start()
     {
-        this.health = PlayerPrefs.GetInt("PLayerHealth", this.maxHealth);
+        //this.health = PlayerPrefs.GetInt("PLayerHealth", this.maxHealth);
+        if (GameManager.HasInstance)
+        {
+            this.health = GameManager.Instance.CurrentHealth;
+            this.maxHealth = GameManager.Instance.MaxHealth;
+        }
     }
 
     public void TakeDamage(int damage)
@@ -26,7 +33,12 @@ public class PlayerLife : MonoBehaviour
             this.health = 0;
             this.Die();
         }
-        PlayerPrefs.SetInt("PLayerHealth", this.health);
+        //PlayerPrefs.SetInt("PLayerHealth", this.health);
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.UpdateHealth(this.health);
+            playerHealthDelegate(this.health, this.maxHealth);
+        }
     }
 
     public void Heal(int amount)
@@ -34,17 +46,27 @@ public class PlayerLife : MonoBehaviour
         this.health += amount;
         if (this.health > this.maxHealth)
             this.health = this.maxHealth;
-        PlayerPrefs.SetInt("PLayerHealth", this.health);
+        //PlayerPrefs.SetInt("PLayerHealth", this.health);
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.UpdateHealth(health);
+            playerHealthDelegate(this.health, this.maxHealth);
+        }
     }
 
     public void UpgradeMaxHealth(int amout)
     {
         this.maxHealth += amout;
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.UpdateMaxHealth(maxHealth);
+            playerHealthDelegate(this.health, this.maxHealth);
+        }
     }
 
     private void Die()
     {
-        this.playerMovement.movementState = MovementState.Death;
+        this.playerCtrl.PlayerMovement.movementState = MovementState.Death;
         this.gameObject.layer = LayerMask.NameToLayer("Death");
     }
 }

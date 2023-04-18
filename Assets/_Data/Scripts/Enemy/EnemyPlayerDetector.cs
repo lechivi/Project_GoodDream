@@ -13,7 +13,7 @@ public class EnemyPlayerDetector : MonoBehaviour
         if (collision.CompareTag("PlayerBattle"))
         {
             this.PlayerInArea = true;
-            this.Player = collision.GetComponentInParent<PlayerMovement>().transform;
+            this.Player = collision.GetComponentInParent<PlayerCtrl>().transform;
             //Debug.Log(Player.gameObject);
         }
     }

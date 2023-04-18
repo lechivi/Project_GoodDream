@@ -6,42 +6,63 @@ public class WeaponMelee : Weapon
 {
     [Header("MELEE SETTING")]
     [SerializeField] protected float cooldownTimePrimaryMove;
-    [SerializeField] protected float cooldownTimeSpecialMove;
-
-    protected bool isReadyPrimaryMove { get; set; }
-    protected bool isReadySpecialMove { get; set; }
-
-    protected bool isStartCooldownPrimaryMove { get; set; }
-    protected bool isStartCooldownSpecialMove { get; set; }
-
-    protected bool isAttacking;
+    [SerializeField] protected float cooldownTimeSecondaryMove;
 
     protected float timerPrimaryMove;
-    protected float timerSpecialMove;
+    protected float timerSecondaryMove;
+    protected bool isReadyPrimaryMove;
+    protected bool isReadySecondaryMove;
+    protected bool isStartCooldownPrimaryMove;
+    protected bool isStartCooldownSecondaryMove;
+    protected bool isAttacking;
 
     protected HashSet<Collider2D> hitOpponents = new HashSet<Collider2D>(); //Check opponent had been hit yet
 
+    protected override void Awake()
+    {
+        base.Awake();
+        this.WeaponType = WeaponType.Melee;
+
+    }
+
     protected override void Update()
     {
+        if (GameManager.HasInstance)
+        {
+            if (!GameManager.Instance.IsPlaying) return;
+        }
+
         if (this.isStartCooldownPrimaryMove)
         {
             this.CooldownPrimaryMove();
         }
-        if (this.isStartCooldownSpecialMove)
+        if (this.isStartCooldownSecondaryMove)
         {
-            this.CooldownSpecialMove();
+            this.CooldownSecondaryMove();
         }
 
         if (this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
         {
             this.InputPrimaryMove();
-            this.InputSpecialMove();
+            this.InputSecondaryMove();
+
+            if (UIManager.HasInstance)
+            {
+                GamePanel gamePanel = UIManager.Instance.GamePanel;
+                gamePanel.SecondMove.gameObject.SetActive(true);
+                gamePanel.FirstMove.Icon.sprite = gamePanel.Melee1;
+                //gamePanel.SecondMove.Icon.sprite = gamePanel.Melee2;
+            }
         }
     }
 
     private void CooldownPrimaryMove()
     {
         this.timerPrimaryMove += Time.deltaTime;
+        if (UIManager.HasInstance && this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
+        {
+            UIManager.Instance.GamePanel.FirstMove.StartFillMove(this.timerPrimaryMove, this.cooldownTimePrimaryMove);
+        }
         if (this.timerPrimaryMove < this.cooldownTimePrimaryMove) return;
 
         this.timerPrimaryMove = 0;
@@ -49,14 +70,18 @@ public class WeaponMelee : Weapon
         this.isStartCooldownPrimaryMove = false;
     }
 
-    private void CooldownSpecialMove()
+    private void CooldownSecondaryMove()
     {
-        this.timerSpecialMove += Time.deltaTime;
-        if (this.timerSpecialMove < this.cooldownTimeSpecialMove) return;
+        this.timerSecondaryMove += Time.deltaTime;
+        if (UIManager.HasInstance && this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
+        {
+            UIManager.Instance.GamePanel.SecondMove.StartFillMove(this.timerSecondaryMove, this.cooldownTimeSecondaryMove);
+        }
+        if (this.timerSecondaryMove < this.cooldownTimeSecondaryMove) return;
 
-        this.timerSpecialMove = 0;
-        this.isReadySpecialMove = true;
-        this.isStartCooldownSpecialMove = false;
+        this.timerSecondaryMove = 0;
+        this.isReadySecondaryMove = true;
+        this.isStartCooldownSecondaryMove = false;
     }
 
     protected virtual void InputPrimaryMove()
@@ -65,7 +90,7 @@ public class WeaponMelee : Weapon
         //for overrite
     }
 
-    protected virtual void InputSpecialMove()
+    protected virtual void InputSecondaryMove()
     {
         //Only player use this method
         //for overrite
@@ -77,7 +102,7 @@ public class WeaponMelee : Weapon
         //for overrite
     }
 
-    protected virtual void SpecialMove()
+    protected virtual void SecondarylMove()
     {
         //Only player use this method
         //for overrite
