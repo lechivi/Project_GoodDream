@@ -101,6 +101,7 @@ public class WeaponMagic : Weapon
         spellObj.layer = LayerMask.NameToLayer("Player");
 
         //TODO: change BulletScript to fitter name
+        // change ok chua
         BulletScript bulletScript = spellObj.GetComponent<BulletScript>();
         bulletScript.WeaponParent = this.weaponParent;
         bulletScript.Damage = damage;
