@@ -117,22 +117,4 @@ public class EnemySpawnerAI : EnemyAI
         this.isUsingSkill = false;
     }
 
-    protected override void UpdateAnimation()
-    {
-        if (this.MovementState == MovementState.Idle)
-        {
-            this.enemyCtrl.EnemyAnimator.Play("0_idle");
-        }
-        else if (this.MovementState == MovementState.Run)
-        {
-            this.enemyCtrl.EnemyAnimator.Play("1_Run");
-
-        }
-        else if (this.MovementState == MovementState.Death)
-        {
-            this.enemyCtrl.EnemyAnimator.Play("4_Death");
-
-        }
-    }
-
 }
