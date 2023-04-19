@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleDamageAnimationRemote : MonoBehaviour
+public class ObstacleDamageRemote : MonoBehaviour
 {
     [SerializeField] private ObstacleDamage obstacle;
     private Animator animator;

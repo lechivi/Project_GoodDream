@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TrapType { NailTrap, Lava}
 public class ObstacleDamage : MonoBehaviour
 {
+    [SerializeField] private TrapType trapType;
     [SerializeField] private int damage = 1;
     [SerializeField] private float delay = 1f;
-
+    
     private float timer = 0f;
     private bool isEnter;
     private bool isReady = true;
@@ -15,7 +17,15 @@ public class ObstacleDamage : MonoBehaviour
 
     private void Update()
     {
-        if (this.isEnter && this.IsShowTrap)
+        if (this.trapType == TrapType.NailTrap)
+        {
+            if (this.isEnter && this.IsShowTrap)
+            {
+                this.TakeDamageTarget();
+            }
+        }
+
+        else if (this.trapType == TrapType.Lava)
         {
             this.TakeDamageTarget();
         }
