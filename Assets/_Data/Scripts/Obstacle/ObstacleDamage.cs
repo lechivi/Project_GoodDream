@@ -27,7 +27,7 @@ public class ObstacleDamage : MonoBehaviour
         if (this.isReady)
         {
             this.isReady = false;
-            this.target.gameObject.GetComponent<PlayerLife>().TakeDamage(this.damage);
+            this.target.gameObject.GetComponent<PlayerCtrl>().PlayerLife.TakeDamage(this.damage);
         }
         this.timer += Time.deltaTime;
         if (this.timer < this.delay) return;
@@ -45,7 +45,7 @@ public class ObstacleDamage : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!this.IsShowTrap) return;
-        if (collision.gameObject.CompareTag("PlayerBattle"))
+        if (collision.gameObject.CompareTag("ColliderWithWall") && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             this.isStartCooldowm = true;
             this.target = collision.transform;
@@ -55,7 +55,7 @@ public class ObstacleDamage : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!this.IsShowTrap) return;
-        if (collision.gameObject.CompareTag("PlayerBattle"))
+        if (collision.gameObject.CompareTag("ColliderWithWall") && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             this.ResetCooldown();
         }

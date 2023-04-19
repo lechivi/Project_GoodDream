@@ -5,7 +5,14 @@ using UnityEngine;
 public class ObstacleDamageRemote : MonoBehaviour
 {
     [SerializeField] private ObstacleDamage target;
+    private Animator animator;
 
+    private void Awake()
+    {
+        this.animator = GetComponent<Animator>();
+
+        this.animator.SetTrigger("Remote");
+    }
     public void TurnOnTarget() //Call in animation frame
     {
         this.target.IsShowTrap = true;
