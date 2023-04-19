@@ -8,12 +8,9 @@ using EasyMobileInput;
 public class GamePanel : MonoBehaviour
 {
     [Header("TOP_LEFT")]
-    [SerializeField] private TMP_Text healthText;
-    [SerializeField] private TMP_Text ammoText;
-    [SerializeField] private TMP_Text manaText;
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private Slider ammoSlider;
-    [SerializeField] private Slider manaSlider;
+    [SerializeField] private BlurringSliderFill healthSlider;
+    [SerializeField] private BlurringSliderFill ammoSlider;
+    [SerializeField] private BlurringSliderFill manaSlider;
 
     [Header("BOTTOM_MIDDLE]")]
     [SerializeField] private Sprite melee1;
@@ -28,9 +25,7 @@ public class GamePanel : MonoBehaviour
     [SerializeField] private Joystick movementJoystick;
     public bool IsJoystick;
 
-    public TMP_Text HealthText { get => this.healthText; set => this.healthText = value; }
-    public TMP_Text AmmoText { get => this.ammoText; set => this.ammoText = value; }
-    public TMP_Text ManaText { get => this.manaText; set => this.manaText = value; }
+    public BlurringSliderFill HealthSlider => this.healthSlider;
     public Sprite Melee1 => this.melee1;
     public Sprite Melee2 => this.melee2;
     public Sprite Shooting => this.shooting;
@@ -72,38 +67,30 @@ public class GamePanel : MonoBehaviour
 
     private void OnPlayerHealth(int value, int maxValue)
     {
-        this.healthSlider.maxValue = maxValue;
-        this.healthSlider.value = value;
-        this.healthText.SetText(value.ToString() + "/" + maxValue.ToString());
+        this.healthSlider.SetActiveSlider(value, maxValue, true);
     }
 
     private void OnPlayerAmmo(int value, int maxValue, bool isShooting)
     {
-        this.ammoSlider.maxValue = maxValue;
-        this.ammoSlider.value = value;
         if (isShooting)
         {
-            this.ammoText.alpha = 1;
-            this.ammoText.SetText(value.ToString() + "/" + maxValue.ToString());
+            this.ammoSlider.SetActiveSlider(value, maxValue, true);
         }
         else
         {
-            this.ammoText.alpha = 0;
+            this.ammoSlider.SetActiveSlider(1, 1, false);
         }
     }
 
     private void OnPlayerMana(int value, bool isMagic)
     {
-        this.manaSlider.maxValue = this.maxMana;
-        this.manaSlider.value = value;
         if (isMagic)
         {
-            this.manaText.alpha = 1;
-            this.manaText.SetText(value.ToString() + "/" + this.maxMana.ToString());
+            this.manaSlider.SetActiveSlider(value, this.maxMana, true);
         }
         else
         {
-            this.manaText.alpha = 0;
+            this.manaSlider.SetActiveSlider(1, 1, false);
         }
     }
 

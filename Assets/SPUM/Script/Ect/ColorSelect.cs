@@ -22,11 +22,11 @@ public class ColorSelect : MonoBehaviour
             SoonsoonData.Instance._spumManager.ToastOn("Loaded Color");
             SoonsoonData.Instance._spumManager._nowSelectColor.SetActive(true);
             SoonsoonData.Instance._spumManager._nowSelectColor.transform.position = transform.position;
-            //set the color
+            //set the activeColor
         }
         else
         {
-            //saved the color
+            //saved the activeColor
             _savedColor.gameObject.SetActive(true);
             _savedColor.color = SoonsoonData.Instance._spumManager._nowColor;
             SoonsoonData.Instance._spumManager.ToastOn("Saved Color");

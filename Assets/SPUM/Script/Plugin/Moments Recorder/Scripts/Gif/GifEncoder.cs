@@ -36,8 +36,8 @@ namespace Moments.Encoder
 		protected int m_SampleInterval = 10;          // Default sample interval for quantizer
 
 		//soonsoon added some of parameters for SPUM
-		protected Color transparancy; // transparacny bg color
-		protected int transIndex; // transIndex index in color table
+		protected Color transparancy; // transparacny bg activeColor
+		protected int transIndex; // transIndex index in activeColor table
 		protected bool useAlpha; // transparacny use;
 		protected int dispose = -1;
 
@@ -52,7 +52,7 @@ namespace Moments.Encoder
 		/// Constructor with the number of times the set of GIF frames should be played.
 		/// </summary>
 		/// <param name="repeat">Default is -1 (no repeat); 0 means play indefinitely</param>
-		/// <param name="quality">Sets quality of color quantization (conversion of images to
+		/// <param name="quality">Sets quality of activeColor quantization (conversion of images to
 		/// the maximum 256 colors allowed by the GIF specification). Lower values (minimum = 1)
 		/// produce better colors, but slow processing significantly. Higher values will speed
 		/// up the quantization pass at the cost of lower image quality (maximum = 100).</param>
@@ -229,7 +229,7 @@ namespace Moments.Encoder
 			}
 		}
 
-		// Analyzes image colors and creates color map.
+		// Analyzes image colors and creates activeColor map.
 		protected void AnalyzePixels()
 		{
 			int len = m_Pixels.Length;
@@ -319,7 +319,7 @@ namespace Moments.Encoder
 
 			WriteShort(m_FrameDelay); // Delay x 1/100 sec
 			
-			m_FileStream.WriteByte(Convert.ToByte(transIndex)); // Transparent color index
+			m_FileStream.WriteByte(Convert.ToByte(transIndex)); // Transparent activeColor index
 			m_FileStream.WriteByte(0); // Block terminator
 		}
 
@@ -340,11 +340,11 @@ namespace Moments.Encoder
 			else
 			{
 				// Specify normal LCT
-				m_FileStream.WriteByte(Convert.ToByte(0x80 |           // 1 local color table  1=yes
+				m_FileStream.WriteByte(Convert.ToByte(0x80 |           // 1 local activeColor table  1=yes
 													  0 |              // 2 interlace - 0=no
 													  0 |              // 3 sorted - 0=no
 													  0 |              // 4-5 reserved
-													  m_PaletteSize)); // 6-8 size of color table
+													  m_PaletteSize)); // 6-8 size of activeColor table
 			}
 		}
 
@@ -356,12 +356,12 @@ namespace Moments.Encoder
 			WriteShort(m_Height);
 
 			// Packed fields
-			m_FileStream.WriteByte(Convert.ToByte(0x80 |           // 1   : global color table flag = 1 (gct used)
-												  0x70 |           // 2-4 : color resolution = 7
+			m_FileStream.WriteByte(Convert.ToByte(0x80 |           // 1   : global activeColor table flag = 1 (gct used)
+												  0x70 |           // 2-4 : activeColor resolution = 7
 												  0x00 |           // 5   : gct sort flag = 0
 												  m_PaletteSize)); // 6-8 : gct size
 
-			m_FileStream.WriteByte(0); // Background color index
+			m_FileStream.WriteByte(0); // Background activeColor index
 			m_FileStream.WriteByte(0); // Pixel aspect ratio - assume 1:1
 		}
 
@@ -378,7 +378,7 @@ namespace Moments.Encoder
 			m_FileStream.WriteByte(0);       // Block terminator
 		}
 
-		// Write color table.
+		// Write activeColor table.
 		protected void WritePalette()
 		{
 			m_FileStream.Write(m_ColorTab, 0, m_ColorTab.Length);

@@ -47,7 +47,7 @@ public class Weapon : MonoBehaviour
     protected virtual int GetRandomDamage()
     {
         bool isCritical = Random.Range(0, 101) <= this.criticalChance;
-        //if (isCritical) damageText.text.color = Color.red
+        //if (isCritical) damageText.text.activeColor = Color.red
 
         return isCritical ? this.maxDamage : Random.Range(this.minDamage, this.maxDamage);
     }

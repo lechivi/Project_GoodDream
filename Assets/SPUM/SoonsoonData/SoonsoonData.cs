@@ -37,8 +37,8 @@ public class SoonsoonData
 
     public SPUM_Manager _spumManager;
     public bool _gifAlphaTrigger; // for using gif trigger at Soonsoon Exporter.
-    public Color _gifBasicColor; //for using gif bg color at Soonsoon Exporter.
-    public Color _alphaColor; // for using gif alpha color at Soonsoon Exporter.
+    public Color _gifBasicColor; //for using gif bg activeColor at Soonsoon Exporter.
+    public Color _alphaColor; // for using gif alpha activeColor at Soonsoon Exporter.
 
 
     public void SaveData()

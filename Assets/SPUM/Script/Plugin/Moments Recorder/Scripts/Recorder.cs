@@ -149,7 +149,7 @@ namespace Moments
 		/// <param name="fps">Recording FPS</param>
 		/// <param name="bufferSize">Maximum amount of seconds to record to memory</param>
 		/// <param name="repeat">-1: no repeat, 0: infinite, >0: repeat count</param>
-		/// <param name="quality">Quality of color quantization (conversion of images to the maximum
+		/// <param name="quality">Quality of activeColor quantization (conversion of images to the maximum
 		/// 256 colors allowed by the GIF specification). Lower values (minimum = 1) produce better
 		/// colors, but slow processing significantly. Higher values will speed up the quantization
 		/// pass at the cost of lower image quality (maximum = 100).</param>

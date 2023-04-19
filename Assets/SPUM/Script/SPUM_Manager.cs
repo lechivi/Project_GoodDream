@@ -117,7 +117,7 @@ public class SPUM_Manager : MonoBehaviour
         //        {
         //            Color tCol = StrToColor(tSTR);
         //            _colorSaveList[i]._savedColor.gameObject.SetActive(true);
-        //            _colorSaveList[i]._savedColor.color = tCol;
+        //            _colorSaveList[i]._savedColor.activeColor = tCol;
         //        }
         //    }
         //}
@@ -127,10 +127,10 @@ public class SPUM_Manager : MonoBehaviour
     public void SetInit()
     {
         ////SetInitValue
-        //_spriteObj._eyeList[2].color = _basicColor;
-        //_spriteObj._eyeList[3].color = _basicColor;
-        //_spriteObj._hairList[3].color = _basicColor;
-        //_spriteObj._hairList[0].color = _basicColor;
+        //_spriteObj._eyeList[2].activeColor = _basicColor;
+        //_spriteObj._eyeList[3].activeColor = _basicColor;
+        //_spriteObj._hairList[3].activeColor = _basicColor;
+        //_spriteObj._hairList[0].activeColor = _basicColor;
         //SetInitColor();
         //_spriteObj.Reset(); 
         ////눈도 초기화
@@ -146,12 +146,12 @@ public class SPUM_Manager : MonoBehaviour
     {
         //for(var i =0 ; i < _textureList.Count;i++)
         //{
-        //    _textureList[i]._colorBG.color = Color.white;
+        //    _textureList[i]._colorBG.activeColor = Color.white;
         //}
 
-        //_textureList[0]._colorBG.color = _basicColor;
-        //_textureList[1]._colorBG.color = _basicColor;
-        //_textureList[9]._colorBG.color = _basicColor;
+        //_textureList[0]._colorBG.activeColor = _basicColor;
+        //_textureList[1]._colorBG.activeColor = _basicColor;
+        //_textureList[9]._colorBG.activeColor = _basicColor;
     }
 
     public void SetSpriteList(int num, string path)
@@ -605,8 +605,8 @@ public class SPUM_Manager : MonoBehaviour
         //    RandomSelect(2);
         //}
 
-        // _spriteObj._eyeList[0].color = _basicColor;
-        // _spriteObj._eyeList[1].color = _basicColor;
+        // _spriteObj._eyeList[0].activeColor = _basicColor;
+        // _spriteObj._eyeList[1].activeColor = _basicColor;
 
         // if(!_SPButtonList[0]._toggle.isOn) RandomObjColor(0);
         // if(!_SPButtonList[2]._toggle.isOn) RandomObjColor(1);
@@ -1338,11 +1338,11 @@ public class SPUM_Manager : MonoBehaviour
         //        if( name.Length < 2) 
         //        {
         //            _textureList[num].SetUse(false);
-        //            _textureList[num]._colorBG.color = Color.white;
+        //            _textureList[num]._colorBG.activeColor = Color.white;
 
         //            if(num == 9 )
         //            {
-        //                _textureList[num]._colorBG.color = _basicColor;
+        //                _textureList[num]._colorBG.activeColor = _basicColor;
         //            }
         //        }
         //    }
@@ -1351,9 +1351,9 @@ public class SPUM_Manager : MonoBehaviour
         //        if(sprite == null)
         //        {
         //            _textureList[num].SetUse(false);
-        //            _textureList[num]._colorBG.color = Color.white;
+        //            _textureList[num]._colorBG.activeColor = Color.white;
 
-        //            if( num == 0 || num == 1|| num == 9 ) _textureList[num]._colorBG.color = _basicColor;
+        //            if( num == 0 || num == 1|| num == 9 ) _textureList[num]._colorBG.activeColor = _basicColor;
         //        }
         //    }
         //}
@@ -1571,8 +1571,8 @@ public class SPUM_Manager : MonoBehaviour
         //            }
         //        }
 
-        //        _spriteObj._eyeList[2].color = _basicColor;
-        //        _spriteObj._eyeList[3].color = _basicColor;
+        //        _spriteObj._eyeList[2].activeColor = _basicColor;
+        //        _spriteObj._eyeList[3].activeColor = _basicColor;
 
         //    }
         //    break;
@@ -1721,8 +1721,8 @@ public class SPUM_Manager : MonoBehaviour
 
         //    case 9: //눈의 경우
         //    available = true;
-        //    _spriteObj._eyeList[2].color = _nowColor;
-        //    _spriteObj._eyeList[3].color = _nowColor;
+        //    _spriteObj._eyeList[2].activeColor = _nowColor;
+        //    _spriteObj._eyeList[3].activeColor = _nowColor;
         //    break;
         //}
 
@@ -1771,15 +1771,15 @@ public class SPUM_Manager : MonoBehaviour
     public void PickColor()
     {
         //tex = new Texture2D(1, 1);
-        ////get the color printed by calling:
+        ////get the activeColor printed by calling:
         //StartCoroutine(CaptureTempArea());
     }
 
 
     public void PickerColorText()
     {
-        //_nowColorShow.color = StrToColor(_hexColorText.text);
-        //_nowColor = _nowColorShow.color;
+        //_nowColorShow.activeColor = StrToColor(_hexColorText.text);
+        //_nowColor = _nowColorShow.activeColor;
         //SetObjColor();
     }
 
@@ -1797,7 +1797,7 @@ public class SPUM_Manager : MonoBehaviour
 
         //yield return new WaitForSecondsRealtime(0.1f);
 
-        //_nowColorShow.color = _nowColor;
+        //_nowColorShow.activeColor = _nowColor;
         //_hexColorText.text = ColorToStr(_nowColor);
         //SetObjColor();
         //_nowSelectColor.SetActive(false);
@@ -1808,56 +1808,56 @@ public class SPUM_Manager : MonoBehaviour
         //switch(_nowColorNum)
         //{
         //    case 0: //머리의 경우
-        //    _spriteObj._hairList[0].color = _nowColor;
+        //    _spriteObj._hairList[0].activeColor = _nowColor;
             
         //    break;
 
         //    case 1: //수염의 경우
-        //    _spriteObj._hairList[3].color = _nowColor;
+        //    _spriteObj._hairList[3].activeColor = _nowColor;
         //    break;
 
         //    case 2: //헬멧
-        //    _spriteObj._hairList[1].color = _nowColor;
+        //    _spriteObj._hairList[1].activeColor = _nowColor;
         //    break;
 
         //    case 3: //옷
-        //    _spriteObj._clothList[0].color = _nowColor;
-        //    _spriteObj._clothList[1].color = _nowColor;
-        //    _spriteObj._clothList[2].color = _nowColor;
+        //    _spriteObj._clothList[0].activeColor = _nowColor;
+        //    _spriteObj._clothList[1].activeColor = _nowColor;
+        //    _spriteObj._clothList[2].activeColor = _nowColor;
         //    break;
 
         //    case 4: //바지
-        //    _spriteObj._pantList[0].color = _nowColor;
-        //    _spriteObj._pantList[1].color = _nowColor;
+        //    _spriteObj._pantList[0].activeColor = _nowColor;
+        //    _spriteObj._pantList[1].activeColor = _nowColor;
         //    break;
 
         //    case 5: //아머
-        //    _spriteObj._armorList[0].color = _nowColor;
-        //    _spriteObj._armorList[1].color = _nowColor;
-        //    _spriteObj._armorList[2].color = _nowColor;
+        //    _spriteObj._armorList[0].activeColor = _nowColor;
+        //    _spriteObj._armorList[1].activeColor = _nowColor;
+        //    _spriteObj._armorList[2].activeColor = _nowColor;
         //    break;
 
         //    case 6: //뒤
-        //    _spriteObj._backList[0].color = _nowColor;
+        //    _spriteObj._backList[0].activeColor = _nowColor;
         //    break;
 
         //    case 7: //오른손
-        //    if(_spriteObj._weaponList[0]!=null) _spriteObj._weaponList[0].color = _nowColor;
-        //    if(_spriteObj._weaponList[1]!=null) _spriteObj._weaponList[1].color = _nowColor;
+        //    if(_spriteObj._weaponList[0]!=null) _spriteObj._weaponList[0].activeColor = _nowColor;
+        //    if(_spriteObj._weaponList[1]!=null) _spriteObj._weaponList[1].activeColor = _nowColor;
         //    break;
 
         //    case 8: //왼손
-        //    if(_spriteObj._weaponList[2]!=null) _spriteObj._weaponList[2].color = _nowColor;
-        //    if(_spriteObj._weaponList[3]!=null) _spriteObj._weaponList[3].color = _nowColor;
+        //    if(_spriteObj._weaponList[2]!=null) _spriteObj._weaponList[2].activeColor = _nowColor;
+        //    if(_spriteObj._weaponList[3]!=null) _spriteObj._weaponList[3].activeColor = _nowColor;
         //    break;
 
         //    case 9: //눈의 경우
-        //    _spriteObj._eyeList[2].color = _nowColor;
-        //    _spriteObj._eyeList[3].color = _nowColor;
+        //    _spriteObj._eyeList[2].activeColor = _nowColor;
+        //    _spriteObj._eyeList[3].activeColor = _nowColor;
         //    break;
         //}
 
-        //_textureList[_nowColorNum]._colorBG.color = _nowColor;
+        //_textureList[_nowColorNum]._colorBG.activeColor = _nowColor;
         // CloseColorPick();
     }
 
@@ -1875,55 +1875,55 @@ public class SPUM_Manager : MonoBehaviour
         //switch(num)
         //{
         //    case 0: //머리의 경우
-        //    _spriteObj._hairList[0].color = tColor;
+        //    _spriteObj._hairList[0].activeColor = tColor;
         //    break;
 
         //    case 1: //수염의 경우
-        //    _spriteObj._hairList[3].color = tColor;
+        //    _spriteObj._hairList[3].activeColor = tColor;
         //    break;
 
         //    case 2: //헬멧
-        //    _spriteObj._hairList[1].color = tColor;
+        //    _spriteObj._hairList[1].activeColor = tColor;
         //    break;
 
         //    case 3: //옷
-        //    _spriteObj._clothList[0].color = tColor;
-        //    _spriteObj._clothList[1].color = tColor;
-        //    _spriteObj._clothList[2].color = tColor;
+        //    _spriteObj._clothList[0].activeColor = tColor;
+        //    _spriteObj._clothList[1].activeColor = tColor;
+        //    _spriteObj._clothList[2].activeColor = tColor;
         //    break;
 
         //    case 4: //바지
-        //    _spriteObj._pantList[0].color = tColor;
-        //    _spriteObj._pantList[1].color = tColor;
+        //    _spriteObj._pantList[0].activeColor = tColor;
+        //    _spriteObj._pantList[1].activeColor = tColor;
         //    break;
 
         //    case 5: //아머
-        //    _spriteObj._armorList[0].color = tColor;
-        //    _spriteObj._armorList[1].color = tColor;
-        //    _spriteObj._armorList[2].color = tColor;
+        //    _spriteObj._armorList[0].activeColor = tColor;
+        //    _spriteObj._armorList[1].activeColor = tColor;
+        //    _spriteObj._armorList[2].activeColor = tColor;
         //    break;
 
         //    case 6: //뒤
-        //    _spriteObj._backList[0].color = tColor;
+        //    _spriteObj._backList[0].activeColor = tColor;
         //    break;
 
         //    case 7: //오른손
-        //    if(_spriteObj._weaponList[0]!=null) _spriteObj._weaponList[0].color = tColor;
-        //    if(_spriteObj._weaponList[1]!=null) _spriteObj._weaponList[1].color = tColor;
+        //    if(_spriteObj._weaponList[0]!=null) _spriteObj._weaponList[0].activeColor = tColor;
+        //    if(_spriteObj._weaponList[1]!=null) _spriteObj._weaponList[1].activeColor = tColor;
         //    break;
 
         //    case 8: //왼손
-        //    if(_spriteObj._weaponList[2]!=null) _spriteObj._weaponList[2].color = tColor;
-        //    if(_spriteObj._weaponList[3]!=null) _spriteObj._weaponList[3].color = tColor;
+        //    if(_spriteObj._weaponList[2]!=null) _spriteObj._weaponList[2].activeColor = tColor;
+        //    if(_spriteObj._weaponList[3]!=null) _spriteObj._weaponList[3].activeColor = tColor;
         //    break;
 
         //    case 9: //눈의 경우
-        //    _spriteObj._eyeList[2].color = tColor;
-        //    _spriteObj._eyeList[3].color = tColor;
+        //    _spriteObj._eyeList[2].activeColor = tColor;
+        //    _spriteObj._eyeList[3].activeColor = tColor;
         //    break;
         //}
 
-        //_textureList[num]._colorBG.color = tColor;
+        //_textureList[num]._colorBG.activeColor = tColor;
     }
 
     public void CheckPrefabVersionData()
@@ -1943,9 +1943,9 @@ public class SPUM_Manager : MonoBehaviour
         //        _spriteObj.LoadSprite(tObjST);
 
         //        //UI연동.
-        //        // _colorButton[0].color = tObjST._eyeList[0].color;
-        //        // _colorButton[1].color = tObjST._hairList[3].color;
-        //        // _colorButton[2].color = tObjST._hairList[0].color;
+        //        // _colorButton[0].activeColor = tObjST._eyeList[0].activeColor;
+        //        // _colorButton[1].activeColor = tObjST._hairList[3].activeColor;
+        //        // _colorButton[2].activeColor = tObjST._hairList[0].activeColor;
                 
         //        _spriteObj.ResyncData();
         //        _unitObjSet._version = _version;
@@ -2035,9 +2035,9 @@ public class SPUM_Manager : MonoBehaviour
         //            _spriteObj.LoadSprite(tObjST);
 
         //            //UI연동.
-        //            // _colorButton[0].color = tObjST._eyeList[0].color;
-        //            // _colorButton[1].color = tObjST._hairList[3].color;
-        //            // _colorButton[2].color = tObjST._hairList[0].color;
+        //            // _colorButton[0].activeColor = tObjST._eyeList[0].activeColor;
+        //            // _colorButton[1].activeColor = tObjST._hairList[3].activeColor;
+        //            // _colorButton[2].activeColor = tObjST._hairList[0].activeColor;
 
         //            _spriteObj.ResyncData();
         //            _unitObjSet._version = _version;
@@ -2269,61 +2269,61 @@ public class SPUM_Manager : MonoBehaviour
         //    ttObjST.ShowObj(5);
         //    //아이템 연동 부분
         //    ttObjST._fullSetList[0].sprite = tObjST._bodyList[0].sprite;
-        //    if(tObjST._bodyList[0].sprite!=null) ttObjST._fullSetList[0].color = tObjST._bodyList[0].color;
+        //    if(tObjST._bodyList[0].sprite!=null) ttObjST._fullSetList[0].activeColor = tObjST._bodyList[0].activeColor;
         //    ttObjST._fullSetList[1].sprite = tObjST._bodyList[1].sprite;
-        //    if(tObjST._bodyList[1].sprite!=null) ttObjST._fullSetList[1].color = tObjST._bodyList[1].color;
+        //    if(tObjST._bodyList[1].sprite!=null) ttObjST._fullSetList[1].activeColor = tObjST._bodyList[1].activeColor;
         //    ttObjST._fullSetList[2].sprite = tObjST._bodyList[2].sprite;
-        //    if(tObjST._bodyList[2].sprite!=null) ttObjST._fullSetList[2].color = tObjST._bodyList[2].color;
+        //    if(tObjST._bodyList[2].sprite!=null) ttObjST._fullSetList[2].activeColor = tObjST._bodyList[2].activeColor;
         //    ttObjST._fullSetList[3].sprite = tObjST._bodyList[3].sprite;
-        //    if(tObjST._bodyList[3].sprite!=null) ttObjST._fullSetList[3].color = tObjST._bodyList[3].color;
+        //    if(tObjST._bodyList[3].sprite!=null) ttObjST._fullSetList[3].activeColor = tObjST._bodyList[3].activeColor;
         //    ttObjST._fullSetList[4].sprite = tObjST._bodyList[4].sprite;
-        //    if(tObjST._bodyList[4].sprite!=null) ttObjST._fullSetList[4].color = tObjST._bodyList[4].color;
+        //    if(tObjST._bodyList[4].sprite!=null) ttObjST._fullSetList[4].activeColor = tObjST._bodyList[4].activeColor;
         //    ttObjST._fullSetList[5].sprite = tObjST._bodyList[5].sprite;
-        //    if(tObjST._bodyList[5].sprite!=null) ttObjST._fullSetList[5].color = tObjST._bodyList[5].color;
+        //    if(tObjST._bodyList[5].sprite!=null) ttObjST._fullSetList[5].activeColor = tObjST._bodyList[5].activeColor;
 
         //    ttObjST._fullSetList[6].sprite = tObjST._eyeList[0].sprite;
-        //    if(tObjST._eyeList[0].sprite!=null) ttObjST._fullSetList[6].color = tObjST._eyeList[0].color;
+        //    if(tObjST._eyeList[0].sprite!=null) ttObjST._fullSetList[6].activeColor = tObjST._eyeList[0].activeColor;
         //    ttObjST._fullSetList[7].sprite = tObjST._eyeList[0].sprite;
-        //    if(tObjST._eyeList[0].sprite!=null) ttObjST._fullSetList[7].color = tObjST._eyeList[0].color;
+        //    if(tObjST._eyeList[0].sprite!=null) ttObjST._fullSetList[7].activeColor = tObjST._eyeList[0].activeColor;
 
         //    ttObjST._fullSetList[8].sprite = tObjST._hairList[3].sprite;
-        //    if(tObjST._hairList[3].sprite!=null) ttObjST._fullSetList[8].color = tObjST._hairList[3].color;
+        //    if(tObjST._hairList[3].sprite!=null) ttObjST._fullSetList[8].activeColor = tObjST._hairList[3].activeColor;
         //    ttObjST._fullSetList[9].sprite = tObjST._hairList[0].sprite;
-        //    if(tObjST._hairList[0].sprite!=null) ttObjST._fullSetList[9].color = tObjST._hairList[0].color;
+        //    if(tObjST._hairList[0].sprite!=null) ttObjST._fullSetList[9].activeColor = tObjST._hairList[0].activeColor;
         //    ttObjST._fullSetList[10].sprite = tObjST._hairList[1].sprite;
-        //    if(tObjST._hairList[1].sprite!=null) ttObjST._fullSetList[10].color = tObjST._hairList[1].color;
+        //    if(tObjST._hairList[1].sprite!=null) ttObjST._fullSetList[10].activeColor = tObjST._hairList[1].activeColor;
 
         //    ttObjST._fullSetList[11].sprite = tObjST._clothList[0].sprite;
-        //    if(tObjST._clothList[0].sprite!=null) ttObjST._fullSetList[11].color = tObjST._clothList[0].color;
+        //    if(tObjST._clothList[0].sprite!=null) ttObjST._fullSetList[11].activeColor = tObjST._clothList[0].activeColor;
         //    ttObjST._fullSetList[12].sprite = tObjST._clothList[1].sprite;
-        //    if(tObjST._clothList[1].sprite!=null) ttObjST._fullSetList[12].color = tObjST._clothList[1].color;
+        //    if(tObjST._clothList[1].sprite!=null) ttObjST._fullSetList[12].activeColor = tObjST._clothList[1].activeColor;
         //    ttObjST._fullSetList[13].sprite = tObjST._clothList[2].sprite;
-        //    if(tObjST._clothList[2].sprite!=null) ttObjST._fullSetList[13].color = tObjST._clothList[2].color;
+        //    if(tObjST._clothList[2].sprite!=null) ttObjST._fullSetList[13].activeColor = tObjST._clothList[2].activeColor;
 
         //    ttObjST._fullSetList[14].sprite = tObjST._armorList[0].sprite;
-        //    if(tObjST._armorList[0].sprite!=null) ttObjST._fullSetList[14].color = tObjST._armorList[0].color;
+        //    if(tObjST._armorList[0].sprite!=null) ttObjST._fullSetList[14].activeColor = tObjST._armorList[0].activeColor;
         //    ttObjST._fullSetList[15].sprite = tObjST._armorList[1].sprite;
-        //    if(tObjST._armorList[1].sprite!=null) ttObjST._fullSetList[15].color = tObjST._armorList[1].color;
+        //    if(tObjST._armorList[1].sprite!=null) ttObjST._fullSetList[15].activeColor = tObjST._armorList[1].activeColor;
         //    ttObjST._fullSetList[16].sprite = tObjST._armorList[2].sprite;
-        //    if(tObjST._armorList[2].sprite!=null) ttObjST._fullSetList[16].color = tObjST._armorList[2].color;
+        //    if(tObjST._armorList[2].sprite!=null) ttObjST._fullSetList[16].activeColor = tObjST._armorList[2].activeColor;
 
         //    ttObjST._fullSetList[17].sprite = tObjST._pantList[0].sprite;
-        //    if(tObjST._pantList[0].sprite!=null) ttObjST._fullSetList[17].color = tObjST._pantList[0].color;
+        //    if(tObjST._pantList[0].sprite!=null) ttObjST._fullSetList[17].activeColor = tObjST._pantList[0].activeColor;
         //    ttObjST._fullSetList[18].sprite = tObjST._pantList[1].sprite;
-        //    if(tObjST._pantList[1].sprite!=null) ttObjST._fullSetList[18].color = tObjST._pantList[1].color;
+        //    if(tObjST._pantList[1].sprite!=null) ttObjST._fullSetList[18].activeColor = tObjST._pantList[1].activeColor;
 
         //    ttObjST._fullSetList[19].sprite = tObjST._weaponList[0].sprite;
-        //    if(tObjST._weaponList[0].sprite!=null) ttObjST._fullSetList[19].color = tObjST._weaponList[0].color;
+        //    if(tObjST._weaponList[0].sprite!=null) ttObjST._fullSetList[19].activeColor = tObjST._weaponList[0].activeColor;
         //    ttObjST._fullSetList[20].sprite = tObjST._weaponList[1].sprite;
-        //    if(tObjST._weaponList[1].sprite!=null) ttObjST._fullSetList[20].color = tObjST._weaponList[1].color;
+        //    if(tObjST._weaponList[1].sprite!=null) ttObjST._fullSetList[20].activeColor = tObjST._weaponList[1].activeColor;
 
         //    ttObjST._fullSetList[21].sprite = tObjST._weaponList[2].sprite;
-        //    if(tObjST._weaponList[2].sprite!=null) ttObjST._fullSetList[21].color = tObjST._weaponList[2].color;
+        //    if(tObjST._weaponList[2].sprite!=null) ttObjST._fullSetList[21].activeColor = tObjST._weaponList[2].activeColor;
         //    ttObjST._fullSetList[22].sprite = tObjST._weaponList[3].sprite;
-        //    if(tObjST._weaponList[3].sprite!=null) ttObjST._fullSetList[22].color = tObjST._weaponList[3].color;
+        //    if(tObjST._weaponList[3].sprite!=null) ttObjST._fullSetList[22].activeColor = tObjST._weaponList[3].activeColor;
 
         //    ttObjST._fullSetList[23].sprite = tObjST._backList[0].sprite;
-        //    if(tObjST._backList[0].sprite!=null) ttObjST._fullSetList[23].color = tObjST._backList[0].color;
+        //    if(tObjST._backList[0].sprite!=null) ttObjST._fullSetList[23].activeColor = tObjST._backList[0].activeColor;
 
         //    //string 연동
 
@@ -2343,7 +2343,7 @@ public class SPUM_Manager : MonoBehaviour
         //    if(!tObjST._hairList[3].gameObject.activeInHierarchy)
         //    {
         //        ttObjST._fullSetList[8].gameObject.SetActive(true);
-        //        ttObjST._fullSetList[8].color = tObjST._hairList[3].color;
+        //        ttObjST._fullSetList[8].activeColor = tObjST._hairList[3].activeColor;
         //    }
         //    else
         //    {
@@ -2353,7 +2353,7 @@ public class SPUM_Manager : MonoBehaviour
         //    if(!tObjST._hairList[0].gameObject.activeInHierarchy)
         //    {
         //        ttObjST._fullSetList[9].gameObject.SetActive(true);
-        //        ttObjST._fullSetList[9].color = tObjST._hairList[0].color;
+        //        ttObjST._fullSetList[9].activeColor = tObjST._hairList[0].activeColor;
         //    }
         //    else
         //    {
@@ -2949,9 +2949,9 @@ public class SPUM_Manager : MonoBehaviour
     
     public string ColorToStr(Color color)
     {
-        //string r = ((int)(color.r * 255)).ToString("X2");
-        //string g = ((int)(color.g * 255)).ToString("X2");
-        //string b = ((int)(color.b * 255)).ToString("X2");
+        //string r = ((int)(activeColor.r * 255)).ToString("X2");
+        //string g = ((int)(activeColor.g * 255)).ToString("X2");
+        //string b = ((int)(activeColor.b * 255)).ToString("X2");
 
         //string result = string.Format("{0}{1}{2}", r, g, b);
 

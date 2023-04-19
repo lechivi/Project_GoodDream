@@ -45,7 +45,7 @@ public class GameManager : BaseManager<GameManager>
 
         if (UIManager.HasInstance)
         {
-            UIManager.Instance.GamePanel.HealthText.SetText(this.currentHealth + "/" + this.maxHealth);
+            UIManager.Instance.GamePanel.HealthSlider.SetActiveSlider(this.currentHealth, this.maxHealth, true);
         }
     }
 
