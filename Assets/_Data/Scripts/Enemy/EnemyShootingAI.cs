@@ -36,6 +36,8 @@ public class EnemyShootingAI : EnemyAI
 
         if (this.enemyPlayerDetector.PlayerInArea)
         {
+            if (!this.enemyCtrl.BattleZone.IsPlayerEnter) return;
+
             this.Facing(this.enemyPlayerDetector.Player.position);
             this.WeaponRotation(-(Vector2)this.enemyPlayerDetector.Player.position + (Vector2)transform.position);
 

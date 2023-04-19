@@ -36,7 +36,7 @@ public class EnemyHealerAI : EnemyAI
 
     protected override void Update()
     {
-        base .Update();
+        base.Update();
         this.UpdateAnimation();
 
         if (this.MovementState == MovementState.Death)
@@ -44,7 +44,7 @@ public class EnemyHealerAI : EnemyAI
             this.col.isTrigger = true;
             return;
         }
-       
+
         if (this.isStartCooldownHealSkill)
         {
             this.CooldownHealSkill();
@@ -114,6 +114,8 @@ public class EnemyHealerAI : EnemyAI
                 else //Run away from Player when Player enter AreaDetector
                 {
                     if (!this.enemyCtrl.BattleZone.IsPlayerEnter) return;
+
+                    if (!this.enemyCtrl.BattleZone.IsPlayerEnter) return;
                     this.isStartAction = true;
                     this.targetPoint = this.enemyCtrl.transform.position * 2 - this.enemyPlayerDetector.Player.position;
                     this.MoveToTarget(targetPoint, this.moveSpeed);
@@ -179,4 +181,6 @@ public class EnemyHealerAI : EnemyAI
             this.enemyCtrl.EnemyAnimator.Play("2_Attack_Magic");
         }
     }
+
+
 }

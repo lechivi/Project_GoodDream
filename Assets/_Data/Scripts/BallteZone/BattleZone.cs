@@ -7,13 +7,16 @@ public class BattleZone : MonoBehaviour
     [SerializeField] private List<CheckDoor> checkDoors = new List<CheckDoor>();
     [SerializeField] private List<EnemyCtrl> enemiesInRoom = new List<EnemyCtrl>();
 
+    public List<EnemyCtrl> EnemiesInRoom { get => this.enemiesInRoom; set => this.enemiesInRoom = value; }
     public BoxCollider2D Col { get; private set; }
     public bool IsPlayerEnter { get; set; } //call when the player enter room
 
     private int currentEnemy = 0;
+
     private void Awake()
     {
         this.Col = GetComponent<BoxCollider2D>();
+        this.EnemiesInRoom = new List<EnemyCtrl>();
 
         foreach (Transform child in transform.Find("CheckDoors"))
         {
@@ -65,13 +68,14 @@ public class BattleZone : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && collision.gameObject.CompareTag("ColliderWithWall") && this.currentEnemy != 0)
         {
+            this.IsPlayerEnter = true;
+
             foreach (CheckDoor door in checkDoors)
             {
                 door.CloseDoor();
             }
         }
 
-        this.IsPlayerEnter = true;
     }
 
 }
