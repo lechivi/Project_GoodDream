@@ -1736,6 +1736,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1287744783}
     m_Modifications:
+    - target: {fileID: 558158672121447382, guid: 5d9e16e4c70d95c44ac31f00ab9c6ee1, type: 3}
+      propertyPath: zone
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4175265171764334720, guid: 5d9e16e4c70d95c44ac31f00ab9c6ee1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1819,6 +1823,14 @@ PrefabInstance:
     - target: {fileID: 4175265171764334720, guid: 5d9e16e4c70d95c44ac31f00ab9c6ee1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310859924929300341, guid: 5d9e16e4c70d95c44ac31f00ab9c6ee1, type: 3}
+      propertyPath: processors.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6310859924929300341, guid: 5d9e16e4c70d95c44ac31f00ab9c6ee1, type: 3}
+      propertyPath: processors.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8056494524436986176, guid: 5d9e16e4c70d95c44ac31f00ab9c6ee1, type: 3}
       propertyPath: m_Name
@@ -6374,7 +6386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6313726}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10474,6 +10486,7 @@ MonoBehaviour:
   firstMove: {fileID: 1223953968}
   secondMove: {fileID: 79022836}
   movementJoystick: {fileID: 1373087475}
+  IsJoystick: 0
 --- !u!1 &1293032592
 GameObject:
   m_ObjectHideFlags: 0
