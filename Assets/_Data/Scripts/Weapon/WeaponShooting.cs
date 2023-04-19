@@ -18,13 +18,14 @@ public class WeaponShooting : Weapon
     [SerializeField] protected AudioClip reloadAudio;
 
     protected int currentAmmo;
+    protected int direction;
     protected float timerReload;
     protected float waitForNextShot;
     protected bool isReloading;
-    protected Vector2 direction;
 
     public int CurrentAmmo => this.currentAmmo;
     public int MaxAmmo => this.maxAmmo;
+    public int Direction { get => this.direction; set => this.direction = value; }
     public bool IsReloading => this.isReloading;
 
     protected override void Awake()
@@ -145,8 +146,8 @@ public class WeaponShooting : Weapon
 
     private GameObject GetBullet(Transform shootPoint)
     {
-        int direction = 1 * (this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? 1 : -1);
         int damage = this.GetRandomDamage();
+        this.direction = 1 * (this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? 1 : -1);
         //for (int i = 0; i < this.bulletClone.Count; i++)
         //{
         //    if (!this.bulletClone[i].activeInHierarchy)
@@ -173,7 +174,7 @@ public class WeaponShooting : Weapon
 
         Rigidbody2D rb = bulletObj.GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.AddForce(direction * bulletObj.transform.right * this.bulletSpeed, ForceMode2D.Impulse);
+        rb.AddForce(this.direction * bulletObj.transform.right * this.bulletSpeed, ForceMode2D.Impulse);
 
         this.bulletClone.Add(bulletObj);
 
@@ -183,6 +184,19 @@ public class WeaponShooting : Weapon
     public override void EnemyUseWeapon()
     {
         base.EnemyUseWeapon();
+        foreach (Transform child in this.shootPoints)
+        {
+            GameObject bulletObj = Instantiate(this.bulletPrefab, child.position, child.transform.rotation);
+            bulletObj.tag = "EnemyWeapon";
+            bulletObj.layer = LayerMask.NameToLayer("Enemy");
 
+            BulletScript bulletScript = bulletObj.GetComponent<BulletScript>();
+            bulletScript.Damage = this.GetRandomDamage();
+
+            Rigidbody2D rb = bulletObj.GetComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.AddForce(this.direction * bulletObj.transform.right * this.bulletSpeed, ForceMode2D.Impulse);
+
+        }
     }
 }

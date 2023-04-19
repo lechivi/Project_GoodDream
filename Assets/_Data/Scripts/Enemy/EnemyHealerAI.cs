@@ -44,72 +44,7 @@ public class EnemyHealerAI : EnemyAI
             this.col.isTrigger = true;
             return;
         }
-        //if (this.isHealing)
-        //{
-        //    this.HealSkill();
-        //    return;
-        //}
-
-        //if (!this.enemyCtrl.BattleZone.Col.bounds.Contains(this.enemyCtrl.transform.position))
-        //{
-        //    Debug.Log("Hit Wall");
-
-        //    this.MovementState = MovementState.Idle;
-        //    if (this.enemyPlayerDetector.PlayerInArea)
-        //    {
-        //        this.Facing(this.enemyPlayerDetector.Player.position);
-
-        //        if (Vector2.Distance(transform.position, this.enemyPlayerDetector.Player.position) <= this.distanceAttack)
-        //        {
-        //            this.AttackPlayer();
-        //            Debug.Log("Attack player");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        this.isStartAction = false;
-        //        this.timerRunAway += Time.deltaTime;
-        //        if (this.timerRunAway < this.delayRunAwayTime) return;
-        //        this.timerRunAway = 0f;
-
-        //        this.SetTargetPoint();
-        //        this.MoveToTarget(targetPoint, this.roamSpeed);
-        //        this.Facing(targetPoint);
-        //    }
-
-        //}
-
-        //else 
-        //{
-        //    if (!this.enemyPlayerDetector.PlayerInArea && !this.isStartAction)
-        //    {
-        //        this.Roaming();
-        //    }
-
-        //    else if (this.enemyPlayerDetector.PlayerInArea)
-        //    {
-        //        if (!this.enemyCtrl.BattleZone.IsPlayerEnter) return;
-        //        this.isStartAction = true;
-        //        this.targetPoint = this.enemyCtrl.transform.position * 2 - this.enemyPlayerDetector.Player.position;
-        //        this.MoveToTarget(targetPoint, this.moveSpeed);
-        //        this.Facing(targetPoint);
-        //    }
-
-        //    else if (this.isStartAction && !this.enemyPlayerDetector.PlayerInArea)
-        //    {
-        //        this.MoveToTarget(targetPoint, this.moveSpeed);
-        //        this.Facing(targetPoint);
-
-        //        this.timerRunAway += Time.deltaTime;
-        //        if (this.timerRunAway < this.delayRunAwayTime) return;
-        //        this.timerRunAway = 0f;
-
-        //        this.isStartAction = false;
-        //        this.MovementState = MovementState.Idle;
-        //    }
-        //}
-
-        /////
+       
         if (this.isStartCooldownHealSkill)
         {
             this.CooldownHealSkill();
@@ -197,27 +132,6 @@ public class EnemyHealerAI : EnemyAI
         this.timerCooldownHeal = 0;
         this.isReadyHealSkill = true;
         this.isStartCooldownHealSkill = false;
-    }
-
-    protected override void ActionWhenDetectPlayer()
-    {
-        base.ActionWhenDetectPlayer();
-        BoxCollider2D boxCollider = this.enemyCtrl.BattleZone.Col;
-        if (boxCollider != null)
-        {
-            if (!boxCollider.bounds.Contains(this.enemyCtrl.transform.position))
-            {
-                this.MovementState = MovementState.Idle;
-                if (Vector2.Distance(transform.position, this.enemyPlayerDetector.Player.position) <= this.distanceAttack)
-                {
-                    this.Facing(this.enemyPlayerDetector.Player.position);
-                    this.AttackPlayer();
-                }
-            }
-        }
-
-        this.MoveToTarget(targetPoint, this.moveSpeed);
-        this.Facing(targetPoint);
     }
 
     private void HealSkill()
