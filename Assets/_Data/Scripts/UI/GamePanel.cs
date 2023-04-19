@@ -21,8 +21,8 @@ public class GamePanel : MonoBehaviour
     [SerializeField] private Sprite shooting;
     [SerializeField] private Sprite magic1;
     [SerializeField] private Sprite magic2;
-    [SerializeField] private FillCooldownMoveImage firstMove;
-    [SerializeField] private FillCooldownMoveImage secondMove;
+    [SerializeField] private WeaponImageHandler firstMove;
+    [SerializeField] private WeaponImageHandler secondMove;
 
     [Header("MOBILE PHONE CTRL")]
     [SerializeField] private Joystick movementJoystick;
@@ -36,8 +36,8 @@ public class GamePanel : MonoBehaviour
     public Sprite Shooting => this.shooting;
     public Sprite Magic1 => this.magic1;
     public Sprite Magic2 => this.magic2;
-    public FillCooldownMoveImage FirstMove => this.firstMove;
-    public FillCooldownMoveImage SecondMove => this.secondMove;
+    public WeaponImageHandler FirstMove => this.firstMove;
+    public WeaponImageHandler SecondMove => this.secondMove;
     public Joystick MovementJoystick => this.movementJoystick;
 
     private int maxMana;

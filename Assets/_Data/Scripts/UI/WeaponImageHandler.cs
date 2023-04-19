@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FillCooldownMoveImage : MonoBehaviour
+public class WeaponImageHandler : MonoBehaviour
 {
     [SerializeField] private Image icon;
     [SerializeField] private Image readyFrame;
