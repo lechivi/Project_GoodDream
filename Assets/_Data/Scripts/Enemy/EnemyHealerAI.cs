@@ -162,7 +162,7 @@ public class EnemyHealerAI : EnemyAI
                         this.Roaming();
                     }
 
-                    else //Still run to target in a second (timerRunAway) after Player exit AreaDetector
+                    else //Still run to obstacle in a second (timerRunAway) after Player exit AreaDetector
                     {
                         this.MoveToTarget(targetPoint, this.moveSpeed);
                         this.Facing(targetPoint);

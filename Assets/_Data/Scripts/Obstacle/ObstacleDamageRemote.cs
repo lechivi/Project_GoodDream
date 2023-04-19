@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObstacleDamageRemote : MonoBehaviour
 {
-    [SerializeField] private ObstacleDamage target;
+    [SerializeField] private ObstacleDamage obstacle;
     private Animator animator;
 
     private void Awake()
@@ -15,12 +15,11 @@ public class ObstacleDamageRemote : MonoBehaviour
     }
     public void TurnOnTarget() //Call in animation frame
     {
-        this.target.IsShowTrap = true;
+        this.obstacle.IsShowTrap = true;
     }
 
     public void TurnOffTarget() //Call in animation frame
     {
-        this.target.IsShowTrap = false;
-        this.target.ResetCooldown();
+        this.obstacle.IsShowTrap = false;
     }
 }

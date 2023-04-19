@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class ObstacleDamage : MonoBehaviour
 {
-    [SerializeField] private int damage = 5;
-    [SerializeField] private float delay = 0.25f;
+    [SerializeField] private int damage = 1;
+    [SerializeField] private float delay = 1f;
 
-    private Transform target;
     private float timer = 0f;
-    private bool isStartCooldowm;
+    private bool isEnter;
     private bool isReady = true;
 
     public bool IsShowTrap { get; set; }
 
     private void Update()
     {
-        if (this.isStartCooldowm)
+        if (this.isEnter && this.IsShowTrap)
         {
             this.TakeDamageTarget();
         }
@@ -27,37 +26,29 @@ public class ObstacleDamage : MonoBehaviour
         if (this.isReady)
         {
             this.isReady = false;
-            this.target.gameObject.GetComponent<PlayerCtrl>().PlayerLife.TakeDamage(this.damage);
+            PlayerLife.instance.TakeDamage(this.damage);
         }
         this.timer += Time.deltaTime;
         if (this.timer < this.delay) return;
 
         this.timer = 0f;
-        this.isReady= true;
-    }
-
-    public void ResetCooldown()
-    {
-        this.timer = 0;
-        this.isStartCooldowm = false;
+        this.isReady = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!this.IsShowTrap) return;
         if (collision.gameObject.CompareTag("ColliderWithWall") && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            this.isStartCooldowm = true;
-            this.target = collision.transform;
+            this.isEnter = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!this.IsShowTrap) return;
         if (collision.gameObject.CompareTag("ColliderWithWall") && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            this.ResetCooldown();
+            this.isEnter = false;
+            this.isReady = true;
         }
     }
 }
