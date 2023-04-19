@@ -35,7 +35,7 @@ public class PlayerLife : PlayerAbstract
     {
         if (this.health < 0) return;
 
-        Debug.Log("Player -" + damage);
+        Debug.Log($"HP -{damage} ({this.health}/{this.maxHealth})");
         this.health -= damage;
         if (this.health <= 0)
         {
@@ -80,5 +80,6 @@ public class PlayerLife : PlayerAbstract
     {
         this.playerCtrl.PlayerMovement.MovementState = MovementState.Death;
         this.gameObject.layer = LayerMask.NameToLayer("Death");
+        this.playerCtrl.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
 }
