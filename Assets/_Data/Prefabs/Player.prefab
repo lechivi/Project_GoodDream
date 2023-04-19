@@ -1950,9 +1950,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30958b125f207b44c9a5f7ee47f8c47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 3882928150080896982}
-  WeaponHolder: {fileID: 3590391597565257168}
-  ShootPoint: {fileID: 3590391597623152879}
+  minDamage: 1
+  maxDamage: 5
+  criticalChance: 10
+  speedAttack: 5
+  shootPoints: []
   bulletClone: []
   bulletPrefab: {fileID: 2872722887616609221, guid: 84b5f6f30f3aaaa49ad9d9df5494b7a0, type: 3}
   maxAmmo: 10
@@ -2006,6 +2008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ab54d1d86f7bb64a8a891122b164387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
   swapWeaponAudio: {fileID: 0}
   listWeapon: []
   sliderAmmo: {fileID: 0}
@@ -2253,9 +2256,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331f5dff64c5bf541b5fa6fef1ce2778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 3882928150080896980}
   moveSpeed: 8
+  movementJoystick: {fileID: 0}
   IsFacingRight: 0
+  IsUseJoystic: 0
 --- !u!1 &3902874775648284564
 GameObject:
   m_ObjectHideFlags: 0

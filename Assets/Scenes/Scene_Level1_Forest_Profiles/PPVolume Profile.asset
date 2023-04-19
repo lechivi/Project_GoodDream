@@ -56,10 +56,10 @@ MonoBehaviour:
     value: 0
   tint:
     overrideState: 1
-    value: -2
+    value: 0
   colorFilter:
     overrideState: 0
-    value: {r: 0, g: 0, b: 0, a: 1}
+    value: {r: 4, g: 3.9843137, b: 3.6235294, a: 1}
   hueShift:
     overrideState: 0
     value: 0
@@ -1356,7 +1356,7 @@ MonoBehaviour:
     value: 0
   smoothness:
     overrideState: 1
-    value: 0.2
+    value: 0.147
   roundness:
     overrideState: 1
     value: 1
