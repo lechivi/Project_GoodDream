@@ -27,7 +27,7 @@ public class PlayerLife : PlayerAbstract
     {
         if (this.health < 0) return;
 
-        Debug.Log("Player -" + damage);
+        //Debug.Log("Player -" + damage);
         this.health -= damage;
         if (this.health <= 0)
         {

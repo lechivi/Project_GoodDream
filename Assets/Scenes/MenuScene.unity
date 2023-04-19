@@ -788,7 +788,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 79022834}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a6fce7a658bf04e9d234dc1a0ca076, type: 3}
+  m_Script: {fileID: 11500000, guid: d2d28a23874e37f4d8da8fb1bf19910c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1917652063}
@@ -3125,7 +3125,7 @@ GameObject:
   - component: {fileID: 366283708}
   - component: {fileID: 366283707}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: Symbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4485,6 +4485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 556290806}
   - component: {fileID: 556290807}
+  - component: {fileID: 556290808}
   m_Layer: 5
   m_Name: Slider_Health
   m_TagString: Untagged
@@ -4564,6 +4565,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &556290808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556290805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d9fae82fc92c544a568168720815ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 556290807}
+  fillImage: {fileID: 914568889}
+  symbol: {fileID: 991901091}
+  valueText: {fileID: 1869001071}
+  alpha: 0.6
 --- !u!1 &583225918
 GameObject:
   m_ObjectHideFlags: 0
@@ -7456,7 +7474,7 @@ GameObject:
   - component: {fileID: 991901092}
   - component: {fileID: 991901091}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: Symbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9437,7 +9455,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1223953964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a6fce7a658bf04e9d234dc1a0ca076, type: 3}
+  m_Script: {fileID: 11500000, guid: d2d28a23874e37f4d8da8fb1bf19910c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 1225612067}
@@ -10472,12 +10490,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f00bc39598b914fbce894495bd8e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 1869001071}
-  ammoText: {fileID: 1040628872}
-  manaText: {fileID: 321003259}
-  healthSlider: {fileID: 556290807}
-  ammoSlider: {fileID: 1381228639}
-  manaSlider: {fileID: 1723321293}
+  healthSlider: {fileID: 556290808}
+  ammoSlider: {fileID: 1381228640}
+  manaSlider: {fileID: 1723321294}
   melee1: {fileID: 21300000, guid: 0acb4c55e541f3147907fcaff59098f1, type: 3}
   melee2: {fileID: 21300000, guid: 45a5e4ba1359e934ba7b968c6c011357, type: 3}
   shooting: {fileID: 21300000, guid: 55c87ba717bd76b459b8dcdcc5176f62, type: 3}
@@ -11143,6 +11158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1381228638}
   - component: {fileID: 1381228639}
+  - component: {fileID: 1381228640}
   m_Layer: 5
   m_Name: Slider_Ammo
   m_TagString: Untagged
@@ -11222,6 +11238,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1381228640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381228637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d9fae82fc92c544a568168720815ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1381228639}
+  fillImage: {fileID: 1015874566}
+  symbol: {fileID: 366283707}
+  valueText: {fileID: 1040628872}
+  alpha: 0.6
 --- !u!1 &1392836659
 GameObject:
   m_ObjectHideFlags: 0
@@ -14019,6 +14052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1723321292}
   - component: {fileID: 1723321293}
+  - component: {fileID: 1723321294}
   m_Layer: 5
   m_Name: Slider_Mana
   m_TagString: Untagged
@@ -14098,6 +14132,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1723321294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723321291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d9fae82fc92c544a568168720815ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1723321293}
+  fillImage: {fileID: 845100442}
+  symbol: {fileID: 1811306335}
+  valueText: {fileID: 321003259}
+  alpha: 0.6
 --- !u!1 &1751626933
 GameObject:
   m_ObjectHideFlags: 0
@@ -14715,7 +14766,7 @@ GameObject:
   - component: {fileID: 1811306336}
   - component: {fileID: 1811306335}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: Symbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
