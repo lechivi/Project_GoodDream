@@ -22,6 +22,7 @@ public class EnemyAI : EnemyAbstract
     protected Weapon usingWeapon;
     protected EnemyPlayerDetector enemyPlayerDetector;
 
+    protected Vector3 originScale;
     protected Vector2 targetPoint;
     protected float timerAttack = 0;
     protected bool isStopMove;
@@ -38,11 +39,12 @@ public class EnemyAI : EnemyAbstract
         this.enemyPlayerDetector = GetComponentInChildren<EnemyPlayerDetector>();
         this.weapon = transform.Find("WeaponParent").transform;
         this.usingWeapon = this.weapon.GetComponentInChildren<Weapon>();
+        this.originScale = this.enemyCtrl.transform.localScale;
     }
 
     protected virtual void Start()
     {
-        this.WeaponRotation(new Vector2(this.enemyCtrl.transform.localScale.x == 1 ? this.directionWeapon : -this.directionWeapon, 1f));
+        this.WeaponRotation(new Vector2(this.enemyCtrl.transform.localScale.x == this.originScale.x ? this.directionWeapon : -this.directionWeapon, 1f));
         this.SetTargetPoint();
     }
 
@@ -77,18 +79,18 @@ public class EnemyAI : EnemyAbstract
     {
         if (target.x > transform.position.x)
         {
-            this.enemyCtrl.transform.localScale = new Vector3(-1, 1, 1);
+            this.enemyCtrl.transform.localScale = new Vector3(-1 * this.originScale.x, this.originScale.y, this.originScale.z);
         }
         else
         {
-            this.enemyCtrl.transform.localScale = Vector3.one;
+            this.enemyCtrl.transform.localScale = this.originScale;
         }
     }
 
     protected virtual void WeaponRotation(Vector2 direction)
     {
         float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        this.weapon.rotation = Quaternion.Euler(0f, 0f, this.enemyCtrl.transform.localScale.x == 1 ? rotZ : rotZ - 180);
+        this.weapon.rotation = Quaternion.Euler(0f, 0f, this.enemyCtrl.transform.localScale.x == this.originScale.x ? rotZ : rotZ - 180);
     }
 
     protected virtual void MoveToTarget(Vector2 target, float speed)

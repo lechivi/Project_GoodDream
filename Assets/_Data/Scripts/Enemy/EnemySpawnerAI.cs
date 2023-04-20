@@ -16,12 +16,6 @@ public class EnemySpawnerAI : EnemyAI
     protected bool checkHealth2;
     protected bool isUsingSkill;
 
-    protected override void Start()
-    {
-        base.Start();
-        this.enemyCtrl.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1);
-    }
-
     protected override void Update()
     {
         base.Update();
@@ -44,7 +38,7 @@ public class EnemySpawnerAI : EnemyAI
         }
 
         EnemyLife enemyLife = this.enemyCtrl.EnemyLife;
-        if (enemyLife.Health <= enemyLife.MaxHealth * 2/3 && enemyLife.Health > enemyLife.MaxHealth * 1/3 && !this.checkHealth1)
+        if (enemyLife.Health <= enemyLife.MaxHealth * 2/3 && enemyLife.Health > enemyLife.MaxHealth * 1/5 && !this.checkHealth1)
         {
             this.isUsingSkill = true;
             this.checkHealth1 = true;
@@ -52,7 +46,7 @@ public class EnemySpawnerAI : EnemyAI
             this.SpawnEnemy();
             Invoke("FinishUseSkill", 1f);
         }
-        else if (enemyLife.Health <= enemyLife.MaxHealth * 1/3 && !this.checkHealth2)
+        else if (enemyLife.Health <= enemyLife.MaxHealth * 1/5 && !this.checkHealth2)
         {
             this.isUsingSkill = true;
             this.checkHealth2 = true;
@@ -70,7 +64,7 @@ public class EnemySpawnerAI : EnemyAI
         if (Vector2.Distance(transform.position, this.enemyPlayerDetector.Player.position) > this.distanceAttack) //Compare distance-from-player with distanceAttack
         {
             this.MoveToTarget(this.enemyPlayerDetector.Player.position, Random.Range(this.moveSpeed - 2, this.moveSpeed + 2));
-            this.WeaponRotation(new Vector2(this.enemyCtrl.transform.localScale.x == 1 ? this.directionWeapon : -this.directionWeapon, 1f));
+            this.WeaponRotation(new Vector2(this.enemyCtrl.transform.localScale.x == this.originScale.x ? this.directionWeapon : -this.directionWeapon, 1f));
         }
         else
         {
@@ -81,6 +75,7 @@ public class EnemySpawnerAI : EnemyAI
     protected virtual void SpawnEnemy()
     {
         this.MovementState = MovementState.Idle;
+        this.isStopMove = true;
         int amount = this.isRandomAmountSpawn ? Random.Range(this.amountSpawn, this.amountSpawn + 3) : this.amountSpawn;
         Instantiate(this.animationSummonerPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
 
@@ -93,6 +88,8 @@ public class EnemySpawnerAI : EnemyAI
 
     protected virtual IEnumerator GetRandomEnemy()
     {
+        yield return new WaitForSeconds(0.5f);
+
         Vector2 spawnPosition;
         do
         {
@@ -111,6 +108,7 @@ public class EnemySpawnerAI : EnemyAI
         Instantiate(this.animationSummonPrefab, spawnPosition + new Vector2(0, 0.3f), Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
         yield return new WaitForSeconds(1f);
 
+        this.isStopMove = false;
         int typeEnemy = Random.Range(0, this.listSpawnEnemy.Count);
         GameObject newEnemy = Instantiate(this.listSpawnEnemy[typeEnemy], spawnPosition, Quaternion.identity, this.enemyCtrl.BattleZone.transform.Find("ListEnemy"));
         EnemyCtrl newEnemyCtrl = newEnemy.GetComponent<EnemyCtrl>();

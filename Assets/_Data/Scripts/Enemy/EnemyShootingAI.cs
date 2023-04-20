@@ -45,7 +45,7 @@ public class EnemyShootingAI : EnemyAI
         }
         else
         {
-            this.WeaponRotation(new Vector2(this.enemyCtrl.transform.localScale.x == 1 ? this.directionWeapon : -this.directionWeapon, 1f));
+            this.WeaponRotation(new Vector2(this.enemyCtrl.transform.localScale.x == this.originScale.x ? this.directionWeapon : -this.directionWeapon, 1f));
         }
 
         if (this.isReloading)

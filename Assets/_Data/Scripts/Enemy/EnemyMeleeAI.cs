@@ -42,7 +42,7 @@ public class EnemyMeleeAI : EnemyAI
         if (Vector2.Distance(transform.position, this.enemyPlayerDetector.Player.position) > this.distanceAttack) //Compare distance-from-player with distanceAttack
         {
             this.MoveToTarget(this.enemyPlayerDetector.Player.position, Random.Range(this.moveSpeed - 2, this.moveSpeed + 2));
-            this.WeaponRotation(new Vector2(this.enemyCtrl.transform.localScale.x == 1 ? this.directionWeapon : -this.directionWeapon, 1f));
+            this.WeaponRotation(new Vector2(this.enemyCtrl.transform.localScale.x == this.originScale.x ? this.directionWeapon : -this.directionWeapon, 1f));
         }
         else
         {
