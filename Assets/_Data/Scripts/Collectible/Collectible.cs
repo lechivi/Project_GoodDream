@@ -8,6 +8,7 @@ public class Collectible : MonoBehaviour
     [SerializeField] protected float launchForce = 8f;
     [SerializeField] protected float launchAngle = 60f;
     [SerializeField] protected float flyTime = 0.25f;
+    [SerializeField] protected float destroyTime = 10f;
 
     protected Transform target;
     protected Rigidbody2D rb;
@@ -27,6 +28,8 @@ public class Collectible : MonoBehaviour
     protected virtual void Start()
     {
         this.Bound();
+
+        Destroy(gameObject, Random.Range(this.destroyTime - 1f, this.destroyTime + 1f));
     }
 
     protected virtual void Update()

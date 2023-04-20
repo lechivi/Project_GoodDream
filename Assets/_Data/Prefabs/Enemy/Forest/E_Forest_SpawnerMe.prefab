@@ -3725,7 +3725,7 @@ MonoBehaviour:
   listSpawnEnemy:
   - {fileID: 2376937518649314672, guid: 7bc2146c4fde7e84198b2844c46032f7, type: 3}
   - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
-  - {fileID: 8797475638526803361, guid: 3168fda6d3d4323448cfaa824f7b3d21, type: 3}
+  - {fileID: 4482188964871576506, guid: 98f0ed4e9cf761e4d9e1ce2b0d8a8fe0, type: 3}
   amountSpawn: 3
   rangeSpawn: 2
   isRandomAmountSpawn: 0
@@ -3903,8 +3903,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644c8b0fb65d0014b8f25730b167bdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 250
+  maxHealth: 250
 --- !u!1 &8243762954218270568
 GameObject:
   m_ObjectHideFlags: 0

@@ -87,7 +87,7 @@ public class EnemySpawnerAI : EnemyAI
 
     protected virtual IEnumerator GetRandomEnemy()
     {
-        Vector3 spawnPosition;
+        Vector2 spawnPosition;
         do
         {
             this.checkLoop += 1;
@@ -98,10 +98,11 @@ public class EnemySpawnerAI : EnemyAI
                 break;
             }
 
-            spawnPosition = new Vector3(transform.position.x + Random.Range(-roamRange, roamRange), transform.position.y + Random.Range(-roamRange, roamRange));
-        } while (!this.enemyCtrl.BattleZone.Col.bounds.Contains(this.targetPoint));
+            spawnPosition = new Vector2(transform.position.x + Random.Range(-roamRange, roamRange), transform.position.y + Random.Range(-roamRange, roamRange));
+        } while (!this.enemyCtrl.BattleZone.Col.bounds.Contains(spawnPosition));
+        this.checkLoop = 0;
 
-        Instantiate(this.animationSummonPrefab, spawnPosition + new Vector3(0, 0.3f, 0), Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
+        Instantiate(this.animationSummonPrefab, spawnPosition + new Vector2(0, 0.3f), Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
         yield return new WaitForSeconds(1f);
 
         int typeEnemy = Random.Range(0, this.listSpawnEnemy.Count);
