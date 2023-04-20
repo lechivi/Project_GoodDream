@@ -16,6 +16,12 @@ public class EnemySpawnerAI : EnemyAI
     protected bool checkHealth2;
     protected bool isUsingSkill;
 
+    protected override void Start()
+    {
+        base.Start();
+        this.enemyCtrl.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1);
+    }
+
     protected override void Update()
     {
         base.Update();

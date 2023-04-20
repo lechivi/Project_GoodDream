@@ -20,12 +20,14 @@ public class CheckDoor : MonoBehaviour
     public void CloseDoor()
     {
         this.spriteRenderer.sprite = spriteUp;
+        this.spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f);
         this.col.isTrigger = false;
     }
 
     public void OpenDoor()
     {
         this.spriteRenderer.sprite = spriteDown;
+        this.spriteRenderer.color = Color.white;
         this.col.isTrigger = true;
     }
 }
