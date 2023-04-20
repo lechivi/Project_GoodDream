@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EnemyLife : EnemyAbstract
 {
@@ -39,6 +40,7 @@ public class EnemyLife : EnemyAbstract
     private void Die()
     {
         this.enemyCtrl.EnemyAI.MovementState = MovementState.Death;
+        this.enemyCtrl.EnemyAnimator.gameObject.GetComponent<SortingGroup>().sortingOrder = -10;
         this.gameObject.layer = LayerMask.NameToLayer("Death");
 
         this.enemyCtrl.SpawnerReward.Spawn();
