@@ -1,12 +1,12 @@
 fileFormatVersion: 2
-guid: dbfc2d5367609b44494ecb3caf419d0f
+guid: 2b6cb77fe6951a44789729de9a36435f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 797672379561859647
+      213: 2180892833989144798
     second: Back
   - first:
-      213: 2697600638823719667
+      213: 9123283813751135976
     second: Front
   externalObjects: {}
   serializedVersion: 11
@@ -51,8 +51,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.375, y: 0.5}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -126,18 +126,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 4
-        height: 3
+        y: 4
+        width: 3
+        height: 4
       alignment: 9
-      pivot: {x: 0.375, y: 0.5}
+      pivot: {x: 0.3333333, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3adcee8dc6e11b00800000000000000
-      internalID: 797672379561859647
+      spriteID: ed03e174a76144e10800000000000000
+      internalID: 2180892833989144798
       vertices: []
       indices: 
       edges: []
@@ -146,19 +146,19 @@ TextureImporter:
       name: Front
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
-        width: 1
-        height: 1
+        x: 0
+        y: 1
+        width: 2
+        height: 2
       alignment: 9
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.75}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f264fe0d7dcf6520800000000000000
-      internalID: 2697600638823719667
+      spriteID: 8ee15b79a4a6c9e70800000000000000
+      internalID: 9123283813751135976
       vertices: []
       indices: 
       edges: []
@@ -166,7 +166,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 65eb1bd2f109844069b990165df50334
+    spriteID: 9e943357466644e0883b29df2f65d1cb
     internalID: 0
     vertices: []
     indices: 
@@ -174,8 +174,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Front: 2697600638823719667
-      Back: 797672379561859647
+      Front: 9123283813751135976
+      Back: 2180892833989144798
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
