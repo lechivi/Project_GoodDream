@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyAI : EnemyAbstract
 {
     [Header("ENEMY AI")]
+    [SerializeField] protected int contactDamage = 2;
     [SerializeField] protected float moveSpeed = 7f;
     [SerializeField] protected float roamSpeed = 2f;
     [SerializeField] protected float roamRange = 3f;
@@ -25,10 +26,14 @@ public class EnemyAI : EnemyAbstract
     protected Vector3 originScale;
     protected Vector2 targetPoint;
     protected float timerAttack = 0;
+    protected float delayContactDamage = 1;
+    protected float timerContactDamage = 0;
     protected bool isStopMove;
     protected bool isTargetPointSet;
     protected bool isReadyAttack = true;
     protected bool isWaiting;
+    protected bool isColliderPlayer;
+    protected bool isReadySendDamage;
 
     protected int checkLoop = 0;
 
@@ -50,7 +55,10 @@ public class EnemyAI : EnemyAbstract
 
     protected virtual void Update()
     {
-        //For overrite
+        if (this.isColliderPlayer)
+        {
+            this.SendContactDamage();
+        }
     }
 
     protected virtual void SetTargetPoint()
@@ -187,6 +195,37 @@ public class EnemyAI : EnemyAbstract
             this.enemyCtrl.EnemyAnimator.Play("4_Death");
         }
 
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ColliderWithWall") && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            this.isColliderPlayer = true;
+        }    
+    }
+
+    protected virtual void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("ColliderWithWall") && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            this.isColliderPlayer = false;
+        }
+    }
+
+    protected virtual void SendContactDamage()
+    {
+        if (this.isReadySendDamage)
+        {
+            this.isReadySendDamage = false;
+            if (!this.isColliderPlayer) return;
+            PlayerLife.instance.TakeDamage(this.contactDamage);
+        }
+        this.timerContactDamage += Time.deltaTime;
+        if (this.timerContactDamage < this.delayContactDamage) return;
+
+        this.timerContactDamage = 0f;
+        this.isReadySendDamage = true;
     }
 
     protected virtual void OnDrawGizmosSelected()

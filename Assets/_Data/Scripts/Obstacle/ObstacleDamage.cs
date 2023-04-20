@@ -36,6 +36,7 @@ public class ObstacleDamage : MonoBehaviour
         if (this.isReady)
         {
             this.isReady = false;
+            if (!this.isEnter) return;
             PlayerLife.instance.TakeDamage(this.damage);
         }
         this.timer += Time.deltaTime;
