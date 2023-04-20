@@ -17,6 +17,7 @@ public class BattleZone : MonoBehaviour
     [SerializeField] private GameObject animationSpawnPrefab;
 
     private List<EnemyCtrl> enemiesInRoom = new List<EnemyCtrl>();
+    private List<EnemyCtrl> deathZone = new List<EnemyCtrl>();
     private BoxCollider2D col;
     private bool isCompleted;
     private bool isCreatingNewWave;
@@ -24,6 +25,7 @@ public class BattleZone : MonoBehaviour
     private int checkLoop = 0;
 
     public List<EnemyCtrl> EnemiesInRoom { get => this.enemiesInRoom; set => this.enemiesInRoom = value; }
+    public List<EnemyCtrl> DeathZone { get => this.deathZone; set => this.deathZone = value; }
     public BoxCollider2D Col { get => this.col; }
     public bool IsPlayerEnter { get; set; } //call when the player enter room
 
@@ -36,20 +38,6 @@ public class BattleZone : MonoBehaviour
         {
             this.checkDoors.Add(child.GetComponent<CheckDoor>());
         }   
-
-        //if (transform.Find("ListEnemy") != null)
-        //{
-        //    foreach (Transform child in transform.Find("ListEnemy"))
-        //    {
-        //        EnemyCtrl enemyCtrl = child.GetComponent<EnemyCtrl>();
-        //        if (enemyCtrl == null) continue;
-
-        //        enemyCtrl.BattleZone = this;
-        //        this.enemiesInRoom.Add(enemyCtrl);
-        //    }
-
-        //}
-       
     }
 
     private void Update()
@@ -60,6 +48,7 @@ public class BattleZone : MonoBehaviour
             {
                 if (this.enemiesInRoom[i].EnemyLife.Health == 0)
                 {
+                    this.deathZone.Add(this.enemiesInRoom[i]);
                     this.enemiesInRoom.RemoveAt(i);
                 }
             }
@@ -144,6 +133,16 @@ public class BattleZone : MonoBehaviour
             this.enemiesInRoom.Add(enemyCtrl);
             this.isCreatingNewWave = false;
         }
+    }
+
+    public void AddEnemyToRoom(GameObject newEnemy)
+    {
+        EnemyCtrl enemyCtrl = newEnemy.GetComponent<EnemyCtrl>();
+        if (enemyCtrl == null) return;
+
+        newEnemy.transform.SetParent(transform.Find("ListEnemy"));
+        enemyCtrl.BattleZone = this;
+        this.enemiesInRoom.Add(enemyCtrl);
     }
 
 }

@@ -77,7 +77,7 @@ public class EnemySpawnerAI : EnemyAI
         this.MovementState = MovementState.Idle;
         this.isStopMove = true;
         int amount = this.isRandomAmountSpawn ? Random.Range(this.amountSpawn, this.amountSpawn + 3) : this.amountSpawn;
-        Instantiate(this.animationSummonerPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
+        Instantiate(this.animationSummonerPrefab, (Vector2) transform.position + new Vector2(0, 0.3f), Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
 
         for (int i =0; i < amount; i++)
         {

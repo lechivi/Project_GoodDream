@@ -74,7 +74,7 @@ public class EnemyAI : EnemyAbstract
                 this.checkLoop += 1;
                 if (this.checkLoop >= 100)
                 {
-                    Debug.Log("break");
+                    Debug.LogWarning("The do-while loop in SetTargetPoint() has run too much!", transform.gameObject);
                     break;
                 }
 
