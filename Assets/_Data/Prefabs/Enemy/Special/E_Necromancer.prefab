@@ -485,9 +485,10 @@ MonoBehaviour:
   distanceAttack: 2
   detectionObstacleRadius: 2
   directionWeapon: 0
-  skeletonPrefab: {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+  skeletonPrefab: {fileID: 5270770499997040378, guid: 54979544dc90b9f429e4d0ccaebd83ac, type: 3}
   animationRaiseDeadPrefab: {fileID: 6251519647913211989, guid: bc3db4998bf21864c9e472fb8c9a856a, type: 3}
-  amountSummon: 2
+  amountSummon: 6
+  isSummonAll: 1
 --- !u!1 &3261952161223594814
 GameObject:
   m_ObjectHideFlags: 0

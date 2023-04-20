@@ -9,8 +9,8 @@ public class EnemyNecromancerAI : EnemyAI
     [SerializeField] private GameObject skeletonPrefab;
     [SerializeField] private GameObject animationRaiseDeadPrefab;
     [SerializeField] private int amountSummon;
+    [SerializeField] private bool isSummonAll;
 
-    private bool isSummonAll;
     private int checkLoop2;
 
     protected override void Update()
@@ -48,12 +48,13 @@ public class EnemyNecromancerAI : EnemyAI
 
     private IEnumerator GetSkeleton(GameObject corpseObj)
     {
-        Instantiate(this.animationRaiseDeadPrefab, (Vector2)corpseObj.transform.position + new Vector2(0, 0.3f), Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
-        yield return new WaitForSeconds(0.85f);
+        Instantiate(this.animationRaiseDeadPrefab, (Vector2)corpseObj.transform.position, Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
+        yield return new WaitForSeconds(0.75f);
 
         corpseObj.SetActive(false);
         GameObject newSkeleton = Instantiate(this.skeletonPrefab, (Vector2)corpseObj.transform.position, Quaternion.identity);
+        newSkeleton.transform.localScale = corpseObj.transform.localScale;
+        newSkeleton.GetComponent<EnemyCtrl>().EnemyAnimator.Play("6_Raise");
         this.enemyCtrl.BattleZone.AddEnemyToRoom(newSkeleton);
-        enemyCtrl.EnemyAnimator.Play("6_Raise");
     }
 }
