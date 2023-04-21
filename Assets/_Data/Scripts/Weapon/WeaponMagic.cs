@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class WeaponMagic : Weapon
 {
@@ -55,11 +56,11 @@ public class WeaponMagic : Weapon
 
             if (this.weaponParent.PlayerCtrl.PlayerMagic.Mana > 0)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
                 {
                     this.AttackMove();
                 }
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
                 {
                     this.SpellMove();
                 }

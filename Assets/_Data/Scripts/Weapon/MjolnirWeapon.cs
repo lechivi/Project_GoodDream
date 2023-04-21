@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MjolnirWeapon : WeaponMelee
 {
@@ -31,7 +32,7 @@ public class MjolnirWeapon : WeaponMelee
     protected override void InputPrimaryMove()
     {
         base.InputPrimaryMove();
-        if (Input.GetMouseButtonDown(0) && this.isReadyPrimaryMove && !this.isAttacking)
+        if (Input.GetMouseButtonDown(0) && this.isReadyPrimaryMove && !this.isAttacking && !EventSystem.current.IsPointerOverGameObject())
         {
             this.PrimaryMove();
         }
@@ -67,7 +68,7 @@ public class MjolnirWeapon : WeaponMelee
 
     protected override void SecondarylMove()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (!this.isThrowing && this.isReadySecondaryMove && !this.isAttacking)
             {

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class WeaponShooting : Weapon
 {
@@ -55,7 +55,7 @@ public class WeaponShooting : Weapon
                 return;
             }
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 if (Time.time > this.waitForNextShot)
                 {

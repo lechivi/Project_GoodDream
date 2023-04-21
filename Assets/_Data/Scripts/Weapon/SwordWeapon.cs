@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SwordWeapon : WeaponMelee
 {
@@ -24,7 +25,7 @@ public class SwordWeapon : WeaponMelee
     protected override void InputPrimaryMove()
     {
         base.InputPrimaryMove();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             this.PrimaryMove();
         }
