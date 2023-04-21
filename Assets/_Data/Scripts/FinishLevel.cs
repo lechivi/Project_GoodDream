@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class FinishLevel : MonoBehaviour
 {
+    [SerializeField] private Animator animatorTransition;
+    [SerializeField] private float transitionTime = 1.5f;
+
     private bool levelComplete;
 
     private void Update()
     {
         if (this.levelComplete)
         {
-            this.CompleteLevel();
+            //this.animatorTransition.SetTrigger("Start");
+            this.animatorTransition.Play("Wipe_CircleOut");
+            StartCoroutine(this.CompleteLevel());
         }
     }
 
@@ -28,7 +34,7 @@ public class FinishLevel : MonoBehaviour
         }
     }
 
-    public void CompleteLevel()
+    private IEnumerator CompleteLevel()
     {
         if (SceneManager.GetActiveScene().name.Equals("SceneLv3"))
         {
@@ -42,10 +48,16 @@ public class FinishLevel : MonoBehaviour
             //}
         }
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        if (GameManager.HasInstance && UIManager.HasInstance && AudioManager.HasInstance)
-        {
-            //AudioManager.Instance.PlayBGM(AUDIO.BGM_BGM_04);
+        yield return new WaitForSeconds(this.transitionTime);
+
+        if (Input.anyKeyDown)
+        { 
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (GameManager.HasInstance && UIManager.HasInstance && AudioManager.HasInstance)
+            {
+                //AudioManager.Instance.PlayBGM(AUDIO.BGM_BGM_04);
+            }
         }
+
     }
 }
