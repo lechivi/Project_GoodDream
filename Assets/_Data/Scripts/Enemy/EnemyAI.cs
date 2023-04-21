@@ -231,6 +231,6 @@ public class EnemyAI : EnemyAbstract
     protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, this.detectionObstacleRadius);
+        Gizmos.DrawWireSphere(transform.position, this.distanceAttack);
     }
 }

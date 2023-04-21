@@ -40,7 +40,7 @@ public class EnemyNecromancerAI : EnemyAI
         }
 
         EnemyLife enemyLife = this.enemyCtrl.EnemyLife;
-        if (enemyLife.Health <= enemyLife.MaxHealth * 2 / 3 && !this.checkSkill)
+        if (enemyLife.Health <= enemyLife.MaxHealth * 1 / 3 && !this.checkSkill)
         {
             this.isUsingSkill = true;
             this.checkSkill = true;
@@ -74,7 +74,7 @@ public class EnemyNecromancerAI : EnemyAI
                 i++;
                 amount++;
                 this.checkLoop2++;
-
+                Debug.Log(i);
                 if (this.checkLoop2 > 100)
                 {
                     Debug.LogWarning("The while loop in SummonSkull() has run too much!", transform.gameObject);
@@ -93,9 +93,13 @@ public class EnemyNecromancerAI : EnemyAI
 
         this.isStopMove = false;
         corpseObj.SetActive(false);
+        this.enemyCtrl.BattleZone.DeathZone.Remove(corpseObj.GetComponent<EnemyCtrl>());
+
         GameObject newSkeleton = Instantiate(this.skeletonPrefab, (Vector2)corpseObj.transform.position, Quaternion.identity);
         newSkeleton.transform.localScale = corpseObj.transform.localScale;
+        newSkeleton.GetComponent<EnemyCtrl>().EnemyLife.MaxHealth = corpseObj.GetComponent<EnemyCtrl>().EnemyLife.MaxHealth * 3 / 4;
         newSkeleton.GetComponent<EnemyCtrl>().EnemyAnimator.Play("6_Raise");
+
         this.enemyCtrl.BattleZone.AddEnemyToRoom(newSkeleton);
     }
 
