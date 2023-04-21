@@ -89,7 +89,7 @@ public class EnemyNecromancerAI : EnemyAI
 
     private IEnumerator GetSkeleton(GameObject corpseObj)
     {
-        Instantiate(this.animationRaiseDeadPrefab, (Vector2)corpseObj.transform.position, Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
+        Instantiate(this.animationRaiseDeadPrefab, (Vector2)corpseObj.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.8f);
 
         this.isStopMove = false;

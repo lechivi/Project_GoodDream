@@ -106,7 +106,7 @@ public class EnemySpawnerAI : EnemyAI
         } while (!this.enemyCtrl.BattleZone.Col.bounds.Contains(spawnPosition));
         this.checkLoop = 0;
 
-        Instantiate(this.animationSummonPrefab, spawnPosition + new Vector2(0, 0.3f), Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
+        Instantiate(this.animationSummonPrefab, spawnPosition + new Vector2(0, 0.3f), Quaternion.identity);
         yield return new WaitForSeconds(1f);
 
         this.isStopMove = false;
