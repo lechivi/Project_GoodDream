@@ -33,6 +33,11 @@ public class LoadingPanel : MonoBehaviour
 
                 if (Input.anyKeyDown)
                 {
+                    if (SceneManager.GetActiveScene().buildIndex == 0)
+                    {
+                        StartCoroutine(GameObject.Find("LevelLoader").GetComponent<LevelLoader>().SetTriggerFadeOut());
+                    }
+
                     asyncOperation.allowSceneActivation = true;
                     if (UIManager.HasInstance)
                     {

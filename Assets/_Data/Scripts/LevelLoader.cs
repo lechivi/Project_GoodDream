@@ -10,13 +10,20 @@ public class LevelLoader : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            this.LoadNextLevel();
-        }
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    this.LoadNextLevel();
+        //}
     }
 
-    private void LoadNextLevel()
+    public IEnumerator SetTriggerFadeOut()
+    {
+        this.transition.SetTrigger("Start");
+        //Debug.Log("Trigger");
+        yield return new WaitForSeconds(this.transitionTime);
+    }
+
+    public void LoadNextLevel()
     {
         StartCoroutine(this.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
@@ -24,7 +31,7 @@ public class LevelLoader : MonoBehaviour
     private IEnumerator LoadLevel(int levelIndex)
     {
         this.transition.SetTrigger("Start");
-        Debug.Log("Trigger");
+        //Debug.Log("Trigger");
         yield return new WaitForSeconds(this.transitionTime);
 
         SceneManager.LoadScene(levelIndex);
