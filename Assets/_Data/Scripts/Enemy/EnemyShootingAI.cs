@@ -55,36 +55,6 @@ public class EnemyShootingAI : EnemyAI
 
     }
 
-    protected override void Roaming()
-    {
-        if (!this.isWaiting)
-        {
-            if (this.enemyCtrl.BattleZone == null || this.checkLoop >= 100)
-            {
-                if (this.IsCollidingWithObstacle() && !this.isTargetPointSet)
-                {
-                    this.SetTargetPoint();
-                    this.isTargetPointSet = true;
-                    return;
-                }
-                else
-                {
-                    this.isTargetPointSet = false;
-                }
-            }
-
-            this.MoveToTarget(this.targetPoint, this.roamSpeed);
-            this.Facing(this.enemyPlayerDetector.PlayerInArea ? this.enemyPlayerDetector.Player.position : this.targetPoint);
-        }
-
-        if (Vector2.Distance(transform.position, this.targetPoint) < 0.1f)
-        {
-            this.isWaiting = true;
-            this.MovementState = MovementState.Idle;
-            Invoke("Waiting", Random.Range(0f, this.roamWaitingTime));
-            this.SetTargetPoint();
-        }
-    }
     private void HandleShooting()
     {
         if (this.isReloading) return;

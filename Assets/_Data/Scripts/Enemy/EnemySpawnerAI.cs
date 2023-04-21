@@ -38,7 +38,7 @@ public class EnemySpawnerAI : EnemyAI
         }
 
         EnemyLife enemyLife = this.enemyCtrl.EnemyLife;
-        if (enemyLife.Health <= enemyLife.MaxHealth * 2/3 && enemyLife.Health > enemyLife.MaxHealth * 1/5 && !this.checkHealth1)
+        if (enemyLife.Health <= enemyLife.MaxHealth * 2/3 && enemyLife.Health > enemyLife.MaxHealth * 1/4 && !this.checkHealth1)
         {
             this.isUsingSkill = true;
             this.checkHealth1 = true;
@@ -46,7 +46,7 @@ public class EnemySpawnerAI : EnemyAI
             this.SpawnEnemy();
             Invoke("FinishUseSkill", 1f);
         }
-        else if (enemyLife.Health <= enemyLife.MaxHealth * 1/5 && !this.checkHealth2)
+        else if (enemyLife.Health <= enemyLife.MaxHealth * 1/4 && !this.checkHealth2)
         {
             this.isUsingSkill = true;
             this.checkHealth2 = true;
@@ -76,6 +76,7 @@ public class EnemySpawnerAI : EnemyAI
     {
         this.MovementState = MovementState.Idle;
         this.isStopMove = true;
+
         int amount = this.isRandomAmountSpawn ? Random.Range(this.amountSpawn, this.amountSpawn + 3) : this.amountSpawn;
         Instantiate(this.animationSummonerPrefab, (Vector2) transform.position + new Vector2(0, 0.3f), Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
 
@@ -117,7 +118,7 @@ public class EnemySpawnerAI : EnemyAI
         this.enemyCtrl.BattleZone.EnemiesInRoom.Add(newEnemyCtrl);
     }
 
-    private void FinishUseSkill()
+    private void FinishUseSkill() //Call in Invoke
     {
         this.isUsingSkill = false;
     }

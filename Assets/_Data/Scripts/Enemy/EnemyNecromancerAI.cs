@@ -6,23 +6,63 @@ using UnityEngine;
 public class EnemyNecromancerAI : EnemyAI
 {
     [Header("NECROMANCER")]
-    [SerializeField] private GameObject skeletonPrefab;
-    [SerializeField] private GameObject animationRaiseDeadPrefab;
-    [SerializeField] private int amountSummon;
-    [SerializeField] private bool isSummonAll;
+    [SerializeField] protected GameObject skeletonPrefab;
+    [SerializeField] protected GameObject animationRaiseDeadPrefab;
+    [SerializeField] protected int amountSummon;
+    [SerializeField] protected bool isSummonAll;
 
-    private int checkLoop2;
+    protected bool isUsingSkill;
+    protected bool checkSkill;
+
+    protected int checkLoop2;
 
     protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        base.Update();
+        this.UpdateAnimation();
+
+        if (this.MovementState == MovementState.Death)
         {
-            RaiseTheDead();
+            this.col.isTrigger = true;
+            return;
         }
+
+        this.Roaming();
+
+        if (this.enemyPlayerDetector.PlayerInArea)
+        {
+            if (!this.enemyCtrl.BattleZone.IsPlayerEnter) return;
+            this.ActionWhenDetectPlayer();
+        }
+        else
+        {
+            this.WeaponRotation(new Vector2(this.enemyCtrl.transform.localScale.x == this.originScale.x ? this.directionWeapon : -this.directionWeapon, 1f));
+        }
+
+        EnemyLife enemyLife = this.enemyCtrl.EnemyLife;
+        if (enemyLife.Health <= enemyLife.MaxHealth * 2 / 3 && !this.checkSkill)
+        {
+            this.isUsingSkill = true;
+            this.checkSkill = true;
+            this.RaiseTheDead();
+            Invoke("FinishUseSkill", 1f);
+        }
+    }
+
+    protected override void ActionWhenDetectPlayer()
+    {
+        base.ActionWhenDetectPlayer();
+        this.Facing(this.enemyPlayerDetector.Player.position);
+        this.WeaponRotation(-(Vector2)this.enemyPlayerDetector.Player.position + (Vector2)transform.position);
+
+        this.AttackPlayer();
     }
 
     private void RaiseTheDead()
     {
+        this.MovementState = MovementState.Idle;
+        this.isStopMove = true;
+
         int totalDeath = this.enemyCtrl.BattleZone.DeathZone.Count;
         int amount = this.isSummonAll ? totalDeath : (totalDeath < this.amountSummon ? totalDeath : this.amountSummon);
         this.checkLoop2 = 0;
@@ -49,12 +89,18 @@ public class EnemyNecromancerAI : EnemyAI
     private IEnumerator GetSkeleton(GameObject corpseObj)
     {
         Instantiate(this.animationRaiseDeadPrefab, (Vector2)corpseObj.transform.position, Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.8f);
 
+        this.isStopMove = false;
         corpseObj.SetActive(false);
         GameObject newSkeleton = Instantiate(this.skeletonPrefab, (Vector2)corpseObj.transform.position, Quaternion.identity);
         newSkeleton.transform.localScale = corpseObj.transform.localScale;
         newSkeleton.GetComponent<EnemyCtrl>().EnemyAnimator.Play("6_Raise");
         this.enemyCtrl.BattleZone.AddEnemyToRoom(newSkeleton);
+    }
+
+    private void FinishUseSkill() //Call in Invoke
+    {
+        this.isUsingSkill = false;
     }
 }

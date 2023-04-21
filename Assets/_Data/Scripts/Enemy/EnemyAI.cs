@@ -127,7 +127,7 @@ public class EnemyAI : EnemyAbstract
             }
 
             this.MoveToTarget(this.targetPoint, this.roamSpeed);
-            this.Facing(this.targetPoint);
+            this.Facing(this.enemyPlayerDetector.PlayerInArea ? this.enemyPlayerDetector.Player.position : this.targetPoint);
         }
 
         if (Vector2.Distance(transform.position, this.targetPoint) < 0.1f)
