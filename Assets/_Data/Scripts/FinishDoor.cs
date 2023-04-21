@@ -20,8 +20,6 @@ public class FinishDoor : MonoBehaviour
             this.animatorDoorLeft.SetTrigger("Open");
             this.animatorDoorRight.SetTrigger("Open");
             Invoke("TriggerColDoor", 1f);
-            Debug.Log("Open");
-
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
