@@ -17,7 +17,7 @@ public class BulletScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag(this.tag) && !collision.gameObject.CompareTag("ColliderWithWall") && !collision.gameObject.CompareTag("Detector") && !collision.gameObject.CompareTag("PlayerCollector"))
+        if (!collision.gameObject.CompareTag("EnemyWeapon") && !collision.gameObject.CompareTag("PlayerWeapon") &&!collision.gameObject.CompareTag("ColliderWithWall") && !collision.gameObject.CompareTag("Detector") && !collision.gameObject.CompareTag("PlayerCollector"))
         {
             this.HitSomething(collision);
         }

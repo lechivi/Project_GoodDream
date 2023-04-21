@@ -31,7 +31,7 @@ public class EnemyNecromancerAI : EnemyAI
 
         if (this.enemyPlayerDetector.PlayerInArea)
         {
-            if (!this.enemyCtrl.BattleZone.IsPlayerEnter) return;
+            if (!this.enemyCtrl.BattleZone.IsPlayerEnter || this.isUsingSkill) return;
             this.ActionWhenDetectPlayer();
         }
         else
@@ -45,7 +45,7 @@ public class EnemyNecromancerAI : EnemyAI
             this.isUsingSkill = true;
             this.checkSkill = true;
             this.RaiseTheDead();
-            Invoke("FinishUseSkill", 1f);
+            Invoke("FinishUseSkill", 2f);
         }
     }
 
@@ -60,7 +60,8 @@ public class EnemyNecromancerAI : EnemyAI
 
     private void RaiseTheDead()
     {
-        this.MovementState = MovementState.Idle;
+        this.MovementState = MovementState.Magic;
+        this.usingWeapon.GetComponent<Animator>().SetTrigger("Magic");
         this.isStopMove = true;
 
         int totalDeath = this.enemyCtrl.BattleZone.DeathZone.Count;
@@ -106,5 +107,14 @@ public class EnemyNecromancerAI : EnemyAI
     private void FinishUseSkill() //Call in Invoke
     {
         this.isUsingSkill = false;
+    }
+
+    protected override void UpdateAnimation()
+    {
+        base.UpdateAnimation();
+        if (this.MovementState == MovementState.Magic)
+        {
+            this.enemyCtrl.EnemyAnimator.Play("2_Attack_Magic");
+        }
     }
 }
