@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb37d12071aa3d34ab74c058097e67e3, type: 3}
+  m_Name: Book
+  m_EditorClassIdentifier: 
+  weaponName: Book
+  minDamage: 2
+  maxDamage: 2
+  image: {fileID: 0}
+  type: 1
+  rateEvo: 70
+  rateMagicFire: 25
+  rateMagicLightning: 25
+  rateMagicPoison: 25
+  rateMagicIce: 25
+  evolutionWeapon:
+  - {fileID: 11400000, guid: fc130db114c2afb4eb5f4c635c514b73, type: 2}
+  - {fileID: 11400000, guid: b1490c6b6bdab2f4294f2b167f018e9b, type: 2}
+  - {fileID: 11400000, guid: d354966a9879ada49a3e596bd68c6d93, type: 2}
+  - {fileID: 11400000, guid: d04be024c49d12749aac79f853756dd2, type: 2}

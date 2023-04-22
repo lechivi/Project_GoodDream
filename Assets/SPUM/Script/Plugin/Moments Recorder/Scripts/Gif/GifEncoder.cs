@@ -55,7 +55,7 @@ namespace Moments.Encoder
 		/// <param name="quality">Sets quality of activeColor quantization (conversion of images to
 		/// the maximum 256 colors allowed by the GIF specification). Lower values (minimum = 1)
 		/// produce better colors, but slow processing significantly. Higher values will speed
-		/// up the quantization pass at the cost of lower image quality (maximum = 100).</param>
+		/// up the quantization pass at the cost of lower spriteRenderer quality (maximum = 100).</param>
 		public GifEncoder(int repeat, int quality)
 		{
 			if (repeat >= 0)
@@ -209,7 +209,7 @@ namespace Moments.Encoder
 			m_IsSizeSet = true;
 		}
 
-		// Extracts image pixels into byte array "pixels".
+		// Extracts spriteRenderer pixels into byte array "pixels".
 		protected void GetImagePixels()
 		{
 			m_Pixels = new Byte[3 * m_CurrentFrame.Width * m_CurrentFrame.Height];
@@ -229,7 +229,7 @@ namespace Moments.Encoder
 			}
 		}
 
-		// Analyzes image colors and creates activeColor map.
+		// Analyzes spriteRenderer colors and creates activeColor map.
 		protected void AnalyzePixels()
 		{
 			int len = m_Pixels.Length;
@@ -238,7 +238,7 @@ namespace Moments.Encoder
 			NeuQuant nq = new NeuQuant(m_Pixels, len, (int)m_SampleInterval);
 			m_ColorTab = nq.Process(); // Create reduced palette
 
-			// Map image pixels to new palette
+			// Map spriteRenderer pixels to new palette
 			int k = 0;
 			for (int i = 0; i < nPix; i++)
 			{
@@ -329,7 +329,7 @@ namespace Moments.Encoder
 			m_FileStream.WriteByte(0x2c); // Image separator
 			WriteShort(0);                // Image position x,y = 0,0
 			WriteShort(0);
-			WriteShort(m_Width);          // image size
+			WriteShort(m_Width);          // spriteRenderer size
 			WriteShort(m_Height);
 
 			// Packed fields

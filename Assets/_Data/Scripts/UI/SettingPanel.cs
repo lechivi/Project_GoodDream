@@ -7,9 +7,13 @@ public class SettingPanel : MonoBehaviour
 {
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider seSlider;
+    [SerializeField] private Toggle bgmMute;
+    [SerializeField] private Toggle seMute;
 
     private float bgmValue;
     private float seValue;
+    private bool isBGMMute;
+    private bool isSEMute;
 
     private void Awake()
     {
@@ -27,9 +31,13 @@ public class SettingPanel : MonoBehaviour
         {
             this.bgmValue = AudioManager.Instance.AttachBGMSource.volume;
             this.seValue = AudioManager.Instance.AttachSESource.volume;
-
             this.bgmSlider.value = this.bgmValue;
             this.seSlider.value = this.seValue;
+
+            this.isBGMMute = AudioManager.Instance.AttachBGMSource.mute;
+            this.isSEMute = AudioManager.Instance.AttachSESource.mute;
+            this.bgmMute.isOn = this.isBGMMute;
+            this.seMute.isOn = this.isSEMute;
         }
     }
 
@@ -41,6 +49,16 @@ public class SettingPanel : MonoBehaviour
     public void OnSliderChangeSEValue(float value)
     {
         this.seValue = value;
+    }
+
+    public void OnToggelMuteBGM(bool value)
+    {
+        this.isBGMMute = value;
+    }
+
+    public void OnToggelMuteSE(bool value)
+    {
+        this.isSEMute = value;
     }
 
     public void OnClickedCancelButton()
@@ -65,6 +83,8 @@ public class SettingPanel : MonoBehaviour
         {
             AudioManager.Instance.ChangeBGMVolume(this.bgmValue);
             AudioManager.Instance.ChangeSEVolume(this.seValue);
+            AudioManager.Instance.MuteBGM(this.isBGMMute);
+            AudioManager.Instance.MuteSE(this.isSEMute);
         }
 
         if (UIManager.HasInstance)

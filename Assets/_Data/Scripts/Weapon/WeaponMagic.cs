@@ -27,7 +27,6 @@ public class WeaponMagic : Weapon
     protected override void Awake()
     {
         base.Awake();
-        this.WeaponType = WeaponType.Magic;
         foreach(Transform child in transform)
         {
             if (child.gameObject.name == "ShootPoint")

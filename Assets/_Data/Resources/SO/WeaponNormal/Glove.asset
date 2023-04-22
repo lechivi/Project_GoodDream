@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb37d12071aa3d34ab74c058097e67e3, type: 3}
+  m_Name: Glove
+  m_EditorClassIdentifier: 
+  weaponName: Glove
+  minDamage: 1
+  maxDamage: 1
+  image: {fileID: 0}
+  type: 0
+  rateEvo: 80
+  rateMagicFire: 25
+  rateMagicLightning: 25
+  rateMagicPoison: 0
+  rateMagicIce: 0
+  evolutionWeapon:
+  - {fileID: 11400000, guid: 0f760fbf5b834114db95b7a7b69c489d, type: 2}
+  - {fileID: 11400000, guid: cd5d3ada478b50d4aa99a4593faa20b8, type: 2}
+  - {fileID: 11400000, guid: 486bf54b9bae37645a9b76956f3f0f86, type: 2}

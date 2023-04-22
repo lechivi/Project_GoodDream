@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a54a9649ff88a2469ef9a19fd8cb62f, type: 3}
+  m_Name: Rifle
+  m_EditorClassIdentifier: 
+  weaponName: Rifle
+  minDamage: 7
+  maxDamage: 9
+  image: {fileID: -1089704521, guid: f57bac9c7f7973445a5151c82c49060f, type: 3}
+  type: 1
+  magic: 0
+  originWeapon: {fileID: 11400000, guid: d68597c8adba65a48b0d8c1e96f67037, type: 2}

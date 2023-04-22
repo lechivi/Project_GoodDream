@@ -264,7 +264,7 @@ namespace Moments.Encoder
 		}
 	
 		//----------------------------------------------------------------------------
-		// Return the next pixel from the image
+		// Return the next pixel from the spriteRenderer
 		//----------------------------------------------------------------------------
 		private int NextPixel() 
 		{

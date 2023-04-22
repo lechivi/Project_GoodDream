@@ -25,13 +25,13 @@ namespace Moments.Encoder
 	{
 		protected static readonly int netsize = 256; // Number of colours used
 
-		// Four primes near 500 - assume no image has a length so large that it is divisible by all four primes
+		// Four primes near 500 - assume no spriteRenderer has a length so large that it is divisible by all four primes
 		protected static readonly int prime1 = 499;
 		protected static readonly int prime2 = 491;
 		protected static readonly int prime3 = 487;
 		protected static readonly int prime4 = 503;
 
-		protected static readonly int minpicturebytes = (3 * prime4); // Minimum size for input image
+		protected static readonly int minpicturebytes = (3 * prime4); // Minimum size for input spriteRenderer
 
 		// Network Definitions
 		protected static readonly int maxnetpos = (netsize - 1);
@@ -67,7 +67,7 @@ namespace Moments.Encoder
 		protected static readonly int alpharadbias = (((int)1) << alpharadbshift);
 
 		// Types and Global Variables
-		protected byte[] thepicture; // The input image itself
+		protected byte[] thepicture; // The input spriteRenderer itself
 		protected int lengthcount; // Lengthcount = H*W*3
 		protected int samplefac; // Sampling factor 1..30
 		protected int[][] network; // The network itself - [netsize][4]

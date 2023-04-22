@@ -99,6 +99,8 @@ public class MjolnirWeapon : WeaponMelee
         if (this.back)
         {
             transform.position = Vector2.MoveTowards(transform.position, this.weaponParent.transform.position, 50f * Time.deltaTime);
+            //this.rb.bodyType = RigidbodyType2D.Dynamic;
+            //this.trail.emitting = true;
 
             if (Vector2.Distance(this.weaponParent.transform.position, transform.position) < 0.01f)
             {

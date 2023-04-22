@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected int maxDamage = 5;
     [SerializeField] protected int criticalChance = 10;
     [SerializeField] protected float speedAttack = 5f;
+    public MagicType MagicType;
 
     public WeaponType WeaponType { get; set; }
     public bool IsUsing { get; set; }

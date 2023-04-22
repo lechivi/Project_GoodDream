@@ -60,7 +60,7 @@ public class SPUM_Manager : MonoBehaviour
 
         //if(!dirChk)
         //{
-        //    OnNotice("[Empty body image source]\n\nYou need setup first\nPlease Sprite images locate to Resource Folder\nPlease Read Readme.txt file",1,1);
+        //    OnNotice("[Empty body spriteRenderer source]\n\nYou need setup first\nPlease Sprite images locate to Resource Folder\nPlease Read Readme.txt file",1,1);
         //    yield return null;
         //}
         //else

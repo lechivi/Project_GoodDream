@@ -124,7 +124,7 @@ public class WeaponParent : PlayerAbstract
                 PlayerMagic.playerManaDelegate(this.playerCtrl.PlayerMagic.MaxMana, false);
             }
 
-            else if (this.listWeapon[currentWeapon].WeaponType == WeaponType.Magic)
+            else if (this.listWeapon[currentWeapon].MagicType != MagicType.None)
             {
                 playerAmmoDelegate(1, 1, false);
                 PlayerMagic.playerManaDelegate(this.playerCtrl.PlayerMagic.Mana, true);

@@ -152,7 +152,7 @@ namespace Moments
 		/// <param name="quality">Quality of activeColor quantization (conversion of images to the maximum
 		/// 256 colors allowed by the GIF specification). Lower values (minimum = 1) produce better
 		/// colors, but slow processing significantly. Higher values will speed up the quantization
-		/// pass at the cost of lower image quality (maximum = 100).</param>
+		/// pass at the cost of lower spriteRenderer quality (maximum = 100).</param>
 		public void Setup(bool autoAspect, int width, int height, int fps, float bufferSize, int repeat, int quality)
 		{
 			if (State == RecorderState.PreProcessing)
