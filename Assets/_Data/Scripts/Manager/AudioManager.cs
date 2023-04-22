@@ -10,7 +10,7 @@ public class AudioManager : BaseManager<AudioManager>
 	private const float BGM_VOLUME_DEFULT = 0.2f;
 	private const float SE_VOLUME_DEFULT = 1.0f;
 
-	//Time it takes for the background music to fade
+	//Time it takes for the highlightBackground music to fade
 	public const float BGM_FADE_SPEED_RATE_HIGH = 0.9f;
 	public const float BGM_FADE_SPEED_RATE_LOW = 0.3f;
 	private float bgmFadeSpeedRate = BGM_FADE_SPEED_RATE_HIGH;
@@ -19,7 +19,7 @@ public class AudioManager : BaseManager<AudioManager>
 	private string nextBGMName;
 	private string nextSEName;
 
-	//Is the background music fading out?
+	//Is the highlightBackground music fading out?
 	private bool isFadeOut = false;
 
 	//Separate audio sources for BGM and SE

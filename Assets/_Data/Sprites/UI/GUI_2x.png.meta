@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -599,16 +599,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_60
+      name: Line_0
       rect:
         serializedVersion: 2
         x: 96
         y: 160
-        width: 16
+        width: 48
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 16, y: 0, z: 16, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -620,106 +620,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_61
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c93364e251e4054891d528620c04451
-      internalID: -1838856068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_2x_62
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9881f05d8a3eebd419903bca78779a57
-      internalID: 617879951
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_2x_63
+      name: Line_1
       rect:
         serializedVersion: 2
         x: 144
         y: 160
-        width: 16
+        width: 48
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 16, y: 0, z: 16, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 207bde6b40ef6454bb1034716fd9500a
       internalID: 1146383471
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_2x_64
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a63e20867ab60894da94b85dc01f2554
-      internalID: -1655018192
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_2x_65
-      rect:
-        serializedVersion: 2
-        x: 176
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 527e80adb3afe6a418d514cd98e3d3d6
-      internalID: -633980930
       vertices: []
       indices: 
       edges: []
@@ -1460,7 +1376,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_173
+      name: Slider_0
       rect:
         serializedVersion: 2
         x: 0
@@ -1469,7 +1385,7 @@ TextureImporter:
         height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 16, y: 12, z: 16, w: 12}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1481,7 +1397,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_178
+      name: Slider_1
       rect:
         serializedVersion: 2
         x: 80
@@ -1490,7 +1406,7 @@ TextureImporter:
         height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 16, y: 8, z: 16, w: 8}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1502,7 +1418,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_181
+      name: Slider_2
       rect:
         serializedVersion: 2
         x: 128
@@ -1511,7 +1427,7 @@ TextureImporter:
         height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 16, y: 5, z: 16, w: 5}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1523,7 +1439,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_184
+      name: Slider_3
       rect:
         serializedVersion: 2
         x: 176
@@ -1532,7 +1448,7 @@ TextureImporter:
         height: 6
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 16, y: 3, z: 16, w: 3}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -1544,7 +1460,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_195
+      name: Slider_Fill_Red_0
       rect:
         serializedVersion: 2
         x: 0
@@ -1565,7 +1481,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_196
+      name: Slider_Fill_Red_1
       rect:
         serializedVersion: 2
         x: 0
@@ -1586,7 +1502,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_197
+      name: Slider_Fill_Blue_0
       rect:
         serializedVersion: 2
         x: 32
@@ -1607,7 +1523,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_198
+      name: Slider_Fill_Blue_1
       rect:
         serializedVersion: 2
         x: 32
@@ -1628,7 +1544,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_199
+      name: Slider_Fill_Green_0
       rect:
         serializedVersion: 2
         x: 64
@@ -1649,7 +1565,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_200
+      name: Slider_Fill_Green_1
       rect:
         serializedVersion: 2
         x: 64
@@ -1670,7 +1586,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_201
+      name: Slider_Fill_Yellow_0
       rect:
         serializedVersion: 2
         x: 96
@@ -1691,7 +1607,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GUI_2x_202
+      name: Slider_Fill_Yellow_1
       rect:
         serializedVersion: 2
         x: 96
@@ -1711,6 +1627,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Slider_Fill_Line_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 0, z: 16, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aa4ea0961bddf44a8226bd847cd178d
+      internalID: -1877936566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slider_Fill_Line_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 626297ccfd8925f42b5deebceffa125f
+      internalID: -29147267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slider_Fill_Line_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aee4fa3f2c294984f91ace3d0d6caa2e
+      internalID: 557364579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slider_Background
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 32
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f771a4ef0bb1674abeeae7430b79443
+      internalID: 1590410492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1723,14 +1723,16 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       GUI_2x_35: -1231088430
-      GUI_2x_173: -615141486
+      Slider_Fill_Red_0: 847369541
       GUI_2x_18: 675761080
       GUI_2x_108: 369758116
       GUI_2x_62: 617879951
       GUI_2x_50: -1545919209
       GUI_2x_177: 568150227
       GUI_2x_185: 479937922
+      Slider_Fill_Line_0: -1877936566
       GUI_2x_47: 1010421649
+      Line_1: 1146383471
       GUI_2x_124: 575398893
       GUI_2x_30: 251377765
       GUI_2x_37: -886855605
@@ -1747,6 +1749,7 @@ TextureImporter:
       GUI_2x_111: 1728880199
       GUI_2x_65: -633980930
       GUI_2x_133: -33393423
+      Slider_Fill_Yellow_1: 365665189
       GUI_2x_33: 1774074597
       GUI_2x_53: 1084289045
       GUI_2x_139: -454856707
@@ -1767,10 +1770,8 @@ TextureImporter:
       GUI_2x_83: 1947157612
       GUI_2x_122: 784468616
       GUI_2x_28: 1487236591
-      GUI_2x_198: 294664601
       GUI_2x_172: -717876953
       GUI_2x_32: -1565294708
-      GUI_2x_197: -395037861
       GUI_2x_55: 340933306
       GUI_2x_6: 2141599969
       GUI_2x_92: -999390460
@@ -1786,24 +1787,25 @@ TextureImporter:
       GUI_2x_73: -1099635889
       GUI_2x_163: -907881026
       GUI_2x_152: -1526429147
-      GUI_2x_195: 847369541
       GUI_2x_115: -2064447601
+      Slider_Background: 1590410492
       GUI_2x_141: 2030032167
       GUI_2x_38: -2038604155
       GUI_2x_44: -1771173523
-      GUI_2x_200: 446089124
+      Slider_Fill_Green_1: 446089124
       GUI_2x_161: -1698526504
       GUI_2x_12: 505980111
-      GUI_2x_184: -740450772
+      Slider_Fill_Green_0: 376668797
       GUI_2x_189: 1573639389
       GUI_2x_138: 1293854039
       GUI_2x_149: -1187713951
       GUI_2x_140: 479654032
+      Slider_Fill_Blue_0: -395037861
       GUI_2x_68: -1071669707
       GUI_2x_80: -471494238
-      GUI_2x_8: -1677378566
       GUI_2x_102: -163970932
       GUI_2x_107: -1305155696
+      GUI_2x_8: -1677378566
       GUI_2x_52: 2013040018
       GUI_2x_129: -143536920
       GUI_2x_84: 669542933
@@ -1811,7 +1813,6 @@ TextureImporter:
       GUI_2x_182: -614614655
       GUI_2x_142: -1915812510
       GUI_2x_192: -1056475822
-      GUI_2x_201: 1187475051
       GUI_2x_19: -1130962936
       GUI_2x_29: -1967832734
       GUI_2x_126: 2140446894
@@ -1821,12 +1822,13 @@ TextureImporter:
       GUI_2x_112: 1937772093
       GUI_2x_79: -1135359790
       GUI_2x_74: -1219993481
+      GUI_2x_175: -205382095
       GUI_2x_121: 772679753
       GUI_2x_78: 1329450833
-      GUI_2x_175: -205382095
+      Slider_1: -276907611
       GUI_2x_156: -1588807164
-      GUI_2x_118: 1916026430
       GUI_2x_134: -943584021
+      GUI_2x_118: 1916026430
       GUI_2x_24: 333320714
       GUI_2x_154: -2129307768
       GUI_2x_123: 208184084
@@ -1837,7 +1839,6 @@ TextureImporter:
       GUI_2x_16: 898341532
       GUI_2x_143: -111035218
       GUI_2x_100: -294885118
-      GUI_2x_199: 376668797
       GUI_2x_101: 673952199
       GUI_2x_180: -1318356995
       GUI_2x_43: 1398334588
@@ -1851,17 +1852,21 @@ TextureImporter:
       GUI_2x_105: 610584764
       GUI_2x_106: -1009156803
       GUI_2x_160: -2061265419
-      GUI_2x_1: 1251527629
+      Slider_Fill_Yellow_0: 1187475051
       GUI_2x_137: -1339519796
       GUI_2x_86: 74363
       GUI_2x_13: -646900074
+      Slider_Fill_Blue_1: 294664601
       GUI_2x_93: -763003068
       GUI_2x_186: 135478126
+      Slider_0: -615141486
       GUI_2x_128: -959001454
       GUI_2x_85: -1933055640
       GUI_2x_148: 1223548904
+      Slider_2: -476899458
       GUI_2x_39: -1927300262
       GUI_2x_166: 648161086
+      Line_0: -256513622
       GUI_2x_82: -367557922
       GUI_2x_193: -350450380
       GUI_2x_34: 1518815205
@@ -1870,13 +1875,12 @@ TextureImporter:
       GUI_2x_51: 1604010270
       GUI_2x_40: 798948017
       GUI_2x_110: 1370967410
+      Slider_Fill_Line_1: -29147267
       GUI_2x_31: -75690652
-      GUI_2x_178: -276907611
-      GUI_2x_196: -1152336261
       GUI_2x_76: 557430320
       GUI_2x_15: 1300571114
-      GUI_2x_181: -476899458
       GUI_2x_90: -2020835282
+      Slider_Fill_Red_1: -1152336261
       GUI_2x_69: 99801
       GUI_2x_22: -1229953799
       GUI_2x_135: 535243565
@@ -1885,13 +1889,12 @@ TextureImporter:
       GUI_2x_4: 642513098
       GUI_2x_174: -968573555
       GUI_2x_132: 617226176
-      GUI_2x_170: 1179286069
       GUI_2x_190: -1437087425
       GUI_2x_167: 418652461
       GUI_2x_54: -144030750
+      GUI_2x_170: 1179286069
       GUI_2x_150: -604697084
       GUI_2x_153: -961596994
-      GUI_2x_202: 365665189
       GUI_2x_5: -2005915376
       GUI_2x_113: -439618663
       GUI_2x_125: -1706315657
@@ -1901,20 +1904,20 @@ TextureImporter:
       GUI_2x_64: -1655018192
       GUI_2x_17: 78591984
       GUI_2x_114: 51196791
-      GUI_2x_63: 1146383471
       GUI_2x_119: -1253381926
       GUI_2x_171: -1825948017
       GUI_2x_131: 1157292708
       GUI_2x_155: 597082035
       GUI_2x_94: -1450712864
       GUI_2x_45: 1393519840
-      GUI_2x_60: -256513622
       GUI_2x_57: -1401124822
       GUI_2x_46: 591658263
       GUI_2x_103: -576285254
       GUI_2x_145: -661755858
       GUI_2x_109: -101294999
+      Slider_Fill_Line_2: 557364579
       GUI_2x_96: 512387647
+      Slider_3: -740450772
       GUI_2x_194: -38568322
       GUI_2x_176: -844367550
       GUI_2x_23: -350638381
