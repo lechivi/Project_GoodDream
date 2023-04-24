@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
+    public static PlayerCtrl instance;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private PlayerLife playerLife;
     [SerializeField] private PlayerMagic playerMagic;
@@ -20,6 +21,8 @@ public class PlayerCtrl : MonoBehaviour
 
     private void Awake()
     {
+        PlayerCtrl.instance = this;
+
         this.playerMovement = GetComponentInChildren<PlayerMovement>();
         this.playerLife = GetComponentInChildren<PlayerLife>();
         this.playerMagic = GetComponentInChildren<PlayerMagic>();

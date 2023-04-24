@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a54a9649ff88a2469ef9a19fd8cb62f, type: 3}
   m_Name: Axe_Leviathan
   m_EditorClassIdentifier: 
-  weaponName: Axe
+  weaponName: Leviathan
   minDamage: 17
   maxDamage: 17
   image: {fileID: 21300000, guid: c5dd928b26c5efc4bb46cc3b85908ebd, type: 3}
   type: 0
+  tier: 1
   magic: 4
   originWeapon: {fileID: 11400000, guid: 0d90d103da729a5418b644d0ad8e7574, type: 2}

@@ -15,11 +15,12 @@ MonoBehaviour:
   weaponName: Ruler
   minDamage: 3
   maxDamage: 4
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: cf9b06a83a6afd04d819427724aba6b8, type: 3}
   type: 0
+  tier: 0
   rateEvo: 65
   rateMagicFire: 30
-  rateMagicLightnight: 0
+  rateMagicLightning: 0
   rateMagicPoison: 0
   rateMagicIce: 30
   evolutionWeapon:

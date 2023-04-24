@@ -219,7 +219,7 @@ public class EnemyAI : EnemyAbstract
         {
             this.isReadySendDamage = false;
             if (!this.isColliderPlayer) return;
-            PlayerLife.instance.TakeDamage(this.contactDamage);
+            PlayerCtrl.instance.PlayerLife.TakeDamage(this.contactDamage);
         }
         this.timerContactDamage += Time.deltaTime;
         if (this.timerContactDamage < this.delayContactDamage) return;

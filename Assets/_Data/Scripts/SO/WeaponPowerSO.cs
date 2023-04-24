@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponPowerSO", menuName = "SO/WeaponPower")]
-public class WeaponPowerSO : ScriptableObject
+public class WeaponPowerSO : WeaponSO
 {
-    public string weaponName;
-    public int minDamage;
-    public int maxDamage;
-    public Sprite image;
-    public WeaponType type;
+    [Space(10)]
     public MagicType magic;
     public WeaponNormalSO originWeapon;
 }

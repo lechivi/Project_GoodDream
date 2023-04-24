@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb37d12071aa3d34ab74c058097e67e3, type: 3}
   m_Name: WaterGun
   m_EditorClassIdentifier: 
-  weaponName: WaterGun
+  weaponName: Water Gun
   minDamage: 0
   maxDamage: 1
-  image: {fileID: 0}
-  type: 0
+  image: {fileID: 21300000, guid: bab0f6eb28236a043ad8bad7d68fa312, type: 3}
+  type: 1
+  tier: 0
   rateEvo: 75
   rateMagicFire: 0
   rateMagicLightning: 0

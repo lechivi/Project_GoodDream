@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerLife : PlayerAbstract
 {
-    public static PlayerLife instance;
-
     public delegate void PlayerHealth(int health, int maxHealth);
     public static PlayerHealth playerHealthDelegate;
 
@@ -18,7 +16,7 @@ public class PlayerLife : PlayerAbstract
     protected override void Awake()
     {
         base.Awake();
-        PlayerLife.instance = this;
+
     }
 
     private void Start()

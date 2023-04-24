@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Bubble Gun
   minDamage: 0
-  maxDamage: 0
-  image: {fileID: 0}
+  maxDamage: 1
+  image: {fileID: 21300000, guid: 8afdb2a8cbf2307499ac18b28175d736, type: 3}
   type: 1
+  tier: 0
   rateEvo: 90
   rateMagicFire: 90
   rateMagicLightning: 0

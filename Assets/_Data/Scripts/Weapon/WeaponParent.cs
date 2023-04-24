@@ -1,6 +1,7 @@
 //using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponParent : PlayerAbstract
@@ -12,6 +13,7 @@ public class WeaponParent : PlayerAbstract
     [SerializeField] private List<Weapon> listWeapon = new List<Weapon>();
 
     public Transform SpawnPool { get; private set; }
+
     private Vector3 direction;
     private int currentWeapon;
 
@@ -20,16 +22,31 @@ public class WeaponParent : PlayerAbstract
         base.Awake();
         this.SpawnPool = GameObject.Find("SpawnPool").transform;    
 
-        foreach (Transform child in transform)
+        if (transform.childCount == 0 && PlayerManager.HasInstance)
         {
-            Weapon weapon = child.GetComponent<Weapon>();
-            if (weapon != null)
+            foreach(GameObject weaponOnList in PlayerManager.Instance.ListWeaponObj)
             {
-                this.listWeapon.Add(weapon);
-                weapon.gameObject.SetActive(true);
-                weapon.SetActiveWeapon(false);
+                GameObject weaponObj = Instantiate(weaponOnList, transform);
+                Weapon weapon = weaponObj.GetComponent<Weapon>();
+                if (weapon != null)
+                {
+                    this.listWeapon.Add(weapon);
+                    weapon.gameObject.SetActive(true);
+                    weapon.SetActiveWeapon(false);
+                }
             }
         }
+
+        //foreach (Transform child in transform)
+        //{
+        //    Weapon weapon = child.GetComponent<Weapon>();
+        //    if (weapon != null)
+        //    {
+        //        this.listWeapon.Add(weapon);
+        //        weapon.gameObject.SetActive(true);
+        //        weapon.SetActiveWeapon(false);
+        //    }
+        //}
     }
     
     private void Start()
@@ -76,29 +93,35 @@ public class WeaponParent : PlayerAbstract
         }
 
         //use number button from 1-5 to swap weapon
-        if (Input.GetKeyDown(KeyCode.Alpha1) && this.listWeapon.Count >= 1)
+        if (PlayerManager.HasInstance)
         {
-            this.SetWeapon(0);
+            List<int> hotkeys = PlayerManager.Instance.Hotkeys;
+            if (hotkeys.Count == 0) return;
+            if (Input.GetKeyDown(KeyCode.Alpha1) && this.listWeapon.Count >= 1 && hotkeys[0] != -1)
+            {
+                this.SetWeapon(hotkeys[0]);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && this.listWeapon.Count >= 2 && hotkeys[1] != -1)
+            {
+                this.SetWeapon(hotkeys[1]);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && this.listWeapon.Count >= 3 && hotkeys[2] != -1)
+            {
+                this.SetWeapon(hotkeys[2]);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && this.listWeapon.Count >= 4 && hotkeys[3] != -1)
+            {
+                this.SetWeapon(hotkeys[3]);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5) && this.listWeapon.Count >= 5 && hotkeys[4] != -1)
+            {
+                this.SetWeapon(hotkeys[4]);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && this.listWeapon.Count >= 2)
-        {
-            this.SetWeapon(1);
-        }        
-        if (Input.GetKeyDown(KeyCode.Alpha3) && this.listWeapon.Count >= 3)
-        {
-            this.SetWeapon(2);
-        }        
-        if (Input.GetKeyDown(KeyCode.Alpha4) && this.listWeapon.Count >= 4)
-        {
-            this.SetWeapon(3);
-        }       
-        if (Input.GetKeyDown(KeyCode.Alpha5) && this.listWeapon.Count >= 5)
-        {
-            this.SetWeapon(4);
-        }
+
     }
 
-    private void SetWeapon(int indexWeapon)
+    public void SetWeapon(int indexWeapon)
     {
         //if (AudioManager.HasInstance)
         //{
@@ -113,6 +136,11 @@ public class WeaponParent : PlayerAbstract
         this.listWeapon[currentWeapon].SetActiveWeapon(false);
         this.currentWeapon = indexWeapon;
         this.listWeapon[indexWeapon].SetActiveWeapon(true);
+
+        if (PlayerManager.HasInstance)
+        {
+            PlayerManager.Instance.CurrentWeapon = this.currentWeapon;
+        }
 
         if (UIManager.HasInstance)
         {

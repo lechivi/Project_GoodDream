@@ -6,12 +6,14 @@ using TMPro;
 public class Weapon : MonoBehaviour
 {
     [Header("WEAPON SETTING")]
+    [SerializeField] protected WeaponSO weaponSO;
     [SerializeField] protected int minDamage = 1;
     [SerializeField] protected int maxDamage = 5;
     [SerializeField] protected int criticalChance = 10;
     [SerializeField] protected float speedAttack = 5f;
     public MagicType MagicType;
 
+    public WeaponSO WeaponSO => this.weaponSO;
     public WeaponType WeaponType { get; set; }
     public bool IsUsing { get; set; }
 

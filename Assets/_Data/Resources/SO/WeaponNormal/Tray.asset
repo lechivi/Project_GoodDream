@@ -15,12 +15,14 @@ MonoBehaviour:
   weaponName: Tray
   minDamage: 3
   maxDamage: 3
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 8909deb5ee03b5a48a14e17c5de9ab3b, type: 3}
   type: 0
+  tier: 0
   rateEvo: 85
   rateMagicFire: 0
-  rateMagicLightnight: 0
+  rateMagicLightning: 0
   rateMagicPoison: 0
   rateMagicIce: 15
   evolutionWeapon:
   - {fileID: 11400000, guid: 002cd052335a4984e89f573b050cf465, type: 2}
+  - {fileID: 11400000, guid: 324c3cdf2019e90409531c6f43921d30, type: 2}
