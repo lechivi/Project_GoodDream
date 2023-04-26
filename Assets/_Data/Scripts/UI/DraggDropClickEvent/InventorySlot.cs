@@ -19,12 +19,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             int temp = weaponSelect.IndexWeapon;
             weaponSelect.IndexWeapon = weaponToSwap.IndexWeapon;
             weaponToSwap.IndexWeapon = temp;
-        }
 
-        if (weaponToSwap != null)
-        {
             weaponToSwap.SetParentAndPosition(weaponSelect.ParentAfterDrag);
         }
+
         weaponSelect.ParentAfterDrag = transform;
 
     }

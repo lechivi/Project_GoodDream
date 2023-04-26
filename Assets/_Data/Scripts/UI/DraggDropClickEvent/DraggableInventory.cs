@@ -25,7 +25,7 @@ public class DraggableInventory : Draggable, IPointerClickHandler
         transform.SetParent(this.parentOnDrag);
         transform.SetAsLastSibling();
 
-        this.weaponTransferInfor.SetImageTraycastTarget(false);
+        this.weaponTransferInfor.SetImageRaycastTarget(false);
         if (this.weaponTransferInfor.IsSelect)
         {
             this.weaponTransferInfor.ImageSelect.gameObject.SetActive(false);
@@ -41,7 +41,7 @@ public class DraggableInventory : Draggable, IPointerClickHandler
     {
         this.SetParentAndPosition(this.ParentAfterDrag);
 
-        this.weaponTransferInfor.SetImageTraycastTarget(true);
+        this.weaponTransferInfor.SetImageRaycastTarget(true);
         if (this.weaponTransferInfor.IsSelect)
         {
             this.weaponTransferInfor.ImageSelect.gameObject.SetActive(true);

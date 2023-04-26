@@ -37,7 +37,7 @@ public class WeaponTransferInfor : MonoBehaviour
         this.ImageEquip.gameObject.SetActive(this.IsEquip);
     }
 
-    public void SetImageTraycastTarget(bool isBlock)
+    public void SetImageRaycastTarget(bool isBlock)
     {
         this.ImageWeapon.raycastTarget = isBlock;
         this.ImageSelect.raycastTarget = isBlock;

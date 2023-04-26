@@ -2048,7 +2048,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_107
+      name: UI_False
       rect:
         serializedVersion: 2
         x: 786
@@ -4861,6 +4861,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: OtherRibbon_Black_3
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 144
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b1c038d4ea2bd6449bcc74d1228fb4e
+      internalID: 1236425403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherRibbon_Yellow_3
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 144
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b367973efa66c44f9df59676461f789
+      internalID: -10316282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherRibbon_Green_3
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26ac6c35ca233c94682fffd93a0108ad
+      internalID: -1336046501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherRibbon_Bright_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 144
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35cdc290b2548ad46ac718dcdabe173f
+      internalID: -48132241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OtherRibbon_Dark_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 144
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ecf5fbe9f5a2dc46977a55b23d953dd
+      internalID: -967071153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -4882,6 +4987,7 @@ TextureImporter:
       UI books & more_228: 392469865
       UI books & more_96: 1384831399
       UI books & more_163: 1541736590
+      OtherRibbon_Bright_3: -48132241
       Tab_Open: -346671159
       UI books & more_90: -234128202
       UI books & more_105: 1595748487
@@ -4889,6 +4995,7 @@ TextureImporter:
       UI books & more_191: 1522908298
       UI books & more_47: 725828776
       UI books & more_232: -1810585437
+      UI_False: 317882462
       LetterOpen: -852115232
       UI books & more_68: -286130958
       UI books & more_146: 1123143246
@@ -4897,6 +5004,7 @@ TextureImporter:
       UI books & more_44: 253383324
       UI books & more_151: -563233351
       UI books & more_216: -1996121113
+      OtherRibbon_Dark_3: -967071153
       UI books & more_157: 349722403
       UI books & more_65: 1512355830
       UI books & more_167: 1904956188
@@ -4974,7 +5082,6 @@ TextureImporter:
       UI books & more_136: -282518050
       UI books & more_192: 221409858
       UI books & more_208: 439882137
-      UI books & more_107: 317882462
       UI books & more_121: 1560868684
       UI books & more_178: 440602348
       UI books & more_13: 1845572733
@@ -5026,8 +5133,9 @@ TextureImporter:
       UI books & more_24: -1799006486
       UI books & more_168: 1253868219
       UI books & more_225: 1780744562
-      Icon_Map: -1252791599
+      OtherRibbon_Yellow_3: -10316282
       UI books & more_199: -213533292
+      Icon_Map: -1252791599
       UI books & more_35: 924536178
       Paper_8: 1665609852
       UI books & more_104: 1472783059
@@ -5050,6 +5158,7 @@ TextureImporter:
       UI books & more_100: -890799861
       Ribbon_3_Bright: -66697059
       Paper_6: -746518745
+      OtherRibbon_Black_3: 1236425403
       UI books & more_166: 495550508
       UI books & more_169: -747534817
       Paper_3: 1259994001
@@ -5113,6 +5222,7 @@ TextureImporter:
       UI books & more_84: 369626363
       UI books & more_135: -164558135
       UI books & more_46: -133989922
+      OtherRibbon_Green_3: -1336046501
       UI books & more_164: -915011566
       UI books & more_188: 74424646
       UI books & more_92: -627798527

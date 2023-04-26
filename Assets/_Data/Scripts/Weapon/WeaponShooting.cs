@@ -155,7 +155,7 @@ public class WeaponShooting : Weapon
         //        this.bulletClone[i].name = "BulletClone_" + i;
         //        this.bulletClone[i].SetActive(true);
         //        this.bulletClone[i].transform.position = this.ShootPoint.position;
-        //        this.bulletClone[i].transform.rotation = this.weaponHolder.rotation;
+        //        this.bulletClone[i].transform.rotation = this.holderItems.rotation;
         //        this.bulletClone[i].transform.parent = this.spawnPool;
         //        Rigidbody2D rbClone = bulletClone[i].GetComponent<Rigidbody2D>();
         //        rbClone.bodyType = RigidbodyType2D.Dynamic;

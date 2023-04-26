@@ -10,4 +10,6 @@ public class WeaponSO : ScriptableObject
     public Sprite image;
     public WeaponType type;
     public WeaponTier tier;
+
+    public GameObject weaponPrefab;
 }
