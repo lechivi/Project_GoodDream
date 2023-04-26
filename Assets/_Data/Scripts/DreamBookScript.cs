@@ -7,21 +7,14 @@ public class DreamBookScript : MonoBehaviour
     public static DreamBookScript instance;
 
     [SerializeField] private List<WeaponNormalSO> holderItems;
-    [SerializeField] private int maxSlot = 10;
+    [SerializeField] private int maxSlot = 20;
     [SerializeField] private Animator animatorGFX;
 
     public List<WeaponNormalSO> HolderItems { get => this.holderItems; set => this.holderItems = value; }
 
-    private float timer;
-
     private void Awake()
     {
         DreamBookScript.instance = this;
-    }
-
-    private void Update()
-    {
-        
     }
 
     public bool AddWeapon(WeaponNormalSO weapon)
@@ -34,7 +27,7 @@ public class DreamBookScript : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerBasicHolder playerBasicHolder = collision.gameObject.GetComponent<PlayerBasicHolder>();
-        if (playerBasicHolder != null && playerBasicHolder.HolderItems.Count == 2 && playerBasicHolder.HolderItems[0] != null && playerBasicHolder.HolderItems[1] != null)
+        if (playerBasicHolder != null && playerBasicHolder.HolderItems.Count == 2 && (playerBasicHolder.HolderItems[0] != null || playerBasicHolder.HolderItems[1] != null))
         {
             if (this.animatorGFX.GetCurrentAnimatorStateInfo(0).IsName("CLMagic_Enter")) return;
             this.animatorGFX.SetTrigger("Enter");

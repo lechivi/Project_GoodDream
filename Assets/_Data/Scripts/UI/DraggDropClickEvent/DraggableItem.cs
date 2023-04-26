@@ -4,23 +4,23 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
-{
+public class DraggableItem : Draggable 
+{ 
     public PanelItemParent ParentPanel;
     public WeaponNormalSO WeaponNormalSO;
     public Image ImageItem;
     public Transform ParentAfterDrag;
 
-    private Transform parentOnDrag;
-
-    private void Awake()
+    protected override void Awake()
     {
-        this.parentOnDrag = GetComponentInParent<Canvas>().transform.Find("Empty");
+        base.Awake();
+        //this.parentOnDrag = GetComponentInParent<Canvas>().transform.Find("Empty");
         this.ImageItem.gameObject.SetActive(false);
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public override void OnBeginDrag(PointerEventData eventData)
     {
+        base.OnBeginDrag(eventData);
         if (this.WeaponNormalSO == null) return;
 
         this.ParentAfterDrag = transform.parent;
@@ -30,17 +30,24 @@ public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEn
         this.ImageItem.raycastTarget = false;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public override void OnDrag(PointerEventData eventData)
     {
+        //base.OnDrag(eventData);
         transform.position = Input.mousePosition;
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public override void OnEndDrag(PointerEventData eventData)
     {
+        base.OnEndDrag(eventData);
         this.SetParentAndPosition(this.ParentAfterDrag);
 
         this.ImageItem.raycastTarget = true;
 
+    }
+
+    protected override void ConvertPosition()
+    {
+        base.ConvertPosition();
     }
 
     public void SetParentAndPosition(Transform parent)

@@ -4,29 +4,44 @@ using UnityEngine;
 
 public class PlayerBasicMovement : MonoBehaviour
 {
+    [SerializeField] private TimerRemainCtrl timerRemainCtrl;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Animator reactionAnimator;
     public MovementState MovementState { get; set; }
     public bool IsFacingRight;
+    public bool CanMove = true;
 
+    private PlayerBasicHolder playerBasicHolder;
     private Rigidbody2D rb;
     private Animator playerAnimator;
     private Vector2 movement;
     private Vector3 originScale;
 
     private ItemHolderZone itemHolderZone;
-    private bool isEnter;
+    private bool isEnterZoneItem;
+    private bool isEnterDreamBook;
 
     private void Awake()
     {
+        this.playerBasicHolder = GetComponent<PlayerBasicHolder>();
         this.rb = GetComponent<Rigidbody2D>();
         this.playerAnimator = transform.Find("UnitRoot").GetComponent<Animator>();
 
         this.originScale = transform.localScale;
+
+        this.reactionAnimator.gameObject.SetActive(false);
     }
 
     private void Update()
     {
+        if (!this.CanMove)
+        {
+            this.movement = Vector2.zero;
+            return;
+        }
+
+        if (Time.timeScale == 0f ) return;
+
         this.movement.x = Input.GetAxisRaw("Horizontal");
         this.movement.y = Input.GetAxisRaw("Vertical");
 
@@ -35,12 +50,27 @@ public class PlayerBasicMovement : MonoBehaviour
         this.Facing();
         this.UpdateAnimation();
 
-        if (this.isEnter && Input.GetKeyDown(KeyCode.E))
+        if (this.isEnterZoneItem && Input.GetKeyDown(KeyCode.E))
         {
             if (this.itemHolderZone != null)
             {
                 this.itemHolderZone.SetActivePanelItemCtrl();
             }
+            this.timerRemainCtrl.PauseTime();
+            NotificationTextStatic.instance.HideText();
+        }
+
+        if (this.isEnterDreamBook && Input.GetKeyDown(KeyCode.E))
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                this.playerBasicHolder.TransferItem(i);
+            }
+        }
+
+        if (this.itemHolderZone != null && this.itemHolderZone.SelectedItems.Count == 0)
+        {
+            this.reactionAnimator.gameObject.SetActive(false);
         }
     }
 
@@ -80,9 +110,23 @@ public class PlayerBasicMovement : MonoBehaviour
         ItemHolderZone itemHolderZone = collision.gameObject.GetComponent<ItemHolderZone>();
         if (itemHolderZone != null && itemHolderZone.SelectedItems.Count != 0)
         {
-            this.reactionAnimator.SetTrigger("Detect");
-            this.isEnter = true;
-            this.itemHolderZone = itemHolderZone; ;
+            this.reactionAnimator.gameObject.SetActive(true);
+            this.reactionAnimator.Rebind();
+            this.isEnterZoneItem = true;
+            this.itemHolderZone = itemHolderZone;
+
+            NotificationTextStatic.instance.SetNotiText("Press E", 5f);
+        }
+
+        DreamBookScript dreamBook = collision.gameObject.GetComponent<DreamBookScript>();
+        if (dreamBook != null)
+        {
+            this.isEnterDreamBook = true;
+
+            if (playerBasicHolder != null && playerBasicHolder.HolderItems.Count == 2 && (playerBasicHolder.HolderItems[0] != null || playerBasicHolder.HolderItems[1] != null))
+            {
+                NotificationTextStatic.instance.SetNotiText("Press E", 5f);
+            }
         }
     }
 
@@ -91,9 +135,19 @@ public class PlayerBasicMovement : MonoBehaviour
         ItemHolderZone itemHolderZone = collision.gameObject.GetComponent<ItemHolderZone>();
         if (itemHolderZone != null/* && itemHolderZone.SelectedItems.Count != 0*/)
         {
-            this.reactionAnimator.SetTrigger("EndWaiting");
-            this.isEnter = false;
+            this.reactionAnimator.gameObject.SetActive(false);
+            this.isEnterZoneItem = false;
             this.itemHolderZone = null;
+
+            NotificationTextStatic.instance.HideText();
+        }
+
+        DreamBookScript dreamBook = collision.gameObject.GetComponent<DreamBookScript>();
+        if (dreamBook != null)
+        {
+            this.isEnterDreamBook = false;
+
+            NotificationTextStatic.instance.HideText();
         }
     }
 }

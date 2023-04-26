@@ -5,7 +5,7 @@ using UnityEngine;
 public class PanelHandHolderCtrl : PanelItemParent
 {
     [SerializeField] private PlayerBasicHolder playerBasicHolder;
-    [SerializeField] private List<ItemSlot> slots = new List<ItemSlot>();
+    [SerializeField] private List<DraggableItem> items = new List<DraggableItem>();
 
     public override bool CheckCanAddItem()
     {
@@ -38,5 +38,23 @@ public class PanelHandHolderCtrl : PanelItemParent
         base.RemoveItem(item);
         int index = this.playerBasicHolder.HolderItems.IndexOf(item);
         this.playerBasicHolder.HolderItems[index] = null;
+    }
+
+    public void ClearItem(WeaponNormalSO item)
+    {
+        bool checkExist = false;
+        int index = -1;
+        foreach (DraggableItem draggItem in this.items)
+        {
+            if (draggItem.WeaponNormalSO == item)
+            {
+                checkExist = true;
+                index = this.items.IndexOf(draggItem);
+            }
+        }
+
+        if (!checkExist || index == -1) return;
+        this.items[index].WeaponNormalSO = null;
+        this.items[index].ImageItem.gameObject.SetActive(false);
     }
 }

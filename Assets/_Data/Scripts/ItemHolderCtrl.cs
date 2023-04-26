@@ -26,20 +26,6 @@ public class ItemHolderCtrl : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        //this.SetActiveRandomZone();
-
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            this.SetActiveRandomZone();
-        }
-    }
-
     public void SetActiveRandomZone()
     {
         if (this.number > this.zones.Count) return;

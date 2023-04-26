@@ -9,14 +9,14 @@ public class PanelItemCtrl : PanelItemParent
 
     public ItemHolderZone Zone;
 
-    private void Awake()
-    {
-        transform.gameObject.SetActive(false);
-    }
-
     private void OnEnable()
     {
-        Debug.Log("asdad");
+        Time.timeScale = 0f;
+    }
+
+    private void OnDisable()
+    {
+        Time.timeScale = 1.0f;
     }
 
     public void SetItemFromZone(List<WeaponNormalSO> list)
