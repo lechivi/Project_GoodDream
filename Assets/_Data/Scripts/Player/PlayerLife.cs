@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerLife : PlayerAbstract
 {
@@ -79,5 +80,17 @@ public class PlayerLife : PlayerAbstract
         this.playerCtrl.PlayerMovement.MovementState = MovementState.Death;
         this.gameObject.layer = LayerMask.NameToLayer("Death");
         this.playerCtrl.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        //StartCoroutine(this.LoadLevel());
+
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.ActiveLosePanel(true);
+        }
+    }
+    private IEnumerator LoadLevel()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene("MainMenu");
     }
 }

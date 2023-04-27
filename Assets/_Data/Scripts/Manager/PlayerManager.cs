@@ -12,11 +12,15 @@ public class PlayerManager : BaseManager<PlayerManager>
 
     public int CurrentWeapon = 0;
 
+    public bool Test;
     protected override void Awake()
     {
         base.Awake();
-        this.listWeaponObj.Clear();
-        this.ListWeaponNormalSO.Clear();
+        if (!this.Test)
+        {
+            this.listWeaponObj.Clear();
+            this.ListWeaponNormalSO.Clear();
+        }
         //if (this.Hotkeys.Count == 0)
         //{
         //    for (int i =0; i <5; i++)
@@ -37,6 +41,7 @@ public class PlayerManager : BaseManager<PlayerManager>
                 this.listWeaponObj.Add(weaponObj);
             }
         }
+
     }
 
     private GameObject EvolutionWeapon(WeaponNormalSO item)

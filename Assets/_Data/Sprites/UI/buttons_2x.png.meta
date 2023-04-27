@@ -200,15 +200,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: buttons_2x_4
+      name: button_Pause
       rect:
         serializedVersion: 2
-        x: 194
-        y: 16
-        width: 4
-        height: 14
+        x: 192
+        y: 15
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -216,27 +216,6 @@ TextureImporter:
       bones: []
       spriteID: 33a0562f513d47349aac43e6fde02b36
       internalID: -167276984
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: buttons_2x_5
-      rect:
-        serializedVersion: 2
-        x: 202
-        y: 16
-        width: 4
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 50e4787eee72c1a4181ed2fb6ade8e04
-      internalID: -1630373028
       vertices: []
       indices: 
       edges: []
@@ -311,7 +290,7 @@ TextureImporter:
         x: 34
         y: 2
         width: 28
-        height: 26
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -549,6 +528,7 @@ TextureImporter:
       buttons_2x_12: -1429301378
       buttons_2x_5: -1630373028
       buttons_2x_8: 1432156428
+      button_Pause: -167276984
       buttons_2x_6: 311529993
       buttons_2x_18: -1080516295
       buttons_2x_17: 1743383204
@@ -556,7 +536,6 @@ TextureImporter:
       buttons_2x_1: 753105483
       buttons_2x_14: 557807709
       buttons_2x_19: 1231238697
-      buttons_2x_4: -167276984
       buttons_2x_11: 1209690936
       buttons_2x_0: -1999634048
       buttons_2x_9: 2138747613

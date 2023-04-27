@@ -21,6 +21,17 @@ public class TabGroup : MonoBehaviour
         this.tabButtons.Add(button);
     }
 
+    private void OnEnable()
+    {
+        foreach (GameObject obj in objectToSwap)
+        {
+            if (obj.activeSelf)
+            {
+                this.OnTabSelected(this.tabButtons[this.objectToSwap.IndexOf(obj)]);
+            }
+        }
+    }
+
     public void OnTabEnter(TabButtonNavigation button)
     {
         this.ResetTabs();
@@ -39,10 +50,17 @@ public class TabGroup : MonoBehaviour
 
     public void OnTabSelected(TabButtonNavigation button)
     {
-        if(this.selectedTab != null)
-        {
-            this.selectedTab.Deselect(); //Deselect the previous select tab
-        }
+        //if(this.selectedTab != null)
+        //{
+        //    foreach (TabButtonNavigation tabButton in this.tabButtons)
+        //    {
+        //        if (tabButton != button)
+        //        {
+        //            Debug.Log(this.tabButtons.IndexOf(button));
+        //            tabButton.Deselect();
+        //        }
+        //    }
+        //}
 
         this.selectedTab = button;
         this.selectedTab.Select();

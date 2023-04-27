@@ -63,10 +63,14 @@ public class WeaponParent : PlayerAbstract
         if (this.playerCtrl.PlayerLife.Health <= 0) return;
         this.FaceWeapon();
 
-        if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>() != null)
+        if (UIManager.HasInstance)
         {
-            if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>().IsReloading) return;
+            if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>() != null)
+            {
+                if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>().IsReloading) return;
+            }
         }
+
 
         this.SwapWeapon();
     }

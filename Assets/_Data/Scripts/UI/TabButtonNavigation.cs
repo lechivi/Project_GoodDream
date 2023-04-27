@@ -15,12 +15,6 @@ public class TabButtonNavigation : MonoBehaviour, IPointerEnterHandler, IPointer
     public UnityEvent onTabSelected;
     public UnityEvent onTabDeselected;
 
-    private void Start()
-    {
-        //this.highlightBackground = GetComponent<Image>();
-        this.tabGroup.Subscribe(this);
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         this.tabGroup.OnTabSelected(this);
@@ -41,6 +35,14 @@ public class TabButtonNavigation : MonoBehaviour, IPointerEnterHandler, IPointer
         if (this.onTabSelected != null)
         {
             this.onTabSelected.Invoke();
+        }
+
+        foreach (TabButtonNavigation tabButton in this.tabGroup.tabButtons)
+        {
+            if (tabButton != this)
+            {
+                tabButton.Deselect();
+            }
         }
     }
 

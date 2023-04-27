@@ -3914,6 +3914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  OriginScale: {x: 0, y: 0, z: 0}
 --- !u!1 &8997971909327484337
 GameObject:
   m_ObjectHideFlags: 0
@@ -4224,6 +4225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e93a4fe4defb440a94ef53370ea2b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contactDamage: 2
   moveSpeed: 5
   roamSpeed: 2
   roamRange: 3
@@ -4573,10 +4575,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eeeddbb1b209364998fc1866b589e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSO: {fileID: 0}
   minDamage: 1
   maxDamage: 5
   criticalChance: 10
   speedAttack: 5
+  MagicType: 0
   cooldownTimePrimaryMove: 0
   cooldownTimeSecondaryMove: 0
   slashEffectPrefab: {fileID: 0}

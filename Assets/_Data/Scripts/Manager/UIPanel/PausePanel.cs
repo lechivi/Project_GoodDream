@@ -22,6 +22,14 @@ public class PausePanel : MonoBehaviour
         }
     }
 
+    public void OnClickedMenuButton()
+    {
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.RestarGame();
+        }
+    }
+
     public void OnClickedQuitButton()
     {
         if (GameManager.HasInstance)

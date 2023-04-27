@@ -35,6 +35,7 @@ public class DraggableInventory : Draggable, IPointerClickHandler
     public override void OnDrag(PointerEventData eventData)
     {
         base.OnDrag(eventData);
+        //transform.position = Input.mousePosition;
     }
 
     public override void OnEndDrag(PointerEventData eventData)

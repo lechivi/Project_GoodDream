@@ -16,8 +16,21 @@ public class FinishLevel : MonoBehaviour
         if (this.levelComplete)
         {
             //this.animatorTransition.SetTrigger("Start");
-            this.animatorTransition.Play("Wipe_CircleOut");
-            StartCoroutine(this.CompleteLevel());
+            //this.animatorTransition.Play("Wipe_CircleOut");
+
+            if (SceneManager.GetActiveScene().name.Equals("Scene_Level3_Heaven"))
+            {
+                this.animatorTransition.Play("Crossfade_Start_Endgame");
+                StartCoroutine(this.Endgame());
+            }
+            else
+            {
+                this.animatorTransition.Play("Crossfade_Start");
+                StartCoroutine(this.CompleteLevel());
+            }
+    
+
+
         }
     }
 
@@ -36,18 +49,6 @@ public class FinishLevel : MonoBehaviour
 
     private IEnumerator CompleteLevel()
     {
-        if (SceneManager.GetActiveScene().name.Equals("SceneLv3"))
-        {
-            //if (UIManager.HasInstance && AudioManager.HasInstance)
-            //{
-            //    Time.timeScale = 0f;
-            //    UIManager.Instance.ActiveVictoryPanel(true);
-            //    AudioManager.Instance.PlaySE(AUDIO.SE_VICTORY);
-
-            //    return;
-            //}
-        }
-
         yield return new WaitForSeconds(this.transitionTime);
 
         if (Input.anyKeyDown)
@@ -58,6 +59,19 @@ public class FinishLevel : MonoBehaviour
                 //AudioManager.Instance.PlayBGM(AUDIO.BGM_BGM_04);
             }
         }
+    }
 
+    private IEnumerator Endgame()
+    {
+        if (UIManager.HasInstance && AudioManager.HasInstance)
+        {
+            //Time.timeScale = 0f;
+            UIManager.Instance.ActiveVictoryPanel(true);
+            //AudioManager.Instance.PlaySE(AUDIO.SE_VICTORY);
+
+        }
+        yield return new WaitForSeconds(this.transitionTime);
+        Time.timeScale = 0f;
+        Debug.Log("Endgame");
     }
 }

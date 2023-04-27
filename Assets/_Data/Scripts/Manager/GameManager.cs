@@ -71,7 +71,7 @@ public class GameManager : BaseManager<GameManager>
         this.currentHealth = this.maxHealth;
         this.maxMana = 100; //TODO: Change maxMana for each character type (ScriptableObject)
         this.currentMana = this.maxMana;
-        ChangeScene("MenuScene");
+        ChangeScene("MainMenu");
 
         if (UIManager.HasInstance)
         {

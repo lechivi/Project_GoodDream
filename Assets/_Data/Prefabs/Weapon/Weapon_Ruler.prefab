@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 4471092910613085614}
   - component: {fileID: 4471092910613085613}
   m_Layer: 7
-  m_Name: WeaponSword
+  m_Name: Weapon_Ruler
   m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,7 +282,7 @@ SpriteRenderer:
   m_SortingLayerID: -163490121
   m_SortingLayer: 5
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 5c31225e8eeb6484bb0550f24af04fbe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf9b06a83a6afd04d819427724aba6b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -330,7 +330,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.3}
-    oldSize: {x: 0.34375, y: 1}
+    oldSize: {x: 0.21875, y: 0.71875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eeeddbb1b209364998fc1866b589e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSO: {fileID: 11400000, guid: 8982e6c95facfdc4d8fda28e33cfcae9, type: 2}
+  weaponSO: {fileID: 11400000, guid: 323ae1f07e754d74f85d4060abf40808, type: 2}
   minDamage: 10
   maxDamage: 20
   criticalChance: 20

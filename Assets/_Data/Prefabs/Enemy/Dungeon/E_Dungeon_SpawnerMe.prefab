@@ -1080,6 +1080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a09f468c8e5db438b28b5ac368083c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contactDamage: 2
   moveSpeed: 5
   roamSpeed: 2
   roamRange: 3
@@ -1091,8 +1092,8 @@ MonoBehaviour:
   animationSummonPrefab: {fileID: 6550465794641270938, guid: b57b6439cb18f534692a8e1b53d6ecc5, type: 3}
   animationSummonerPrefab: {fileID: 4298829180468283279, guid: a125148cbe93f484ba12633e31c7c156, type: 3}
   listSpawnEnemy:
-  - {fileID: 2376937518649314672, guid: 7bc2146c4fde7e84198b2844c46032f7, type: 3}
-  - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+  - {fileID: 5995949832098677444, guid: a65e3f11b6c3c9141a12a831fc48de5d, type: 3}
+  - {fileID: 8997971910355639400, guid: 4d436c9aadea42f4daeaf6103b5b6c9e, type: 3}
   - {fileID: 8797475638526803361, guid: 3168fda6d3d4323448cfaa824f7b3d21, type: 3}
   amountSpawn: 3
   rangeSpawn: 2
@@ -1369,6 +1370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  OriginScale: {x: 0, y: 0, z: 0}
 --- !u!1 &2200297722451111086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,10 +1578,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eeeddbb1b209364998fc1866b589e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSO: {fileID: 0}
   minDamage: 1
   maxDamage: 5
   criticalChance: 10
   speedAttack: 5
+  MagicType: 0
   cooldownTimePrimaryMove: 0
   cooldownTimeSecondaryMove: 0
   slashEffectPrefab: {fileID: 0}

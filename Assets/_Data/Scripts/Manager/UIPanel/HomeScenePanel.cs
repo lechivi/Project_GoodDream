@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HomeScenePanel : MonoBehaviour
@@ -44,6 +45,8 @@ public class HomeScenePanel : MonoBehaviour
             }
             else
             {
+                this.panelHandHolderCtrl.gameObject.SetActive(false);
+
                 if (PlayerManager.HasInstance)
                 {
                     foreach (WeaponNormalSO item in DreamBookScript.instance.HolderItems)
@@ -57,6 +60,17 @@ public class HomeScenePanel : MonoBehaviour
                     }
 
                     PlayerManager.Instance.CreateListWeapon();
+
+                    if (UIManager.HasInstance)
+                    {
+                        UIManager.Instance.ActiveLoadingPanel(true);
+ 
+                        //UIManager.Instance.ActiveGamePanel(true);
+                        //if (GameManager.HasInstance)
+                        //{
+                        //    GameManager.Instance.StartGame();
+                        //}
+                    }
                 }
             }
         

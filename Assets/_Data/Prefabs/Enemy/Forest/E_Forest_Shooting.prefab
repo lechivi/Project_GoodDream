@@ -2397,6 +2397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  OriginScale: {x: 0, y: 0, z: 0}
 --- !u!1 &4482188965876807176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,16 +2517,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30958b125f207b44c9a5f7ee47f8c47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSO: {fileID: 0}
   minDamage: 2
-  maxDamage: 5
+  maxDamage: 3
   criticalChance: 20
   speedAttack: 5
+  MagicType: 0
   shootPoints: []
   bulletClone: []
   bulletPrefab: {fileID: 2872722887616609221, guid: 84b5f6f30f3aaaa49ad9d9df5494b7a0, type: 3}
   maxAmmo: 10
   reloadTime: 0.2
-  bulletSpeed: 25
+  bulletSpeed: 10
   fireRate: 4
   fireAudio: {fileID: 0}
   reloadAudio: {fileID: 0}
@@ -2697,6 +2700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897d0e6a7b10c9f4ba9af32f50eeed36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contactDamage: 2
   moveSpeed: 7
   roamSpeed: 2
   roamRange: 3

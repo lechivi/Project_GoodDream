@@ -3434,27 +3434,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_182
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 16
-        width: 256
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e45b0f9eb4d2b3242a97e52a14d8a22d
-      internalID: 501173438
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: UI books & more_185
       rect:
         serializedVersion: 2
@@ -4987,6 +4966,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: OtherRibbon_Red_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 48
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 8, y: 16, z: 8, w: 16}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ca82a7a939413b47be44e08ec88d4fa
+      internalID: -1993840322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -5007,6 +5007,7 @@ TextureImporter:
       UI books & more_80: -1963078444
       UI books & more_228: 392469865
       UI books & more_96: 1384831399
+      OtherRibbon_Red_4: -1993840322
       UI books & more_163: 1541736590
       OtherRibbon_Bright_3: -48132241
       Tab_Open: -346671159
@@ -5027,8 +5028,8 @@ TextureImporter:
       UI books & more_216: -1996121113
       OtherRibbon_Dark_3: -967071153
       UI books & more_157: 349722403
-      UI books & more_167: 1904956188
       UI books & more_65: 1512355830
+      UI books & more_167: 1904956188
       UI books & more_93: -573654532
       UI books & more_154: 1920818436
       UI books & more_5: -70151150
@@ -5126,8 +5127,8 @@ TextureImporter:
       UI books & more_77: -364722813
       UI books & more_203: -472730364
       OtherRibbon_Red_3: 297301350
-      UI books & more_217: 854512079
       UI books & more_145: -1832577100
+      OtherRibbon_Dark_0: 2013169948
       UI books & more_149: 270858168
       UI books & more_89: -802010306
       UI books & more_173: 1632703857
@@ -5138,7 +5139,7 @@ TextureImporter:
       UI books & more_156: 803316151
       UI books & more_72: -1793637002
       UI books & more_179: -322245938
-      OtherRibbon_Dark_0: 2013169948
+      UI books & more_217: 854512079
       UI books & more_224: 1190092670
       UI books & more_230: 460824179
       Paper_12: 519746063
