@@ -11,6 +11,7 @@ public class UIManager : BaseManager<UIManager>
     [SerializeField] private PausePanel pausePanel;
     [SerializeField] private LosePanel losePanel;
     [SerializeField] private VictoryPanel victoryPanel;
+    [SerializeField] private NotificationPanel notificationPanel;
     [SerializeField] private Canvas canvas;
 
     public MenuPanel MenuPanel => this.menuPanel;
@@ -20,6 +21,7 @@ public class UIManager : BaseManager<UIManager>
     public PausePanel PausePanel => this.pausePanel;
     public LosePanel LosePanel => this.losePanel;
     public VictoryPanel VictoryPanel => this.victoryPanel;
+    public NotificationPanel NotificationPanel => this.notificationPanel;
 
     private void Start()
     {
@@ -80,11 +82,16 @@ public class UIManager : BaseManager<UIManager>
         this.victoryPanel.gameObject.SetActive(active);
     }
 
+    public void ActiveNotificationPanel(bool active)
+    {
+        this.notificationPanel.gameObject.SetActive(active);
+    }
+
     private void OnLevelWasLoaded(int level)
     {
-        if (canvas.worldCamera == null)
+        if (this.canvas.worldCamera == null)
         {
-            canvas.worldCamera = Camera.main;
+            this.canvas.worldCamera = Camera.main;
         }
     }
 }

@@ -87,14 +87,14 @@ public class WeaponParent : PlayerAbstract
     private void SwapWeapon()
     {
         //Use mouse scroll wheel to swap weapon
-        if (Input.mouseScrollDelta.y > 0)
-        {
-            this.SetWeapon(this.currentWeapon - 1);
-        }
-        if (Input.mouseScrollDelta.y < 0)
-        {
-            this.SetWeapon(this.currentWeapon + 1);
-        }
+        //if (Input.mouseScrollDelta.y > 0)
+        //{
+        //    this.SetWeapon(this.currentWeapon - 1);
+        //}
+        //if (Input.mouseScrollDelta.y < 0)
+        //{
+        //    this.SetWeapon(this.currentWeapon + 1);
+        //}
 
         //use number button from 1-5 to swap weapon
         if (PlayerManager.HasInstance)

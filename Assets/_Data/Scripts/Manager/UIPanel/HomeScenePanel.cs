@@ -27,11 +27,15 @@ public class HomeScenePanel : MonoBehaviour
     {
         if (!this.panelHandHolderCtrl.CheckCanAddItem())
         {
-            NotificationTextStatic.instance.SetNotiText("Hand is full! Find Dream Book to store items", 5f);
-            if (this.panelHandHolderCtrl.CheckCanAddItem() || !this.panelItemCtrl.gameObject.activeSelf)
+            if (UIManager.HasInstance)
             {
-                NotificationTextStatic.instance.HideText();
+                 UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Hand is full! Find Dream Book to store items", 5f);
+                if (this.panelHandHolderCtrl.CheckCanAddItem() || !this.panelItemCtrl.gameObject.activeSelf)
+                {
+                    UIManager.Instance.NotificationPanel.NotificationHUD.HideText();
+                }
             }
+
         }
 
         if ((this.timerRemainCtrl.TimeOut || Input.GetKeyDown(KeyCode.L)) && !this.check)

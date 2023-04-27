@@ -50,8 +50,6 @@ public class InventorySystem : MonoBehaviour
     private void Awake()
     {
         InventorySystem.instance = this;
-        this.CreateListWeapon();
-        this.EquipWeaponInventory(0);
     }
 
     private void Start()
@@ -62,6 +60,8 @@ public class InventorySystem : MonoBehaviour
     public void OnEnable()
     {
         this.EquipWeaponInventory(PlayerManager.Instance.CurrentWeapon);
+        this.CreateListWeapon();
+        this.EquipWeaponInventory(0);
     }
 
     public void CreateListWeapon()
@@ -77,6 +77,7 @@ public class InventorySystem : MonoBehaviour
                 slot.GetComponentInChildren<WeaponTransferInfor>().WeaponSO = weapon.WeaponSO;
 
                 this.weaponsInventory.Add(slot);
+                Debug.Log(indexWeapon);
                 indexWeapon++;
             }
 

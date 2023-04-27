@@ -57,7 +57,11 @@ public class PlayerBasicMovement : MonoBehaviour
                 this.itemHolderZone.SetActivePanelItemCtrl();
             }
             this.timerRemainCtrl.PauseTime();
-            NotificationTextStatic.instance.HideText();
+
+            if (UIManager.HasInstance)
+            {
+                UIManager.Instance.NotificationPanel.NotificationHUD.HideText();
+            }
         }
 
         if (this.isEnterDreamBook && Input.GetKeyDown(KeyCode.E))
@@ -115,7 +119,10 @@ public class PlayerBasicMovement : MonoBehaviour
             this.isEnterZoneItem = true;
             this.itemHolderZone = itemHolderZone;
 
-            NotificationTextStatic.instance.SetNotiText("Press E", 5f);
+            if (UIManager.HasInstance)
+            {
+                UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Press E", 5f);
+            }
         }
 
         DreamBookScript dreamBook = collision.gameObject.GetComponent<DreamBookScript>();
@@ -123,9 +130,12 @@ public class PlayerBasicMovement : MonoBehaviour
         {
             this.isEnterDreamBook = true;
 
-            if (playerBasicHolder != null && playerBasicHolder.HolderItems.Count == 2 && (playerBasicHolder.HolderItems[0] != null || playerBasicHolder.HolderItems[1] != null))
+            if (UIManager.HasInstance)
             {
-                NotificationTextStatic.instance.SetNotiText("Press E", 5f);
+                if (playerBasicHolder != null && playerBasicHolder.HolderItems.Count == 2 && (playerBasicHolder.HolderItems[0] != null || playerBasicHolder.HolderItems[1] != null))
+                {
+                    UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Press E", 5f);
+                }
             }
         }
     }
@@ -139,7 +149,10 @@ public class PlayerBasicMovement : MonoBehaviour
             this.isEnterZoneItem = false;
             this.itemHolderZone = null;
 
-            NotificationTextStatic.instance.HideText();
+            if (UIManager.HasInstance)
+            {
+                UIManager.Instance.NotificationPanel.NotificationHUD.HideText();
+            }
         }
 
         DreamBookScript dreamBook = collision.gameObject.GetComponent<DreamBookScript>();
@@ -147,7 +160,10 @@ public class PlayerBasicMovement : MonoBehaviour
         {
             this.isEnterDreamBook = false;
 
-            NotificationTextStatic.instance.HideText();
+            if (UIManager.HasInstance)
+            {
+                UIManager.Instance.NotificationPanel.NotificationHUD.HideText();
+            }
         }
     }
 }
