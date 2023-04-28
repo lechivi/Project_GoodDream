@@ -24,7 +24,6 @@ public class GamePanel : MonoBehaviour
     [Header("MOBILE PHONE CTRL")]
     [SerializeField] private Joystick movementJoystick;
     public bool IsJoystick;
-
     public BlurringSliderFill HealthSlider => this.healthSlider;
     public Sprite Melee1 => this.melee1;
     public Sprite Melee2 => this.melee2;
@@ -92,11 +91,6 @@ public class GamePanel : MonoBehaviour
         {
             this.manaSlider.SetActiveSlider(1, 1, false);
         }
-    }
-
-    private void Update()
-    {
-
     }
 
     public void OnClickedPauseButton()

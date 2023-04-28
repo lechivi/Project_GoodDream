@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PanelHandHolderCtrl : PanelItemParent
 {
-    [SerializeField] private PlayerBasicHolder playerBasicHolder;
     [SerializeField] private List<DraggableItem> items = new List<DraggableItem>();
 
     public override bool CheckCanAddItem()
     {
-        foreach (WeaponSO item in this.playerBasicHolder.HolderItems)
+        foreach (WeaponSO item in PlayerBasicCtrl.instance.PlayerHolder.HolderItems)
         {
             if (item == null) return true;
         }
@@ -21,13 +20,13 @@ public class PanelHandHolderCtrl : PanelItemParent
         base.AddItem(item);
         for (int i = 0; i < 2; i++)
         {
-            if (this.playerBasicHolder.HolderItems[i] != null)
+            if (PlayerBasicCtrl.instance.PlayerHolder.HolderItems[i] != null)
             {
                 continue;
             }
             else
             {
-                this.playerBasicHolder.HolderItems[i] = item;
+                PlayerBasicCtrl.instance.PlayerHolder.HolderItems[i] = item;
                 break;
             }
         }
@@ -36,8 +35,8 @@ public class PanelHandHolderCtrl : PanelItemParent
     public override void RemoveItem(WeaponNormalSO item)
     {
         base.RemoveItem(item);
-        int index = this.playerBasicHolder.HolderItems.IndexOf(item);
-        this.playerBasicHolder.HolderItems[index] = null;
+        int index = PlayerBasicCtrl.instance.PlayerHolder.HolderItems.IndexOf(item);
+        PlayerBasicCtrl.instance.PlayerHolder.HolderItems[index] = null;
     }
 
     public void ClearItem(WeaponNormalSO item)

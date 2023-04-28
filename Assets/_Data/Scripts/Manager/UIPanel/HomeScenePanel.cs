@@ -6,19 +6,18 @@ using UnityEngine.UI;
 
 public class HomeScenePanel : MonoBehaviour
 {
-    [SerializeField] private PlayerBasicMovement playerBasicMovement;
-    [SerializeField] private PlayerBasicHolder playerBasicHolder;
-    [SerializeField] private ItemHolderCtrl itemHolderCtrl;
     [SerializeField] private PanelItemCtrl panelItemCtrl;
     [SerializeField] private PanelHandHolderCtrl panelHandHolderCtrl;
     [SerializeField] private TimerRemainCtrl timerRemainCtrl;
-    [SerializeField] private Button closePanelItemButton;
+
+    public PanelItemCtrl PanelItemCtrl => this.panelItemCtrl;
+    public PanelHandHolderCtrl PanelHandHolderCtrl => this.panelHandHolderCtrl;
+    public TimerRemainCtrl TimerRemainCtrl => this.timerRemainCtrl;
 
     private bool check;
 
     private void Start()
     {
-        this.playerBasicMovement.CanMove = false;
         this.panelItemCtrl.gameObject.SetActive(false);
         this.panelHandHolderCtrl.gameObject.SetActive(false);
     }
@@ -29,10 +28,20 @@ public class HomeScenePanel : MonoBehaviour
         {
             if (UIManager.HasInstance)
             {
-                 UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Hand is full! Find Dream Book to store items", 5f);
-                if (this.panelHandHolderCtrl.CheckCanAddItem() || !this.panelItemCtrl.gameObject.activeSelf)
+                // UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Hand is full! Find Dream Book to store items", 5f);
+                //if (this.panelHandHolderCtrl.CheckCanAddItem() || !this.panelItemCtrl.gameObject.activeSelf)
+                //{
+                //    UIManager.Instance.NotificationPanel.NotificationHUD.HideText();
+                //}
+
+                if (UIManager.HasInstance)
                 {
-                    UIManager.Instance.NotificationPanel.NotificationHUD.HideText();
+                    if (!UIManager.Instance.GuideCtrl.FirstFullHand)
+                    {
+                        UIManager.Instance.GuideCtrl.FirstFullHand = true;
+                        UIManager.Instance.GuideCtrl.SetActiveGuideFullHand();
+                        UIManager.Instance.HomeScenePanel.TimerRemainCtrl.PauseTime();
+                    }
                 }
             }
 
@@ -41,9 +50,9 @@ public class HomeScenePanel : MonoBehaviour
         if ((this.timerRemainCtrl.TimeOut || Input.GetKeyDown(KeyCode.L)) && !this.check)
         {
             this.check = true;
-            this.playerBasicMovement.CanMove = false;
+            PlayerBasicCtrl.instance.PlayerMovement.CanMove = false;
 
-            if (DreamBookScript.instance.HolderItems.Count == 0  && this.playerBasicHolder.HolderItems.Count == 0)
+            if (DreamBookScript.instance.HolderItems.Count == 0  && PlayerBasicCtrl.instance.PlayerHolder.HolderItems.Count == 0)
             {
                 Debug.Log("Can't find any weapon. You can't enter Dream World!");
             }
@@ -58,7 +67,7 @@ public class HomeScenePanel : MonoBehaviour
                         PlayerManager.Instance.ListWeaponNormalSO.Add(item);
                     }
 
-                    foreach (WeaponNormalSO item in this.playerBasicHolder.HolderItems)
+                    foreach (WeaponNormalSO item in PlayerBasicCtrl.instance.PlayerHolder.HolderItems)
                     {
                         if (item != null) PlayerManager.Instance.ListWeaponNormalSO.Add(item);
                     }
@@ -83,9 +92,10 @@ public class HomeScenePanel : MonoBehaviour
     public void OnClickedStartButton()
     {
         this.panelHandHolderCtrl.gameObject.SetActive(true);
-        this.itemHolderCtrl.SetActiveRandomZone();
         this.timerRemainCtrl.RunTime();
-        this.playerBasicMovement.CanMove = true;
+
+        ItemHolderCtrl.instance.SetActiveRandomZone();
+        PlayerBasicCtrl.instance.PlayerMovement.CanMove = true;
 
     }
 }

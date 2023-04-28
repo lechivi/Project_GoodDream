@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ItemHolderZone : MonoBehaviour
 {
-    [SerializeField] private PanelItemCtrl panelItemCtrl;
-
     public List<WeaponNormalSO> ListItem = new List<WeaponNormalSO>();
     public List<WeaponNormalSO> SelectedItems = new List<WeaponNormalSO>();
 
@@ -31,8 +29,20 @@ public class ItemHolderZone : MonoBehaviour
 
     public void SetActivePanelItemCtrl()
     {
-        this.panelItemCtrl.gameObject.SetActive(true);
-        this.panelItemCtrl.SetItemFromZone(this.SelectedItems);
-        this.panelItemCtrl.Zone = this;
+        if (UIManager.HasInstance)
+        {
+            PanelItemCtrl panelItemCtrl = UIManager.Instance.HomeScenePanel.PanelItemCtrl;
+            panelItemCtrl.gameObject.SetActive(true);
+            panelItemCtrl.SetItemFromZone(this.SelectedItems);
+            panelItemCtrl.Zone = this;
+
+            if (!UIManager.Instance.GuideCtrl.FirstDragToHand)
+            {
+                UIManager.Instance.GuideCtrl.FirstDragToHand = true;
+                UIManager.Instance.GuideCtrl.SetActiveGuideDragToHand();
+                UIManager.Instance.HomeScenePanel.TimerRemainCtrl.PauseTime();
+            }
+        }
+
     }
 }

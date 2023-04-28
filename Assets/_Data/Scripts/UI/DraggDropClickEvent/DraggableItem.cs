@@ -32,8 +32,7 @@ public class DraggableItem : Draggable
 
     public override void OnDrag(PointerEventData eventData)
     {
-        //base.OnDrag(eventData);
-        transform.position = Input.mousePosition;
+        base.OnDrag(eventData);
     }
 
     public override void OnEndDrag(PointerEventData eventData)

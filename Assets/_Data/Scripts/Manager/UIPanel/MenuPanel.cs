@@ -43,9 +43,10 @@ public class MenuPanel : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         if (UIManager.HasInstance)
         {
-            UIManager.Instance.ActiveMenuPanel(false);
+            UIManager.Instance.ActiveHomeScenePanel(true);
             //UIManager.Instance.ActiveLoadingPanel(true);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            UIManager.Instance.ActiveMenuPanel(false);
         }
 
         if (AudioManager.HasInstance)

@@ -10,6 +10,7 @@ public class PlayerMovement : PlayerAbstract
     public MovementState MovementState { get; set; }
     public bool IsFacingRight;
     public bool IsUseJoystic;
+    public bool CanMove = true;
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -26,9 +27,42 @@ public class PlayerMovement : PlayerAbstract
         }
     }
 
+    private void Start()
+    {
+        if (UIManager.HasInstance)
+        {
+            if (!UIManager.Instance.GuideCtrl.FirstOpenInventory)
+            {
+                this.CanMove = false;
+                UIManager.Instance.GuideCtrl.FirstOpenInventory = true;
+                UIManager.Instance.GuideCtrl.SetActiveGuideOpenInventory();
+            }
+        }
+    }
+
     private void Update()
     {
         this.UpdateAnimation();
+
+        if (UIManager.HasInstance)
+        {
+            if (UIManager.Instance.GuideCtrl.GuideShow)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    this.CanMove = true;
+                    UIManager.Instance.GuideCtrl.GuideShow = false;
+                    UIManager.Instance.GuideCtrl.SetFalseGuide();
+                    UIManager.Instance.HomeScenePanel.TimerRemainCtrl.RunTime();
+                }
+                this.movement = Vector2.zero;
+                this.MovementState = MovementState.Idle;
+                return;
+            }
+        }
+
+        if (!this.CanMove) return;
+
         if (this.MovementState == MovementState.Death) return;
 
         this.movement.x = Input.GetAxisRaw("Horizontal");

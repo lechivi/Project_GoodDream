@@ -7,27 +7,31 @@ public class UIManager : BaseManager<UIManager>
     [SerializeField] private MenuPanel menuPanel;
     [SerializeField] private SettingPanel settingPanel;
     [SerializeField] private LoadingPanel loadingPanel;
+    [SerializeField] private HomeScenePanel homeScenePanel;
     [SerializeField] private GamePanel gamePanel;
     [SerializeField] private PausePanel pausePanel;
     [SerializeField] private LosePanel losePanel;
     [SerializeField] private VictoryPanel victoryPanel;
     [SerializeField] private NotificationPanel notificationPanel;
+    [SerializeField] private GuideCtrl guideCtrl;
     [SerializeField] private Canvas canvas;
 
     public MenuPanel MenuPanel => this.menuPanel;
     public SettingPanel SettingPanel => this.settingPanel;
     public LoadingPanel LoadingPanel => this.loadingPanel;
+    public HomeScenePanel HomeScenePanel => this.homeScenePanel;
     public GamePanel GamePanel => this.gamePanel;
     public PausePanel PausePanel => this.pausePanel;
     public LosePanel LosePanel => this.losePanel;
     public VictoryPanel VictoryPanel => this.victoryPanel;
-    public NotificationPanel NotificationPanel => this.notificationPanel;
+    public GuideCtrl GuideCtrl => this.guideCtrl;
 
     private void Start()
     {
         this.ActiveMenuPanel(true);
         this.ActiveSettingPanel(false);
         this.ActiveLoadingPanel(false);
+        this.ActiveHomeScenePanel(false);
         this.ActiveGamePanel(false);
         this.ActivePausePanel(false);
         this.ActiveLosePanel(false);
@@ -60,6 +64,11 @@ public class UIManager : BaseManager<UIManager>
     public void ActiveLoadingPanel(bool active)
     {
         this.loadingPanel.gameObject.SetActive(active);
+    }
+
+    public void ActiveHomeScenePanel(bool active)
+    {
+        this.homeScenePanel.gameObject.SetActive(active);
     }
 
     public void ActiveGamePanel(bool active)

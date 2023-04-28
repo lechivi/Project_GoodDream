@@ -41,6 +41,7 @@ public class LoadingPanel : MonoBehaviour
                     asyncOperation.allowSceneActivation = true;
                     if (UIManager.HasInstance)
                     {
+                        UIManager.Instance.ActiveHomeScenePanel(false);
                         UIManager.Instance.ActiveGamePanel(true);
                         UIManager.Instance.ActiveLoadingPanel(false);
                     }

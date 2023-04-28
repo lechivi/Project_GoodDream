@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemHolderCtrl : MonoBehaviour
 {
+    public static ItemHolderCtrl instance;
     [SerializeField] private List<ItemHolderZone> zones = new List<ItemHolderZone>();
 
     [SerializeField] private List<ItemHolderZone> activeZones = new List<ItemHolderZone>();
@@ -12,6 +13,8 @@ public class ItemHolderCtrl : MonoBehaviour
 
     private void Awake()
     {
+        ItemHolderCtrl.instance = this;
+
         if (this.zones.Count == 0)
         {
             foreach (Transform child in transform)

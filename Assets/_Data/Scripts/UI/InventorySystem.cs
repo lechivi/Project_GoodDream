@@ -59,9 +59,13 @@ public class InventorySystem : MonoBehaviour
 
     public void OnEnable()
     {
-        this.EquipWeaponInventory(PlayerManager.Instance.CurrentWeapon);
-        this.CreateListWeapon();
-        this.EquipWeaponInventory(0);
+        if (this.listWeaponPanel.transform.childCount == 0)
+        {
+            this.EquipWeaponInventory(PlayerManager.Instance.CurrentWeapon);
+            this.CreateListWeapon();
+            this.EquipWeaponInventory(0);
+        }
+
     }
 
     public void CreateListWeapon()

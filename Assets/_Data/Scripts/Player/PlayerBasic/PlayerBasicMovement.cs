@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PlayerBasicMovement : MonoBehaviour
 {
-    [SerializeField] private TimerRemainCtrl timerRemainCtrl;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Animator reactionAnimator;
     public MovementState MovementState { get; set; }
     public bool IsFacingRight;
-    public bool CanMove = true;
+    public bool CanMove = false;
 
     private PlayerBasicHolder playerBasicHolder;
     private Rigidbody2D rb;
@@ -28,16 +27,34 @@ public class PlayerBasicMovement : MonoBehaviour
         this.playerAnimator = transform.Find("UnitRoot").GetComponent<Animator>();
 
         this.originScale = transform.localScale;
-
         this.reactionAnimator.gameObject.SetActive(false);
     }
 
     private void Update()
     {
+        this.UpdateAnimation();
+
         if (!this.CanMove)
         {
             this.movement = Vector2.zero;
+            this.MovementState = MovementState.Idle;
             return;
+        }
+
+        if (UIManager.HasInstance)
+        {
+            if (UIManager.Instance.GuideCtrl.GuideShow)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    UIManager.Instance.GuideCtrl.GuideShow = false;
+                    UIManager.Instance.GuideCtrl.SetFalseGuide();
+                    UIManager.Instance.HomeScenePanel.TimerRemainCtrl.RunTime();
+                }
+                this.movement = Vector2.zero;
+                this.MovementState = MovementState.Idle;
+                return;
+            }
         }
 
         if (Time.timeScale == 0f ) return;
@@ -48,7 +65,6 @@ public class PlayerBasicMovement : MonoBehaviour
         this.MovementState = this.movement == Vector2.zero ? MovementState.Idle : MovementState.Run;
 
         this.Facing();
-        this.UpdateAnimation();
 
         if (this.isEnterZoneItem && Input.GetKeyDown(KeyCode.E))
         {
@@ -56,11 +72,9 @@ public class PlayerBasicMovement : MonoBehaviour
             {
                 this.itemHolderZone.SetActivePanelItemCtrl();
             }
-            this.timerRemainCtrl.PauseTime();
-
             if (UIManager.HasInstance)
             {
-                UIManager.Instance.NotificationPanel.NotificationHUD.HideText();
+                UIManager.Instance.HomeScenePanel.TimerRemainCtrl.PauseTime();
             }
         }
 
@@ -121,7 +135,12 @@ public class PlayerBasicMovement : MonoBehaviour
 
             if (UIManager.HasInstance)
             {
-                UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Press E", 5f);
+                if (!UIManager.Instance.GuideCtrl.FirstPressE)
+                {
+                    UIManager.Instance.GuideCtrl.FirstPressE = true;
+                    UIManager.Instance.GuideCtrl.SetActiveGuidePressE();
+                    UIManager.Instance.HomeScenePanel.TimerRemainCtrl.PauseTime();
+                }
             }
         }
 
@@ -130,13 +149,13 @@ public class PlayerBasicMovement : MonoBehaviour
         {
             this.isEnterDreamBook = true;
 
-            if (UIManager.HasInstance)
-            {
-                if (playerBasicHolder != null && playerBasicHolder.HolderItems.Count == 2 && (playerBasicHolder.HolderItems[0] != null || playerBasicHolder.HolderItems[1] != null))
-                {
-                    UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Press E", 5f);
-                }
-            }
+            //if (UIManager.HasInstance)
+            //{
+            //    if (playerBasicHolder != null && playerBasicHolder.HolderItems.Count == 2 && (playerBasicHolder.HolderItems[0] != null || playerBasicHolder.HolderItems[1] != null))
+            //    {
+            //        UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Press E", 5f);
+            //    }
+            //}
         }
     }
 
@@ -148,22 +167,12 @@ public class PlayerBasicMovement : MonoBehaviour
             this.reactionAnimator.gameObject.SetActive(false);
             this.isEnterZoneItem = false;
             this.itemHolderZone = null;
-
-            if (UIManager.HasInstance)
-            {
-                UIManager.Instance.NotificationPanel.NotificationHUD.HideText();
-            }
         }
 
         DreamBookScript dreamBook = collision.gameObject.GetComponent<DreamBookScript>();
         if (dreamBook != null)
         {
             this.isEnterDreamBook = false;
-
-            if (UIManager.HasInstance)
-            {
-                UIManager.Instance.NotificationPanel.NotificationHUD.HideText();
-            }
         }
     }
 }

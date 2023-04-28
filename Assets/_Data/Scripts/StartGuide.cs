@@ -9,7 +9,7 @@ public class StartGuide : MonoBehaviour
     {
         if (UIManager.HasInstance)
         {
-            UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Press Pause Button to open your inventory!", 30f);
+            //UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Press Pause Button to open your inventory!", 30f);
         }
     }
 
