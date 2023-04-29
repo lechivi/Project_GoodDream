@@ -10,6 +10,17 @@ public class MenuPanel : MonoBehaviour
     [SerializeField] private GameObject howToPlayImage;
     [SerializeField] private Animator animatorTransition;
 
+    public void OnClickedTutorialButton()
+    {
+        SceneManager.LoadScene(2);
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.ActiveMenuPanel(false);
+            UIManager.Instance.ActiveGamePanel(true);
+        }
+
+    }
+
     public void OnClickedNewGameButton()
     {
         StartCoroutine(this.PlayButton());

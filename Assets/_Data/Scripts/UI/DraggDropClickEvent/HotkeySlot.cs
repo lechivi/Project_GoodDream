@@ -34,7 +34,7 @@ public class HotkeySlot : MonoBehaviour, IDropHandler, IPointerClickHandler
             //    //Debug.Log(vector.x + " " + vector.y);
             //    if (vector.y != transform.GetSiblingIndex())
             //    {
-            //        transform.parent.GetChild((int)vector.y).GetComponent<HotkeySlot>().RemoveFromHotkeys();
+            //        transform.parentModel.GetChild((int)vector.y).GetComponent<HotkeySlot>().RemoveFromHotkeys();
             //        Debug.Log("Remove");
             //    }
             //}

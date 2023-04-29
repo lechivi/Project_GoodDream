@@ -13,12 +13,12 @@ public class ObstacleDamageRemote : MonoBehaviour
 
         this.animator.SetTrigger("Remote");
     }
-    public void TurnOnTarget() //Call in animation frame
+    public void TurnOnTarget() //Call in animation Frame
     {
         this.obstacle.IsShowTrap = true;
     }
 
-    public void TurnOffTarget() //Call in animation frame
+    public void TurnOffTarget() //Call in animation Frame
     {
         this.obstacle.IsShowTrap = false;
     }

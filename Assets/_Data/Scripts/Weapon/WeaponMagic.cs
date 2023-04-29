@@ -112,7 +112,7 @@ public class WeaponMagic : Weapon
         this.animator.SetTrigger("Attack");
     }
 
-    public void ShootFrameAnimation() //Call at a shoot frame in animation
+    public void ShootFrameAnimation() //Call at a shoot Frame in animation
     {
         this.ShootBulletSpell();
     }
@@ -155,7 +155,7 @@ public class WeaponMagic : Weapon
         //For overrite
     }
 
-    public void EnemyShootFrameAnimation() //Call at a shoot frame in animation (enemy)
+    public void EnemyShootFrameAnimation() //Call at a shoot Frame in animation (enemy)
     {
         foreach (Transform child in this.shootPoints)
         {

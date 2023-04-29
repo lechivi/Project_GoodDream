@@ -19,7 +19,8 @@ public class LoadingPanel : MonoBehaviour
     {
         yield return null;
 
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Scene_Level1_Forest"); //TODO: Change it when done design game
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Scene_Tutorial"); //TODO: Change it when done design game
+        //AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Scene_Level1_Forest"); //TODO: Change it when done design game
         asyncOperation.allowSceneActivation = false;
         while (!asyncOperation.isDone)
         {

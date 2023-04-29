@@ -8,6 +8,7 @@ public class UIManager : BaseManager<UIManager>
     [SerializeField] private SettingPanel settingPanel;
     [SerializeField] private LoadingPanel loadingPanel;
     [SerializeField] private HomeScenePanel homeScenePanel;
+    [SerializeField] private TutorialScenePanel tutorialScenePanel;
     [SerializeField] private GamePanel gamePanel;
     [SerializeField] private PausePanel pausePanel;
     [SerializeField] private LosePanel losePanel;
@@ -19,6 +20,7 @@ public class UIManager : BaseManager<UIManager>
     public SettingPanel SettingPanel => this.settingPanel;
     public LoadingPanel LoadingPanel => this.loadingPanel;
     public HomeScenePanel HomeScenePanel => this.homeScenePanel;
+    public TutorialScenePanel TutorialScenePanel => this.tutorialScenePanel;
     public GamePanel GamePanel => this.gamePanel;
     public PausePanel PausePanel => this.pausePanel;
     public LosePanel LosePanel => this.losePanel;
@@ -68,6 +70,11 @@ public class UIManager : BaseManager<UIManager>
     public void ActiveHomeScenePanel(bool active)
     {
         this.homeScenePanel.gameObject.SetActive(active);
+    }
+
+    public void ActiveTutorialScenePanel(bool active)
+    {
+        this.tutorialScenePanel.gameObject.SetActive(active);
     }
 
     public void ActiveGamePanel(bool active)

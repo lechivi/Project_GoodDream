@@ -43,6 +43,8 @@ public class PlayerMovement : PlayerAbstract
 
     private void Update()
     {
+        if (this.rb.bodyType == RigidbodyType2D.Static) return;
+
         this.UpdateAnimation();
 
         if (UIManager.HasInstance)
@@ -87,6 +89,8 @@ public class PlayerMovement : PlayerAbstract
 
     private void FixedUpdate()
     {
+        if (this.rb.bodyType == RigidbodyType2D.Static) return;
+
         this.rb.MovePosition(this.rb.position + this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
         //if (!this.IsUseJoystic)
         //{

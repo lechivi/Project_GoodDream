@@ -6,13 +6,17 @@ public class PlayerManager : BaseManager<PlayerManager>
     [SerializeField] private List<GameObject> listWeaponObj = new List<GameObject>();
 
     public List<GameObject> ListWeaponObj { get => this.listWeaponObj; set => this.listWeaponObj = value; }
-
     public List<WeaponNormalSO> ListWeaponNormalSO = new List<WeaponNormalSO>();
     public List<int> Hotkeys = new List<int>();
 
-    public int CurrentWeapon = 0;
+    public CharacterSO CharacterSO;
+    public int MaxHealth;
+    public int MaxMana;
+    public float ReloadSpeed;
 
+    public int CurrentWeapon = 0;
     public bool Test;
+
     protected override void Awake()
     {
         base.Awake();
@@ -22,6 +26,20 @@ public class PlayerManager : BaseManager<PlayerManager>
             this.ListWeaponNormalSO.Clear();
         }
         
+    }
+
+    public void SetPlayerModel(CharacterSO characterSO)
+    {
+        this.CharacterSO = characterSO;
+        this.MaxHealth = characterSO.maxHealth;
+        this.MaxMana = characterSO.maxMana;
+        this.ReloadSpeed = characterSO.reloadSpeed;
+
+        GameObject playerObj = GameObject.Find("Player");
+        if (playerObj != null)
+        {
+            playerObj.GetComponent<PlayerCtrl>().PlayerModel.SetPlayerModel(characterSO);
+        }
     }
 
     public void CreateListWeapon()
@@ -45,42 +63,6 @@ public class PlayerManager : BaseManager<PlayerManager>
 
         if (canEvo)
         {
-            //int rateTotal1 = (int)item.rateMagicFire + (int)item.rateMagicLightning;
-            //int rateTotal2 = (int)item.rateMagicFire + (int)item.rateMagicLightning + (int)item.rateMagicPoison;
-            //int rateTotal3 = (int)item.rateMagicFire + (int)item.rateMagicLightning + (int)item.rateMagicPoison + (int)item.rateMagicIce;
-
-            //int rateMagic = Random.Range(0, 100);
-
-            //if (item.rateMagicFire != 0 && rateMagic < item.rateMagicFire)
-            //{
-            //    Debug.Log($"Fire: {rateMagic}/{item.rateMagicFire}");
-            //    return this.MagicWeapon(item, MagicType.Fire);
-            //}
-
-            //if (item.rateMagicLightning != 0 && (item.rateMagicFire <= rateMagic && rateMagic < rateTotal1))
-            //{
-            //    Debug.Log($"Lightning: {rateMagic}/{rateTotal1}");
-            //    return this.MagicWeapon(item, MagicType.Lightning);
-            //}
-
-            //if (item.rateMagicPoison != 0 && (rateTotal1 <= rateMagic && rateMagic < rateTotal2))
-            //{
-            //    Debug.Log($"Poison: {rateMagic}/{rateTotal2}");
-            //    return this.MagicWeapon(item, MagicType.Poison);
-            //}
-
-            //if (item.rateMagicIce != 0 && (rateTotal2 <= rateMagic && rateMagic < rateTotal3))
-            //{
-            //    Debug.Log($"Ice: {rateMagic}/{rateTotal3}");
-            //    return this.MagicWeapon(item, MagicType.Ice);
-            //}
-
-            //if (rateTotal3 <= rateMagic)
-            //{
-            //    Debug.Log($"Normal: {rateMagic} > {rateTotal3}");
-            //    return this.MagicWeapon(item, MagicType.None);
-            //}
-
             float[] percentages = { item.rateMagicFire, item.rateMagicLightning, item.rateMagicIce, item.rateMagicPoison };
             int indexMagic = RandomPercent(percentages);
 

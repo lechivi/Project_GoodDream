@@ -33,10 +33,18 @@ public class BulletScript : MonoBehaviour
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy") && collision.gameObject.CompareTag("EnemyBattle") && gameObject.CompareTag("PlayerWeapon"))
         {
             EnemyLife enemyLife = collision.gameObject.GetComponent<EnemyLife>();
-            if (enemyLife.Health <= 0) return;
-            enemyLife.TakeDamage(Damage);
+            if (enemyLife != null)
+            {
+                if (enemyLife.Health <= 0) return;
+                enemyLife.TakeDamage(Damage);
 
-            this.WeaponParent.SpawnDamageText(Damage, collision, enemyLife.EnemyCtrl.NeverFlip.transform, IsCritical);
+                this.WeaponParent.SpawnDamageText(Damage, collision, enemyLife.EnemyCtrl.NeverFlip.transform, IsCritical);
+            }
+            else
+            {
+                this.WeaponParent.SpawnDamageText(Damage, collision, collision.transform, IsCritical);
+            }
+
             this.HitSomething(collision);
         }
     }

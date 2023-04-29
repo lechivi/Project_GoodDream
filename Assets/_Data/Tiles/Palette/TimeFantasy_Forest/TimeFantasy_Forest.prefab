@@ -5434,7 +5434,7 @@ Tilemap:
       - {fileID: 698574336, guid: 29a216846268bb54fa7b30e00633062d, type: 3}
       - {fileID: -285581804, guid: 29a216846268bb54fa7b30e00633062d, type: 3}
       - {fileID: 470745139, guid: 29a216846268bb54fa7b30e00633062d, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 1
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -7, y: -19, z: 0}
@@ -7753,7 +7753,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &7097709002398239811
+--- !u!114 &5145623117671617792
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

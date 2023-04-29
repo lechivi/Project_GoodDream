@@ -10,14 +10,16 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] private PlayerMagic playerMagic;
     [SerializeField] private WeaponParent weaponParent;
     [SerializeField] private NeverFlip neverFlip;
+    [SerializeField] private PlayerModel playerModel;
     [SerializeField] private Animator playerAnimator;
 
     public PlayerMovement PlayerMovement => this.playerMovement;
     public PlayerLife PlayerLife => this.playerLife;
     public PlayerMagic PlayerMagic => this.playerMagic;
+    public PlayerModel PlayerModel => this.playerModel;
     public WeaponParent WeaponParent => this.weaponParent;
     public NeverFlip NeverFlip => this.neverFlip;
-    public Animator PlayerAnimator => this.playerAnimator;
+    public Animator PlayerAnimator { get => this.playerAnimator; set => this.playerAnimator = value; }
 
     private void Awake()
     {
@@ -26,9 +28,10 @@ public class PlayerCtrl : MonoBehaviour
         this.playerMovement = GetComponentInChildren<PlayerMovement>();
         this.playerLife = GetComponentInChildren<PlayerLife>();
         this.playerMagic = GetComponentInChildren<PlayerMagic>();
+        this.playerModel = GetComponentInChildren<PlayerModel>();
+        this.playerAnimator = this.playerModel.GetComponentInChildren<Animator>();
         this.weaponParent = GetComponentInChildren<WeaponParent>();
         this.neverFlip = GetComponentInChildren<NeverFlip>();
-        this.playerAnimator = transform.Find("UnitRoot").GetComponent<Animator>();
 
         this.neverFlip.Target = transform;
     }
