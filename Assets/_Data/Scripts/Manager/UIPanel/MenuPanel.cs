@@ -9,13 +9,14 @@ public class MenuPanel : MonoBehaviour
     [SerializeField] private GameObject howToPlayButton;
     [SerializeField] private GameObject howToPlayImage;
     [SerializeField] private Animator animatorTransition;
-    public void OnStartButtonClick()
+
+    public void OnClickedNewGameButton()
     {
         StartCoroutine(this.PlayButton());
    
     }
 
-    public void OnSettingButtonClick()
+    public void OnClickedSettingButton()
     {
         if (UIManager.HasInstance)
         {
@@ -23,6 +24,13 @@ public class MenuPanel : MonoBehaviour
         }
     }
 
+    public void OnClickedQuitButton()
+    {
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.EndGame();
+        }
+    }
     public void OnClickedHowToPlayButton()
     {
         //this.howToPlayImage.SetActive(true);

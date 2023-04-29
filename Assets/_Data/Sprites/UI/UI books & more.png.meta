@@ -4946,7 +4946,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OtherRibbon_Dark_0
+      name: Ribbon_0_Dark
       rect:
         serializedVersion: 2
         x: 80
@@ -4987,6 +4987,153 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Ribbon_0_Bright
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 192
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ef8441e4a34a4442ad956b9e8199ca7
+      internalID: -1214628983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ribbon_Bright_10
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13905212bfdd5ff4f92ca01040fa8210
+      internalID: -2091963623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ribbon_Dark_10
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 127
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fadbf4159fa93eb4a90e451863e0ed6a
+      internalID: 1583458718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ribbon_Red_10
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7566a4bc268f1b24a95766a8cb9eb6f4
+      internalID: -1136125409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ribbon_Black_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f19b4e3738f3ba42b59c17a398a884a
+      internalID: -1404041237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ribbon_Green_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de84ade84f677d344b5e96dc57c54abb
+      internalID: -1159650180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ribbon_Yellow_10
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 32
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 8, z: 16, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40e34a54a2740cc4aa9c2a372564c15c
+      internalID: -766685586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -5007,6 +5154,7 @@ TextureImporter:
       UI books & more_80: -1963078444
       UI books & more_228: 392469865
       UI books & more_96: 1384831399
+      Ribbon_Black_10: -1404041237
       OtherRibbon_Red_4: -1993840322
       UI books & more_163: 1541736590
       OtherRibbon_Bright_3: -48132241
@@ -5028,8 +5176,8 @@ TextureImporter:
       UI books & more_216: -1996121113
       OtherRibbon_Dark_3: -967071153
       UI books & more_157: 349722403
-      UI books & more_65: 1512355830
       UI books & more_167: 1904956188
+      UI books & more_65: 1512355830
       UI books & more_93: -573654532
       UI books & more_154: 1920818436
       UI books & more_5: -70151150
@@ -5038,6 +5186,7 @@ TextureImporter:
       UI books & more_183: -1073511522
       UI books & more_118: -1400401237
       UI books & more_187: -782640305
+      Ribbon_Yellow_10: -766685586
       UI books & more_148: 981932957
       UI books & more_85: 384943459
       UI books & more_109: 2123044606
@@ -5050,6 +5199,7 @@ TextureImporter:
       UI books & more_150: 617314017
       UI books & more_53: 1747018729
       UI books & more_207: -1804931039
+      Ribbon_Red_10: -1136125409
       UI books & more_185: 1005807760
       UI books & more_130: -1216081617
       UI books & more_155: -1717130301
@@ -5090,10 +5240,12 @@ TextureImporter:
       UI books & more_226: -1274196856
       UI books & more_99: 1671962269
       UI books & more_133: -1295047957
+      Ribbon_Dark_11: 936406592
       UI books & more_153: 1894919509
       UI books & more_194: -1336633911
       UI books & more_137: -1857937149
       Paper_9: 2107463527
+      Ribbon_Dark_10: 1583458718
       UI books & more_14: -353932622
       UI books & more_59: 1132246086
       UI books & more_158: 2069072768
@@ -5128,7 +5280,7 @@ TextureImporter:
       UI books & more_203: -472730364
       OtherRibbon_Red_3: 297301350
       UI books & more_145: -1832577100
-      OtherRibbon_Dark_0: 2013169948
+      UI books & more_217: 854512079
       UI books & more_149: 270858168
       UI books & more_89: -802010306
       UI books & more_173: 1632703857
@@ -5139,7 +5291,7 @@ TextureImporter:
       UI books & more_156: 803316151
       UI books & more_72: -1793637002
       UI books & more_179: -322245938
-      UI books & more_217: 854512079
+      Ribbon_0_Bright: -1214628983
       UI books & more_224: 1190092670
       UI books & more_230: 460824179
       Paper_12: 519746063
@@ -5158,8 +5310,9 @@ TextureImporter:
       UI books & more_225: 1780744562
       OtherRibbon_Yellow_3: -10316282
       UI books & more_199: -213533292
-      Icon_Map: -1252791599
+      Ribbon_Bright_10: -2091963623
       UI books & more_35: 924536178
+      Icon_Map: -1252791599
       Paper_8: 1665609852
       UI books & more_104: 1472783059
       UI books & more_81: 1488534223
@@ -5182,6 +5335,7 @@ TextureImporter:
       Ribbon_3_Bright: -66697059
       Paper_6: -746518745
       OtherRibbon_Black_3: 1236425403
+      Ribbon_Green_10: -1159650180
       UI books & more_166: 495550508
       UI books & more_169: -747534817
       Paper_3: 1259994001
@@ -5195,6 +5349,7 @@ TextureImporter:
       UI books & more_101: -185685957
       UI books & more_171: -2136102789
       OtherRibbon_Red_1: 511835966
+      Ribbon_0_Dark: 2013169948
       UI books & more_79: -363976966
       UI books & more_184: -568837082
       UI books & more_209: -174034460
@@ -5210,6 +5365,7 @@ TextureImporter:
       UI books & more_20: -1803077205
       UI books & more_55: -1644604361
       Book_Red: 979652161
+      Ribbon_Bright_11: -174262520
       UI books & more_112: -1970417300
       UI books & more_28: 617348971
       UI books & more_174: -1595077584
