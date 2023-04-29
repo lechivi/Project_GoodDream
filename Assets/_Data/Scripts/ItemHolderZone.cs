@@ -36,11 +36,15 @@ public class ItemHolderZone : MonoBehaviour
             panelItemCtrl.SetItemFromZone(this.SelectedItems);
             panelItemCtrl.Zone = this;
 
-            if (!UIManager.Instance.GuideCtrl.FirstDragToHand)
+            if (UIManager.HasInstance)
             {
-                UIManager.Instance.GuideCtrl.FirstDragToHand = true;
-                UIManager.Instance.GuideCtrl.SetActiveGuideDragToHand();
-                UIManager.Instance.HomeScenePanel.TimerRemainCtrl.PauseTime();
+                GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.DragToHand);
+                if (guidePopup != null && !guidePopup.First)
+                {
+                    guidePopup.First = true;
+                    UIManager.Instance.GuideCtrl.SetTrueGuide(guidePopup);
+                    UIManager.Instance.HomeScenePanel.TimerRemainCtrl.PauseTime();
+                }
             }
         }
 

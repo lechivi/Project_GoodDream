@@ -12,7 +12,6 @@ public class UIManager : BaseManager<UIManager>
     [SerializeField] private PausePanel pausePanel;
     [SerializeField] private LosePanel losePanel;
     [SerializeField] private VictoryPanel victoryPanel;
-    [SerializeField] private NotificationPanel notificationPanel;
     [SerializeField] private GuideCtrl guideCtrl;
     [SerializeField] private Canvas canvas;
 
@@ -89,11 +88,6 @@ public class UIManager : BaseManager<UIManager>
     public void ActiveVictoryPanel(bool active)
     {
         this.victoryPanel.gameObject.SetActive(active);
-    }
-
-    public void ActiveNotificationPanel(bool active)
-    {
-        this.notificationPanel.gameObject.SetActive(active);
     }
 
     private void OnLevelWasLoaded(int level)

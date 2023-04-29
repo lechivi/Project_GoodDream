@@ -2,87 +2,81 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Guide
+{
+    PressE,
+    DragToHand,
+    FullHand,
+    OpenInv,
+    InvLeft,
+    InvRight,
+}
+
+[System.Serializable]
+public class GuidePopup
+{
+    public GameObject GuideObj;
+    public Guide EnumGuide;
+    public bool First;
+    public bool GuideShow;
+}
+
 public class GuideCtrl : MonoBehaviour
 {
+    [SerializeField] private List<GuidePopup> listGuide = new List<GuidePopup>();
     [SerializeField] private GameObject dimed;
-    [SerializeField] private GameObject pressE;
-    [SerializeField] private GameObject dragToHand;
-    [SerializeField] private GameObject fullHand;
-    [SerializeField] private GameObject openInventory;
 
-    public bool GuideShow;
-    public bool FirstPressE;
-    public bool FirstDragToHand;
-    public bool FirstFullHand;
-    public bool FirstOpenInventory;
+    public List<GuidePopup> ListGuide => this.listGuide;
 
     private int activeGuide;
 
-    private void Awake()
+    public GuidePopup GetGuide(Guide guide)
     {
-        //this.dimed.SetActive(false);
-        //this.SetActiveGuidePressE(false);
-        //this.SetActiveGuideDragToHand(false);
-        //this.SetActiveGuideFullHand(false);
-        //this.SetActiveGuideOpenInventory(false);
-    }
+        foreach (GuidePopup guidePopup in listGuide)
+        {
+            if (guidePopup.EnumGuide == guide)
+            {
+                return guidePopup;
+            }
+        }
 
-    public void SetActiveGuidePressE()
-    {
-        this.GuideShow = true;
-        this.activeGuide = 0;
-        this.dimed.SetActive(true);
-        this.pressE.SetActive(true);
+        return null;
     }
-
-    public void SetActiveGuideDragToHand()
+    public void SetTrueGuide(Guide guide)
     {
-        this.GuideShow = true;
-        this.activeGuide = 1;
-        this.dimed.SetActive(true);
-        this.dragToHand.SetActive(true);
-    }
-
-    public void SetActiveGuideFullHand()
+        foreach(GuidePopup guidePopup in listGuide)
+        {
+            if (guidePopup.EnumGuide == guide)
+            {
+                guidePopup.GuideObj.SetActive(true);
+                guidePopup.GuideShow = true;
+                this.activeGuide = this.listGuide.IndexOf(guidePopup);
+                this.dimed.SetActive(true);
+                break;
+            }
+        }
+    }  
+    
+    public void SetTrueGuide(GuidePopup guidePopup)
     {
-        this.GuideShow = true;
-        this.activeGuide = 2;
-        this.dimed.SetActive(true);
-        this.fullHand.SetActive(true);
-    }
-
-    public void SetActiveGuideOpenInventory()
-    {
-        this.GuideShow = true;
-        this.activeGuide = 3;
-        this.dimed.SetActive(true);
-        this.openInventory.SetActive(true);
+        foreach(GuidePopup guide in listGuide)
+        {
+            if (guide == guidePopup)
+            {
+                guide.GuideObj.SetActive(true);
+                guidePopup.GuideShow = true;
+                this.activeGuide = this.listGuide.IndexOf(guide);
+                this.dimed.SetActive(true);
+                break;
+            }
+        }
     }
 
     public void SetFalseGuide()
     {
-        switch (this.activeGuide)
-        {
-            case 0:
-                this.pressE.SetActive(false);
-                break;
-
-            case 1:
-                this.dragToHand.SetActive(false);
-                break;
-
-            case 2:
-                this.fullHand.SetActive(false);
-                break;
-
-            case 3:
-                this.openInventory.SetActive(false);
-                break;
-
-            case -1:
-                break;
-        }
-        this.activeGuide = -1;
+        this.listGuide[this.activeGuide].GuideObj.SetActive(false);
+        this.listGuide[this.activeGuide].GuideShow = false;
         this.dimed.SetActive(false);
+        this.activeGuide = -1;
     }
 }

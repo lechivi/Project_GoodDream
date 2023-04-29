@@ -19,11 +19,11 @@ MonoBehaviour:
   type: 0
   tier: 0
   weaponPrefab: {fileID: 4471092910613085602, guid: 7c64f6fdc8fd40c48b3c964e804895a2, type: 3}
-  rateEvo: 50
+  rateEvo: 0.5
   rateMagicFire: 0
-  rateMagicLightning: 20
+  rateMagicLightning: 0.2
   rateMagicPoison: 0
-  rateMagicIce: 20
+  rateMagicIce: 0.2
   evolutionWeapon:
   - {fileID: 11400000, guid: 3b62c6ad69cf9944baf22f3d846dd0f7, type: 2}
   - {fileID: 11400000, guid: e2937101c2a16d34cafef8fdfa07f680, type: 2}

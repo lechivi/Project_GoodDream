@@ -21,13 +21,7 @@ public class PlayerManager : BaseManager<PlayerManager>
             this.listWeaponObj.Clear();
             this.ListWeaponNormalSO.Clear();
         }
-        //if (this.Hotkeys.Count == 0)
-        //{
-        //    for (int i =0; i <5; i++)
-        //    {
-        //        this.Hotkeys.Add(-1);
-        //    }
-        //}
+        
     }
 
     public void CreateListWeapon()
@@ -46,51 +40,90 @@ public class PlayerManager : BaseManager<PlayerManager>
 
     private GameObject EvolutionWeapon(WeaponNormalSO item)
     {
-        int rateEvo = Random.Range(0, 100);
+        float rateEvo = Random.value;
         bool canEvo = rateEvo < item.rateEvo ? true : false;
 
         if (canEvo)
         {
-            int rateTotal1 = (int)item.rateMagicFire + (int)item.rateMagicLightning;
-            int rateTotal2 = (int)item.rateMagicFire + (int)item.rateMagicLightning + (int)item.rateMagicPoison;
-            int rateTotal3 = (int)item.rateMagicFire + (int)item.rateMagicLightning + (int)item.rateMagicPoison + (int)item.rateMagicIce;
+            //int rateTotal1 = (int)item.rateMagicFire + (int)item.rateMagicLightning;
+            //int rateTotal2 = (int)item.rateMagicFire + (int)item.rateMagicLightning + (int)item.rateMagicPoison;
+            //int rateTotal3 = (int)item.rateMagicFire + (int)item.rateMagicLightning + (int)item.rateMagicPoison + (int)item.rateMagicIce;
 
-            int rateMagic = Random.Range(0, 100);
+            //int rateMagic = Random.Range(0, 100);
 
-            if (item.rateMagicFire != 0 && rateMagic < item.rateMagicFire)
+            //if (item.rateMagicFire != 0 && rateMagic < item.rateMagicFire)
+            //{
+            //    Debug.Log($"Fire: {rateMagic}/{item.rateMagicFire}");
+            //    return this.MagicWeapon(item, MagicType.Fire);
+            //}
+
+            //if (item.rateMagicLightning != 0 && (item.rateMagicFire <= rateMagic && rateMagic < rateTotal1))
+            //{
+            //    Debug.Log($"Lightning: {rateMagic}/{rateTotal1}");
+            //    return this.MagicWeapon(item, MagicType.Lightning);
+            //}
+
+            //if (item.rateMagicPoison != 0 && (rateTotal1 <= rateMagic && rateMagic < rateTotal2))
+            //{
+            //    Debug.Log($"Poison: {rateMagic}/{rateTotal2}");
+            //    return this.MagicWeapon(item, MagicType.Poison);
+            //}
+
+            //if (item.rateMagicIce != 0 && (rateTotal2 <= rateMagic && rateMagic < rateTotal3))
+            //{
+            //    Debug.Log($"Ice: {rateMagic}/{rateTotal3}");
+            //    return this.MagicWeapon(item, MagicType.Ice);
+            //}
+
+            //if (rateTotal3 <= rateMagic)
+            //{
+            //    Debug.Log($"Normal: {rateMagic} > {rateTotal3}");
+            //    return this.MagicWeapon(item, MagicType.None);
+            //}
+
+            float[] percentages = { item.rateMagicFire, item.rateMagicLightning, item.rateMagicIce, item.rateMagicPoison };
+            int indexMagic = RandomPercent(percentages);
+
+            switch (indexMagic)
             {
-                Debug.Log($"Fire: {rateMagic}/{item.rateMagicFire}");
-                return this.MagicWeapon(item, MagicType.Fire);
-            }
-
-            if (item.rateMagicLightning != 0 && (item.rateMagicFire <= rateMagic && rateMagic < rateTotal1))
-            {
-                Debug.Log($"Lightning: {rateMagic}/{rateTotal1}");
-                return this.MagicWeapon(item, MagicType.Lightning);
-            }
-
-            if (item.rateMagicPoison != 0 && (rateTotal1 <= rateMagic && rateMagic < rateTotal2))
-            {
-                Debug.Log($"Poison: {rateMagic}/{rateTotal2}");
-                return this.MagicWeapon(item, MagicType.Poison);
-            }
-
-            if (item.rateMagicIce != 0 && (rateTotal2 <= rateMagic && rateMagic < rateTotal3))
-            {
-                Debug.Log($"Ice: {rateMagic}/{rateTotal3}");
-                return this.MagicWeapon(item, MagicType.Ice);
-            }
-
-            if (rateTotal3 <= rateMagic)
-            {
-                Debug.Log($"Normal: {rateMagic} > {rateTotal3}");
-                return this.MagicWeapon(item, MagicType.None);
+                case 0:
+                    return this.MagicWeapon(item, MagicType.Fire);
+                case 1:
+                    return this.MagicWeapon(item, MagicType.Lightning);     
+                case 2:
+                    return this.MagicWeapon(item, MagicType.Ice);
+                case 3:
+                    return this.MagicWeapon(item, MagicType.Poison);
+                case 4:
+                    return this.MagicWeapon(item, MagicType.None);
+                case -1:
+                    Debug.Log("Error evo magic");
+                    break;
             }
         }
-
-        Debug.Log("_____________" + item.weaponName);
         return item.weaponPrefab;
     }
+
+    private int RandomPercent(float[] percentages)
+    {
+        float sum = 0;
+        for (int i = 0; i < percentages.Length; i++)
+        {
+            if (percentages[i] < 0) return -1;
+            sum += percentages[i];
+        }
+        if (sum > 1) return -1;
+
+        float cumulativeProbability = 0;
+        float random = Random.value;
+        for (int i = 0; i < percentages.Length; i++)
+        {
+            cumulativeProbability += percentages[i];
+            if (random < cumulativeProbability) return i;
+        }
+        return percentages.Length;
+    }
+
 
     private GameObject MagicWeapon(WeaponNormalSO item, MagicType type)
     {
@@ -109,7 +142,6 @@ public class PlayerManager : BaseManager<PlayerManager>
         else
         {
             int random = Random.Range(0, powers.Count);
-            Debug.Log("_____________" + powers[random].weaponName);
             return powers[random].weaponPrefab;
         }
     }

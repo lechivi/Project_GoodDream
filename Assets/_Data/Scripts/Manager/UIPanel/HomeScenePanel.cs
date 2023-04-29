@@ -36,16 +36,33 @@ public class HomeScenePanel : MonoBehaviour
 
                 if (UIManager.HasInstance)
                 {
-                    if (!UIManager.Instance.GuideCtrl.FirstFullHand)
+                    GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.FullHand);
+                    if (guidePopup != null && !guidePopup.First)
                     {
-                        UIManager.Instance.GuideCtrl.FirstFullHand = true;
-                        UIManager.Instance.GuideCtrl.SetActiveGuideFullHand();
+                        guidePopup.First = true;
+                        UIManager.Instance.GuideCtrl.SetTrueGuide(guidePopup);
                         UIManager.Instance.HomeScenePanel.TimerRemainCtrl.PauseTime();
                     }
                 }
+
+                
             }
 
         }
+
+        if (UIManager.HasInstance)
+        {
+            GuidePopup guidePopupDragToHand = UIManager.Instance.GuideCtrl.GetGuide(Guide.DragToHand);
+            GuidePopup guidePopupFullHand = UIManager.Instance.GuideCtrl.GetGuide(Guide.FullHand);
+            if (guidePopupDragToHand.GuideShow || guidePopupFullHand.GuideShow)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    UIManager.Instance.GuideCtrl.SetFalseGuide();
+                }
+            }
+        }
+            
 
         if ((this.timerRemainCtrl.TimeOut || Input.GetKeyDown(KeyCode.L)) && !this.check)
         {

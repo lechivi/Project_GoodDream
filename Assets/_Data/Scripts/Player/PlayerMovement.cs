@@ -31,11 +31,12 @@ public class PlayerMovement : PlayerAbstract
     {
         if (UIManager.HasInstance)
         {
-            if (!UIManager.Instance.GuideCtrl.FirstOpenInventory)
+            GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.OpenInv);
+            if (guidePopup != null && !guidePopup.First)
             {
                 this.CanMove = false;
-                UIManager.Instance.GuideCtrl.FirstOpenInventory = true;
-                UIManager.Instance.GuideCtrl.SetActiveGuideOpenInventory();
+                guidePopup.First = true;
+                UIManager.Instance.GuideCtrl.SetTrueGuide(guidePopup);
             }
         }
     }
@@ -46,12 +47,12 @@ public class PlayerMovement : PlayerAbstract
 
         if (UIManager.HasInstance)
         {
-            if (UIManager.Instance.GuideCtrl.GuideShow)
+            GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.OpenInv);
+            if (guidePopup.GuideShow)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     this.CanMove = true;
-                    UIManager.Instance.GuideCtrl.GuideShow = false;
                     UIManager.Instance.GuideCtrl.SetFalseGuide();
                     UIManager.Instance.HomeScenePanel.TimerRemainCtrl.RunTime();
                 }

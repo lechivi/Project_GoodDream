@@ -52,11 +52,6 @@ public class InventorySystem : MonoBehaviour
         InventorySystem.instance = this;
     }
 
-    private void Start()
-    {
-
-    }
-
     public void OnEnable()
     {
         if (this.listWeaponPanel.transform.childCount == 0)
@@ -64,6 +59,42 @@ public class InventorySystem : MonoBehaviour
             this.EquipWeaponInventory(PlayerManager.Instance.CurrentWeapon);
             this.CreateListWeapon();
             this.EquipWeaponInventory(0);
+        }
+    }
+
+    private void Start()
+    {
+        if (UIManager.HasInstance)
+        {
+            GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.InvRight);
+            if (guidePopup != null && !guidePopup.First)
+            {
+                guidePopup.First = true;
+                UIManager.Instance.GuideCtrl.SetTrueGuide(guidePopup);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (UIManager.HasInstance)
+        {
+            GuidePopup guidePopupInvRight = UIManager.Instance.GuideCtrl.GetGuide(Guide.InvRight);
+            GuidePopup guidePopupInvLeft = UIManager.Instance.GuideCtrl.GetGuide(Guide.InvLeft);
+            if (guidePopupInvRight.GuideShow || guidePopupInvLeft.GuideShow)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    UIManager.Instance.GuideCtrl.SetFalseGuide();
+
+                    GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.InvLeft);
+                    if (guidePopup != null && !guidePopup.First)
+                    {
+                        guidePopup.First = true;
+                        UIManager.Instance.GuideCtrl.SetTrueGuide(guidePopup);
+                    }
+                }
+            }
         }
 
     }
@@ -81,7 +112,6 @@ public class InventorySystem : MonoBehaviour
                 slot.GetComponentInChildren<WeaponTransferInfor>().WeaponSO = weapon.WeaponSO;
 
                 this.weaponsInventory.Add(slot);
-                Debug.Log(indexWeapon);
                 indexWeapon++;
             }
 
@@ -147,7 +177,7 @@ public class InventorySystem : MonoBehaviour
                 this.imageOrigin.SetNativeSize();
             }
             this.textNameOrigin.SetText(origin.weaponName);
-            this.textPercent.SetText(origin.rateEvo + "%");
+            this.textPercent.SetText((origin.rateEvo * 100) + "%");
 
             if (self.image != null)
             {
@@ -175,6 +205,7 @@ public class InventorySystem : MonoBehaviour
             }
         }
     }
+
     public void EquipWeaponInventory(int index)
     {
         for (int i = 0; i < this.weaponsInventory.Count; i++)

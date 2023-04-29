@@ -43,11 +43,11 @@ public class PlayerBasicMovement : MonoBehaviour
 
         if (UIManager.HasInstance)
         {
-            if (UIManager.Instance.GuideCtrl.GuideShow)
+            GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.PressE);
+            if (guidePopup.GuideShow)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    UIManager.Instance.GuideCtrl.GuideShow = false;
                     UIManager.Instance.GuideCtrl.SetFalseGuide();
                     UIManager.Instance.HomeScenePanel.TimerRemainCtrl.RunTime();
                 }
@@ -135,10 +135,11 @@ public class PlayerBasicMovement : MonoBehaviour
 
             if (UIManager.HasInstance)
             {
-                if (!UIManager.Instance.GuideCtrl.FirstPressE)
+                GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.PressE);
+                if (guidePopup != null && !guidePopup.First)
                 {
-                    UIManager.Instance.GuideCtrl.FirstPressE = true;
-                    UIManager.Instance.GuideCtrl.SetActiveGuidePressE();
+                    guidePopup.First = true;
+                    UIManager.Instance.GuideCtrl.SetTrueGuide(guidePopup);
                     UIManager.Instance.HomeScenePanel.TimerRemainCtrl.PauseTime();
                 }
             }
