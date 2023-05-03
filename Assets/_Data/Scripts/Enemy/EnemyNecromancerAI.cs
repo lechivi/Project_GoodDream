@@ -62,7 +62,7 @@ public class EnemyNecromancerAI : EnemyAI
     {
         this.MovementState = MovementState.Magic;
         this.usingWeapon.GetComponent<Animator>().SetTrigger("Magic");
-        this.isStopMove = true;
+        this.IsStopMove = true;
 
         int totalDeath = this.enemyCtrl.BattleZone.DeathZone.Count;
         int amount = this.isSummonAll ? totalDeath : (totalDeath < this.amountSummon ? totalDeath : this.amountSummon);
@@ -92,7 +92,7 @@ public class EnemyNecromancerAI : EnemyAI
         Instantiate(this.animationRaiseDeadPrefab, (Vector2)corpseObj.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.8f);
 
-        this.isStopMove = false;
+        this.IsStopMove = false;
         corpseObj.SetActive(false);
         this.enemyCtrl.BattleZone.DeathZone.Remove(corpseObj.GetComponent<EnemyCtrl>());
 

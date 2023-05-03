@@ -12,6 +12,7 @@ public class WeaponShooting : Weapon
     [SerializeField] protected int maxAmmo;
     [SerializeField] protected float reloadTime;
     [SerializeField] protected float bulletSpeed = 25f;
+    [SerializeField] protected float bulletLifeTime = 2f;
     [SerializeField] protected float fireRate = 4;
 
     [SerializeField] protected AudioClip fireAudio;
@@ -49,14 +50,15 @@ public class WeaponShooting : Weapon
 
         if (this.IsUsing && gameObject.CompareTag("PlayerWeapon") && this.weaponParent.PlayerCtrl.PlayerLife.Health > 0) 
         {
-            if (this.isReloading)
-            {
-                this.Reload();
-                return;
-            }
+            if (this.isReloading) return;
 
-            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (Input.GetMouseButton(0))
             {
+                if (UIManager.HasInstance)
+                {
+                    if (EventSystem.current.IsPointerOverGameObject()) return;
+                }
+
                 if (Time.time > this.waitForNextShot)
                 {
                     this.waitForNextShot = Time.time + 1f / this.fireRate;
@@ -64,11 +66,12 @@ public class WeaponShooting : Weapon
                     if (this.currentAmmo > 0)
                     {
                         this.currentAmmo--;
-                        this.Shoot();
+                        this.SetupShoot();
                     }
                     else
                     {
                         this.isReloading = true;
+                        this.Reload();
                     }
                 }
             }
@@ -76,6 +79,7 @@ public class WeaponShooting : Weapon
             if (Input.GetKeyDown(KeyCode.R) && this.currentAmmo < this.maxAmmo)
             {
                 this.isReloading = true;
+                this.Reload();
             }
 
             if (UIManager.HasInstance)
@@ -89,21 +93,25 @@ public class WeaponShooting : Weapon
        
     }
 
-    private void Reload()
+    protected void Reload()
     {
-        //if (AudioManager.HasInstance)
-        //{
-        //    AudioManager.Instance.PlaySE(this.reloadAudio);
-        //}
+        this.isReloading = true;
 
-        this.timerReload += Time.deltaTime;
+        if (AudioManager.HasInstance && this.reloadAudio != null)
+        {
+            AudioManager.Instance.PlaySFX(this.reloadAudio);
+        }
+
         if (UIManager.HasInstance)
         {
             UIManager.Instance.GamePanel.FirstMove.StartFillMove(this.timerReload, this.reloadTime);
         }
-        if (this.timerReload < this.reloadTime) return;
 
-        this.timerReload = 0;
+        Invoke("InvokeReload", this.reloadTime);
+    }
+
+    protected void InvokeReload()
+    {
         this.currentAmmo = this.maxAmmo;
         this.isReloading = false;
 
@@ -111,74 +119,84 @@ public class WeaponShooting : Weapon
         {
             WeaponParent.playerAmmoDelegate(this.currentAmmo, this.maxAmmo, true);
         }
+
     }
 
-    //private void InvokeReload()
-    //{
-    //    this.currentAmmo = this.maxAmmo;
-    //    this.isReloading = false;
-
-    //    if (UIManager.HasInstance)
-    //    {
-    //        WeaponParent.playerAmmoDelegate(this.currentAmmo, this.maxAmmo, true);
-    //    }
-
-    //}
-
-    private void Shoot()
+    protected virtual void SetupShoot()
     {
-        //if (AudioManager.HasInstance)
-        //{
-        //    AudioManager.Instance.PlaySE(this.fireAudio);
-        //}
+        GetComponentInChildren<Animator>().SetTrigger("Recoil");
+        this.Shoot();
+    }
+
+    public virtual void Shoot()
+    {
+        if (AudioManager.HasInstance && this.fireAudio != null)
+        {
+            AudioManager.Instance.PlaySFX(this.fireAudio);
+        }
 
         foreach (Transform child in this.shootPoints)
         {
             this.GetBullet(child);
         }
 
-        GetComponentInChildren<Animator>().SetTrigger("Recoil");
         if (UIManager.HasInstance)
         {
             WeaponParent.playerAmmoDelegate(this.currentAmmo, this.maxAmmo, true);
         }
     }
 
-    private GameObject GetBullet(Transform shootPoint)
+    protected GameObject GetBullet(Transform shootPoint)
     {
         int damage = this.GetRandomDamage();
         this.direction = 1 * (this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? 1 : -1);
-        //for (int i = 0; i < this.bulletClone.Count; i++)
-        //{
-        //    if (!this.bulletClone[i].activeInHierarchy)
-        //    {
-        //        this.bulletClone[i].name = "BulletClone_" + i;
-        //        this.bulletClone[i].SetActive(true);
-        //        this.bulletClone[i].transform.position = this.ShootPoint.position;
-        //        this.bulletClone[i].transform.rotation = this.holderItems.rotation;
-        //        this.bulletClone[i].transform.parentModel = this.spawnPool;
-        //        Rigidbody2D rbClone = bulletClone[i].GetComponent<Rigidbody2D>();
-        //        rbClone.bodyType = RigidbodyType2D.Dynamic;
-        //        rbClone.AddForce(direction * this.bulletClone[i].transform.right * this.bulletSpeed, ForceMode2D.Impulse);
-        //        return this.bulletClone[i];
-        //    }
-        //}
-        GameObject bulletObj = Instantiate(this.bulletPrefab, shootPoint.position, shootPoint.transform.rotation, this.weaponParent.SpawnPool);
-        bulletObj.tag = "PlayerWeapon";
-        bulletObj.layer = LayerMask.NameToLayer("Player");
+        
+        for (int i = 0; i < this.bulletClone.Count; i++)
+        {
+            if (!this.bulletClone[i].activeInHierarchy)
+            {
+                this.bulletClone[i].transform.position = shootPoint.position;
+                this.bulletClone[i].transform.rotation = shootPoint.rotation;
+                this.bulletClone[i].transform.parent = this.weaponParent.SpawnPool;
+                
+                BulletScript bulletScriptClone = this.bulletClone[i].GetComponent<BulletScript>();
+                bulletScriptClone.LifeTime = this.bulletLifeTime;
+                bulletScriptClone.WeaponParent = this.weaponParent;
+                bulletScriptClone.Damage = damage;
+                bulletScriptClone.IsCritical = damage == this.maxDamage;
 
-        BulletScript bulletScript = bulletObj.GetComponent<BulletScript>();
-        bulletScript.WeaponParent = this.weaponParent;
-        bulletScript.Damage = damage;
-        bulletScript.IsCritical = damage == this.maxDamage;
+                Vector2 scale = new Vector2(Mathf.Abs(bulletScriptClone.transform.localScale.x), bulletScriptClone.transform.localScale.y);
+                bulletScriptClone.transform.localScale = this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? new Vector2(-scale.x, scale.y) : scale;
 
-        Rigidbody2D rb = bulletObj.GetComponent<Rigidbody2D>();
+                this.bulletClone[i].SetActive(true);
+
+                Rigidbody2D rbClone = bulletClone[i].GetComponent<Rigidbody2D>();
+                rbClone.bodyType = RigidbodyType2D.Dynamic;
+                rbClone.AddForce(this.direction * this.bulletClone[i].transform.right * this.bulletSpeed, ForceMode2D.Impulse);
+
+                return this.bulletClone[i];
+            }
+        }
+        GameObject obj = Instantiate(this.bulletPrefab, shootPoint.position, shootPoint.rotation, this.weaponParent.SpawnPool);
+        obj.tag = "PlayerWeapon";
+        obj.layer = LayerMask.NameToLayer("Player");
+
+        BulletScript bullet = obj.GetComponent<BulletScript>();
+        bullet.LifeTime = this.bulletLifeTime;
+        bullet.WeaponParent = this.weaponParent;
+        bullet.Damage = damage;
+        bullet.IsCritical = damage == this.maxDamage;
+        bullet.transform.localScale = this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ?new Vector2(-bullet.transform.localScale.x, bullet.transform.localScale.y) : bullet.transform.localScale;
+        
+        obj.SetActive(true);
+
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.AddForce(this.direction * bulletObj.transform.right * this.bulletSpeed, ForceMode2D.Impulse);
+        rb.AddForce(this.direction * obj.transform.right * this.bulletSpeed, ForceMode2D.Impulse);
 
-        this.bulletClone.Add(bulletObj);
+        this.bulletClone.Add(obj);
 
-        return bulletObj;
+        return obj;
     }
 
     public override void EnemyUseWeapon()

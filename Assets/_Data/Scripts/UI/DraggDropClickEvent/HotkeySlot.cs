@@ -24,6 +24,11 @@ public class HotkeySlot : MonoBehaviour, IDropHandler, IPointerClickHandler
     public void OnDrop(PointerEventData eventData)
     {
         DraggableInventory draggableItem = eventData.pointerDrag.GetComponent<DraggableInventory>();
+        
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_STOREITEM);
+        }
 
         if (draggableItem != null)
         {

@@ -14,8 +14,8 @@ public class Weapon : MonoBehaviour
     public MagicType MagicType;
 
     public WeaponSO WeaponSO => this.weaponSO;
+    public bool IsUsing;
     public WeaponType WeaponType { get; set; }
-    public bool IsUsing { get; set; }
 
     protected WeaponParent weaponParent;
     protected SpriteRenderer spriteRenderer;

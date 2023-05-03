@@ -18,7 +18,7 @@ public static class AudioNameCreator
 
         CreateScript();
 
-        EditorUtility.DisplayDialog(FILENAME, "Creation completed!!!", "OK");
+        EditorUtility.DisplayDialog(FILENAME, "Creation completed!", "OK");
     }
 
     public static void CreateScript()
@@ -29,18 +29,18 @@ public static class AudioNameCreator
         builder.AppendLine("{");
 
         object[] bgmList = Resources.LoadAll("Audio/BGM");
-        object[] seList = Resources.LoadAll("Audio/SE");
+        object[] sfxList = Resources.LoadAll("Audio/SFX");
 
         foreach (AudioClip bgm in bgmList)
         {
-            builder.Append("\t").AppendFormat(@"public const string BGM_{0} = ""{1}"";", bgm.name.ToUpper(), bgm.name).AppendLine();
+            builder.Append("\t").AppendFormat(@"public const string {0} = ""{1}"";", bgm.name.ToUpper(), bgm.name).AppendLine();
         }
 
         builder.AppendLine("\t");
 
-        foreach (AudioClip se in seList)
+        foreach (AudioClip sfx in sfxList)
         {
-            builder.Append("\t").AppendFormat(@"public const string SE_{0} = ""{1}"";", se.name.ToUpper(), se.name).AppendLine();
+            builder.Append("\t").AppendFormat(@"public const string {0} = ""{1}"";", sfx.name.ToUpper(), sfx.name).AppendLine();
         }
 
         builder.AppendLine("}");

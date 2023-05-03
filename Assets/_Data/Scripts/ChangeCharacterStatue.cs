@@ -8,9 +8,17 @@ public class ChangeCharacterStatue : MonoBehaviour
 
     private void Update()
     {
-        if (this.isEnter && Input.GetKeyDown(KeyCode.E))
+        //if (UIManager.HasInstance)
+        //{
+        //    if (!UIManager.Instance.GuideCtrl.GuideShow)
+        //    {
+               
+        //    }
+        //}
+        
+        if (GameManager.HasInstance && UIManager.HasInstance)
         {
-            if (UIManager.HasInstance)
+            if (GameManager.Instance.IsPlaying && this.isEnter && Input.GetKeyDown(KeyCode.E))
             {
                 UIManager.Instance.ActiveTutorialScenePanel(true);
             }

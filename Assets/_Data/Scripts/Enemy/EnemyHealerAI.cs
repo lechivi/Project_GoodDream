@@ -54,7 +54,7 @@ public class EnemyHealerAI : EnemyAI
         {
             Debug.Log("Heal");
             this.isReadyHealSkill = false;
-            this.isStopMove = true;
+            this.IsStopMove = true;
             this.MovementState = MovementState.Idle;
             this.HealSkill();
         }
@@ -64,7 +64,7 @@ public class EnemyHealerAI : EnemyAI
             {
                 //Debug.Log("Hit Wall");
 
-                this.isStopMove = true;
+                this.IsStopMove = true;
                 this.MovementState = MovementState.Idle;
                 if (this.enemyPlayerDetector.PlayerInArea) //If Player in AreaDetector, Healer enemy facing to Player
                 {
@@ -169,7 +169,7 @@ public class EnemyHealerAI : EnemyAI
     private void EndHealSkill()
     {
         this.isStartCooldownHealSkill = true;
-        this.isStopMove = false;
+        this.IsStopMove = false;
     }
 
     protected override void UpdateAnimation()

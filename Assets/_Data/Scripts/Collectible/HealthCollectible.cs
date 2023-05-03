@@ -6,6 +6,7 @@ public class HealthCollectible : Collectible
 {
     protected override void Collect()
     {
+        base.Collect();
         target.gameObject.GetComponent<PlayerCollector>().CollectHealth(this.value);
     }
 

@@ -220,12 +220,14 @@ MonoBehaviour:
   criticalChance: 20
   speedAttack: 5
   MagicType: 0
+  IsUsing: 0
   shootPoints: []
   bulletClone: []
-  bulletPrefab: {fileID: 2872722887616609221, guid: 84b5f6f30f3aaaa49ad9d9df5494b7a0, type: 3}
+  bulletPrefab: {fileID: 2872722887616609221, guid: c8929045d7c394c48bf6b22f6826f94a, type: 3}
   maxAmmo: 1
   reloadTime: 0.5
-  bulletSpeed: 25
+  bulletSpeed: 7
+  bulletLifeTime: 0.3
   fireRate: 4
   fireAudio: {fileID: 0}
   reloadAudio: {fileID: 0}

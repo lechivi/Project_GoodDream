@@ -5,9 +5,11 @@ using UnityEngine;
 public class WeaponMelee : Weapon
 {
     [Header("MELEE SETTING")]
+    [SerializeField] protected bool haveSkill2;
     [SerializeField] protected float cooldownTimePrimaryMove;
     [SerializeField] protected float cooldownTimeSecondaryMove;
-
+    
+    protected Collider2D col;
     protected float timerPrimaryMove;
     protected float timerSecondaryMove;
     protected bool isReadyPrimaryMove;
@@ -59,7 +61,7 @@ public class WeaponMelee : Weapon
         }
     }
 
-    private void CooldownPrimaryMove()
+    protected void CooldownPrimaryMove()
     {
         this.timerPrimaryMove += Time.deltaTime;
         if (UIManager.HasInstance && this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
@@ -73,7 +75,7 @@ public class WeaponMelee : Weapon
         this.isStartCooldownPrimaryMove = false;
     }
 
-    private void CooldownSecondaryMove()
+    protected void CooldownSecondaryMove()
     {
         this.timerSecondaryMove += Time.deltaTime;
         if (UIManager.HasInstance && this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
@@ -95,6 +97,7 @@ public class WeaponMelee : Weapon
 
     protected virtual void InputSecondaryMove()
     {
+        if (!this.haveSkill2) return;
         //Only player use this method
         //for overrite
     }
@@ -128,13 +131,21 @@ public class WeaponMelee : Weapon
             else if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy") && collision.gameObject.CompareTag("EnemyBattle") && gameObject.CompareTag("PlayerWeapon"))
             {
                 EnemyLife enemyLife = collision.gameObject.GetComponent<EnemyLife>();
-                if (enemyLife.Health <= 0) return;
-
                 int damage = GetRandomDamage();
-                enemyLife.TakeDamage(damage);
+
+                if (enemyLife != null)
+                {
+                    if (enemyLife.Health <= 0) return;
+                    enemyLife.TakeDamage(damage);
+                    this.weaponParent.SpawnDamageText(damage, collision, enemyLife.EnemyCtrl.NeverFlip.transform, damage == this.maxDamage);
+                }
+                else
+                {
+                    this.weaponParent.SpawnDamageText(damage, collision, collision.transform, damage == this.maxDamage);
+
+                }
 
                 this.hitOpponents.Add(collision);
-                this.weaponParent.SpawnDamageText(damage, collision, enemyLife.EnemyCtrl.NeverFlip.transform, damage == this.maxDamage);
             }
         }
     }

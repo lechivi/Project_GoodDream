@@ -8,66 +8,66 @@ public class AudioManager : BaseManager<AudioManager>
 	private float bgmFadeSpeedRate = CONST.BGM_FADE_SPEED_RATE_HIGH;
 	//Next BGM name, SE name
 	private string nextBGMName;
-	private string nextSEName;
+	private string nextSFXName;
 
 	//Is the highlightBackground music fading out?
 	private bool isFadeOut = false;
 
 	//Separate audio sources for BGM and SE
 	public AudioSource AttachBGMSource;
-	public AudioSource AttachSESource;
+	public AudioSource AttachSFXSource;
 
-	//Keep All Audio
-	private Dictionary<string, AudioClip> bgmDic, seDic;
+    //Keep All Audio
+    private Dictionary<string, AudioClip> bgmDic, sfxDic;
 
 	protected override void Awake()
 	{
 		base.Awake();
 		//Load all SE & BGM files from resource folder
 		bgmDic = new Dictionary<string, AudioClip>();
-		seDic = new Dictionary<string, AudioClip>();
+		sfxDic = new Dictionary<string, AudioClip>();
 
 		object[] bgmList = Resources.LoadAll("Audio/BGM");
-		object[] seList = Resources.LoadAll("Audio/SE");
+		object[] sfxList = Resources.LoadAll("Audio/SFX");
 
 		foreach (AudioClip bgm in bgmList)
 		{
 			bgmDic[bgm.name] = bgm;
 		}
-		foreach (AudioClip se in seList)
+		foreach (AudioClip sfx in sfxList)
 		{
-			seDic[se.name] = se;
+			sfxDic[sfx.name] = sfx;
 		}
 	}
 
 	private void Start()
 	{
 		AttachBGMSource.volume = ObscuredPrefs.GetFloat(CONST.BGM_VOLUME_KEY, CONST.BGM_VOLUME_DEFAULT);
-		AttachSESource.volume = ObscuredPrefs.GetFloat(CONST.SE_VOLUME_KEY, CONST.SE_VOLUME_DEFAULT);
+		AttachSFXSource.volume = ObscuredPrefs.GetFloat(CONST.SFX_VOLUME_KEY, CONST.SFX_VOLUME_DEFAULT);
 		AttachBGMSource.mute = ObscuredPrefs.GetBool(CONST.BGM_MUTE_KEY, CONST.BGM_MUTE_DEFAULT);
-        AttachSESource.mute = ObscuredPrefs.GetBool(CONST.SE_MUTE_KEY, CONST.SE_MUTE_DEFAULT);
+        AttachSFXSource.mute = ObscuredPrefs.GetBool(CONST.SFX_MUTE_KEY, CONST.SFX_MUTE_DEFAULT);
     }
 
-	public void PlaySE(AudioClip audio)
+	public void PlaySFX(AudioClip audio)
 	{
-        AttachSESource.PlayOneShot(audio);
+        AttachSFXSource.PlayOneShot(audio);
     }
 
-	public void PlaySE(string seName, float delay = 0.0f)
+	public void PlaySFX(string sfxName, float delay = 0.0f)
 	{
-		if (!seDic.ContainsKey(seName))
+		if (!sfxDic.ContainsKey(sfxName))
 		{
-			Debug.Log(seName + "There is no SE named");
+			Debug.Log(sfxName + "There is no SFX named");
 			return;
 		}
 
-		nextSEName = seName;
-		Invoke("DelayPlaySE", delay);
+		nextSFXName = sfxName;
+		Invoke("DelayPlaySFX", delay);
 	}
 
-	private void DelayPlaySE()
+	private void DelayPlaySFX()
 	{
-		AttachSESource.PlayOneShot(seDic[nextSEName] as AudioClip);
+		AttachSFXSource.PlayOneShot(sfxDic[nextSFXName] as AudioClip);
 	}
 
 	public void PlayBGM(string bgmName, float fadeSpeedRate = CONST.BGM_FADE_SPEED_RATE_HIGH)
@@ -130,10 +130,10 @@ public class AudioManager : BaseManager<AudioManager>
 		ObscuredPrefs.SetFloat(CONST.BGM_VOLUME_KEY, BGMVolume);
 	}
 
-	public void ChangeSEVolume(float SEVolume)
+	public void ChangeSFXVolume(float SFXVolume)
 	{
-		AttachSESource.volume = SEVolume;
-		ObscuredPrefs.SetFloat(CONST.SE_VOLUME_KEY, SEVolume);
+		AttachSFXSource.volume = SFXVolume;
+		ObscuredPrefs.SetFloat(CONST.SFX_VOLUME_KEY, SFXVolume);
 	}
 
 	public void MuteBGM(bool isMute)
@@ -142,9 +142,9 @@ public class AudioManager : BaseManager<AudioManager>
         ObscuredPrefs.SetBool(CONST.BGM_MUTE_KEY, isMute);
     }
 
-	public void MuteSE(bool isMute)
+	public void MuteSFX(bool isMute)
 	{
-        AttachSESource.mute = isMute;
-        ObscuredPrefs.SetBool(CONST.SE_MUTE_KEY, isMute);
+        AttachSFXSource.mute = isMute;
+        ObscuredPrefs.SetBool(CONST.SFX_MUTE_KEY, isMute);
     }
 }

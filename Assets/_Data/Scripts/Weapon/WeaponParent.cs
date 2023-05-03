@@ -1,7 +1,5 @@
-//using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponParent : PlayerAbstract
@@ -51,10 +49,16 @@ public class WeaponParent : PlayerAbstract
     
     private void Start()
     {
-
         if (this.listWeapon.Count > 0)
         {
-            this.SetWeapon(0); //TODO: choose the weapon used at the last play
+            if (PlayerManager.HasInstance)
+            {
+                this.SetWeapon(PlayerManager.Instance.CurrentWeapon);
+            }
+            else
+            {
+                this.SetWeapon(0);
+            }
         }
     }
 
@@ -127,10 +131,10 @@ public class WeaponParent : PlayerAbstract
 
     public void SetWeapon(int indexWeapon)
     {
-        //if (AudioManager.HasInstance)
-        //{
-        //    AudioManager.Instance.PlaySE(this.swapWeaponAudio);
-        //}
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_EQUIP);
+        }
 
         if (indexWeapon >= this.listWeapon.Count)
             indexWeapon = 0;
@@ -151,23 +155,15 @@ public class WeaponParent : PlayerAbstract
             if (this.listWeapon[currentWeapon].WeaponType == WeaponType.Shooting)
             {
                 WeaponShooting weaponShooting = this.listWeapon[currentWeapon].GetComponent<WeaponShooting>();
-
                 playerAmmoDelegate(weaponShooting.CurrentAmmo, weaponShooting.MaxAmmo, true);
-                PlayerMagic.playerManaDelegate(this.playerCtrl.PlayerMagic.MaxMana, false);
-            }
 
-            else if (this.listWeapon[currentWeapon].MagicType != MagicType.None)
-            {
-                playerAmmoDelegate(1, 1, false);
-                PlayerMagic.playerManaDelegate(this.playerCtrl.PlayerMagic.Mana, true);
             }
-
             else
             {
                 playerAmmoDelegate(1, 1, false);
-                PlayerMagic.playerManaDelegate(this.playerCtrl.PlayerMagic.MaxMana, false);
             }
 
+            //PlayerMagic.playerManaDelegate(this.playerCtrl.PlayerMagic.Mana, this.playerCtrl.PlayerMagic.MaxMana);
             UIManager.Instance.GamePanel.FirstMove.ResetFillMove();
             UIManager.Instance.GamePanel.SecondMove.ResetFillMove();
         }
@@ -185,12 +181,11 @@ public class WeaponParent : PlayerAbstract
         damageTextObject.GetComponentInChildren<TextMesh>().fontSize = isCritical ? 75 : 50;
 
         //Debug.Log(damage, damageTextObject.gameObject);
-        StartCoroutine(DestroyDamageText(damageTextObject));
     }
 
-    protected virtual IEnumerator DestroyDamageText(GameObject damageTextObject)
-    {
-        yield return new WaitForSeconds(1f);
-        Destroy(damageTextObject);
-    }
+    //protected virtual IEnumerator DestroyDamageText(GameObject damageTextObject)
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    Destroy(damageTextObject);
+    //}
 }

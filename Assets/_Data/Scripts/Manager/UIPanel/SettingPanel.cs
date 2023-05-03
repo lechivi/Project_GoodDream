@@ -5,15 +5,24 @@ using UnityEngine.UI;
 
 public class SettingPanel : MonoBehaviour
 {
+    [Header("MAIN MENU")]
+    [SerializeField] private GameObject dimed;
+    [SerializeField] private GameObject popup;
     [SerializeField] private Slider bgmSlider;
-    [SerializeField] private Slider seSlider;
+    [SerializeField] private Slider sfxSlider;
     [SerializeField] private Toggle bgmMute;
-    [SerializeField] private Toggle seMute;
+    [SerializeField] private Toggle sfxMute;
+
+    [Header("ON GAME")]
+    [SerializeField] private Slider bgmSliderOG;
+    [SerializeField] private Slider sfxSliderOG;
+    [SerializeField] private Toggle bgmMuteOG;
+    [SerializeField] private Toggle sfxMuteOG;
 
     private float bgmValue;
-    private float seValue;
+    private float sfxValue;
     private bool isBGMMute;
-    private bool isSEMute;
+    private bool isSFXMute;
 
     private void Awake()
     {
@@ -30,25 +39,35 @@ public class SettingPanel : MonoBehaviour
         if (AudioManager.HasInstance)
         {
             this.bgmValue = AudioManager.Instance.AttachBGMSource.volume;
-            this.seValue = AudioManager.Instance.AttachSESource.volume;
+            this.sfxValue = AudioManager.Instance.AttachSFXSource.volume;
             this.bgmSlider.value = this.bgmValue;
-            this.seSlider.value = this.seValue;
+            this.sfxSlider.value = this.sfxValue;
+            this.bgmSliderOG.value = this.bgmValue;
+            this.sfxSliderOG.value = this.sfxValue;
 
             this.isBGMMute = AudioManager.Instance.AttachBGMSource.mute;
-            this.isSEMute = AudioManager.Instance.AttachSESource.mute;
+            this.isSFXMute = AudioManager.Instance.AttachSFXSource.mute;
             this.bgmMute.isOn = this.isBGMMute;
-            this.seMute.isOn = this.isSEMute;
+            this.sfxMute.isOn = this.isSFXMute;
+            this.bgmMuteOG.isOn = this.isBGMMute;
+            this.sfxMuteOG.isOn = this.isSFXMute;
         }
     }
 
-    public void OnSliderChangerBGMValue(float value)
+    public void SettingMainMenu(bool active)
+    {
+        this.dimed.SetActive(active);
+        this.popup.SetActive(active);
+    }
+
+    public void OnSliderChangeBGMValue(float value)
     {
         this.bgmValue = value;
     }
 
-    public void OnSliderChangeSEValue(float value)
+    public void OnSliderChangeSFXValue(float value)
     {
-        this.seValue = value;
+        this.sfxValue = value;
     }
 
     public void OnToggelMuteBGM(bool value)
@@ -56,13 +75,18 @@ public class SettingPanel : MonoBehaviour
         this.isBGMMute = value;
     }
 
-    public void OnToggelMuteSE(bool value)
+    public void OnToggelMuteSFX(bool value)
     {
-        this.isSEMute = value;
+        this.isSFXMute = value;
     }
 
     public void OnClickedCancelButton()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
         if (UIManager.HasInstance)
         {
             UIManager.Instance.ActiveSettingPanel(false);
@@ -81,14 +105,20 @@ public class SettingPanel : MonoBehaviour
     {
         if (AudioManager.HasInstance)
         {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
+        if (AudioManager.HasInstance)
+        {
             AudioManager.Instance.ChangeBGMVolume(this.bgmValue);
-            AudioManager.Instance.ChangeSEVolume(this.seValue);
+            AudioManager.Instance.ChangeSFXVolume(this.sfxValue);
             AudioManager.Instance.MuteBGM(this.isBGMMute);
-            AudioManager.Instance.MuteSE(this.isSEMute);
+            AudioManager.Instance.MuteSFX(this.isSFXMute);
         }
 
         if (UIManager.HasInstance)
         {
+            UIManager.Instance.SettingPanel.SettingMainMenu(false);
             UIManager.Instance.ActiveSettingPanel(false);
         }
 
@@ -99,5 +129,35 @@ public class SettingPanel : MonoBehaviour
                 UIManager.Instance.ActivePausePanel(true);
             }
         }
+    }  
+    
+    public void OnClickedSubmitButtonOG()
+    {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.ChangeBGMVolume(this.bgmValue);
+            AudioManager.Instance.ChangeSFXVolume(this.sfxValue);
+            AudioManager.Instance.MuteBGM(this.isBGMMute);
+            AudioManager.Instance.MuteSFX(this.isSFXMute);
+        }
+
+        //if (UIManager.HasInstance)
+        //{
+        //    UIManager.Instance.SettingPanel.SettingMainMenu(false);
+        //    UIManager.Instance.ActiveSettingPanel(false);
+        //}
+
+        //if (GameManager.HasInstance)
+        //{
+        //    if (!GameManager.Instance.IsPlaying && !UIManager.Instance.MenuPanel.gameObject.activeSelf)
+        //    {
+        //        UIManager.Instance.ActivePausePanel(true);
+        //    }
+        //}
     }
 }

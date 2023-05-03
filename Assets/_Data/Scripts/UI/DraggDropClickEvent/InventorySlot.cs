@@ -11,6 +11,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         DraggableInventory weaponSelect = eventData.pointerDrag.GetComponent<DraggableInventory>();
         DraggableInventory weaponToSwap = GetComponentInChildren<DraggableInventory>();
 
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_STOREITEM);
+        }
+
         if (weaponToSwap != null)
         {
             if (weaponSelect.IndexWeapon == weaponToSwap.IndexWeapon) return;

@@ -75,7 +75,7 @@ public class EnemySpawnerAI : EnemyAI
     protected virtual void SpawnEnemy()
     {
         this.MovementState = MovementState.Idle;
-        this.isStopMove = true;
+        this.IsStopMove = true;
 
         int amount = this.isRandomAmountSpawn ? Random.Range(this.amountSpawn, this.amountSpawn + 3) : this.amountSpawn;
         Instantiate(this.animationSummonerPrefab, (Vector2) transform.position + new Vector2(0, 0.3f), Quaternion.identity, this.enemyCtrl.NeverFlip.transform);
@@ -109,7 +109,7 @@ public class EnemySpawnerAI : EnemyAI
         Instantiate(this.animationSummonPrefab, spawnPosition + new Vector2(0, 0.3f), Quaternion.identity);
         yield return new WaitForSeconds(1f);
 
-        this.isStopMove = false;
+        this.IsStopMove = false;
         int typeEnemy = Random.Range(0, this.listSpawnEnemy.Count);
         GameObject newEnemy = Instantiate(this.listSpawnEnemy[typeEnemy], spawnPosition, Quaternion.identity, this.enemyCtrl.BattleZone.transform.Find("ListEnemy"));
         EnemyCtrl newEnemyCtrl = newEnemy.GetComponent<EnemyCtrl>();

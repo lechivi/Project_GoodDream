@@ -87,7 +87,7 @@ public class WeaponCtrl : MonoBehaviour
     {
         //if (AudioManager.HasInstance)
         //{
-        //    AudioManager.Instance.PlaySE(this.swapWeaponAudio);
+        //    AudioManager.Instance.PlaySFX(this.swapWeaponAudio);
         //}
 
         if (index >= this.listWeapon.Count)

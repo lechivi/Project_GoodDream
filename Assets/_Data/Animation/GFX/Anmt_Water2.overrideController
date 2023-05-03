@@ -1,0 +1,13 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Anmt_Water2
+  m_Controller: {fileID: 9100000, guid: 7c4adffbcea4787408f15c774a3b38fd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: b3b0e2a02713189439b46490cab5fbe5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 252f759227004b44580d05df5b526e3d, type: 2}

@@ -79,6 +79,10 @@ public class Collectible : MonoBehaviour
 
     protected virtual void Collect()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_COLLECT);
+        }
         //For overrite
     }
 }

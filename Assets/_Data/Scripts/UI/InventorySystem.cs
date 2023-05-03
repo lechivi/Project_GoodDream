@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
@@ -10,6 +11,7 @@ public class InventorySystem : MonoBehaviour
     public static InventorySystem instance;
 
     [Header("LEFT PAGE_Player Model")]
+    [SerializeField] private List<GameObject> playerModels;
     [SerializeField] private SpriteRenderer weaponModel;
 
     [Header("LEFT PAGE_Hotkeys")]
@@ -54,6 +56,15 @@ public class InventorySystem : MonoBehaviour
 
     public void OnEnable()
     {
+        if (PlayerManager.HasInstance)
+        {
+            string characterName = PlayerManager.Instance.CharacterSO.characterName;
+            foreach(GameObject characterObj in playerModels)
+            {
+                characterObj.SetActive(characterObj.name == characterName);
+            }
+        }
+
         if (this.listWeaponPanel.transform.childCount == 0)
         {
             this.EquipWeaponInventory(PlayerManager.Instance.CurrentWeapon);
@@ -81,7 +92,7 @@ public class InventorySystem : MonoBehaviour
         {
             GuidePopup guidePopupInvRight = UIManager.Instance.GuideCtrl.GetGuide(Guide.InvRight);
             GuidePopup guidePopupInvLeft = UIManager.Instance.GuideCtrl.GetGuide(Guide.InvLeft);
-            if (guidePopupInvRight.GuideShow || guidePopupInvLeft.GuideShow)
+            if (guidePopupInvRight.Show || guidePopupInvLeft.Show)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {

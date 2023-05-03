@@ -195,14 +195,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691699191656908760}
-  m_LocalRotation: {x: 0, y: 0, z: -0.5, w: 0.8660254}
+  m_LocalRotation: {x: 0, y: 0, z: -0.9659258, w: 0.2588191}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1691699192182726244}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -60}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -150}
 --- !u!1 &1691699191859671755
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,14 +226,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691699191859671755}
-  m_LocalRotation: {x: 0, y: 0, z: 0.5, w: 0.8660254}
+  m_LocalRotation: {x: 0, y: 0, z: -0.258819, w: 0.9659259}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1691699192182726244}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 60}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30}
 --- !u!1 &1691699191975098237
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,14 +257,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691699191975098237}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1691699192182726244}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &1691699192182726245
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,11 +420,14 @@ MonoBehaviour:
   criticalChance: 10
   speedAttack: 5
   MagicType: 0
+  IsUsing: 0
   shootPoints: []
-  bulletSpellPrefab: {fileID: 2872722887616609221, guid: 84b5f6f30f3aaaa49ad9d9df5494b7a0, type: 3}
+  bulletClone: []
+  bulletSpellPrefab: {fileID: 2872722887616609221, guid: 17f76aa945cce04499c2eb3f2b9fdc98, type: 3}
   manaCostAttack: 5
   manaCostSpell: 10
   spellSpeed: 5
+  spellLifeTime: 2
   cooldownTimeAttackMove: 0.25
   cooldownTimeSpellMove: 0.75
   healPrefab: {fileID: 2825329958206441427, guid: 66509c7d2bccf6c408b7e207c1155379, type: 3}

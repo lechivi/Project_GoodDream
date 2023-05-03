@@ -25,6 +25,7 @@ public class GamePanel : MonoBehaviour
     [SerializeField] private Joystick movementJoystick;
     public bool IsJoystick;
     public BlurringSliderFill HealthSlider => this.healthSlider;
+    public BlurringSliderFill ManaSlider => this.manaSlider;
     public Sprite Melee1 => this.melee1;
     public Sprite Melee2 => this.melee2;
     public Sprite Shooting => this.shooting;
@@ -33,16 +34,6 @@ public class GamePanel : MonoBehaviour
     public WeaponImageHandler FirstMove => this.firstMove;
     public WeaponImageHandler SecondMove => this.secondMove;
     public Joystick MovementJoystick => this.movementJoystick;
-
-    private int maxMana;
-
-    private void Awake()
-    {
-        if (GameManager.HasInstance)
-        {
-            this.maxMana = GameManager.Instance.MaxMana;
-        }
-    }
 
     private void Start()
     {
@@ -81,16 +72,9 @@ public class GamePanel : MonoBehaviour
         }
     }
 
-    private void OnPlayerMana(int value, bool isMagic)
+    private void OnPlayerMana(int value, int maxValue)
     {
-        if (isMagic)
-        {
-            this.manaSlider.SetActiveSlider(value, this.maxMana, true);
-        }
-        else
-        {
-            this.manaSlider.SetActiveSlider(1, 1, false);
-        }
+        this.manaSlider.SetActiveSlider(value, maxValue, true);
     }
 
     public void OnClickedPauseButton()
@@ -98,6 +82,7 @@ public class GamePanel : MonoBehaviour
         if (GameManager.HasInstance && UIManager.HasInstance)
         {
             GameManager.Instance.PauseGame();
+            UIManager.Instance.PausePanel.FullAllTab();
             UIManager.Instance.ActivePausePanel(true);
         }
     }

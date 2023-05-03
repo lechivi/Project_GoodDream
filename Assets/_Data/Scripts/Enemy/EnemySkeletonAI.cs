@@ -49,12 +49,12 @@ public class EnemySkeletonAI : EnemyAI
         {
             if (Vector2.Distance(transform.position, this.enemyPlayerDetector.Player.position) <= this.distanceAttack)
             {
-                this.isStopMove = true;
+                this.IsStopMove = true;
                 this.isColliderPlayer = true;
             }
             else
             {
-                this.isStopMove = false;
+                this.IsStopMove = false;
                 this.isColliderPlayer = false;
             }
 

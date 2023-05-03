@@ -44,7 +44,7 @@ public class PlayerBasicMovement : MonoBehaviour
         if (UIManager.HasInstance)
         {
             GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.PressE);
-            if (guidePopup.GuideShow)
+            if (guidePopup.Show)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -80,6 +80,11 @@ public class PlayerBasicMovement : MonoBehaviour
 
         if (this.isEnterDreamBook && Input.GetKeyDown(KeyCode.E))
         {
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySFX(AUDIO.SFX_STOREITEM);
+            }
+
             for (int i = 0; i < 2; i++)
             {
                 this.playerBasicHolder.TransferItem(i);
@@ -128,6 +133,11 @@ public class PlayerBasicMovement : MonoBehaviour
         ItemHolderZone itemHolderZone = collision.gameObject.GetComponent<ItemHolderZone>();
         if (itemHolderZone != null && itemHolderZone.SelectedItems.Count != 0)
         {
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySFX(AUDIO.SFX_DETECTITEM);
+            }
+
             this.reactionAnimator.gameObject.SetActive(true);
             this.reactionAnimator.Rebind();
             this.isEnterZoneItem = true;
@@ -148,6 +158,7 @@ public class PlayerBasicMovement : MonoBehaviour
         DreamBookScript dreamBook = collision.gameObject.GetComponent<DreamBookScript>();
         if (dreamBook != null)
         {
+            
             this.isEnterDreamBook = true;
 
             //if (UIManager.HasInstance)

@@ -1456,10 +1456,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef5182f2c8ad804fa7b99a27eeab26f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSO: {fileID: 0}
   minDamage: 1
   maxDamage: 5
   criticalChance: 10
   speedAttack: 5
+  MagicType: 0
   shootPoints: []
   bulletSpellPrefab: {fileID: 2872722887616609221, guid: 84b5f6f30f3aaaa49ad9d9df5494b7a0, type: 3}
   manaCostAttack: 5
@@ -1478,7 +1480,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2376937518369249807}
-  - component: {fileID: 2376937518369249793}
   - component: {fileID: 2376937518369249792}
   m_Layer: 8
   m_Name: EnemyAI
@@ -1505,32 +1506,6 @@ Transform:
   m_Father: {fileID: 2376937518649314674}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2376937518369249793
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2376937518369249804}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &2376937518369249792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1543,6 +1518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099de40f972835f4e8790c665bbd6a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contactDamage: 2
   moveSpeed: 4.5
   roamSpeed: 2
   roamRange: 3
@@ -1551,6 +1527,7 @@ MonoBehaviour:
   distanceAttack: 5
   detectionObstacleRadius: 2
   directionWeapon: 2
+  IsStopMove: 0
   healTextPrefab: {fileID: 3151799772814439233, guid: e45020c54e4e3704eb440a2d9dba890f, type: 3}
   animationHealPrefab: {fileID: 2825329958206441427, guid: 66509c7d2bccf6c408b7e207c1155379, type: 3}
   healAmout: 10
@@ -1671,9 +1648,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2376937518649314674}
   - component: {fileID: 2376937518649314675}
+  - component: {fileID: 4927233170986064152}
+  - component: {fileID: 4889953179830785846}
   m_Layer: 8
   m_Name: E_Forest_Healer
-  m_TagString: Untagged
+  m_TagString: ColliderWithWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1716,6 +1695,53 @@ MonoBehaviour:
   spawnerReward: {fileID: 2376937517458325650}
   neverFlip: {fileID: 2376937519100858074}
   enemyAnimator: {fileID: 7493733912576441115}
+--- !u!61 &4927233170986064152
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376937518649314672}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: d4ef3645edf028e4f91b08d4d0671136, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &4889953179830785846
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376937518649314672}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &2376937518794192182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,6 +1989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  OriginScale: {x: 0, y: 0, z: 0}
 --- !u!1 &2411562655141448822
 GameObject:
   m_ObjectHideFlags: 0

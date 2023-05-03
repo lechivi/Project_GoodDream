@@ -50,6 +50,10 @@ public class TabGroup : MonoBehaviour
 
     public void OnTabSelected(TabButtonNavigation button)
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_CHANGETAB);
+        }
         //if(this.selectedTab != null)
         //{
         //    foreach (TabButtonNavigation tabButton in this.tabButtons)

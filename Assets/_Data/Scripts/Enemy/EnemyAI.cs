@@ -17,6 +17,7 @@ public class EnemyAI : EnemyAbstract
     [SerializeField, Range(0, 2)] protected int directionWeapon; //1 for Melee, 2 for Range
 
     public MovementState MovementState { get; set; }
+    public bool IsStopMove;
 
     protected Collider2D col;
     protected Transform weapon;
@@ -28,7 +29,6 @@ public class EnemyAI : EnemyAbstract
     protected float timerAttack = 0;
     protected float delayContactDamage = 1;
     protected float timerContactDamage = 0;
-    protected bool isStopMove;
     protected bool isTargetPointSet;
     protected bool isReadyAttack = true;
     protected bool isWaiting;
@@ -40,7 +40,7 @@ public class EnemyAI : EnemyAbstract
     protected override void Awake()
     {
         base.Awake();
-        this.col = GetComponent<Collider2D>();
+        this.col = this.enemyCtrl.GetComponent<Collider2D>();
         this.enemyPlayerDetector = GetComponentInChildren<EnemyPlayerDetector>();
         this.weapon = transform.Find("WeaponParent").transform;
         this.usingWeapon = this.weapon.GetComponentInChildren<Weapon>();
@@ -103,7 +103,7 @@ public class EnemyAI : EnemyAbstract
 
     protected virtual void MoveToTarget(Vector2 target, float speed)
     {
-        if (this.isStopMove) return;
+        if (this.IsStopMove) return;
         this.enemyCtrl.transform.position = Vector2.MoveTowards(this.enemyCtrl.transform.position, target, speed * Time.deltaTime);
         this.MovementState = MovementState.Run;
     }

@@ -50,7 +50,7 @@ public class PlayerMovement : PlayerAbstract
         if (UIManager.HasInstance)
         {
             GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.OpenInv);
-            if (guidePopup.GuideShow)
+            if (guidePopup.Show)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {

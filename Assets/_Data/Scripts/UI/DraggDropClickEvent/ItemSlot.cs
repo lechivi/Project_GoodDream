@@ -11,6 +11,11 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         if (itemSelect.ParentAfterDrag == transform) return;
         DraggableItem itemToSwap = GetComponentInChildren<DraggableItem>();
 
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_STOREITEM);
+        }
+
         if (itemSelect.ParentPanel == itemToSwap.ParentPanel)
         {
             itemToSwap.SetParentAndPosition(itemSelect.ParentAfterDrag);

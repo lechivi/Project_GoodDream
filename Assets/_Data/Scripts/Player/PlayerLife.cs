@@ -14,25 +14,24 @@ public class PlayerLife : PlayerAbstract
     public int Health { get => this.health; set => this.health = value; }
     public int MaxHealth { get => this.maxHealth; set => this.health = value; }
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-    }
-
     private void Start()
     {
-        //this.health = PlayerPrefs.GetInt("PLayerHealth", this.maxHealth);
-        if (GameManager.HasInstance)
+        //this.health = PlayerPrefs.GetInt("PLayerHealth", this.MaxHealth);
+        if (PlayerManager.HasInstance)
         {
-            this.health = GameManager.Instance.CurrentHealth;
-            this.maxHealth = GameManager.Instance.MaxHealth;
+            this.health = PlayerManager.Instance.CurrentHealth;
+            this.maxHealth = PlayerManager.Instance.MaxHealth;
         }
     }
 
     public void TakeDamage(int damage)
     {
         if (this.health < 0) return;
+
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_PLAYERHIT);
+        }
 
         Debug.Log($"HP -{damage} ({this.health}/{this.maxHealth})");
         this.health -= damage;
@@ -42,9 +41,9 @@ public class PlayerLife : PlayerAbstract
             this.Die();
         }
         //PlayerPrefs.SetInt("PLayerHealth", this.health);
-        if (GameManager.HasInstance)
+        if (PlayerManager.HasInstance)
         {
-            GameManager.Instance.UpdateHealth(this.health);
+            PlayerManager.Instance.UpdateHealth(this.health);
             playerHealthDelegate(this.health, this.maxHealth);
         }
     }
@@ -58,9 +57,9 @@ public class PlayerLife : PlayerAbstract
         if (this.health > this.maxHealth)
             this.health = this.maxHealth;
         //PlayerPrefs.SetInt("PLayerHealth", this.health);
-        if (GameManager.HasInstance)
+        if (PlayerManager.HasInstance)
         {
-            GameManager.Instance.UpdateHealth(health);
+            PlayerManager.Instance.UpdateHealth(health);
             playerHealthDelegate(this.health, this.maxHealth);
         }
     }
@@ -68,15 +67,20 @@ public class PlayerLife : PlayerAbstract
     public void UpgradeMaxHealth(int amout)
     {
         this.maxHealth += amout;
-        if (GameManager.HasInstance)
+        if (PlayerManager.HasInstance)
         {
-            GameManager.Instance.UpdateMaxHealth(maxHealth);
+            PlayerManager.Instance.UpdateMaxHealth(maxHealth);
             playerHealthDelegate(this.health, this.maxHealth);
         }
     }
 
     private void Die()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_PLAYERDEATH);
+        }
+
         this.playerCtrl.PlayerMovement.MovementState = MovementState.Death;
         this.gameObject.layer = LayerMask.NameToLayer("Death");
         this.playerCtrl.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a7423093a97ad4b80cbd64249ee4c1, type: 3}
+  m_Name: SaveDataSO
+  m_EditorClassIdentifier: 
+  CurrentHealth: -1
+  MaxHealth: -1
+  CurrentMana: -1
+  MaxMana: -1
+  ReloadSpeed: -1
+  characterSO: {fileID: 0}
+  listWeapon: []
+  listHotkey: 
+  EquipWeapon: -1
+  CurrentScene: -1
+  StartPointLevel1: {x: 0, y: 0}
+  StartPointLevel2: {x: 0, y: 0}
+  StartPointLevel3: {x: 0, y: 0}
+  Saved: 0

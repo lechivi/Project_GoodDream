@@ -8,11 +8,27 @@ public class StaffHealWeapon : WeaponMagic
     [SerializeField] private GameObject healPrefab;
     [SerializeField] private int healAmount;
 
+    protected override void AttackMove()
+    {
+        this.isReadyAttackMove = false;
+        this.isStartCooldownAttackMove = true;
+
+        this.animator.SetTrigger("Attack");
+
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_MAGIC);
+        }
+    }
+
+    public void ShootFrameAnimation() //Call at a shoot Frame in animation
+    {
+        this.ShootBulletSpell(false);
+    }
+
     protected override void SpellMove()
     {
         this.HealSpell();
-        Debug.Log("Spell");
-
     }
 
     private void HealSpell()
@@ -20,6 +36,11 @@ public class StaffHealWeapon : WeaponMagic
         PlayerLife playerLife = this.weaponParent.PlayerCtrl.PlayerLife;
         if (playerLife.Health < playerLife.MaxHealth)
         {
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySFX(AUDIO.SFX_SKILL_HEAL);
+            }
+
             this.isReadySpellMove = false;
             this.isStartCooldownSpellMove = true;
 

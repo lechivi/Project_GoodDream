@@ -1126,6 +1126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  OriginScale: {x: 0, y: 0, z: 0}
 --- !u!1 &2493994924959105522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,14 +1305,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eeeddbb1b209364998fc1866b589e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSO: {fileID: 0}
   minDamage: 1
   maxDamage: 5
   criticalChance: 10
   speedAttack: 5
+  MagicType: 0
   cooldownTimePrimaryMove: 0
   cooldownTimeSecondaryMove: 0
-  slashEffectPrefab: {fileID: 0}
-  slashEffectPoint: {fileID: 0}
+  trail: {fileID: 2493994926205150477}
+  powerStabDistance: 1
+  powerStabDuration: 0.5
+  powerStabSpeed: 10
 --- !u!1 &2493994925923060099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,9 +1327,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2493994925923060096}
   - component: {fileID: 2493994925923060097}
+  - component: {fileID: -4435985739226391096}
+  - component: {fileID: -828873939860558259}
   m_Layer: 8
   m_Name: E_Forest_Melee
-  m_TagString: Untagged
+  m_TagString: ColliderWithWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1367,6 +1374,53 @@ MonoBehaviour:
   spawnerReward: {fileID: 2493994924637020248}
   neverFlip: {fileID: 2493994924783293507}
   enemyAnimator: {fileID: 0}
+--- !u!61 &-4435985739226391096
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2493994925923060099}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &-828873939860558259
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2493994925923060099}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1.5
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &2493994926088803771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1627,8 +1681,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 1}
-      key1: {r: 1, g: 0, b: 0, a: 1}
+      key0: {r: 0.79215693, g: 0.882353, b: 0.9450981, a: 1}
+      key1: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1672,7 +1726,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2493994926391649310}
-  - component: {fileID: 2493994926391649311}
   - component: {fileID: 2493994926391649309}
   m_Layer: 8
   m_Name: EnemyAI
@@ -1698,32 +1751,6 @@ Transform:
   m_Father: {fileID: 2493994925923060096}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2493994926391649311
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2493994926391649312}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &2493994926391649309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1736,14 +1763,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e93a4fe4defb440a94ef53370ea2b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contactDamage: 2
   moveSpeed: 5
   roamSpeed: 2
   roamRange: 3
   delayAttackTime: 1.25
   roamWaitingTime: 3
-  distanceAttack: 2.5
+  distanceAttack: 1.75
   detectionObstacleRadius: 2
   directionWeapon: 1
+  IsStopMove: 0
 --- !u!1 &2553725700558549886
 GameObject:
   m_ObjectHideFlags: 0

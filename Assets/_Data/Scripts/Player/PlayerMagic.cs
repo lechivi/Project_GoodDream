@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMagic : PlayerAbstract
 {
-    public delegate void PlayerMana(int manaCost, bool isMagic);
+    public delegate void PlayerMana(int manaCost, int MaxMana);
     public static PlayerMana playerManaDelegate;
 
     [SerializeField] private int mana;
@@ -15,10 +15,10 @@ public class PlayerMagic : PlayerAbstract
 
     private void Start()
     {
-        if (GameManager.HasInstance)
+        if (PlayerManager.HasInstance)
         {
-            this.mana = GameManager.Instance.CurrentMana;
-            this.maxMana = GameManager.Instance.MaxMana;
+            this.mana = PlayerManager.Instance.CurrentMana;
+            this.maxMana = PlayerManager.Instance.MaxMana;
         }
     }
 
@@ -32,10 +32,10 @@ public class PlayerMagic : PlayerAbstract
             this.mana = 0;
         }
 
-        if (GameManager.HasInstance)
+        if (PlayerManager.HasInstance)
         {
-            GameManager.Instance.UpdateMana(this.mana);
-            playerManaDelegate(this.mana, true);
+            PlayerManager.Instance.UpdateMana(this.mana);
+            playerManaDelegate(this.mana, this.maxMana);
         }
     }
 
@@ -45,10 +45,10 @@ public class PlayerMagic : PlayerAbstract
         if (this.mana > this.maxMana)
             this.mana = this.maxMana;
 
-        if (GameManager.HasInstance)
+        if (PlayerManager.HasInstance)
         {
-            GameManager.Instance.UpdateMana(this.mana);
-            playerManaDelegate(this.mana, true);
+            PlayerManager.Instance.UpdateMana(this.mana);
+            playerManaDelegate(this.mana, this.maxMana);
         }
     }
 }

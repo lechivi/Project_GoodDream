@@ -38,10 +38,10 @@ public class FinishLevel : MonoBehaviour
     {
         if (collision.CompareTag("ColliderWithWall") && collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            //if (AudioManager.HasInstance)
-            //{
-            //    AudioManager.Instance.PlaySE(AUDIO.SE_FINISH);
-            //}
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySFX(AUDIO.SFX_ENTERDOOR);
+            }
             this.levelComplete = true;
             collision.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         }
@@ -67,7 +67,7 @@ public class FinishLevel : MonoBehaviour
         {
             //Time.timeScale = 0f;
             UIManager.Instance.ActiveVictoryPanel(true);
-            //AudioManager.Instance.PlaySE(AUDIO.SE_VICTORY);
+            //AudioManager.Instance.PlaySFX(AUDIO.SE_VICTORY);
 
         }
         yield return new WaitForSeconds(this.transitionTime);

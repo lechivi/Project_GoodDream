@@ -92,6 +92,11 @@ public class BattleZone : MonoBehaviour
 
     private IEnumerator StartNewWave()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_SUMMON);
+        }
+
         this.enemiesInRoom.Clear();
         Debug.Log($"Wave {this.currentWave + 1}/{this.wave.Count}");
         yield return new WaitForSeconds(1f);

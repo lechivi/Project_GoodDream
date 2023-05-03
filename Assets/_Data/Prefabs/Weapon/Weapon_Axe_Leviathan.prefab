@@ -184,7 +184,9 @@ MonoBehaviour:
   maxDamage: 25
   criticalChance: 20
   speedAttack: 5
-  MagicType: 0
+  MagicType: 4
+  IsUsing: 0
+  haveSkill2: 1
   cooldownTimePrimaryMove: 0.5
   cooldownTimeSecondaryMove: 0.3
   trail: {fileID: 5985089919448825385}

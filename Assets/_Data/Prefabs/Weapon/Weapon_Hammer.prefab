@@ -185,6 +185,8 @@ MonoBehaviour:
   criticalChance: 20
   speedAttack: 5
   MagicType: 0
+  IsUsing: 0
+  haveSkill2: 0
   cooldownTimePrimaryMove: 0.5
   cooldownTimeSecondaryMove: 0.3
   trail: {fileID: 5985089919448825385}
@@ -245,7 +247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5985089919448825399}
   m_LocalRotation: {x: -0.0000000018933155, y: 0.0000000032104046, z: -0.70165473, w: 0.7125172}
-  m_LocalPosition: {x: 0.02, y: 0.38, z: 0}
+  m_LocalPosition: {x: 0.021, y: 0.286, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -297,7 +299,7 @@ TrailRenderer:
   m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.75
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -324,8 +326,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 1, b: 0.9335289, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0.07058824}
+      key0: {r: 0.79215693, g: 0.882353, b: 0.9450981, a: 1}
+      key1: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

@@ -1016,7 +1016,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2200297721313958764}
-  - component: {fileID: 2200297721313958766}
   - component: {fileID: 2200297721313958767}
   m_Layer: 8
   m_Name: EnemyAI
@@ -1042,32 +1041,6 @@ Transform:
   m_Father: {fileID: 2200297721532637483}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2200297721313958766
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2200297721313958765}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!114 &2200297721313958767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,6 +1062,7 @@ MonoBehaviour:
   distanceAttack: 2
   detectionObstacleRadius: 2
   directionWeapon: 2
+  IsStopMove: 0
   animationSummonPrefab: {fileID: 6550465794641270938, guid: b57b6439cb18f534692a8e1b53d6ecc5, type: 3}
   animationSummonerPrefab: {fileID: 4298829180468283279, guid: a125148cbe93f484ba12633e31c7c156, type: 3}
   listSpawnEnemy:
@@ -1280,9 +1254,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2200297721532637483}
   - component: {fileID: 2200297721532637482}
+  - component: {fileID: -1506783612179726000}
+  - component: {fileID: -7974561502990724985}
   m_Layer: 8
   m_Name: E_Dungeon_SpawnerMe
-  m_TagString: Untagged
+  m_TagString: ColliderWithWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1325,6 +1301,53 @@ MonoBehaviour:
   spawnerReward: {fileID: 2200297721051828272}
   neverFlip: {fileID: 2200297721892742278}
   enemyAnimator: {fileID: 4905329022781870736}
+--- !u!61 &-1506783612179726000
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2200297721532637480}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &-7974561502990724985
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2200297721532637480}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &2200297721892742276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,8 +1609,10 @@ MonoBehaviour:
   MagicType: 0
   cooldownTimePrimaryMove: 0
   cooldownTimeSecondaryMove: 0
-  slashEffectPrefab: {fileID: 0}
-  slashEffectPoint: {fileID: 0}
+  trail: {fileID: 0}
+  powerStabDistance: 1
+  powerStabDuration: 0.5
+  powerStabSpeed: 10
 --- !u!1 &2387323080855862887
 GameObject:
   m_ObjectHideFlags: 0

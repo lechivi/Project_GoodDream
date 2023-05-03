@@ -23,6 +23,11 @@ public class TimerRemainCtrl : MonoBehaviour
             }
             else
             {
+                if (AudioManager.HasInstance)
+                {
+                    AudioManager.Instance.PlaySFX(AUDIO.SFX_TIMEOUT);
+                }
+
                 this.timeText.SetText("Time to sleep!");
                 this.timeRemaining = 0;
                 this.isTimerRunning = false;

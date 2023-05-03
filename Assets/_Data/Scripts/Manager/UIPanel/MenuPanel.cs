@@ -6,9 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class MenuPanel : MonoBehaviour
 {
+    [SerializeField] private GameObject resumeButton;
     [SerializeField] private GameObject howToPlayButton;
     [SerializeField] private GameObject howToPlayImage;
     [SerializeField] private Animator animatorTransition;
+
+    private void OnEnable()
+    {
+        if (SaveLoadManager.HasInstance)
+        {
+            this.resumeButton.SetActive(SaveLoadManager.Instance.saveData.Saved);
+        }
+    }
+
+    public void OnClickedResumeButton()
+    {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+        if (SaveLoadManager.HasInstance)
+        {
+            if (!SaveLoadManager.Instance.saveData.Saved) return;
+        }
+        StartCoroutine(this.ResumeButton());
+    }
 
     public void OnClickedTutorialButton()
     {
@@ -23,20 +45,33 @@ public class MenuPanel : MonoBehaviour
 
     public void OnClickedNewGameButton()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
         StartCoroutine(this.PlayButton());
    
     }
 
     public void OnClickedSettingButton()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
         if (UIManager.HasInstance)
         {
             UIManager.Instance.ActiveSettingPanel(true);
+            UIManager.Instance.SettingPanel.SettingMainMenu(true);
         }
     }
 
     public void OnClickedQuitButton()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
         if (GameManager.HasInstance)
         {
             GameManager.Instance.EndGame();
@@ -67,10 +102,25 @@ public class MenuPanel : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             UIManager.Instance.ActiveMenuPanel(false);
         }
+    }
 
-        if (AudioManager.HasInstance)
+    private IEnumerator ResumeButton()
+    {
+        this.animatorTransition.Play("Crossfade_Start");
+
+        yield return new WaitForSeconds(1.5f);
+        if (UIManager.HasInstance)
         {
-            //AudioManager.Instance.PlayBGM(AUDIO.BGM_BGM_02, 0.5f);
+            UIManager.Instance.ActiveMenuPanel(false);
+            UIManager.Instance.ActiveGamePanel(true);
+        }
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.StartGame();
+        }
+        if (SaveLoadManager.HasInstance)
+        {
+            SaveLoadManager.Instance.Load();
         }
     }
 }

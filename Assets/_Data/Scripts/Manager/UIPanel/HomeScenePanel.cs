@@ -9,6 +9,7 @@ public class HomeScenePanel : MonoBehaviour
     [SerializeField] private PanelItemCtrl panelItemCtrl;
     [SerializeField] private PanelHandHolderCtrl panelHandHolderCtrl;
     [SerializeField] private TimerRemainCtrl timerRemainCtrl;
+    [SerializeField] private Animator animatorTransition;
 
     public PanelItemCtrl PanelItemCtrl => this.panelItemCtrl;
     public PanelHandHolderCtrl PanelHandHolderCtrl => this.panelHandHolderCtrl;
@@ -16,8 +17,13 @@ public class HomeScenePanel : MonoBehaviour
 
     private bool check;
 
+    private void Awake()
+    {
+    }
+
     private void Start()
     {
+        
         this.panelItemCtrl.gameObject.SetActive(false);
         this.panelHandHolderCtrl.gameObject.SetActive(false);
     }
@@ -28,24 +34,13 @@ public class HomeScenePanel : MonoBehaviour
         {
             if (UIManager.HasInstance)
             {
-                // UIManager.Instance.NotificationPanel.NotificationHUD.SetNotiText("Hand is full! Find Dream Book to store items", 5f);
-                //if (this.panelHandHolderCtrl.CheckCanAddItem() || !this.panelItemCtrl.gameObject.activeSelf)
-                //{
-                //    UIManager.Instance.NotificationPanel.NotificationHUD.HideText();
-                //}
-
-                if (UIManager.HasInstance)
+                GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.FullHand);
+                if (guidePopup != null && !guidePopup.First)
                 {
-                    GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.FullHand);
-                    if (guidePopup != null && !guidePopup.First)
-                    {
-                        guidePopup.First = true;
-                        UIManager.Instance.GuideCtrl.SetTrueGuide(guidePopup);
-                        UIManager.Instance.HomeScenePanel.TimerRemainCtrl.PauseTime();
-                    }
+                    guidePopup.First = true;
+                    UIManager.Instance.GuideCtrl.SetTrueGuide(guidePopup);
+                    UIManager.Instance.HomeScenePanel.TimerRemainCtrl.PauseTime();
                 }
-
-                
             }
 
         }
@@ -54,7 +49,7 @@ public class HomeScenePanel : MonoBehaviour
         {
             GuidePopup guidePopupDragToHand = UIManager.Instance.GuideCtrl.GetGuide(Guide.DragToHand);
             GuidePopup guidePopupFullHand = UIManager.Instance.GuideCtrl.GetGuide(Guide.FullHand);
-            if (guidePopupDragToHand.GuideShow || guidePopupFullHand.GuideShow)
+            if (guidePopupDragToHand.Show || guidePopupFullHand.Show)
             {
                 if (Input.GetKeyDown(KeyCode.E))
                 {
@@ -77,42 +72,71 @@ public class HomeScenePanel : MonoBehaviour
             {
                 this.panelHandHolderCtrl.gameObject.SetActive(false);
 
-                if (PlayerManager.HasInstance)
+                if (!PlayerManager.HasInstance) return;
+
+                foreach (WeaponNormalSO item in DreamBookScript.instance.HolderItems)
                 {
-                    foreach (WeaponNormalSO item in DreamBookScript.instance.HolderItems)
-                    {
-                        PlayerManager.Instance.ListWeaponNormalSO.Add(item);
-                    }
-
-                    foreach (WeaponNormalSO item in PlayerBasicCtrl.instance.PlayerHolder.HolderItems)
-                    {
-                        if (item != null) PlayerManager.Instance.ListWeaponNormalSO.Add(item);
-                    }
-
-                    PlayerManager.Instance.CreateListWeapon();
-
-                    if (UIManager.HasInstance)
-                    {
-                        UIManager.Instance.ActiveLoadingPanel(true);
- 
-                        //UIManager.Instance.ActiveGamePanel(true);
-                        //if (GameManager.HasInstance)
-                        //{
-                        //    GameManager.Instance.StartGame();
-                        //}
-                    }
+                    PlayerManager.Instance.ListWeaponNormalSO.Add(item);
                 }
+
+                foreach (WeaponNormalSO item in PlayerBasicCtrl.instance.PlayerHolder.HolderItems)
+                {
+                    if (item != null) PlayerManager.Instance.ListWeaponNormalSO.Add(item);
+                }
+
+                PlayerManager.Instance.CreateListWeapon();
+
+                StartCoroutine(this.PlayButton());
             }
-        
         }
     }
+
+    private IEnumerator PlayButton()
+    {
+        this.animatorTransition = GameObject.Find("LevelLoader").GetComponentInChildren<Animator>();
+        this.animatorTransition.Play("Crossfade_Start");
+
+        yield return new WaitForSeconds(1.5f);
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.ActiveLoadingPanel(true);
+        }
+    }
+
+    public void OnClickedPauseButton()
+    {
+        if (GameManager.HasInstance && UIManager.HasInstance)
+        {
+            GameManager.Instance.PauseGame();
+            UIManager.Instance.ActiveSettingPanel(true);
+            UIManager.Instance.SettingPanel.SettingMainMenu(false);
+            UIManager.Instance.ActivePausePanel(true);
+        }
+    }
+
     public void OnClickedStartButton()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
         this.panelHandHolderCtrl.gameObject.SetActive(true);
         this.timerRemainCtrl.RunTime();
 
         ItemHolderCtrl.instance.SetActiveRandomZone();
         PlayerBasicCtrl.instance.PlayerMovement.CanMove = true;
 
+    }
+
+    public void OnClickedClosePanelItem()
+    {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
+        this.panelItemCtrl.gameObject.SetActive(false);
+        this.timerRemainCtrl.RunTime();
     }
 }

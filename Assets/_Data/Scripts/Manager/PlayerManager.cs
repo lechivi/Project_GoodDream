@@ -1,31 +1,79 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : BaseManager<PlayerManager>
 {
+    [Header("PLAYER DATA")]
+    public int CurrentHealth = 0;
+    public int MaxHealth = 100;
+    public int CurrentMana = 0;
+    public int MaxMana = 100;
+    public float ReloadSpeed = 1f;
+    public CharacterSO CharacterSO;
+
+    public int CurrentHealthSave;
+    public int CurrentManaSave;
+
+    [Header("WEAPON DATA")]
+    //[SerializeField] private List<WeaponSO> listWeapon = new List<WeaponSO>();
     [SerializeField] private List<GameObject> listWeaponObj = new List<GameObject>();
 
+    //public List<WeaponSO> ListWeapon { get => this.listWeapon; set => this.listWeapon = value; }
     public List<GameObject> ListWeaponObj { get => this.listWeaponObj; set => this.listWeaponObj = value; }
+
     public List<WeaponNormalSO> ListWeaponNormalSO = new List<WeaponNormalSO>();
     public List<int> Hotkeys = new List<int>();
-
-    public CharacterSO CharacterSO;
-    public int MaxHealth;
-    public int MaxMana;
-    public float ReloadSpeed;
-
     public int CurrentWeapon = 0;
-    public bool Test;
+    public bool TestDefaultWeapon;
+
+    public void Update()
+    {
+        if (SceneManager.GetActiveScene().buildIndex >= 3 && SceneManager.GetActiveScene().buildIndex <= 5)
+        {
+            this.CurrentHealthSave = this.CurrentHealth;
+            this.CurrentManaSave = this.CurrentMana;
+        }
+    }
+
+    public void UpdateHealth(int value)
+    {
+        this.CurrentHealth = value;
+    }
+
+    public void UpdateMaxHealth(int value)
+    {
+        this.MaxHealth = value;
+    }
+
+    public void UpdateMana(int value)
+    {
+        this.CurrentMana = value;
+    }
 
     protected override void Awake()
     {
         base.Awake();
-        if (!this.Test)
+        if (!this.TestDefaultWeapon)
         {
             this.listWeaponObj.Clear();
             this.ListWeaponNormalSO.Clear();
         }
-        
+
+        this.SetupPlayerData();
+    }
+
+    public void SetupPlayerData()
+    {
+        this.CurrentHealth = this.MaxHealth;
+        this.CurrentMana = this.MaxMana;
+
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.GamePanel.HealthSlider.SetActiveSlider(this.CurrentHealth, this.MaxHealth, true);
+            UIManager.Instance.GamePanel.ManaSlider.SetActiveSlider(this.CurrentMana, this.MaxMana, true);
+        }
+
     }
 
     public void SetPlayerModel(CharacterSO characterSO)
@@ -40,6 +88,8 @@ public class PlayerManager : BaseManager<PlayerManager>
         {
             playerObj.GetComponent<PlayerCtrl>().PlayerModel.SetPlayerModel(characterSO);
         }
+
+        this.SetupPlayerData();
     }
 
     public void CreateListWeapon()
@@ -51,6 +101,7 @@ public class PlayerManager : BaseManager<PlayerManager>
             if (weaponObj != null)
             {
                 this.listWeaponObj.Add(weaponObj);
+                //this.listWeapon.Add(weaponObj.GetComponent<Weapon>().WeaponSO);
             }
         }
 
@@ -105,7 +156,6 @@ public class PlayerManager : BaseManager<PlayerManager>
         }
         return percentages.Length;
     }
-
 
     private GameObject MagicWeapon(WeaponNormalSO item, MagicType type)
     {
