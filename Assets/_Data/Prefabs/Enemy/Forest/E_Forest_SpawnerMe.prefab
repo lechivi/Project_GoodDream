@@ -3038,7 +3038,7 @@ SpriteRenderer:
   m_SortingLayerID: -163490121
   m_SortingLayer: 5
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 86d2fba53f2cf3e4ebc4f820edaaf180, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c3e7e345aafb864f86867f65f33dcbb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3082,18 +3082,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015625, y: 0.29511264}
+  m_Offset: {x: -0.019458413, y: 0.29511264}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.1590909}
-    oldSize: {x: 0.21875, y: 0.6875}
+    pivot: {x: 0.546875, y: 0.265625}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12289438, y: 0.5660247}
+  m_Size: {x: 0.1930612, y: 0.5660247}
   m_EdgeRadius: 0
 --- !u!114 &7110049483306299536
 MonoBehaviour:
@@ -3108,14 +3108,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSO: {fileID: 0}
-  minDamage: 1
-  maxDamage: 5
-  criticalChance: 10
+  minDamage: 3
+  maxDamage: 7
+  criticalChance: 30
   speedAttack: 5
   MagicType: 0
+  IsUsing: 0
+  haveSkill2: 0
   cooldownTimePrimaryMove: 0
   cooldownTimeSecondaryMove: 0
-  trail: {fileID: 0}
+  trail: {fileID: 7110049484363452866}
   powerStabDistance: 1
   powerStabDuration: 0.5
   powerStabSpeed: 10
@@ -3226,6 +3228,7 @@ MonoBehaviour:
   listSpawnEnemy:
   - {fileID: 2376937518649314672, guid: 7bc2146c4fde7e84198b2844c46032f7, type: 3}
   - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+  - {fileID: 7397296529350710246, guid: e34f43c9127916849aba1d98e56aa3f9, type: 3}
   - {fileID: 4482188964871576506, guid: 98f0ed4e9cf761e4d9e1ce2b0d8a8fe0, type: 3}
   amountSpawn: 3
   rangeSpawn: 2
@@ -3333,8 +3336,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1199288445
-  m_SortingLayer: 6
+  m_SortingLayerID: -163490121
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Time: 0.2
   m_Parameters:
@@ -3366,8 +3369,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 1}
-      key1: {r: 1, g: 0, b: 0, a: 1}
+      key0: {r: 0.79215693, g: 0.882353, b: 0.9450981, a: 1}
+      key1: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -3459,6 +3462,7 @@ MonoBehaviour:
   spawnerReward: {fileID: 7110049484960997029}
   neverFlip: {fileID: 7110049483650329107}
   enemyAnimator: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!61 &-8702941220569640831
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3493,7 +3497,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7110049484413087677}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -3504,7 +3508,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!1 &7110049484485739483
 GameObject:
@@ -3599,8 +3603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644c8b0fb65d0014b8f25730b167bdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 250
-  maxHealth: 250
+  health: 200
+  maxHealth: 200
 --- !u!1 &7110049484587549221
 GameObject:
   m_ObjectHideFlags: 0
@@ -3679,8 +3683,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthCollectiblaPrefab: {fileID: 1770789400004731702, guid: 66f8c2212db49b14183b1fa47e6972e8, type: 3}
   ManaCollectiblaPrefab: {fileID: 5191698275826821096, guid: 3164d038627d65a4ab42d0846c74a47a, type: 3}
-  rewardHealth: 5
-  rewardMana: 5
+  rewardHealth: 6
+  rewardMana: 6
   isRandom: 1
 --- !u!1 &7117099753285204356
 GameObject:

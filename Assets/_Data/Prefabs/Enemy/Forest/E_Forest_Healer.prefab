@@ -1080,7 +1080,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2376937517193492583}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1210,7 +1210,7 @@ MonoBehaviour:
   HealthCollectiblaPrefab: {fileID: 1770789400004731702, guid: 66f8c2212db49b14183b1fa47e6972e8, type: 3}
   ManaCollectiblaPrefab: {fileID: 5191698275826821096, guid: 3164d038627d65a4ab42d0846c74a47a, type: 3}
   rewardHealth: 0
-  rewardMana: 10
+  rewardMana: 8
   isRandom: 1
 --- !u!1 &2376937517555727645
 GameObject:
@@ -1253,7 +1253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2376937517610467689}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1285,7 +1285,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2376937517903122166}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,9 +1320,9 @@ GameObject:
   - component: {fileID: 2376937518327633374}
   - component: {fileID: 2376937518327633375}
   - component: {fileID: 2376937518327633372}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Staff_Healer
-  m_TagString: PlayerWeapon
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1462,11 +1462,14 @@ MonoBehaviour:
   criticalChance: 10
   speedAttack: 5
   MagicType: 0
+  IsUsing: 0
   shootPoints: []
-  bulletSpellPrefab: {fileID: 2872722887616609221, guid: 84b5f6f30f3aaaa49ad9d9df5494b7a0, type: 3}
+  bulletClone: []
+  bulletSpellPrefab: {fileID: 2872722887616609221, guid: 254797fbcf8dc4147854b5685a5b2bcb, type: 3}
   manaCostAttack: 5
   manaCostSpell: 10
   spellSpeed: 5
+  spellLifeTime: 2
   cooldownTimeAttackMove: 0.25
   cooldownTimeSpellMove: 0.75
   healPrefab: {fileID: 2825329958206441427, guid: 66509c7d2bccf6c408b7e207c1155379, type: 3}
@@ -1524,15 +1527,15 @@ MonoBehaviour:
   roamRange: 3
   delayAttackTime: 1.5
   roamWaitingTime: 3
-  distanceAttack: 5
+  distanceAttack: 5.5
   detectionObstacleRadius: 2
   directionWeapon: 2
   IsStopMove: 0
   healTextPrefab: {fileID: 3151799772814439233, guid: e45020c54e4e3704eb440a2d9dba890f, type: 3}
   animationHealPrefab: {fileID: 2825329958206441427, guid: 66509c7d2bccf6c408b7e207c1155379, type: 3}
-  healAmout: 10
-  delayHealTime: 1
-  delayCooldownHealTime: 1
+  healAmout: 6
+  delayHealTime: 1.5
+  delayCooldownHealTime: 1.5
   delayRunAwayTime: 2.5
 --- !u!1 &2376937518406919235
 GameObject:
@@ -1543,7 +1546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2376937518406919234}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1695,6 +1698,7 @@ MonoBehaviour:
   spawnerReward: {fileID: 2376937517458325650}
   neverFlip: {fileID: 2376937519100858074}
   enemyAnimator: {fileID: 7493733912576441115}
+  rb: {fileID: 0}
 --- !u!61 &4927233170986064152
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1729,7 +1733,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2376937518649314672}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1740,7 +1744,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!1 &2376937518794192182
 GameObject:
@@ -1752,7 +1756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2376937518794192169}
   - component: {fileID: 2376937518794192168}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}

@@ -34,6 +34,15 @@ public class TridentWeapon : WeaponMelee
         }
     }
 
+    public override void OnClickedFirstMoveButton()
+    {
+        base.OnClickedFirstMoveButton();
+        if (this.isReadyPrimaryMove && !this.isAttacking)
+        {
+            this.PrimaryMove();
+        }
+    }
+
     protected override void InputSecondaryMove()
     {
         base.InputSecondaryMove();
@@ -43,6 +52,15 @@ public class TridentWeapon : WeaponMelee
             {
                 if (EventSystem.current.IsPointerOverGameObject()) return;
             }
+            this.SecondarylMove();
+        }
+    }
+
+    public override void OnClickedSecondMoveButton()
+    {
+        base.OnClickedSecondMoveButton();
+        if (this.isReadySecondaryMove && !this.isAttacking && this.haveSkill2)
+        {
             this.SecondarylMove();
         }
     }

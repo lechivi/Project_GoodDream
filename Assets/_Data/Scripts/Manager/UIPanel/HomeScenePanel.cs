@@ -9,7 +9,7 @@ public class HomeScenePanel : MonoBehaviour
     [SerializeField] private PanelItemCtrl panelItemCtrl;
     [SerializeField] private PanelHandHolderCtrl panelHandHolderCtrl;
     [SerializeField] private TimerRemainCtrl timerRemainCtrl;
-    [SerializeField] private Animator animatorTransition;
+    [SerializeField] private GameObject falsePanel;
 
     public PanelItemCtrl PanelItemCtrl => this.panelItemCtrl;
     public PanelHandHolderCtrl PanelHandHolderCtrl => this.panelHandHolderCtrl;
@@ -19,6 +19,8 @@ public class HomeScenePanel : MonoBehaviour
 
     private void Awake()
     {
+        this.falsePanel.SetActive(false);
+
     }
 
     private void Start()
@@ -64,9 +66,11 @@ public class HomeScenePanel : MonoBehaviour
             this.check = true;
             PlayerBasicCtrl.instance.PlayerMovement.CanMove = false;
 
-            if (DreamBookScript.instance.HolderItems.Count == 0  && PlayerBasicCtrl.instance.PlayerHolder.HolderItems.Count == 0)
+            if (DreamBookScript.instance.HolderItems.Count == 0  && PlayerBasicCtrl.instance.PlayerHolder.HolderItems[0] == null && PlayerBasicCtrl.instance.PlayerHolder.HolderItems[1] == null)
             {
-                Debug.Log("Can't find any weapon. You can't enter Dream World!");
+                //Debug.Log("Can't find any weapon. You can't enter Dream World!");
+                this.falsePanel.SetActive(true);
+
             }
             else
             {
@@ -86,20 +90,11 @@ public class HomeScenePanel : MonoBehaviour
 
                 PlayerManager.Instance.CreateListWeapon();
 
-                StartCoroutine(this.PlayButton());
+                if (GameManager.HasInstance)
+                {
+                    StartCoroutine(GameManager.Instance.LoadChangeScene(SceneManager.GetActiveScene().buildIndex + 1));
+                }
             }
-        }
-    }
-
-    private IEnumerator PlayButton()
-    {
-        this.animatorTransition = GameObject.Find("LevelLoader").GetComponentInChildren<Animator>();
-        this.animatorTransition.Play("Crossfade_Start");
-
-        yield return new WaitForSeconds(1.5f);
-        if (UIManager.HasInstance)
-        {
-            UIManager.Instance.ActiveLoadingPanel(true);
         }
     }
 
@@ -138,5 +133,31 @@ public class HomeScenePanel : MonoBehaviour
 
         this.panelItemCtrl.gameObject.SetActive(false);
         this.timerRemainCtrl.RunTime();
+    }
+
+    public void OnClickedMainMenuButton()
+    {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.BackToMainMenu();
+        }
+    }
+
+    public void OnClickedQuitButton()
+    {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.QuitGame();
+        }
     }
 }

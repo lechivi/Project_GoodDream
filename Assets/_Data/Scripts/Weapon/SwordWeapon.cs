@@ -28,7 +28,6 @@ public class SwordWeapon : WeaponMelee
 
         this.isReadyPrimaryMove = true;
         this.isReadySecondaryMove = true;
-        //this.IsUsing = true; //TEST
     }
 
     protected override void Update()
@@ -62,6 +61,17 @@ public class SwordWeapon : WeaponMelee
             this.PrimaryMove();
         }
     }
+    public override void OnClickedFirstMoveButton()
+    {
+        base .OnClickedFirstMoveButton();
+        Debug.Log(this.isReadyPrimaryMove);
+
+        if (this.isReadyPrimaryMove && !this.isAttacking)
+        {
+            this.PrimaryMove();
+            Debug.Log("In");
+        }
+    }
 
     protected override void InputSecondaryMove()
     {
@@ -74,6 +84,16 @@ public class SwordWeapon : WeaponMelee
             }
 
             this.SecondarylMove();
+        }
+    }
+
+    public override void OnClickedSecondMoveButton()
+    {
+        base .OnClickedSecondMoveButton();
+        if (this.isReadySecondaryMove && !this.isAttacking && this.haveSkill2)
+        {
+            this.SecondarylMove();
+
         }
     }
 

@@ -584,9 +584,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSO: {fileID: 11400000, guid: a50d5b7c5373bfb4d9a07ef86a851c26, type: 2}
-  minDamage: 1
-  maxDamage: 5
-  criticalChance: 10
+  minDamage: 12
+  maxDamage: 15
+  criticalChance: 30
   speedAttack: 5
   MagicType: 0
   IsUsing: 0

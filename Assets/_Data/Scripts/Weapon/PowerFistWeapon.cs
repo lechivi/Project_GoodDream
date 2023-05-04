@@ -64,6 +64,17 @@ public class PowerFistWeapon : WeaponMelee
         }
     }
 
+    public override void OnClickedFirstMoveButton()
+    {
+        base.OnClickedFirstMoveButton();
+        Debug.Log(this.isReadyPrimaryMove);
+        if (this.isReadyPrimaryMove && !this.isAttacking)
+        {
+            Debug.Log("In");
+            this.PrimaryMove();
+        }
+    }
+
     protected override void InputSecondaryMove()
     {
         base.InputSecondaryMove();
@@ -74,6 +85,15 @@ public class PowerFistWeapon : WeaponMelee
                 if (EventSystem.current.IsPointerOverGameObject()) return;
             }
 
+            this.SecondarylMove();
+        }
+    }
+
+    public override void OnClickedSecondMoveButton()
+    {
+        base.OnClickedSecondMoveButton();
+        if (this.isReadySecondaryMove && !this.isAttacking && this.haveSkill2)
+        {
             this.SecondarylMove();
         }
     }

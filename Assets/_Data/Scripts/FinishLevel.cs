@@ -12,26 +12,28 @@ public class FinishLevel : MonoBehaviour
     private bool levelComplete;
 
     private void Update()
-    {
+    {      
         if (this.levelComplete)
         {
-            //this.animatorTransition.SetTrigger("Start");
-            //this.animatorTransition.Play("Wipe_CircleOut");
-
-            if (SceneManager.GetActiveScene().name.Equals("Scene_Level3_Heaven"))
+            this.levelComplete = false;
+            if (SceneManager.GetActiveScene().buildIndex == 5)
             {
-                this.animatorTransition.Play("Crossfade_Start_Endgame");
-                StartCoroutine(this.Endgame());
+                if (UIManager.HasInstance && AudioManager.HasInstance)
+                {
+                    UIManager.Instance.ActiveVictoryPanel(true);
+                    AudioManager.Instance.PlayBGM(AUDIO.BGM_7_VICTORY);
+                }
             }
             else
             {
-                this.animatorTransition.Play("Crossfade_Start");
-                StartCoroutine(this.CompleteLevel());
+                if (GameManager.HasInstance)
+                {
+                    StartCoroutine(GameManager.Instance.LoadChangeScene(SceneManager.GetActiveScene().buildIndex + 1));
+                }
             }
-    
-
-
         }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,22 +44,8 @@ public class FinishLevel : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFX(AUDIO.SFX_ENTERDOOR);
             }
-            this.levelComplete = true;
             collision.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        }
-    }
-
-    private IEnumerator CompleteLevel()
-    {
-        yield return new WaitForSeconds(this.transitionTime);
-
-        if (Input.anyKeyDown)
-        { 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            if (GameManager.HasInstance && UIManager.HasInstance && AudioManager.HasInstance)
-            {
-                //AudioManager.Instance.PlayBGM(AUDIO.BGM_BGM_04);
-            }
+            this.levelComplete = true;
         }
     }
 

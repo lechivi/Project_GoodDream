@@ -7,7 +7,6 @@ public class FinishDoor : MonoBehaviour
     [SerializeField] private Animator animatorDoorLeft;
     [SerializeField] private Animator animatorDoorRight;
     [SerializeField] private BoxCollider2D colDoor;
-    [SerializeField] private BoxCollider2D colFinish;
 
     private bool isEnter;
     private bool isEnterFirstTime;

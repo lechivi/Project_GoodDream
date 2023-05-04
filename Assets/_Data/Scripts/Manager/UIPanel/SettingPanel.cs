@@ -42,13 +42,25 @@ public class SettingPanel : MonoBehaviour
             this.sfxValue = AudioManager.Instance.AttachSFXSource.volume;
             this.bgmSlider.value = this.bgmValue;
             this.sfxSlider.value = this.sfxValue;
-            this.bgmSliderOG.value = this.bgmValue;
-            this.sfxSliderOG.value = this.sfxValue;
 
             this.isBGMMute = AudioManager.Instance.AttachBGMSource.mute;
             this.isSFXMute = AudioManager.Instance.AttachSFXSource.mute;
             this.bgmMute.isOn = this.isBGMMute;
             this.sfxMute.isOn = this.isSFXMute;
+        }
+    }
+
+    public void SetupValueOG()
+    {
+        if (AudioManager.HasInstance)
+        {
+            this.bgmValue = AudioManager.Instance.AttachBGMSource.volume;
+            this.sfxValue = AudioManager.Instance.AttachSFXSource.volume;
+            this.bgmSliderOG.value = this.bgmValue;
+            this.sfxSliderOG.value = this.sfxValue;
+
+            this.isBGMMute = AudioManager.Instance.AttachBGMSource.mute;
+            this.isSFXMute = AudioManager.Instance.AttachSFXSource.mute;
             this.bgmMuteOG.isOn = this.isBGMMute;
             this.sfxMuteOG.isOn = this.isSFXMute;
         }

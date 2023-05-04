@@ -7,6 +7,16 @@ public class PausePanel : MonoBehaviour
 {
     [SerializeField] private TabGroup tabGroup;
 
+    private void OnEnable()
+    {
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.ActiveSettingPanel(true);
+            UIManager.Instance.SettingPanel.SetupValueOG();
+            UIManager.Instance.ActiveSettingPanel(false);
+        }
+    }
+
     public void FullAllTab()
     {
         foreach(var tabButton in this.tabGroup.tabButtons)
@@ -48,13 +58,8 @@ public class PausePanel : MonoBehaviour
         }
     }
 
-    public void OnClickedMenuButton()
+    public void OnClickedMainMenuButton()
     {
-        if (SaveLoadManager.HasInstance)
-        {
-            SaveLoadManager.Instance.Save();
-        }
-
         if (AudioManager.HasInstance)
         {
             AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
@@ -62,17 +67,12 @@ public class PausePanel : MonoBehaviour
 
         if (GameManager.HasInstance)
         {
-            GameManager.Instance.RestarGame();
+            GameManager.Instance.BackToMainMenu();
         }
     }
 
     public void OnClickedQuitButton()
     {
-        if (SaveLoadManager.HasInstance)
-        {
-            SaveLoadManager.Instance.Save();
-        }
-
         if (AudioManager.HasInstance)
         {
             AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
@@ -80,7 +80,7 @@ public class PausePanel : MonoBehaviour
 
         if (GameManager.HasInstance)
         {
-            GameManager.Instance.EndGame();
+            GameManager.Instance.QuitGame();
         }
     }
 }

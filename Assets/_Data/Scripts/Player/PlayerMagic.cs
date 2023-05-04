@@ -13,6 +13,8 @@ public class PlayerMagic : PlayerAbstract
     public int Mana { get => this.mana; set => this.mana = value; }
     public int MaxMana { get => this.maxMana; set => this.maxMana = value; }
 
+    public bool Test;
+
     private void Start()
     {
         if (PlayerManager.HasInstance)
@@ -29,7 +31,14 @@ public class PlayerMagic : PlayerAbstract
         this.mana -= costMana;
         if (this.mana <= 0)
         {
-            this.mana = 0;
+            if (this.Test)
+            {
+                this.mana = this.maxMana;
+            }
+            else
+            {
+                this.mana = 0;
+            }
         }
 
         if (PlayerManager.HasInstance)

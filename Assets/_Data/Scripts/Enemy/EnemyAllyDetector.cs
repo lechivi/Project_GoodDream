@@ -17,7 +17,7 @@ public class EnemyAllyDetector : MonoBehaviour
     {
         this.LowestHealthAlly = transform.parent.GetComponent<EnemyAI>().EnemyCtrl.EnemyLife;
 
-        if (this.Ally.Count > 0 )
+        if (this.Ally.Count > 0 && !this.Ally.Contains(null))
         {
             foreach (EnemyLife enemyLife in this.Ally)
             {

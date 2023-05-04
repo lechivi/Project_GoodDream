@@ -75,8 +75,8 @@ public class StaffMeleeWeapon : WeaponMelee
         }
 
         this.StartNewAttack();
-        this.isReadyPrimaryMove = false;
-        this.isStartCooldownPrimaryMove = true;
+        this.isReadySecondaryMove = false;
+        this.isStartCooldownSecondaryMove = true;
         this.isAttacking = true;
 
         this.col.enabled = true;

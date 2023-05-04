@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: -163490121
   m_SortingLayer: 5
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 86d2fba53f2cf3e4ebc4f820edaaf180, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e5d9ddd978f93344084257a7b669565f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,8 +124,8 @@ BoxCollider2D:
   m_Offset: {x: 0.015625, y: 0.29511264}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.1590909}
-    oldSize: {x: 0.21875, y: 0.6875}
+    pivot: {x: 0.515625, y: 0.234375}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -148,13 +148,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponSO: {fileID: 0}
   minDamage: 4
-  maxDamage: 9
-  criticalChance: 10
+  maxDamage: 8
+  criticalChance: 30
   speedAttack: 5
   MagicType: 0
+  IsUsing: 0
+  haveSkill2: 0
   cooldownTimePrimaryMove: 0
   cooldownTimeSecondaryMove: 0
-  trail: {fileID: 0}
+  trail: {fileID: 104989264968073683}
   powerStabDistance: 1
   powerStabDuration: 0.5
   powerStabSpeed: 10
@@ -215,6 +217,7 @@ MonoBehaviour:
   spawnerReward: {fileID: 104989265463510150}
   neverFlip: {fileID: 104989265593020573}
   enemyAnimator: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!61 &-6860055255555260858
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -249,7 +252,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104989264587402589}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -260,7 +263,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!1 &104989264968073681
 GameObject:
@@ -333,8 +336,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1199288445
-  m_SortingLayer: 6
+  m_SortingLayerID: -163490121
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Time: 0.2
   m_Parameters:
@@ -366,8 +369,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 1}
-      key1: {r: 1, g: 0, b: 0, a: 1}
+      key0: {r: 0.79215693, g: 0.882353, b: 0.9450981, a: 1}
+      key1: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -612,8 +615,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644c8b0fb65d0014b8f25730b167bdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 80
-  maxHealth: 80
+  health: 90
+  maxHealth: 90
 --- !u!1 &104989265463510148
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthCollectiblaPrefab: {fileID: 1770789400004731702, guid: 66f8c2212db49b14183b1fa47e6972e8, type: 3}
   ManaCollectiblaPrefab: {fileID: 5191698275826821096, guid: 3164d038627d65a4ab42d0846c74a47a, type: 3}
-  rewardHealth: 5
+  rewardHealth: 8
   rewardMana: 5
   isRandom: 1
 --- !u!1 &104989265520353421

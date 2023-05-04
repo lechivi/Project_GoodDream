@@ -8,7 +8,7 @@ public class CharacterSO : ScriptableObject
     public string characterName;
     public int maxHealth;
     public int maxMana;
-    public float reloadSpeed;
+    public float mulReloadSpeed;
     [TextArea(2, 5)] public string description;
     public GameObject model;
 }

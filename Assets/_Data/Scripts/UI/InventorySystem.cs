@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
@@ -67,10 +68,10 @@ public class InventorySystem : MonoBehaviour
 
         if (this.listWeaponPanel.transform.childCount == 0)
         {
-            this.EquipWeaponInventory(PlayerManager.Instance.CurrentWeapon);
             this.CreateListWeapon();
-            this.EquipWeaponInventory(0);
         }
+        
+        this.EquipWeaponInventory(PlayerManager.Instance.CurrentWeapon);
     }
 
     private void Start()
@@ -78,7 +79,7 @@ public class InventorySystem : MonoBehaviour
         if (UIManager.HasInstance)
         {
             GuidePopup guidePopup = UIManager.Instance.GuideCtrl.GetGuide(Guide.InvRight);
-            if (guidePopup != null && !guidePopup.First)
+            if (SceneManager.GetActiveScene().buildIndex == 2 && guidePopup != null && !guidePopup.First)
             {
                 guidePopup.First = true;
                 UIManager.Instance.GuideCtrl.SetTrueGuide(guidePopup);

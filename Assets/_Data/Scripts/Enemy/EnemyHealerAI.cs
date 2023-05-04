@@ -52,7 +52,6 @@ public class EnemyHealerAI : EnemyAI
 
         if (this.enemyAllyDetector.CheckLowestHealthAlly() && this.isReadyHealSkill)
         {
-            Debug.Log("Heal");
             this.isReadyHealSkill = false;
             this.IsStopMove = true;
             this.MovementState = MovementState.Idle;

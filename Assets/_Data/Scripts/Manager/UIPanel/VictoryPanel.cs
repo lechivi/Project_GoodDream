@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class VictoryPanel : MonoBehaviour
 {
-    public void OnClickedRestarGame()
+    public void OnClickedMainMenuButton()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
         if (GameManager.HasInstance)
         {
-            GameManager.Instance.RestarGame();
+            GameManager.Instance.BackToMainMenu();
         }
     }
 
-    public void OnClickedEndGame()
+    public void OnClickedQuitButton()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
         if (GameManager.HasInstance)
         {
-            GameManager.Instance.EndGame();
+            GameManager.Instance.QuitGame();
         }
     }
 }

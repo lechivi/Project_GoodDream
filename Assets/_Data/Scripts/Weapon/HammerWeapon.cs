@@ -28,6 +28,21 @@ public class HammerWeapon : WeaponMelee
         this.isReadySecondaryMove = true;
     }
 
+    protected override void Update()
+    {
+        base.Update();
+        if (this.back)
+        {
+            this.rb.velocity = Vector2.zero;
+            transform.position = Vector2.MoveTowards(transform.position, this.weaponParent.transform.position, 50f * Time.deltaTime);
+
+            if (Vector2.Distance(this.weaponParent.transform.position, transform.position) < 0.01f)
+            {
+                this.ResetToHand();
+            }
+        }
+    }
+
     protected override void InputPrimaryMove()
     {
         base.InputPrimaryMove();
@@ -38,6 +53,42 @@ public class HammerWeapon : WeaponMelee
                 if (EventSystem.current.IsPointerOverGameObject()) return;
             }
             this.PrimaryMove();
+        }
+    }
+
+    public override void OnClickedFirstMoveButton()
+    {
+        base.OnClickedFirstMoveButton();
+        if (this.isReadyPrimaryMove && !this.isAttacking)
+        {
+            this.PrimaryMove();
+            Debug.Log("In");
+        }
+    }
+
+    protected override void InputSecondaryMove()
+    {
+        base.InputSecondaryMove();
+        if (Input.GetMouseButtonDown(1) && this.haveSkill2)
+        {
+            if (UIManager.HasInstance)
+            {
+                if (EventSystem.current.IsPointerOverGameObject()) return;
+            }
+            this.SecondarylMove();
+        }
+    }
+
+    public override void OnClickedSecondMoveButton()
+    {
+        base.OnClickedSecondMoveButton();
+        if (this.haveSkill2)
+        {
+            if (UIManager.HasInstance)
+            {
+                if (EventSystem.current.IsPointerOverGameObject()) return;
+            }
+            this.SecondarylMove();
         }
     }
 
@@ -69,61 +120,88 @@ public class HammerWeapon : WeaponMelee
         this.col.enabled = false;
     }
 
-    protected override void InputSecondaryMove()
-    {
-        base.InputSecondaryMove();
-        this.SecondarylMove();
-    }
+    //protected override void SecondarylMove()
+    //{
+    //    if (Input.GetMouseButtonDown(1) && this.haveSkill2)
+    //    {
+    //        if (UIManager.HasInstance)
+    //        {
+    //            if (EventSystem.current.IsPointerOverGameObject()) return;
+    //        }
+
+    //        if (!this.isThrowing && this.isReadySecondaryMove && !this.isAttacking)
+    //        {
+    //            if (AudioManager.HasInstance)
+    //            {
+    //                AudioManager.Instance.PlaySFX(AUDIO.SFX_HAMMERTHROW);
+    //            }
+
+    //            this.StartNewAttack();
+    //            this.isReadySecondaryMove = false;
+    //            this.isAttacking = true;
+
+    //            this.trail.emitting = true;
+
+    //            transform.SetParent(null);
+
+    //            this.animator.enabled = false;
+    //            this.rb.bodyType = RigidbodyType2D.Dynamic;
+    //            this.rb.AddForce(this.GetDirection() * this.speed, ForceMode2D.Impulse);
+    //            this.isThrowing = true;
+    //            this.col.enabled = true;
+
+    //        }
+    //        else if (this.isThrowing)
+    //        {
+    //            this.StartNewAttack();
+    //            this.trail.emitting = true;
+    //            this.rb.bodyType = RigidbodyType2D.Dynamic;
+    //            this.back = true;
+    //        }
+    //    }
+
+    //    if (this.back)
+    //    {
+    //        this.rb.velocity = Vector2.zero;
+    //        transform.position = Vector2.MoveTowards(transform.position, this.weaponParent.transform.position, 50f * Time.deltaTime);
+
+    //        if (Vector2.Distance(this.weaponParent.transform.position, transform.position) < 0.01f)
+    //        {
+    //            this.ResetToHand();
+    //        }
+    //    }
+    //}
 
     protected override void SecondarylMove()
     {
-        if (Input.GetMouseButtonDown(1) && this.haveSkill2)
+        if (!this.isThrowing && this.isReadySecondaryMove && !this.isAttacking)
         {
-            if (UIManager.HasInstance)
+            if (AudioManager.HasInstance)
             {
-                if (EventSystem.current.IsPointerOverGameObject()) return;
+                AudioManager.Instance.PlaySFX(AUDIO.SFX_HAMMERTHROW);
             }
 
-            if (!this.isThrowing && this.isReadySecondaryMove && !this.isAttacking)
-            {
-                if (AudioManager.HasInstance)
-                {
-                    AudioManager.Instance.PlaySFX(AUDIO.SFX_HAMMERTHROW);
-                }
+            this.StartNewAttack();
+            this.isReadySecondaryMove = false;
+            this.isAttacking = true;
 
-                this.StartNewAttack();
-                this.isReadySecondaryMove = false;
-                this.isAttacking = true;
+            this.trail.emitting = true;
 
-                this.trail.emitting = true;
+            transform.SetParent(null);
 
-                transform.SetParent(null);
+            this.animator.enabled = false;
+            this.rb.bodyType = RigidbodyType2D.Dynamic;
+            this.rb.AddForce(this.GetDirection() * this.speed, ForceMode2D.Impulse);
+            this.isThrowing = true;
+            this.col.enabled = true;
 
-                this.animator.enabled = false;
-                this.rb.bodyType = RigidbodyType2D.Dynamic;
-                this.rb.AddForce(this.GetDirection() * this.speed, ForceMode2D.Impulse);
-                this.isThrowing = true;
-                this.col.enabled = true;
-
-            }
-            else if (this.isThrowing)
-            {
-                this.StartNewAttack();
-                this.trail.emitting = true;
-                this.rb.bodyType = RigidbodyType2D.Dynamic;
-                this.back = true;
-            }
         }
-
-        if (this.back)
+        else if (this.isThrowing)
         {
-            this.rb.velocity = Vector2.zero;
-            transform.position = Vector2.MoveTowards(transform.position, this.weaponParent.transform.position, 50f * Time.deltaTime);
-
-            if (Vector2.Distance(this.weaponParent.transform.position, transform.position) < 0.01f)
-            {
-                this.ResetToHand();
-            }
+            this.StartNewAttack();
+            this.trail.emitting = true;
+            this.rb.bodyType = RigidbodyType2D.Dynamic;
+            this.back = true;
         }
     }
 

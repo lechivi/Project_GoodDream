@@ -266,13 +266,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSO: {fileID: 11400000, guid: b1490c6b6bdab2f4294f2b167f018e9b, type: 2}
-  minDamage: 1
-  maxDamage: 5
+  minDamage: 12
+  maxDamage: 18
   criticalChance: 10
   speedAttack: 5
   MagicType: 4
   IsUsing: 0
   shootPoints: []
+  bulletClone: []
   bulletSpellPrefab: {fileID: 2872722887616609221, guid: 732a3382c0f64fc43b293637d23374e4, type: 3}
   manaCostAttack: 1
   manaCostSpell: 1

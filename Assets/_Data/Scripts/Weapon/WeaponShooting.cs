@@ -21,6 +21,7 @@ public class WeaponShooting : Weapon
     protected int currentAmmo;
     protected int direction;
     protected float timerReload;
+    protected float originalReloadTime;
     protected float waitForNextShot;
     protected bool isReloading;
 
@@ -34,11 +35,14 @@ public class WeaponShooting : Weapon
         base.Awake();
         this.WeaponType = WeaponType.Shooting;
         this.currentAmmo = this.maxAmmo;
+        this.originalReloadTime = this.reloadTime;
+
         foreach (Transform child in transform)
         {
             if (child.gameObject.name == "ShootPoint")
                 this.shootPoints.Add(child);
         }
+
     }
 
     protected override void Update()
@@ -50,7 +54,11 @@ public class WeaponShooting : Weapon
 
         if (this.IsUsing && gameObject.CompareTag("PlayerWeapon") && this.weaponParent.PlayerCtrl.PlayerLife.Health > 0) 
         {
-            if (this.isReloading) return;
+            if (this.isReloading)
+            {
+                this.Reload();
+                return;
+            }
 
             if (Input.GetMouseButton(0))
             {
@@ -70,30 +78,36 @@ public class WeaponShooting : Weapon
                     }
                     else
                     {
+                        if (AudioManager.HasInstance && this.reloadAudio != null)
+                        {
+                            AudioManager.Instance.PlaySFX(this.reloadAudio);
+                        }
+
                         this.isReloading = true;
-                        this.Reload();
                     }
                 }
             }
 
             if (Input.GetKeyDown(KeyCode.R) && this.currentAmmo < this.maxAmmo)
             {
+                if (AudioManager.HasInstance && this.reloadAudio != null)
+                {
+                    AudioManager.Instance.PlaySFX(this.reloadAudio);
+                }
+
                 this.isReloading = true;
-                this.Reload();
             }
 
             if (UIManager.HasInstance)
             {
                 GamePanel gamePanel = UIManager.Instance.GamePanel;
-                gamePanel.SecondMove.gameObject.SetActive(false);
                 gamePanel.FirstMove.Icon.sprite = gamePanel.Shooting;
+                gamePanel.SecondMove.Icon.sprite = gamePanel.ShootingReload;
             }
         }
-
-       
     }
 
-    protected void Reload()
+    protected void Reload1()
     {
         this.isReloading = true;
 
@@ -104,7 +118,7 @@ public class WeaponShooting : Weapon
 
         if (UIManager.HasInstance)
         {
-            UIManager.Instance.GamePanel.FirstMove.StartFillMove(this.timerReload, this.reloadTime);
+            UIManager.Instance.GamePanel.SecondMove.StartFillMove(this.timerReload, this.reloadTime);
         }
 
         Invoke("InvokeReload", this.reloadTime);
@@ -119,7 +133,31 @@ public class WeaponShooting : Weapon
         {
             WeaponParent.playerAmmoDelegate(this.currentAmmo, this.maxAmmo, true);
         }
+    }
 
+    protected void Reload()
+    {
+        if (PlayerManager.HasInstance)
+        {
+            this.reloadTime = this.originalReloadTime / (PlayerManager.Instance.MulReloadSpeed);
+        }
+
+        this.timerReload += Time.deltaTime;
+        if (UIManager.HasInstance && this.IsUsing && gameObject.CompareTag("PlayerWeapon"))
+        {
+            UIManager.Instance.GamePanel.SecondMove.StartFillMove(this.timerReload, this.reloadTime);
+        }
+
+        if (this.timerReload < this.reloadTime) return;
+
+        this.timerReload = 0;
+        this.currentAmmo = this.maxAmmo;
+        this.isReloading = false;
+
+        if (UIManager.HasInstance)
+        {
+            WeaponParent.playerAmmoDelegate(this.currentAmmo, this.maxAmmo, true);
+        }
     }
 
     protected virtual void SetupShoot()
@@ -137,7 +175,7 @@ public class WeaponShooting : Weapon
 
         foreach (Transform child in this.shootPoints)
         {
-            this.GetBullet(child);
+            this.GetBullet(child, true);
         }
 
         if (UIManager.HasInstance)
@@ -146,10 +184,18 @@ public class WeaponShooting : Weapon
         }
     }
 
-    protected GameObject GetBullet(Transform shootPoint)
+    protected GameObject GetBullet(Transform shootPoint, bool isPlayer)
     {
         int damage = this.GetRandomDamage();
-        this.direction = 1 * (this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? 1 : -1);
+
+        if (isPlayer)
+        {
+            this.direction = 1 * (this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? 1 : -1);
+        }
+        else
+        {
+            this.direction = transform.parent.parent.parent.localScale.x > 0 ? -1 : 1;
+        }
         
         for (int i = 0; i < this.bulletClone.Count; i++)
         {
@@ -157,16 +203,20 @@ public class WeaponShooting : Weapon
             {
                 this.bulletClone[i].transform.position = shootPoint.position;
                 this.bulletClone[i].transform.rotation = shootPoint.rotation;
-                this.bulletClone[i].transform.parent = this.weaponParent.SpawnPool;
+                this.bulletClone[i].transform.parent = isPlayer ? this.weaponParent.SpawnPool : GameObject.Find("SpawnPool").transform;
                 
                 BulletScript bulletScriptClone = this.bulletClone[i].GetComponent<BulletScript>();
                 bulletScriptClone.LifeTime = this.bulletLifeTime;
-                bulletScriptClone.WeaponParent = this.weaponParent;
                 bulletScriptClone.Damage = damage;
                 bulletScriptClone.IsCritical = damage == this.maxDamage;
 
                 Vector2 scale = new Vector2(Mathf.Abs(bulletScriptClone.transform.localScale.x), bulletScriptClone.transform.localScale.y);
-                bulletScriptClone.transform.localScale = this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? new Vector2(-scale.x, scale.y) : scale;
+
+                if (isPlayer)
+                {
+                    bulletScriptClone.WeaponParent = this.weaponParent;
+                    bulletScriptClone.transform.localScale = this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? new Vector2(-scale.x, scale.y) : scale;
+                }
 
                 this.bulletClone[i].SetActive(true);
 
@@ -177,17 +227,22 @@ public class WeaponShooting : Weapon
                 return this.bulletClone[i];
             }
         }
-        GameObject obj = Instantiate(this.bulletPrefab, shootPoint.position, shootPoint.rotation, this.weaponParent.SpawnPool);
-        obj.tag = "PlayerWeapon";
-        obj.layer = LayerMask.NameToLayer("Player");
+
+        GameObject obj = Instantiate(this.bulletPrefab, shootPoint.position, shootPoint.rotation, isPlayer ? this.weaponParent.SpawnPool : GameObject.Find("SpawnPool").transform);
+        obj.tag = isPlayer ? "PlayerWeapon" : "EnemyWeapon";
+        obj.layer = LayerMask.NameToLayer(isPlayer ? "Player" : "Enemy");
 
         BulletScript bullet = obj.GetComponent<BulletScript>();
         bullet.LifeTime = this.bulletLifeTime;
-        bullet.WeaponParent = this.weaponParent;
         bullet.Damage = damage;
         bullet.IsCritical = damage == this.maxDamage;
-        bullet.transform.localScale = this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ?new Vector2(-bullet.transform.localScale.x, bullet.transform.localScale.y) : bullet.transform.localScale;
         
+        if (isPlayer)
+        {
+            bullet.WeaponParent = this.weaponParent;
+            bullet.transform.localScale = this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? new Vector2(-bullet.transform.localScale.x, bullet.transform.localScale.y) : bullet.transform.localScale;
+        }
+
         obj.SetActive(true);
 
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
@@ -204,16 +259,7 @@ public class WeaponShooting : Weapon
         base.EnemyUseWeapon();
         foreach (Transform child in this.shootPoints)
         {
-            GameObject bulletObj = Instantiate(this.bulletPrefab, child.position, child.transform.rotation);
-            bulletObj.tag = "EnemyWeapon";
-            bulletObj.layer = LayerMask.NameToLayer("Enemy");
-
-            BulletScript bulletScript = bulletObj.GetComponent<BulletScript>();
-            bulletScript.Damage = this.GetRandomDamage();
-
-            Rigidbody2D rb = bulletObj.GetComponent<Rigidbody2D>();
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.AddForce(this.direction * bulletObj.transform.right * this.bulletSpeed, ForceMode2D.Impulse);
+            this.GetBullet(child, false);
 
         }
     }

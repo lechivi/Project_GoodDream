@@ -48,16 +48,25 @@ public class WeaponMelee : Weapon
 
         if (this.IsUsing && gameObject.CompareTag("PlayerWeapon") && this.weaponParent.PlayerCtrl.PlayerLife.Health > 0)
         {
-            this.InputPrimaryMove();
-            this.InputSecondaryMove();
-
             if (UIManager.HasInstance)
             {
                 GamePanel gamePanel = UIManager.Instance.GamePanel;
-                gamePanel.SecondMove.gameObject.SetActive(true);
                 gamePanel.FirstMove.Icon.sprite = gamePanel.Melee1;
                 gamePanel.SecondMove.Icon.sprite = gamePanel.Melee2;
+
+                
             }
+
+            this.InputSecondaryMove();
+            this.InputPrimaryMove();
+            //if (!UIManager.Instance.GamePanel.IsMobile)
+            //{
+            //    //this.OnClickedFirstMoveButton();
+            //    //this.OnClickedSecondMoveButton();
+            //}
+            //else
+            //{
+            //}
         }
     }
 
@@ -106,6 +115,7 @@ public class WeaponMelee : Weapon
     {
         //Only player use this method
         //for overrite
+        Debug.Log("1stMove");
     }
 
     protected virtual void SecondarylMove()

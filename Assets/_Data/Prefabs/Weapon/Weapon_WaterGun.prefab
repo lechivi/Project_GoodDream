@@ -151,17 +151,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSO: {fileID: 11400000, guid: d68597c8adba65a48b0d8c1e96f67037, type: 2}
-  minDamage: 5
-  maxDamage: 9
+  minDamage: 1
+  maxDamage: 2
   criticalChance: 20
   speedAttack: 5
   MagicType: 0
+  IsUsing: 0
   shootPoints: []
   bulletClone: []
   bulletPrefab: {fileID: 2872722887616609221, guid: 84b5f6f30f3aaaa49ad9d9df5494b7a0, type: 3}
   maxAmmo: 10
   reloadTime: 0.5
   bulletSpeed: 25
+  bulletLifeTime: 2
   fireRate: 4
   fireAudio: {fileID: 0}
   reloadAudio: {fileID: 0}

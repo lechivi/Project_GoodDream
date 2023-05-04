@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class PlayerMovement : PlayerAbstract
 {
+    [SerializeField] private ParticleSystem moveEffect;
+    [SerializeField, Range(0, 0.2f)] private float dustFormationPeriod;
+
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private Joystick movementJoystick;
     public MovementState MovementState { get; set; }
     public bool IsFacingRight;
     public bool IsUseJoystic;
@@ -14,17 +16,12 @@ public class PlayerMovement : PlayerAbstract
 
     private Rigidbody2D rb;
     private Vector2 movement;
+    private float effectTimer;
 
     protected override void Awake()
     {
         base.Awake();
         this.rb = this.playerCtrl.GetComponent<Rigidbody2D>();
-
-        if (UIManager.HasInstance)
-        {
-            if (UIManager.Instance.GamePanel.MovementJoystick == null) return;
-            this.movementJoystick = UIManager.Instance.GamePanel.MovementJoystick;
-        }
     }
 
     private void Start()
@@ -68,80 +65,81 @@ public class PlayerMovement : PlayerAbstract
 
         if (this.MovementState == MovementState.Death) return;
 
-        this.movement.x = Input.GetAxisRaw("Horizontal");
-        this.movement.y = Input.GetAxisRaw("Vertical");
+        //this.movement.x = Input.GetAxisRaw("Horizontal");
+        //this.movement.y = Input.GetAxisRaw("Vertical");
 
-        this.MovementState = this.movement == Vector2.zero ? MovementState.Idle : MovementState.Run;
-        //if (!this.IsUseJoystic)
-        //{
-        //    this.movement.x = Input.GetAxisRaw("Horizontal");
-        //    this.movement.y = Input.GetAxisRaw("Vertical");
+        //this.MovementState = this.movement == Vector2.zero ? MovementState.Idle : MovementState.Run;
+        if (UIManager.HasInstance && UIManager.Instance.GamePanel.IsMobile)
+        {
+            this.MovementState = this.playerCtrl.MovementJoystick.CurrentProcessedValue == Vector3.zero ? MovementState.Idle : MovementState.Run;
+        }
+        else
+        {
+            this.movement.x = Input.GetAxisRaw("Horizontal");
+            this.movement.y = Input.GetAxisRaw("Vertical");
 
-        //    this.MovementState = this.movement == Vector2.zero ? MovementState.Idle : MovementState.Run;
-        //}
-        //else
-        //{
-        //    this.MovementState = this.movementJoystick.CurrentProcessedValue == Vector3.zero ? MovementState.Idle : MovementState.Run;
-        //}
+            this.MovementState = this.movement == Vector2.zero ? MovementState.Idle : MovementState.Run;
+        }
 
         this.Facing();
+        this.SpawnMoveEffect();
     }
 
     private void FixedUpdate()
     {
         if (this.rb.bodyType == RigidbodyType2D.Static) return;
 
-        this.rb.MovePosition(this.rb.position + this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
-        //if (!this.IsUseJoystic)
-        //{
-        //    this.rb.MovePosition(this.rb.position + this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
-        //}
-        //else
-        //{
-        //    this.playerCtrl.transform.position += this.movementJoystick.CurrentProcessedValue * this.moveSpeed * Time.fixedDeltaTime;
-        //}
+        //this.rb.MovePosition(this.rb.position + this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
+        if (UIManager.HasInstance && UIManager.Instance.GamePanel.IsMobile)
+        {
+            this.playerCtrl.transform.position += this.playerCtrl.MovementJoystick.CurrentProcessedValue * this.moveSpeed * Time.fixedDeltaTime;
+        }
+        else
+        {
+            this.rb.MovePosition(this.rb.position + this.movement.normalized * this.moveSpeed * Time.fixedDeltaTime);
+        }
     }
 
     private void Facing()
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePos.x > this.playerCtrl.transform.position.x)
-        {
-            this.playerCtrl.transform.localScale = new Vector3(-1, 1, 1);
-            this.IsFacingRight = true;
-        }
-        else
-        {
-            this.playerCtrl.transform.localScale = Vector3.one;
-            this.IsFacingRight = false;
-        }
-        //if (!this.IsUseJoystic)
+        //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //if (mousePos.x > this.playerCtrl.transform.position.x)
         //{
-        //    Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    if (mousePos.x > this.playerCtrl.transform.position.x)
-        //    {
-        //        this.playerCtrl.transform.localScale = new Vector3(-1, 1, 1);
-        //        this.IsFacingRight = true;
-        //    }
-        //    else
-        //    {
-        //        this.playerCtrl.transform.localScale = Vector3.one;
-        //        this.IsFacingRight = false;
-        //    }
+        //    this.playerCtrl.transform.localScale = new Vector3(-1, 1, 1);
+        //    this.IsFacingRight = true;
         //}
         //else
         //{
-        //    if (this.movementJoystick.CurrentProcessedValue.x > 0)
-        //    {
-        //        this.playerCtrl.transform.localScale = new Vector3(-1, 1, 1);
-        //        this.IsFacingRight = true;
-        //    }
-        //    else if(this.movementJoystick.CurrentProcessedValue.x < 0)
-        //    {
-        //        this.playerCtrl.transform.localScale = Vector3.one;
-        //        this.IsFacingRight = false;
-        //    }
+        //    this.playerCtrl.transform.localScale = Vector3.one;
+        //    this.IsFacingRight = false;
         //}
+        if (UIManager.HasInstance && UIManager.Instance.GamePanel.IsMobile)
+        {
+            if (this.playerCtrl.MovementJoystick.CurrentProcessedValue.x > 0)
+            {
+                this.playerCtrl.transform.localScale = new Vector3(-1, 1, 1);
+                this.IsFacingRight = true;
+            }
+            else if (this.playerCtrl.MovementJoystick.CurrentProcessedValue.x < 0)
+            {
+                this.playerCtrl.transform.localScale = Vector3.one;
+                this.IsFacingRight = false;
+            }
+        }
+        else
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (mousePos.x > this.playerCtrl.transform.position.x)
+            {
+                this.playerCtrl.transform.localScale = new Vector3(-1, 1, 1);
+                this.IsFacingRight = true;
+            }
+            else
+            {
+                this.playerCtrl.transform.localScale = Vector3.one;
+                this.IsFacingRight = false;
+            }
+        }
 
     }
 
@@ -159,5 +157,18 @@ public class PlayerMovement : PlayerAbstract
         {
             this.playerCtrl.PlayerAnimator.Play("4_Death");
         }
-    }    
+    }
+
+    private void SpawnMoveEffect()
+    {
+        if (this.movement != Vector2.zero/* && Mathf.Abs(this.rb.velocity.x) > occurAfterVelocity*/)
+        {
+            this.effectTimer += Time.deltaTime;
+            if (this.effectTimer > this.dustFormationPeriod)
+            {
+                this.moveEffect.Play();
+                this.effectTimer = 0;
+            }
+        }
+    }
 }

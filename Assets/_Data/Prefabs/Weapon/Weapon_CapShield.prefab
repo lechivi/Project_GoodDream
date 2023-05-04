@@ -191,9 +191,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSO: {fileID: 11400000, guid: 002cd052335a4984e89f573b050cf465, type: 2}
-  minDamage: 1
-  maxDamage: 5
-  criticalChance: 20
+  minDamage: 14
+  maxDamage: 15
+  criticalChance: 0
   speedAttack: 5
   MagicType: 0
   IsUsing: 0
@@ -353,4 +353,4 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
-  m_Emitting: 0
+  m_Emitting: 1

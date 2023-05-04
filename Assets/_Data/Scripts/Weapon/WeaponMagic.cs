@@ -79,7 +79,6 @@ public class WeaponMagic : Weapon
             if (UIManager.HasInstance)
             {
                 GamePanel gamePanel = UIManager.Instance.GamePanel;
-                gamePanel.SecondMove.gameObject.SetActive(true);
                 gamePanel.FirstMove.Icon.sprite = gamePanel.Magic1;
                 gamePanel.SecondMove.Icon.sprite = gamePanel.Magic2;
             }
@@ -137,7 +136,15 @@ public class WeaponMagic : Weapon
     protected GameObject GetBulletSpell(Transform shootPoint, bool isPlayer, bool isUp)
     {
         int damage = this.GetRandomDamage();
-        this.direction = 1 * (this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? 1 : -1);
+
+        if (isPlayer)
+        {
+            this.direction = 1 * (this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? 1 : -1);
+        }
+        else
+        {
+            this.direction = 1;
+        }
         
         for (int i = 0; i < this.bulletClone.Count; i++)
         {
@@ -146,16 +153,21 @@ public class WeaponMagic : Weapon
                 //this.bulletClone[i].name = "BulletClone_" + i;
                 this.bulletClone[i].transform.position = shootPoint.position;
                 this.bulletClone[i].transform.rotation = shootPoint.rotation;
-                this.bulletClone[i].transform.parent = this.weaponParent.SpawnPool;
+                this.bulletClone[i].transform.parent = isPlayer ? this.weaponParent.SpawnPool : GameObject.Find("SpawnPool").transform;
 
                 BulletScript bulletScriptClone = this.bulletClone[i].GetComponent<BulletScript>();
                 bulletScriptClone.LifeTime = this.spellLifeTime;
-                bulletScriptClone.WeaponParent = this.weaponParent;
                 bulletScriptClone.Damage = damage;
                 bulletScriptClone.IsCritical = damage == this.maxDamage;
 
                 Vector2 scale = new Vector2(Mathf.Abs(bulletScriptClone.transform.localScale.x), bulletScriptClone.transform.localScale.y);
-                bulletScriptClone.transform.localScale = this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? new Vector2(-scale.x, scale.y) : scale;
+
+                if (isPlayer)
+                {
+                    bulletScriptClone.WeaponParent = this.weaponParent;
+                    bulletScriptClone.transform.localScale = this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? new Vector2(-scale.x, scale.y) : scale;
+
+                }
 
                 this.bulletClone[i].SetActive(true);
 
@@ -169,16 +181,21 @@ public class WeaponMagic : Weapon
             }
         }
 
-        GameObject obj = Instantiate(this.bulletSpellPrefab, shootPoint.position, shootPoint.transform.rotation, this.weaponParent.SpawnPool);
+        GameObject obj = Instantiate(this.bulletSpellPrefab, shootPoint.position, shootPoint.transform.rotation, isPlayer ? this.weaponParent.SpawnPool : GameObject.Find("SpawnPool").transform);
         obj.tag = isPlayer ? "PlayerWeapon" : "EnemyWeapon";
         obj.layer = LayerMask.NameToLayer(isPlayer ? "Player" : "Enemy");
 
         BulletScript bullet = obj.GetComponent<BulletScript>();
         bullet.LifeTime = this.spellLifeTime;
-        bullet.WeaponParent = this.weaponParent;
         bullet.Damage = damage;
         bullet.IsCritical = damage == this.maxDamage;
-        bullet.transform.localScale = this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? bullet.transform.localScale : new Vector2(-bullet.transform.localScale.x, bullet.transform.localScale.y);
+
+        if (isPlayer)
+        {
+            bullet.WeaponParent = this.weaponParent;
+            bullet.transform.localScale = this.weaponParent.PlayerCtrl.PlayerMovement.IsFacingRight ? bullet.transform.localScale : new Vector2(-bullet.transform.localScale.x, bullet.transform.localScale.y);
+
+        }
 
         obj.SetActive(true);
 
@@ -203,6 +220,7 @@ public class WeaponMagic : Weapon
         foreach (Transform child in this.shootPoints)
         {
             this.GetBulletSpell(child, false, true);
+
         }
     }
 

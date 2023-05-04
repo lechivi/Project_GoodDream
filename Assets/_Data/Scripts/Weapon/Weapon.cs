@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour
 
     protected virtual void Update()
     {
-        //for override
+        //For overrite
     }
 
     public virtual void SetActiveWeapon(bool active)
@@ -55,10 +55,22 @@ public class Weapon : MonoBehaviour
         return isCritical ? this.maxDamage : Random.Range(this.minDamage, this.maxDamage);
     }
 
+    public virtual void OnClickedFirstMoveButton()
+    {
+        //For overrite
+        Debug.Log("A");
+    }
+
+    public virtual void OnClickedSecondMoveButton()
+    {
+        //For overrite
+        Debug.Log("B");
+    }
+
     public virtual void EnemyUseWeapon()
     {
         //Only enemy use this method
-        //for overrite
+        //For overrite
     }
 
 }

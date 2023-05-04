@@ -54,7 +54,6 @@ public class EnemyLife : EnemyAbstract
             AudioManager.Instance.PlaySFX(AUDIO.SFX_ENEMYDEATH);
         }
 
-        Debug.Log("Die");
         this.enemyCtrl.EnemyAI.MovementState = MovementState.Death;
         this.enemyCtrl.EnemyAnimator.gameObject.GetComponent<SortingGroup>().sortingOrder = -10;
         this.gameObject.layer = LayerMask.NameToLayer("Death");

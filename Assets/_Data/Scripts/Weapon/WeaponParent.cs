@@ -12,20 +12,21 @@ public class WeaponParent : PlayerAbstract
 
     public Transform SpawnPool { get; private set; }
 
+    public bool Test;
     private Vector3 direction;
     private int currentWeapon;
 
     protected override void Awake()
     {
         base.Awake();
-        this.SpawnPool = GameObject.Find("SpawnPool").transform;    
+        this.SpawnPool = GameObject.Find("SpawnPool").transform;
 
-        if (transform.childCount == 0 && PlayerManager.HasInstance)
+        if (this.Test)
         {
-            foreach(GameObject weaponOnList in PlayerManager.Instance.ListWeaponObj)
+            this.listWeapon.Clear();
+            foreach (Transform child in transform)
             {
-                GameObject weaponObj = Instantiate(weaponOnList, transform);
-                Weapon weapon = weaponObj.GetComponent<Weapon>();
+                Weapon weapon = child.GetComponent<Weapon>();
                 if (weapon != null)
                 {
                     this.listWeapon.Add(weapon);
@@ -34,19 +35,26 @@ public class WeaponParent : PlayerAbstract
                 }
             }
         }
-
-        //foreach (Transform child in transform)
-        //{
-        //    Weapon weapon = child.GetComponent<Weapon>();
-        //    if (weapon != null)
-        //    {
-        //        this.listWeapon.Add(weapon);
-        //        weapon.gameObject.SetActive(true);
-        //        weapon.SetActiveWeapon(false);
-        //    }
-        //}
+        else
+        {
+            if (PlayerManager.HasInstance)
+            {
+                foreach (GameObject weaponOnList in PlayerManager.Instance.ListWeaponObj)
+                {
+                    GameObject weaponObj = Instantiate(weaponOnList, transform);
+                    Weapon weapon = weaponObj.GetComponent<Weapon>();
+                    if (weapon != null)
+                    {
+                        this.listWeapon.Add(weapon);
+                        weapon.gameObject.SetActive(true);
+                        weapon.SetActiveWeapon(false);
+                    }
+                }
+            }
+        }
+        
     }
-    
+
     private void Start()
     {
         if (this.listWeapon.Count > 0)
@@ -65,9 +73,50 @@ public class WeaponParent : PlayerAbstract
     private void Update()
     {
         if (this.playerCtrl.PlayerLife.Health <= 0) return;
-        this.FaceWeapon();
 
-        if (UIManager.HasInstance)
+        this.FaceWeapon();
+        this.SwapWeapon();
+    }
+
+    private void FaceWeapon()
+    {
+        //Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //this.direction = mousePos - (Vector2)transform.position;
+
+        //float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.Euler(0f, 0f, this.playerCtrl.PlayerMovement.IsFacingRight ? rotZ : rotZ - 180);
+        if (UIManager.HasInstance && UIManager.Instance.GamePanel.IsMobile)
+        {
+            this.direction = (Vector2)this.playerCtrl.MovementJoystick.CurrentProcessedValue;
+            float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, this.playerCtrl.PlayerMovement.IsFacingRight ? rotZ : rotZ - 180);
+        }
+        else
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            this.direction = mousePos - (Vector2)transform.position;
+
+            float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, this.playerCtrl.PlayerMovement.IsFacingRight ? rotZ : rotZ - 180);
+        }
+    }
+
+    private void SwapWeapon()
+    {
+        //Use mouse scroll wheel to swap weapon (just for test)
+        if (this.Test)
+        {
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                this.SetWeapon(this.currentWeapon - 1);
+            }
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                this.SetWeapon(this.currentWeapon + 1);
+            }
+        }
+
+        if (PlayerManager.HasInstance)
         {
             if (this.listWeapon[currentWeapon].GetComponent<WeaponShooting>() != null)
             {
@@ -75,35 +124,11 @@ public class WeaponParent : PlayerAbstract
             }
         }
 
-
-        this.SwapWeapon();
-    }
-
-    private void FaceWeapon()
-    {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        this.direction = mousePos - (Vector2) transform.position;
-
-        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, this.playerCtrl.PlayerMovement.IsFacingRight ? rotZ : rotZ - 180);
-    }
-
-    private void SwapWeapon()
-    {
-        //Use mouse scroll wheel to swap weapon
-        //if (Input.mouseScrollDelta.y > 0)
-        //{
-        //    this.SetWeapon(this.currentWeapon - 1);
-        //}
-        //if (Input.mouseScrollDelta.y < 0)
-        //{
-        //    this.SetWeapon(this.currentWeapon + 1);
-        //}
-
-        //use number button from 1-5 to swap weapon
         if (PlayerManager.HasInstance)
         {
             List<int> hotkeys = PlayerManager.Instance.Hotkeys;
+
+            //Use number button from 1-5 to swap weapon
             if (hotkeys.Count == 0) return;
             if (Input.GetKeyDown(KeyCode.Alpha1) && this.listWeapon.Count >= 1 && hotkeys[0] != -1)
             {
@@ -125,7 +150,41 @@ public class WeaponParent : PlayerAbstract
             {
                 this.SetWeapon(hotkeys[4]);
             }
+
+            //Use Tab to swap weapon
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                List<int> existHotkeys = new List<int>();
+                foreach (int key in hotkeys)
+                {
+                    if (key != -1)
+                    {
+                        existHotkeys.Add(key);
+                    }
+                }
+                if (existHotkeys.Count == 0) return;
+
+                if (existHotkeys.Contains(this.currentWeapon))
+                {
+                    if (existHotkeys.Count == 1) return;
+
+                    int currentHotkey = existHotkeys.IndexOf(this.currentWeapon);
+                    if (currentHotkey == existHotkeys.Count - 1)
+                    {
+                        this.SetWeapon(existHotkeys[0]);
+                    }
+                    else
+                    {
+                        this.SetWeapon(existHotkeys[currentHotkey + 1]);
+                    }
+                }
+                else
+                {
+                    this.SetWeapon(existHotkeys[0]);
+                }
+            }
         }
+
 
     }
 
@@ -152,6 +211,11 @@ public class WeaponParent : PlayerAbstract
 
         if (UIManager.HasInstance)
         {
+            if (UIManager.Instance.GamePanel.IsMobile)
+            {
+                UIManager.Instance.GamePanel.InitializeWeapon();
+            }
+
             if (this.listWeapon[currentWeapon].WeaponType == WeaponType.Shooting)
             {
                 WeaponShooting weaponShooting = this.listWeapon[currentWeapon].GetComponent<WeaponShooting>();
@@ -167,7 +231,7 @@ public class WeaponParent : PlayerAbstract
             UIManager.Instance.GamePanel.FirstMove.ResetFillMove();
             UIManager.Instance.GamePanel.SecondMove.ResetFillMove();
         }
-       
+
     }
 
 
@@ -180,12 +244,6 @@ public class WeaponParent : PlayerAbstract
         damageTextObject.GetComponentInChildren<TextMesh>().color = isCritical ? Color.red : Color.white;
         damageTextObject.GetComponentInChildren<TextMesh>().fontSize = isCritical ? 75 : 50;
 
-        //Debug.Log(damage, damageTextObject.gameObject);
     }
 
-    //protected virtual IEnumerator DestroyDamageText(GameObject damageTextObject)
-    //{
-    //    yield return new WaitForSeconds(1f);
-    //    Destroy(damageTextObject);
-    //}
 }

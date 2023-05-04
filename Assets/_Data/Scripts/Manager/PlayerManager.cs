@@ -9,7 +9,7 @@ public class PlayerManager : BaseManager<PlayerManager>
     public int MaxHealth = 100;
     public int CurrentMana = 0;
     public int MaxMana = 100;
-    public float ReloadSpeed = 1f;
+    public float MulReloadSpeed = 1f;
     public CharacterSO CharacterSO;
 
     public int CurrentHealthSave;
@@ -81,7 +81,7 @@ public class PlayerManager : BaseManager<PlayerManager>
         this.CharacterSO = characterSO;
         this.MaxHealth = characterSO.maxHealth;
         this.MaxMana = characterSO.maxMana;
-        this.ReloadSpeed = characterSO.reloadSpeed;
+        this.MulReloadSpeed = characterSO.mulReloadSpeed;
 
         GameObject playerObj = GameObject.Find("Player");
         if (playerObj != null)

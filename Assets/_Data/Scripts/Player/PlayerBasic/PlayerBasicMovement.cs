@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerBasicMovement : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem moveEffect;
+    [SerializeField, Range(0, 0.2f)] private float dustFormationPeriod;
+
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Animator reactionAnimator;
     public MovementState MovementState { get; set; }
@@ -17,6 +20,7 @@ public class PlayerBasicMovement : MonoBehaviour
     private Vector3 originScale;
 
     private ItemHolderZone itemHolderZone;
+    private float effectTimer;
     private bool isEnterZoneItem;
     private bool isEnterDreamBook;
 
@@ -95,6 +99,8 @@ public class PlayerBasicMovement : MonoBehaviour
         {
             this.reactionAnimator.gameObject.SetActive(false);
         }
+
+        this.SpawnMoveEffect();
     }
 
     private void FixedUpdate()
@@ -185,6 +191,19 @@ public class PlayerBasicMovement : MonoBehaviour
         if (dreamBook != null)
         {
             this.isEnterDreamBook = false;
+        }
+    }
+
+    private void SpawnMoveEffect()
+    {
+        if (this.movement != Vector2.zero/* && Mathf.Abs(this.rb.velocity.x) > occurAfterVelocity*/)
+        {
+            this.effectTimer += Time.deltaTime;
+            if (this.effectTimer > this.dustFormationPeriod)
+            {
+                this.moveEffect.Play();
+                this.effectTimer = 0;
+            }
         }
     }
 }

@@ -113,8 +113,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.79215693, g: 0.882353, b: 0.9450981, a: 1}
-      key1: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 0}
+      key0: {r: 0.9339623, g: 0.8246678, b: 0.347152, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -295,8 +295,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.79215693, g: 0.882353, b: 0.9450981, a: 1}
-      key1: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 0}
+      key0: {r: 0.9339623, g: 0.8246678, b: 0.347152, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -478,8 +478,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSO: {fileID: 11400000, guid: 92c353161d2a6d64c87a95240470db8c, type: 2}
-  minDamage: 1
-  maxDamage: 5
+  minDamage: 13
+  maxDamage: 17
   criticalChance: 10
   speedAttack: 5
   MagicType: 0

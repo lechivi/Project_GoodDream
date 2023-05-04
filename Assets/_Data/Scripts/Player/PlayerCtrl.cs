@@ -1,3 +1,4 @@
+using EasyMobileInput;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class PlayerCtrl : MonoBehaviour
     [SerializeField] private NeverFlip neverFlip;
     [SerializeField] private PlayerModel playerModel;
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Joystick movementJoystick;
 
     public PlayerMovement PlayerMovement => this.playerMovement;
     public PlayerLife PlayerLife => this.playerLife;
@@ -20,6 +22,7 @@ public class PlayerCtrl : MonoBehaviour
     public WeaponParent WeaponParent => this.weaponParent;
     public NeverFlip NeverFlip => this.neverFlip;
     public Animator PlayerAnimator { get => this.playerAnimator; set => this.playerAnimator = value; }
+    public Joystick MovementJoystick { get => this.movementJoystick; set => this.movementJoystick = value; }
 
     private void Awake()
     {
@@ -34,5 +37,12 @@ public class PlayerCtrl : MonoBehaviour
         this.neverFlip = GetComponentInChildren<NeverFlip>();
 
         this.neverFlip.Target = transform;
+
+
+        if (UIManager.HasInstance)
+        {
+            if (UIManager.Instance.GamePanel.MovementJoystick == null) return;
+            this.movementJoystick = UIManager.Instance.GamePanel.MovementJoystick;
+        }
     }
 }

@@ -2165,7 +2165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4482188964445273383}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2244,6 +2244,7 @@ MonoBehaviour:
   spawnerReward: {fileID: 4482188964904562641}
   neverFlip: {fileID: 4482188965553884884}
   enemyAnimator: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!61 &2399893832029157664
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2278,7 +2279,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4482188964871576506}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -2289,7 +2290,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!1 &4482188964904562643
 GameObject:
@@ -2337,8 +2338,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthCollectiblaPrefab: {fileID: 1770789400004731702, guid: 66f8c2212db49b14183b1fa47e6972e8, type: 3}
   ManaCollectiblaPrefab: {fileID: 5191698275826821096, guid: 3164d038627d65a4ab42d0846c74a47a, type: 3}
-  rewardHealth: 5
-  rewardMana: 5
+  rewardHealth: 4
+  rewardMana: 4
   isRandom: 1
 --- !u!1 &4482188965113207931
 GameObject:
@@ -2459,9 +2460,9 @@ GameObject:
   - component: {fileID: 4482188965876807180}
   - component: {fileID: 4482188965876807183}
   - component: {fileID: 4482188965876807182}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Rifle
-  m_TagString: PlayerWeapon
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2567,17 +2568,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSO: {fileID: 0}
-  minDamage: 2
-  maxDamage: 3
+  minDamage: 1
+  maxDamage: 2
   criticalChance: 20
   speedAttack: 5
   MagicType: 0
+  IsUsing: 0
   shootPoints: []
   bulletClone: []
   bulletPrefab: {fileID: 2872722887616609221, guid: 84b5f6f30f3aaaa49ad9d9df5494b7a0, type: 3}
   maxAmmo: 10
   reloadTime: 0.2
   bulletSpeed: 10
+  bulletLifeTime: 2
   fireRate: 4
   fireAudio: {fileID: 0}
   reloadAudio: {fileID: 0}

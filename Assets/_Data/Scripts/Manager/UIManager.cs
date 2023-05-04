@@ -13,7 +13,9 @@ public class UIManager : BaseManager<UIManager>
     [SerializeField] private PausePanel pausePanel;
     [SerializeField] private LosePanel losePanel;
     [SerializeField] private VictoryPanel victoryPanel;
+    [SerializeField] private TestPanel testPanel;
     [SerializeField] private GuideCtrl guideCtrl;
+    [SerializeField] private Animator animatorTransition;
     [SerializeField] private Canvas canvas;
 
     public MenuPanel MenuPanel => this.menuPanel;
@@ -25,19 +27,18 @@ public class UIManager : BaseManager<UIManager>
     public PausePanel PausePanel => this.pausePanel;
     public LosePanel LosePanel => this.losePanel;
     public VictoryPanel VictoryPanel => this.victoryPanel;
+    public TestPanel TestPanel => this.testPanel;
+    public Animator AnimatorTransition => this.animatorTransition;
     public GuideCtrl GuideCtrl => this.guideCtrl;
 
-    private void Start()
+    //private void Start()
+    //{
+    //   this.StartMainMenu();
+    //}
+
+    private void OnEnable()
     {
-        this.ActiveMenuPanel(true);
-        this.ActiveSettingPanel(false);
-        this.ActiveLoadingPanel(false);
-        this.ActiveHomeScenePanel(false);
-        this.ActiveGamePanel(false);
-        this.ActivePausePanel(false);
-        this.ActiveLosePanel(false);
-        this.ActiveVictoryPanel(false);
-        canvas.worldCamera = Camera.main;
+        this.StartMainMenu();
     }
 
     private void Update()
@@ -50,6 +51,21 @@ public class UIManager : BaseManager<UIManager>
                 ActivePausePanel(true);
             }
         }
+    }
+
+    public void StartMainMenu()
+    {
+        this.ActiveMenuPanel(true);
+        this.ActiveSettingPanel(false);
+        this.ActiveLoadingPanel(false);
+        this.ActiveHomeScenePanel(false);
+        this.ActiveTutorialScenePanel(false);
+        this.ActiveGamePanel(false);
+        this.ActivePausePanel(false);
+        this.ActiveLosePanel(false);
+        this.ActiveVictoryPanel(false);
+        this.ActiveTestPanel(false);
+        canvas.worldCamera = Camera.main;
     }
 
     public void ActiveMenuPanel(bool active)
@@ -95,6 +111,11 @@ public class UIManager : BaseManager<UIManager>
     public void ActiveVictoryPanel(bool active)
     {
         this.victoryPanel.gameObject.SetActive(active);
+    }
+
+    public void ActiveTestPanel(bool active)
+    {
+        this.TestPanel.gameObject.SetActive(active);
     }
 
     private void OnLevelWasLoaded(int level)

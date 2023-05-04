@@ -17,7 +17,7 @@ public class SaveLoadManager : BaseManager<SaveLoadManager>
             this.saveData.MaxMana = PlayerManager.Instance.MaxMana;
             this.saveData.CurrentHealth = PlayerManager.Instance.CurrentHealthSave;
             this.saveData.CurrentMana = PlayerManager.Instance.CurrentManaSave;
-            this.saveData.ReloadSpeed = PlayerManager.Instance.ReloadSpeed;
+            this.saveData.ReloadSpeed = PlayerManager.Instance.MulReloadSpeed;
             this.saveData.characterSO = PlayerManager.Instance.CharacterSO;
 
             this.saveData.listWeapon = PlayerManager.Instance.ListWeaponObj;
@@ -42,14 +42,18 @@ public class SaveLoadManager : BaseManager<SaveLoadManager>
             PlayerManager.Instance.MaxMana = this.saveData.MaxMana;
             PlayerManager.Instance.CurrentHealth = this.saveData.CurrentHealth;
             PlayerManager.Instance.CurrentMana = this.saveData.CurrentMana;
-            PlayerManager.Instance.ReloadSpeed = this.saveData.ReloadSpeed;
+            PlayerManager.Instance.MulReloadSpeed = this.saveData.ReloadSpeed;
             PlayerManager.Instance.CharacterSO = this.saveData.characterSO;
 
             PlayerManager.Instance.ListWeaponObj = this.saveData.listWeapon;
             PlayerManager.Instance.Hotkeys = this.saveData.listHotkey;
             PlayerManager.Instance.CurrentWeapon = this.saveData.EquipWeapon;
 
-            SceneManager.LoadScene(this.saveData.CurrentScene);
+            //SceneManager.LoadScene(this.saveData.CurrentScene);
+            if (GameManager.HasInstance)
+            {
+            }
+            GameManager.Instance.LoadChangeScene(this.saveData.CurrentScene);
             
             Debug.Log("LoadGame");
         }

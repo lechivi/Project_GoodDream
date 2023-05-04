@@ -2382,7 +2382,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5995949831285861366}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2417,9 +2417,9 @@ GameObject:
   - component: {fileID: 5995949831340530282}
   - component: {fileID: 5995949831340530283}
   - component: {fileID: 5995949831340530280}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Staff_Healer
-  m_TagString: PlayerWeapon
+  m_TagString: EnemyWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2484,7 +2484,7 @@ SpriteRenderer:
   m_SortingLayerID: -163490121
   m_SortingLayer: 5
   m_SortingOrder: -4
-  m_Sprite: {fileID: 21300000, guid: 01832abaada9320408c5e9675584231b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8b9ea89e76dbbd4abc6a81658c537db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2531,7 +2531,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.05510497}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.4}
+    pivot: {x: 0.484375, y: 0.28125}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -2554,16 +2554,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponSO: {fileID: 0}
-  minDamage: 1
+  minDamage: 2
   maxDamage: 5
   criticalChance: 10
   speedAttack: 5
   MagicType: 0
+  IsUsing: 0
   shootPoints: []
+  bulletClone: []
   bulletSpellPrefab: {fileID: 2872722887616609221, guid: 84b5f6f30f3aaaa49ad9d9df5494b7a0, type: 3}
   manaCostAttack: 5
   manaCostSpell: 10
   spellSpeed: 5
+  spellLifeTime: 2
   cooldownTimeAttackMove: 0.25
   cooldownTimeSpellMove: 0.75
   healPrefab: {fileID: 2825329958206441427, guid: 66509c7d2bccf6c408b7e207c1155379, type: 3}
@@ -2627,7 +2630,7 @@ MonoBehaviour:
   IsStopMove: 0
   healTextPrefab: {fileID: 3151799772814439233, guid: e45020c54e4e3704eb440a2d9dba890f, type: 3}
   animationHealPrefab: {fileID: 2825329958206441427, guid: 66509c7d2bccf6c408b7e207c1155379, type: 3}
-  healAmout: 10
+  healAmout: 7
   delayHealTime: 1
   delayCooldownHealTime: 1
   delayRunAwayTime: 2.5
@@ -2749,7 +2752,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5995949831945501341}
   - component: {fileID: 5995949831945501340}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
@@ -2936,6 +2939,7 @@ MonoBehaviour:
   spawnerReward: {fileID: 5995949832216055590}
   neverFlip: {fileID: 5995949831714242926}
   enemyAnimator: {fileID: 1456465624791299247}
+  rb: {fileID: 0}
 --- !u!61 &6129564242074444606
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2970,7 +2974,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5995949832098677444}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -2981,7 +2985,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!1 &5995949832173331148
 GameObject:
@@ -3054,8 +3058,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644c8b0fb65d0014b8f25730b167bdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
-  maxHealth: 50
+  health: 60
+  maxHealth: 60
 --- !u!1 &5995949832216055588
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,7 +3107,7 @@ MonoBehaviour:
   HealthCollectiblaPrefab: {fileID: 1770789400004731702, guid: 66f8c2212db49b14183b1fa47e6972e8, type: 3}
   ManaCollectiblaPrefab: {fileID: 5191698275826821096, guid: 3164d038627d65a4ab42d0846c74a47a, type: 3}
   rewardHealth: 0
-  rewardMana: 10
+  rewardMana: 9
   isRandom: 1
 --- !u!1 &5995949832344265394
 GameObject:
@@ -3175,7 +3179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5995949832491497427}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3206,7 +3210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5995949832928231746}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3237,7 +3241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5995949833206271709}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

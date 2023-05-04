@@ -2298,6 +2298,7 @@ MonoBehaviour:
   spawnerReward: {fileID: 5270770501276849953}
   neverFlip: {fileID: 5270770501138965306}
   enemyAnimator: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!61 &-8658710945574964002
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2332,7 +2333,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5270770499997040378}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -2343,7 +2344,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!1 &5270770500250275100
 GameObject:
@@ -2547,7 +2548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d03e3412db83cc418079f4810320b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactDamage: 3
+  contactDamage: 5
   moveSpeed: 6
   roamSpeed: 2
   roamRange: 3
@@ -2649,8 +2650,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthCollectiblaPrefab: {fileID: 1770789400004731702, guid: 66f8c2212db49b14183b1fa47e6972e8, type: 3}
   ManaCollectiblaPrefab: {fileID: 5191698275826821096, guid: 3164d038627d65a4ab42d0846c74a47a, type: 3}
-  rewardHealth: 5
-  rewardMana: 5
+  rewardHealth: 2
+  rewardMana: 2
   isRandom: 1
 --- !u!1 &5270770501499467403
 GameObject:

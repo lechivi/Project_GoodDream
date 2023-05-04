@@ -431,27 +431,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_20
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 256
-        width: 176
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 305d90b9357a1664692c990e1ecf2865
-      internalID: -1803077205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: UI books & more_21
       rect:
         serializedVersion: 2
@@ -1124,7 +1103,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_63
+      name: Stamps_0
       rect:
         serializedVersion: 2
         x: 371
@@ -1145,7 +1124,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_64
+      name: Stamps_1
       rect:
         serializedVersion: 2
         x: 387
@@ -1166,7 +1145,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_65
+      name: Stamps_2
       rect:
         serializedVersion: 2
         x: 403
@@ -1187,7 +1166,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_66
+      name: Stamps_3
       rect:
         serializedVersion: 2
         x: 419
@@ -1460,12 +1439,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_79
+      name: Stamps_4
       rect:
         serializedVersion: 2
         x: 368
         y: 240
-        width: 32
+        width: 16
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -1481,7 +1460,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_80
+      name: Stamps_6
       rect:
         serializedVersion: 2
         x: 401
@@ -1502,13 +1481,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_81
+      name: Stamps_8
       rect:
         serializedVersion: 2
         x: 416
-        y: 240
+        y: 256
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1691,7 +1670,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI books & more_90
+      name: Stamps_7
       rect:
         serializedVersion: 2
         x: 401
@@ -5134,6 +5113,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Stamps_5
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 240
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bd996510c93cc1428b4c5946ce67ab5
+      internalID: 70523637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stamps_9
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 335037336d68f4847ae8bdf68a4d6666
+      internalID: -1425059510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notebook_Blue
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 256
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4476fd09df08de841973215e2cea1853
+      internalID: 22927958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Notebook_Red
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 304
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c68e3e5d818024842b7bf345bd5606bb
+      internalID: -103052363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -5150,8 +5213,6 @@ TextureImporter:
       UI books & more_170: 2109403422
       UI books & more_223: -737560673
       UI books & more_233: 2097605056
-      UI books & more_66: -316441006
-      UI books & more_80: -1963078444
       UI books & more_228: 392469865
       UI books & more_96: 1384831399
       Ribbon_Black_10: -1404041237
@@ -5159,10 +5220,9 @@ TextureImporter:
       UI books & more_163: 1541736590
       OtherRibbon_Bright_3: -48132241
       Tab_Open: -346671159
-      UI books & more_90: -234128202
+      UI books & more_191: 1522908298
       UI books & more_105: 1595748487
       OtherRibbon_Black_0: -2146557477
-      UI books & more_191: 1522908298
       UI books & more_47: 725828776
       UI books & more_232: -1810585437
       UI_False: 317882462
@@ -5176,10 +5236,9 @@ TextureImporter:
       UI books & more_216: -1996121113
       OtherRibbon_Dark_3: -967071153
       UI books & more_157: 349722403
-      UI books & more_65: 1512355830
       UI books & more_167: 1904956188
-      UI books & more_93: -573654532
       UI books & more_154: 1920818436
+      UI books & more_93: -573654532
       UI books & more_54: -247287611
       UI books & more_73: 2124678314
       UI books & more_183: -1073511522
@@ -5205,13 +5264,14 @@ TextureImporter:
       UI books & more_123: 1295271813
       UI books & more_39: -307000789
       UI books & more_214: 817404324
-      UI books & more_1: 1513463713
+      UI books & more_165: 1662765096
+      Stamps_4: -363976966
       UI books & more_172: 97036953
       UI books & more_231: 1898537066
-      UI books & more_165: 1662765096
       UI books & more_219: 2144545081
       UI books & more_22: -1160996909
       UI books & more_220: -1084562798
+      Stamps_1: 2064333882
       Stain_1: 2125531356
       UI books & more_229: 421861086
       UI books & more_30: -519912211
@@ -5230,12 +5290,14 @@ TextureImporter:
       Icon_Inventory: -222962868
       UI books & more_175: 331507372
       UI books & more_189: -653343778
+      Notebook_Red: -103052363
       UI books & more_25: 2036616630
       OtherRibbon_Green_0: -1823237089
       UI books & more_201: -416763395
       UI books & more_41: 240157352
       UI books & more_94: -4058344
       UI books & more_57: -1070055085
+      Stamps_6: -1963078444
       UI books & more_226: -1274196856
       UI books & more_99: 1671962269
       UI books & more_133: -1295047957
@@ -5259,6 +5321,7 @@ TextureImporter:
       UI books & more_178: 440602348
       UI books & more_13: 1845572733
       Paper_13: -1664006239
+      Stamps_8: 1488534223
       UI books & more_33: -1503596796
       UI books & more_83: 1959455500
       UI books & more_91: 1319454107
@@ -5271,6 +5334,7 @@ TextureImporter:
       UI books & more_37: -1113744981
       UI books & more_211: -574753366
       BookOpen_Left: -120879561
+      Stamps_2: 1512355830
       UI books & more_193: 1701486970
       UI books & more_58: 1969548032
       UI books & more_50: -1219534185
@@ -5278,9 +5342,10 @@ TextureImporter:
       UI books & more_77: -364722813
       UI books & more_203: -472730364
       OtherRibbon_Red_3: 297301350
+      Stamps_0: -1439023675
       UI books & more_217: 854512079
       UI books & more_145: -1832577100
-      UI books & more_149: 270858168
+      Stamps_3: -316441006
       UI books & more_89: -802010306
       UI books & more_173: 1632703857
       Paper_4: 1336676936
@@ -5292,6 +5357,7 @@ TextureImporter:
       UI books & more_179: -322245938
       Ribbon_0_Bright: -1214628983
       UI books & more_224: 1190092670
+      UI books & more_149: 270858168
       UI books & more_230: 460824179
       Paper_12: 519746063
       UI books & more_67: -509059159
@@ -5301,6 +5367,7 @@ TextureImporter:
       UI books & more_221: 620037647
       UI books & more_32: -1257357050
       UI books & more_29: 1377409796
+      Stamps_5: 70523637
       UI books & more_26: 1169617729
       UI books & more_110: 1527064813
       Ribbon_3_Dark: -2090989457
@@ -5311,22 +5378,19 @@ TextureImporter:
       UI books & more_199: -213533292
       Ribbon_Bright_10: -2091963623
       UI books & more_35: 924536178
-      Icon_Map: -1252791599
       Paper_8: 1665609852
       UI books & more_104: 1472783059
-      UI books & more_81: 1488534223
+      UI books & more_202: -2142844829
+      Icon_Map: -1252791599
       UI books & more_235: 1841073972
       UI books & more_56: 1186587955
-      UI books & more_126: 1542888450
       UI books & more_60: 1495160029
       UI books & more_116: -1160417283
+      UI books & more_126: 1542888450
       UI books & more_215: 1432361204
-      UI books & more_202: -2142844829
       UI books & more_36: 227286599
       UI books & more_198: -1310713317
-      UI books & more_63: -1439023675
       UI books & more_103: 377545122
-      UI books & more_64: 2064333882
       Paper_5: -243095306
       UI books & more_98: -1242587211
       UI books & more_21: 1483495305
@@ -5343,17 +5407,19 @@ TextureImporter:
       UI books & more_87: -1081751062
       UI books & more_181: 1049962925
       UI books & more_197: 310084295
+      Stamps_9: 1513463713
       UI books & more_204: -1745688235
+      Notebook_Blue: 22927958
       UI books & more_212: -1759474557
       UI books & more_101: -185685957
       UI books & more_171: -2136102789
       OtherRibbon_Red_1: 511835966
       Ribbon_0_Dark: 2013169948
-      UI books & more_79: -363976966
+      UI books & more_210: 755568980
       UI books & more_184: -568837082
       UI books & more_209: -174034460
-      UI books & more_210: 755568980
       UI books & more_117: 736390183
+      Stamps_7: -234128202
       UI books & more_205: -1442324307
       UI books & more_213: -1479054408
       UI books & more_42: -1825546292

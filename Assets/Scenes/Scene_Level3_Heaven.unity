@@ -330,8 +330,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - listEnemy:
-    - {fileID: 2376937518649314672, guid: 7bc2146c4fde7e84198b2844c46032f7, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+  - listEnemy:
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
   checkDoors: []
   animationSpawnPrefab: {fileID: 8002548216589259748, guid: 4fed1179ecfdd0844a07593e3ff7c545, type: 3}
 --- !u!61 &23525525
@@ -1991,8 +1996,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - listEnemy:
-    - {fileID: 2376937518649314672, guid: 7bc2146c4fde7e84198b2844c46032f7, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 6866180875649720820, guid: 5ba75562f62714844a0a6f051b91d663, type: 3}
+  - listEnemy:
+    - {fileID: 5674241879447948969, guid: 8eeb50215c9003c4ea77e4b9dfdc8802, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
   checkDoors: []
   animationSpawnPrefab: {fileID: 8002548216589259748, guid: 4fed1179ecfdd0844a07593e3ff7c545, type: 3}
 --- !u!61 &167440336
@@ -3235,63 +3244,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e3be54eb2b41884b918e0dfa8e1967a, type: 3}
---- !u!1001 &302490276
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2398438297206079321, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8485893938933278051, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-      propertyPath: m_Name
-      value: LevelLoader
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
 --- !u!4 &340271729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5471996614106481851, guid: 2e3be54eb2b41884b918e0dfa8e1967a, type: 3}
@@ -10806,8 +10758,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - listEnemy:
-    - {fileID: 2376937518649314672, guid: 7bc2146c4fde7e84198b2844c46032f7, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+    - {fileID: 5674241879447948969, guid: 8eeb50215c9003c4ea77e4b9dfdc8802, type: 3}
+    - {fileID: 5674241879447948969, guid: 8eeb50215c9003c4ea77e4b9dfdc8802, type: 3}
+    - {fileID: 6866180875649720820, guid: 5ba75562f62714844a0a6f051b91d663, type: 3}
+  - listEnemy:
+    - {fileID: 5674241879447948969, guid: 8eeb50215c9003c4ea77e4b9dfdc8802, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
   checkDoors: []
   animationSpawnPrefab: {fileID: 8002548216589259748, guid: 4fed1179ecfdd0844a07593e3ff7c545, type: 3}
 --- !u!61 &459442826
@@ -10890,7 +10847,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &522501245
 PrefabInstance:
@@ -11174,7 +11131,7 @@ Transform:
   m_Children:
   - {fileID: 566702229}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &572969529
 MonoBehaviour:
@@ -11569,11 +11526,6 @@ Transform:
   m_Father: {fileID: 1998234332}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &611755112 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 718250388503984522, guid: 4587d39ff03a68042aab17d3e28ac1dd, type: 3}
-  m_PrefabInstance: {fileID: 302490276}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &618225032
 GameObject:
   m_ObjectHideFlags: 0
@@ -11623,8 +11575,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - listEnemy:
-    - {fileID: 2376937518649314672, guid: 7bc2146c4fde7e84198b2844c46032f7, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+  - listEnemy:
+    - {fileID: 5674241879447948969, guid: 8eeb50215c9003c4ea77e4b9dfdc8802, type: 3}
+    - {fileID: 6866180875649720820, guid: 5ba75562f62714844a0a6f051b91d663, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
   checkDoors: []
   animationSpawnPrefab: {fileID: 8002548216589259748, guid: 4fed1179ecfdd0844a07593e3ff7c545, type: 3}
 --- !u!61 &618225035
@@ -11839,6 +11796,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5471996614106481851, guid: 2e3be54eb2b41884b918e0dfa8e1967a, type: 3}
   m_PrefabInstance: {fileID: 1278953674}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &668155717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 668155718}
+  m_Layer: 0
+  m_Name: SpawnPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &668155718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668155717}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1408013729}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &695818813
 GameObject:
   m_ObjectHideFlags: 0
@@ -11853,7 +11841,7 @@ GameObject:
   - component: {fileID: 695818817}
   - component: {fileID: 695818816}
   - component: {fileID: 695818815}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 4_Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -26138,13 +26126,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - listEnemy:
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
   - listEnemy:
-    - {fileID: 7110049484413087677, guid: 2f9db295e505eac4fbf4468f4f693eb9, type: 3}
-  - listEnemy:
-    - {fileID: 3261952160778524306, guid: 7e5eb8014e9d9f248a9027467010a68c, type: 3}
+    - {fileID: 6866180875649720820, guid: 5ba75562f62714844a0a6f051b91d663, type: 3}
+    - {fileID: 6866180875649720820, guid: 5ba75562f62714844a0a6f051b91d663, type: 3}
+    - {fileID: 6866180875649720820, guid: 5ba75562f62714844a0a6f051b91d663, type: 3}
   checkDoors: []
   animationSpawnPrefab: {fileID: 8002548216589259748, guid: 4fed1179ecfdd0844a07593e3ff7c545, type: 3}
 --- !u!61 &830618756
@@ -34553,7 +34541,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1408013729}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1361860356
 MonoBehaviour:
@@ -34567,7 +34555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4461447b02e283043bb8a085c7580d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorTransition: {fileID: 611755112}
+  animatorTransition: {fileID: 0}
   transitionTime: 1.5
 --- !u!61 &1361860357
 BoxCollider2D:
@@ -34857,8 +34845,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1361860355}
+  - {fileID: 668155718}
   - {fileID: 1717211133}
+  - {fileID: 1361860355}
   - {fileID: 1815356018}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -73473,7 +73462,6 @@ MonoBehaviour:
   animatorDoorLeft: {fileID: 1239877353}
   animatorDoorRight: {fileID: 178251288}
   colDoor: {fileID: 1239877352}
-  colFinish: {fileID: 0}
 --- !u!61 &1717211135
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -74945,7 +74933,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1408013729}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1815659735
 PrefabInstance:
@@ -75321,8 +75309,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - listEnemy:
-    - {fileID: 2376937518649314672, guid: 7bc2146c4fde7e84198b2844c46032f7, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
+  - listEnemy:
+    - {fileID: 4344513510612260888, guid: 74d31c8e3bbcb0a42a2d44412bddf42e, type: 3}
   checkDoors: []
   animationSpawnPrefab: {fileID: 8002548216589259748, guid: 4fed1179ecfdd0844a07593e3ff7c545, type: 3}
 --- !u!61 &1935892699
@@ -75338,7 +75328,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.6155505, y: 0.12959671}
+  m_Offset: {x: -0.6155505, y: 0.39417648}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -75349,7 +75339,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.60707, y: 4.805969}
+  m_Size: {x: 10.60707, y: 4.2768097}
   m_EdgeRadius: 0
 --- !u!4 &1938891424 stripped
 Transform:
@@ -75439,7 +75429,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1942632196
 MonoBehaviour:
@@ -76073,13 +76063,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - listEnemy:
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+    - {fileID: 6866180875649720820, guid: 5ba75562f62714844a0a6f051b91d663, type: 3}
+    - {fileID: 5674241879447948969, guid: 8eeb50215c9003c4ea77e4b9dfdc8802, type: 3}
+    - {fileID: 5674241879447948969, guid: 8eeb50215c9003c4ea77e4b9dfdc8802, type: 3}
   - listEnemy:
-    - {fileID: 7110049484413087677, guid: 2f9db295e505eac4fbf4468f4f693eb9, type: 3}
-  - listEnemy:
-    - {fileID: 3261952160778524306, guid: 7e5eb8014e9d9f248a9027467010a68c, type: 3}
+    - {fileID: 4344513510612260888, guid: 74d31c8e3bbcb0a42a2d44412bddf42e, type: 3}
   checkDoors: []
   animationSpawnPrefab: {fileID: 8002548216589259748, guid: 4fed1179ecfdd0844a07593e3ff7c545, type: 3}
 --- !u!61 &1998234334
@@ -76531,13 +76519,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - listEnemy:
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 5674241879447948969, guid: 8eeb50215c9003c4ea77e4b9dfdc8802, type: 3}
   - listEnemy:
-    - {fileID: 7110049484413087677, guid: 2f9db295e505eac4fbf4468f4f693eb9, type: 3}
-  - listEnemy:
-    - {fileID: 3261952160778524306, guid: 7e5eb8014e9d9f248a9027467010a68c, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
   checkDoors: []
   animationSpawnPrefab: {fileID: 8002548216589259748, guid: 4fed1179ecfdd0844a07593e3ff7c545, type: 3}
 --- !u!4 &981614109036490731
@@ -76726,17 +76714,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - listEnemy:
-    - {fileID: 8997971910355639400, guid: 4d436c9aadea42f4daeaf6103b5b6c9e, type: 3}
-    - {fileID: 8997971910355639400, guid: 4d436c9aadea42f4daeaf6103b5b6c9e, type: 3}
-    - {fileID: 8997971910355639400, guid: 4d436c9aadea42f4daeaf6103b5b6c9e, type: 3}
-    - {fileID: 5995949832098677444, guid: a65e3f11b6c3c9141a12a831fc48de5d, type: 3}
+    - {fileID: 4344513510612260888, guid: 74d31c8e3bbcb0a42a2d44412bddf42e, type: 3}
+    - {fileID: 5674241879447948969, guid: 8eeb50215c9003c4ea77e4b9dfdc8802, type: 3}
   - listEnemy:
-    - {fileID: 104989264587402589, guid: 593e134588b386a44898ec56dee075b0, type: 3}
-    - {fileID: 104989264587402589, guid: 593e134588b386a44898ec56dee075b0, type: 3}
-    - {fileID: 8797475638526803361, guid: 3168fda6d3d4323448cfaa824f7b3d21, type: 3}
+    - {fileID: 3261952160778524306, guid: 7e5eb8014e9d9f248a9027467010a68c, type: 3}
   - listEnemy:
-    - {fileID: 2200297721532637480, guid: 74e1145d738b63646a2510d86e93669e, type: 3}
-    - {fileID: 2200297721532637480, guid: 74e1145d738b63646a2510d86e93669e, type: 3}
+    - {fileID: 4344513510612260888, guid: 74d31c8e3bbcb0a42a2d44412bddf42e, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
+    - {fileID: 9933666409244487, guid: f76cbfcc5b988cd41992bf373f378f5d, type: 3}
   checkDoors: []
   animationSpawnPrefab: {fileID: 8002548216589259748, guid: 4fed1179ecfdd0844a07593e3ff7c545, type: 3}
 --- !u!4 &3068220042342599423
@@ -76836,8 +76821,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wave:
   - listEnemy:
-    - {fileID: 2376937518649314672, guid: 7bc2146c4fde7e84198b2844c46032f7, type: 3}
-    - {fileID: 2493994925923060099, guid: 411974ab6406416458811b9a2232d6b8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 6456616723786511738, guid: 65d8a8bde318ef840bb92221d6ec01c8, type: 3}
+    - {fileID: 5674241879447948969, guid: 8eeb50215c9003c4ea77e4b9dfdc8802, type: 3}
   checkDoors: []
   animationSpawnPrefab: {fileID: 8002548216589259748, guid: 4fed1179ecfdd0844a07593e3ff7c545, type: 3}
 --- !u!61 &6117385861360378207

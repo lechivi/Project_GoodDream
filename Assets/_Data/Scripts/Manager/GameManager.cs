@@ -19,7 +19,6 @@ public class GameManager : BaseManager<GameManager>
 
     public void PauseGame()
     {
-        Debug.Log("Pause");
         if (this.isPlaying)
         {
             this.isPlaying = false;
@@ -33,32 +32,63 @@ public class GameManager : BaseManager<GameManager>
         Time.timeScale = 1.0f;
     }
 
-
-    public void RestarGame()
+    public void BackToMainMenu()
     {
-        ChangeScene("MainMenu");
-
-        if (UIManager.HasInstance)
+        this.ResumeGame();
+        if (SaveLoadManager.HasInstance)
         {
-            UIManager.Instance.ActiveMenuPanel(true);
-            UIManager.Instance.ActiveGamePanel(false);
-            UIManager.Instance.ActiveSettingPanel(false);
-            UIManager.Instance.ActivePausePanel(false);
-            UIManager.Instance.ActiveLosePanel(false);
-            UIManager.Instance.ActiveVictoryPanel(false);
+            SaveLoadManager.Instance.Save();
         }
+
+        StartCoroutine(this.LoadChangeScene(0));
     }
-    public void EndGame()
+
+    public void QuitGame()
     {
+        if (SaveLoadManager.HasInstance)
+        {
+            SaveLoadManager.Instance.Save();
+        }
+
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
     }
 
-    public void ChangeScene(string sceneName)
+    public IEnumerator ChangeScene(string sceneName)
     {
+        UIManager.Instance.AnimatorTransition.SetTrigger("End");
+
+        yield return new WaitForSeconds(1.25f);
         SceneManager.LoadScene(sceneName);
+    }
+
+    public IEnumerator ChangeScene(int sceneIndex)
+    {
+        UIManager.Instance.AnimatorTransition.SetTrigger("End");
+
+        yield return new WaitForSeconds(1.25f);
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    //public IEnumerator LoadChangeScene(string sceneName)
+    //{
+    //    UIManager.Instance.AnimatorTransition.SetTrigger("End");
+
+    //    yield return new WaitForSeconds(1.25f);
+    //    UIManager.Instance.ActiveLoadingPanel(true);
+    //    StartCoroutine(UIManager.Instance.LoadingPanel.LoadScene(sceneName));
+    //}
+
+    public IEnumerator LoadChangeScene(int sceneIndex)
+    {
+        UIManager.Instance.AnimatorTransition.SetTrigger("End");
+
+        yield return new WaitForSeconds(1.25f);
+        UIManager.Instance.ActiveLoadingPanel(true);
+        StartCoroutine(UIManager.Instance.LoadingPanel.LoadScene(sceneIndex));
+        yield return null;
     }
 
 }

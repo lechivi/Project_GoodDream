@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class LosePanel : MonoBehaviour
 {
-    public void OnClickedRestarGame()
+    public void OnClickedMainMenuButton()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
         if (GameManager.HasInstance)
         {
-            GameManager.Instance.RestarGame();
+            GameManager.Instance.BackToMainMenu();
         }
     }
 
-    public void OnClickedEndGame()
+    public void OnClickedQuitButton()
     {
-        if (GameManager.HasInstance )
+        if (AudioManager.HasInstance)
         {
-            GameManager.Instance.EndGame();
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_BUTTON);
+        }
+
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.QuitGame();
         }
     }
 }

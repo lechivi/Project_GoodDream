@@ -32,6 +32,7 @@ public class CapShieldWeapon : WeaponMelee
     protected override void Update()
     {
         base.Update();
+        Debug.Log(isReadyPrimaryMove);
 
         if (this.isThrowing )
         {
@@ -66,6 +67,39 @@ public class CapShieldWeapon : WeaponMelee
                 if (EventSystem.current.IsPointerOverGameObject()) return;
             }
             this.PrimaryMove();
+        }
+    }
+
+    public override void OnClickedFirstMoveButton()
+    {
+        base.OnClickedFirstMoveButton();
+        this.PrimaryMove();
+        //Debug.Log(isReadyPrimaryMove + " " + isAttacking);
+        //if (/*this.isReadyPrimaryMove && */!this.isAttacking)
+        //{
+            
+        //}
+    }
+
+    protected override void InputSecondaryMove()
+    {
+        base.InputSecondaryMove();
+        if (Input.GetMouseButtonDown(1) && this.isReadySecondaryMove && this.haveSkill2 && !this.isThrowing && !this.isAttacking)
+        {
+            if (UIManager.HasInstance)
+            {
+                if (EventSystem.current.IsPointerOverGameObject()) return;
+            }
+            this.SecondarylMove();
+        }
+    }
+
+    public override void OnClickedSecondMoveButton()
+    {
+        base.OnClickedSecondMoveButton();
+        if (this.isReadySecondaryMove && this.haveSkill2 && !this.isThrowing && !this.isAttacking)
+        {
+            this.SecondarylMove();
         }
     }
 
@@ -128,44 +162,27 @@ public class CapShieldWeapon : WeaponMelee
         this.col.enabled = false;
     }
 
-    protected override void InputSecondaryMove()
-    {
-        base.InputSecondaryMove();
-        this.SecondarylMove();
-    }
 
     protected override void SecondarylMove()
     {
-        if (Input.GetMouseButtonDown(1) && this.haveSkill2)
+        if (AudioManager.HasInstance)
         {
-            if (UIManager.HasInstance)
-            {
-                if (EventSystem.current.IsPointerOverGameObject()) return;
-            }
-
-            if (!this.isThrowing && this.isReadySecondaryMove && !this.isAttacking)
-            {
-                if (AudioManager.HasInstance)
-                {
-                    AudioManager.Instance.PlaySFX(AUDIO.SFX_STAB);
-                }
-
-                this.StartNewAttack();
-                this.isReadySecondaryMove = false;
-                this.isAttacking = true;
-
-                this.trail.emitting = true;
-
-                transform.SetParent(null);
-
-                this.animator.enabled = false;
-                this.rb.bodyType = RigidbodyType2D.Dynamic;
-                this.rb.AddForce(this.GetDirection() * this.throwSpeed, ForceMode2D.Impulse);
-                this.isThrowing = true;
-                this.col.enabled = true;
-
-            }
+            AudioManager.Instance.PlaySFX(AUDIO.SFX_STAB);
         }
+
+        this.StartNewAttack();
+        this.isReadySecondaryMove = false;
+        this.isAttacking = true;
+
+        this.trail.emitting = true;
+
+        transform.SetParent(null);
+
+        this.animator.enabled = false;
+        this.rb.bodyType = RigidbodyType2D.Dynamic;
+        this.rb.AddForce(this.GetDirection() * this.throwSpeed, ForceMode2D.Impulse);
+        this.isThrowing = true;
+        this.col.enabled = true;
     }
 
     public override void SetActiveWeapon(bool active)
